@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MRT | Executive Mining OS — Comité Semanal</title>
+<style>
+:root {
+  --bg:       #0A0E13;
+  --card:     #161B22;
+  --surface:  #1F262F;
+  --border:   #2D3748;
+  --gold:     #E5C158;
+  --gold-d:   #C29B23;
+  --text:     #E6EDF3;
+  --muted:    #8B95A1;
+  --green:    #30A46C;
+  --red:      #E5484D;
+  --amber:    #F5A524;
+  --blue:     #38BDF8;
+  --radius:   8px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;overflow-x:hidden}
+a{color:var(--gold);text-decoration:none}
+button{cursor:pointer;font-family:var(--font)}
+
+/* ─── LOGIN ─── */
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:radial-gradient(ellipse at 30% 20%,#1a2535 0%,var(--bg) 60%)}
+.login-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:48px;width:420px;max-width:95vw}
+.login-logo{text-align:center;margin-bottom:32px}
+.login-logo .logo-mrt{font-size:36px;font-weight:900;letter-spacing:6px;color:var(--gold)}
+.login-logo .logo-sub{font-size:10px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-top:4px}
+.login-card h2{font-size:18px;font-weight:600;margin-bottom:24px;color:var(--text)}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.form-group input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s}
+.form-group input:focus{border-color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:var(--radius);font-size:13px;font-weight:600;border:none;transition:all .2s;letter-spacing:.3px}
+.btn-primary{background:var(--gold);color:#000}
+.btn-primary:hover{background:var(--gold-d)}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-danger{background:var(--red);color:#fff}
+.btn-danger:hover{opacity:.85}
+.btn-full{width:100%;justify-content:center}
+.btn-sm{padding:7px 14px;font-size:12px}
+.login-error{background:#2d1215;border:1px solid var(--red);border-radius:var(--radius);padding:10px 14px;font-size:13px;color:var(--red);margin-bottom:16px;display:none}
+
+/* ─── LAYOUT ─── */
+#app{display:none;min-height:100vh}
+.sidebar{position:fixed;top:0;left:0;width:220px;height:100vh;background:var(--card);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;overflow-y:auto}
+.sidebar-logo{padding:24px 20px 16px;border-bottom:1px solid var(--border)}
+.sidebar-logo .mrt{font-size:22px;font-weight:900;letter-spacing:4px;color:var(--gold)}
+.sidebar-logo .sub{font-size:9px;letter-spacing:2.5px;color:var(--muted);text-transform:uppercase;margin-top:2px}
+.nav-section{padding:16px 12px 8px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 16px;border-radius:var(--radius);margin:2px 8px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;border:none;background:none;width:calc(100% - 16px);text-align:left}
+.nav-item:hover{background:var(--surface);color:var(--text)}
+.nav-item.active{background:rgba(229,193,88,.12);color:var(--gold)}
+.nav-item .icon{width:16px;text-align:center;font-size:14px}
+.sidebar-footer{margin-top:auto;padding:16px;border-top:1px solid var(--border)}
+.user-chip{display:flex;align-items:center;gap:10px}
+.user-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold-d),var(--gold));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#000;flex-shrink:0}
+.user-name{font-size:13px;font-weight:600;color:var(--text)}
+.user-role{font-size:11px;color:var(--muted)}
+.main{margin-left:220px;padding:32px;min-height:100vh}
+.page{display:none}
+.page.active{display:block}
+.page-header{margin-bottom:28px}
+.page-title{font-size:22px;font-weight:700;color:var(--text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:4px}
+
+/* ─── CARDS & GRID ─── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+.card-sm{padding:16px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.stat-value{font-size:32px;font-weight:800;color:var(--text);line-height:1}
+.stat-delta{font-size:12px;margin-top:6px;color:var(--muted)}
+.stat-delta.up{color:var(--green)}
+.stat-delta.down{color:var(--red)}
+
+/* ─── BADGES & STATUS ─── */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.badge-verde{background:rgba(48,164,108,.15);color:var(--green);border:1px solid rgba(48,164,108,.3)}
+.badge-rojo{background:rgba(229,72,77,.15);color:var(--red);border:1px solid rgba(229,72,77,.3)}
+.badge-ambar{background:rgba(245,165,36,.15);color:var(--amber);border:1px solid rgba(245,165,36,.3)}
+.badge-alta{background:rgba(229,72,77,.15);color:var(--red);border:1px solid rgba(229,72,77,.3)}
+.badge-media{background:rgba(245,165,36,.15);color:var(--amber);border:1px solid rgba(245,165,36,.3)}
+.badge-baja{background:rgba(48,164,108,.15);color:var(--green);border:1px solid rgba(48,164,108,.3)}
+.badge-abierto{background:rgba(56,189,248,.15);color:var(--blue);border:1px solid rgba(56,189,248,.3)}
+.badge-progreso{background:rgba(245,165,36,.15);color:var(--amber);border:1px solid rgba(245,165,36,.3)}
+.badge-cerrado{background:rgba(139,149,161,.15);color:var(--muted);border:1px solid rgba(139,149,161,.3)}
+.badge-diferido{background:rgba(48,164,108,.08);color:var(--muted);border:1px dashed var(--border)}
+.status-dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.dot-verde{background:var(--green)}
+.dot-rojo{background:var(--red)}
+.dot-ambar{background:var(--amber)}
+
+/* ─── SECTION EDITOR ─── */
+.section-card{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:16px;overflow:hidden}
+.section-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--surface);cursor:pointer;user-select:none}
+.section-header-left{display:flex;align-items:center;gap:12px}
+.section-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+.section-title{font-size:15px;font-weight:700}
+.section-sub{font-size:11px;color:var(--muted)}
+.section-body{padding:20px;display:grid;gap:16px}
+.section-body.collapsed{display:none}
+.field-group{display:grid;gap:8px}
+.field-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.field-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+input[type=text],input[type=number],select,textarea{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;color:var(--text);font-size:13px;font-family:var(--font);outline:none;width:100%;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+select option{background:var(--surface)}
+textarea{resize:vertical;min-height:80px;line-height:1.5}
+.kpi-block{background:var(--surface);border-radius:var(--radius);padding:14px;display:grid;gap:10px}
+.kpi-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.divider{height:1px;background:var(--border);margin:4px 0}
+
+/* ─── TABLE ─── */
+table{width:100%;border-collapse:collapse}
+thead th{padding:10px 14px;text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+tbody td{padding:12px 14px;font-size:13px;border-bottom:1px solid rgba(45,55,72,.5);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:rgba(255,255,255,.02)}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;background:rgba(229,193,88,.12);color:var(--gold);margin:2px}
+
+/* ─── WEEK SELECTOR ─── */
+.week-bar{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:24px}
+.week-info{display:flex;align-items:center;gap:16px}
+.week-label{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.week-num{font-size:24px;font-weight:900;color:var(--gold)}
+.week-date{font-size:13px;color:var(--muted)}
+.week-actions{display:flex;gap:8px;align-items:center}
+
+/* ─── CHART / HISTORY ─── */
+.history-table .count-bar{display:inline-block;height:6px;border-radius:3px;background:var(--gold);opacity:.7;margin-left:8px;vertical-align:middle}
+
+/* ─── TOPIC MODAL ─── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;width:560px;max-width:95vw;max-height:90vh;overflow-y:auto}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.modal-title{font-size:16px;font-weight:700}
+.modal-close{background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:4px}
+.modal-close:hover{color:var(--text)}
+
+/* ─── ALERTS ─── */
+.alert{padding:12px 16px;border-radius:var(--radius);font-size:13px;margin-bottom:16px}
+.alert-success{background:rgba(48,164,108,.12);border:1px solid rgba(48,164,108,.3);color:var(--green)}
+.alert-danger{background:rgba(229,72,77,.12);border:1px solid rgba(229,72,77,.3);color:var(--red)}
+
+/* ─── TABS ─── */
+.tabs{display:flex;gap:4px;background:var(--surface);padding:4px;border-radius:var(--radius);margin-bottom:20px;width:fit-content}
+.tab{padding:8px 16px;border-radius:5px;font-size:12px;font-weight:600;letter-spacing:.5px;cursor:pointer;border:none;background:none;color:var(--muted);transition:all .2s}
+.tab.active{background:var(--card);color:var(--gold)}
+
+/* ─── PRINT ─── */
+@media print{
+  .sidebar,.week-actions,.btn,.tabs,.modal-overlay{display:none!important}
+  .main{margin:0;padding:16px}
+  body{background:#fff;color:#000}
+  .card,.section-card,.stat-card{border:1px solid #ccc;break-inside:avoid}
+}
+
+/* ─── MISC ─── */
+.flex{display:flex}.gap-8{gap:8px}.gap-12{gap:12px}.gap-16{gap:16px}.items-center{align-items:center}.justify-between{justify-content:space-between}.ml-auto{margin-left:auto}
+.mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-16{margin-top:16px}.mt-24{margin-top:24px}.mt-32{margin-top:32px}
+.mb-8{margin-bottom:8px}.mb-16{margin-bottom:16px}.mb-24{margin-bottom:24px}
+.text-muted{color:var(--muted)}.text-gold{color:var(--gold)}.text-green{color:var(--green)}.text-red{color:var(--red)}.text-amber{color:var(--amber)}
+.font-bold{font-weight:700}.font-900{font-weight:900}
+.text-xs{font-size:11px}.text-sm{font-size:13px}.text-lg{font-size:18px}.text-xl{font-size:22px}
+.uppercase{text-transform:uppercase}.tracking-wide{letter-spacing:1.5px}
+.w-full{width:100%}
+.rounded{border-radius:var(--radius)}
+.hidden{display:none!important}
+.separator{height:1px;background:var(--border);margin:20px 0}
+.empty-state{text-align:center;padding:48px 24px;color:var(--muted)}
+.empty-state .icon{font-size:40px;margin-bottom:12px}
+.pill-section{display:inline-block;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:rgba(229,193,88,.1);color:var(--gold);border:1px solid rgba(229,193,88,.2)}
+.topic-row-title{font-weight:600;margin-bottom:2px}
+.topic-appearances{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.week-tag{font-size:10px;padding:1px 6px;border-radius:3px;background:var(--surface);color:var(--muted);border:1px solid var(--border)}
+</style>
+</head>
+<body>
+
+<!-- ══════════ LOGIN ══════════ -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="logo-mrt">MRT</div>
+      <div class="logo-sub">Executive Mining Operating System</div>
+    </div>
+    <h2>Acceso al Sistema</h2>
+    <div id="login-error" class="login-error">Credenciales incorrectas. Intente nuevamente.</div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" id="login-email" placeholder="usuario@mrt.mx" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label>Contraseña</label>
+      <input type="password" id="login-pass" placeholder="••••••••">
+    </div>
+    <button class="btn btn-primary btn-full mt-12" onclick="Auth.login()">Ingresar al Sistema</button>
+    <div class="separator"></div>
+    <div style="font-size:11px;color:var(--muted);text-align:center">
+      Sistema de uso exclusivo MRT Corporativo.<br>Contacte al administrador para obtener acceso.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ FIRST-RUN SETUP ══════════ -->
+<div id="setup-screen" style="display:none;align-items:center;justify-content:center;min-height:100vh;background:radial-gradient(ellipse at 70% 80%,#1a2535 0%,var(--bg) 60%)">
+  <div class="login-card" style="width:480px">
+    <div class="login-logo">
+      <div class="logo-mrt">MRT</div>
+      <div class="logo-sub">Configuración Inicial del Sistema</div>
+    </div>
+    <div style="background:rgba(229,193,88,.08);border:1px solid rgba(229,193,88,.25);border-radius:8px;padding:12px 16px;margin-bottom:24px;font-size:12px;color:var(--gold)">
+      Primera vez que se accede al sistema. Configure la cuenta de administrador para continuar.
+    </div>
+    <div id="setup-error" class="login-error">Complete todos los campos correctamente.</div>
+    <div class="form-group">
+      <label>Nombre del Administrador</label>
+      <input type="text" id="setup-name" placeholder="Ej: Administrador Sistema">
+    </div>
+    <div class="form-group">
+      <label>Email Corporativo</label>
+      <input type="text" id="setup-email" placeholder="admin@mrtcorporativo.mx">
+    </div>
+    <div class="form-group">
+      <label>Contraseña</label>
+      <input type="password" id="setup-pass" placeholder="Mínimo 8 caracteres">
+    </div>
+    <div class="form-group">
+      <label>Confirmar Contraseña</label>
+      <input type="password" id="setup-pass2" placeholder="Repita la contraseña">
+    </div>
+    <button class="btn btn-primary btn-full mt-12" onclick="FirstRun.setup()">Crear Administrador y Acceder</button>
+  </div>
+</div>
+
+<!-- ══════════ APP ══════════ -->
+<div id="app">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <div class="mrt">MRT</div>
+      <div class="sub">Executive Mining OS</div>
+    </div>
+    <div class="nav-section">Principal</div>
+    <button class="nav-item active" onclick="Nav.go('dashboard')" data-page="dashboard">
+      <span class="icon">⬡</span> Dashboard
+    </button>
+    <button class="nav-item" onclick="Nav.go('meeting')" data-page="meeting">
+      <span class="icon">◎</span> Reunión Semanal
+    </button>
+    <div class="nav-section">Seguimiento</div>
+    <button class="nav-item" onclick="Nav.go('topics')" data-page="topics">
+      <span class="icon">◈</span> Temas & Prioridades
+    </button>
+    <button class="nav-item" onclick="Nav.go('history')" data-page="history">
+      <span class="icon">◷</span> Historial
+    </button>
+    <div id="nav-admin-section" class="hidden">
+      <div class="nav-section">Administración</div>
+      <button class="nav-item" onclick="Nav.go('admin')" data-page="admin">
+        <span class="icon">⚙</span> Usuarios
+      </button>
+    </div>
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="user-avatar" id="sidebar-avatar">?</div>
+        <div>
+          <div class="user-name" id="sidebar-name">—</div>
+          <div class="user-role" id="sidebar-role">—</div>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-sm btn-full mt-8" onclick="Auth.openChangePwd()">🔑 Cambiar Contraseña</button>
+      <button class="btn btn-ghost btn-sm btn-full mt-4" onclick="Auth.logout()">Cerrar Sesión</button>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- ── DASHBOARD ── -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header flex items-center justify-between">
+        <div>
+          <div class="page-title">Dashboard Ejecutivo</div>
+          <div class="page-sub" id="dash-week-label">Semana —</div>
+        </div>
+        <div class="flex gap-8">
+          <button class="btn btn-ghost btn-sm" onclick="UI.printDash()">⎙ Exportar</button>
+          <button class="btn btn-primary btn-sm" onclick="Nav.go('meeting')">+ Nueva Reunión</button>
+        </div>
+      </div>
+
+      <!-- KPI Strip -->
+      <div class="grid-4 mb-24" id="dash-kpis"></div>
+
+      <!-- Status grid -->
+      <div class="grid-2 mb-24">
+        <div class="card">
+          <div class="flex items-center justify-between mb-16">
+            <div class="text-sm font-bold uppercase tracking-wide text-gold">Estado por Área</div>
+          </div>
+          <div id="dash-status-grid"></div>
+        </div>
+        <div class="card">
+          <div class="flex items-center justify-between mb-16">
+            <div class="text-sm font-bold uppercase tracking-wide text-gold">Temas Abiertos — Prioridad</div>
+          </div>
+          <div id="dash-topics-summary"></div>
+        </div>
+      </div>
+
+      <!-- Decisions -->
+      <div class="card mb-24">
+        <div class="flex items-center justify-between mb-16">
+          <div class="text-sm font-bold uppercase tracking-wide text-gold">Decision Board — Semana Actual</div>
+          <button class="btn btn-ghost btn-sm" onclick="Nav.go('topics')">Ver todos →</button>
+        </div>
+        <div id="dash-decisions"></div>
+      </div>
+    </div>
+
+    <!-- ── MEETING ── -->
+    <div class="page" id="page-meeting">
+      <div class="page-header flex items-center justify-between">
+        <div>
+          <div class="page-title">Comité Ejecutivo Semanal</div>
+          <div class="page-sub">Sistema visual de 25 minutos · Control de desvíos, cash, riesgos y decisiones</div>
+        </div>
+        <div class="flex gap-8 items-center" id="meeting-actions"></div>
+      </div>
+
+      <!-- Week bar -->
+      <div class="week-bar">
+        <div class="week-info">
+          <div>
+            <div class="week-label">Semana</div>
+            <div class="week-num" id="meeting-week-num">—</div>
+          </div>
+          <div>
+            <div class="week-label">Fecha</div>
+            <div class="week-date" id="meeting-week-date">—</div>
+          </div>
+          <div>
+            <div class="week-label">Estado</div>
+            <div id="meeting-status-badge"></div>
+          </div>
+        </div>
+        <div class="week-actions flex gap-8">
+          <button class="btn btn-ghost btn-sm" onclick="Meetings.prevWeek()">← Anterior</button>
+          <button class="btn btn-ghost btn-sm" onclick="Meetings.thisWeek()">Hoy</button>
+          <button class="btn btn-ghost btn-sm" onclick="Meetings.nextWeek()">Siguiente →</button>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs" id="meeting-tabs">
+        <button class="tab active" onclick="MeetingUI.showTab('sections')">Secciones</button>
+        <button class="tab" onclick="MeetingUI.showTab('decisions')">Decision Board</button>
+        <button class="tab" onclick="MeetingUI.showTab('agreements')">Acuerdos</button>
+      </div>
+
+      <div id="meeting-tab-sections"></div>
+      <div id="meeting-tab-decisions" class="hidden"></div>
+      <div id="meeting-tab-agreements" class="hidden"></div>
+    </div>
+
+    <!-- ── TOPICS ── -->
+    <div class="page" id="page-topics">
+      <div class="page-header flex items-center justify-between">
+        <div>
+          <div class="page-title">Seguimiento de Temas</div>
+          <div class="page-sub">Control, priorización y seguimiento semana a semana</div>
+        </div>
+        <button class="btn btn-primary btn-sm" id="btn-new-topic" onclick="TopicsUI.openNew()">+ Nuevo Tema</button>
+      </div>
+
+      <!-- Filters -->
+      <div class="card card-sm mb-16">
+        <div class="flex gap-12 items-center flex-wrap">
+          <select id="filter-status" onchange="TopicsUI.render()" style="width:140px">
+            <option value="">Todos los estados</option>
+            <option value="abierto">Abierto</option>
+            <option value="en_progreso">En Progreso</option>
+            <option value="cerrado">Cerrado</option>
+            <option value="diferido">Diferido</option>
+          </select>
+          <select id="filter-priority" onchange="TopicsUI.render()" style="width:140px">
+            <option value="">Todas las prioridades</option>
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baja">Baja</option>
+          </select>
+          <select id="filter-section" onchange="TopicsUI.render()" style="width:160px">
+            <option value="">Todas las áreas</option>
+          </select>
+          <input type="text" id="filter-search" placeholder="Buscar tema..." onkeyup="TopicsUI.render()" style="width:200px">
+          <button class="btn btn-ghost btn-sm ml-auto" onclick="TopicsUI.clearFilters()">Limpiar filtros</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tema</th>
+              <th>Área</th>
+              <th>Prioridad</th>
+              <th>Estado</th>
+              <th>Apariciones</th>
+              <th>Owner</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="topics-table-body"></tbody>
+        </table>
+        <div id="topics-empty" class="empty-state hidden">
+          <div class="icon">◈</div>
+          <div>No hay temas registrados</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── HISTORY ── -->
+    <div class="page" id="page-history">
+      <div class="page-header">
+        <div class="page-title">Historial de Reuniones</div>
+        <div class="page-sub">Registro y frecuencia de temas tratados semana a semana</div>
+      </div>
+
+      <div class="grid-2 mb-24">
+        <div class="card">
+          <div class="text-sm font-bold uppercase tracking-wide text-gold mb-16">Reuniones por Estado</div>
+          <div id="hist-meeting-stats"></div>
+        </div>
+        <div class="card">
+          <div class="text-sm font-bold uppercase tracking-wide text-gold mb-16">Temas más Recurrentes</div>
+          <div id="hist-topic-freq"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="text-sm font-bold uppercase tracking-wide text-gold mb-16">Todas las Reuniones</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Semana</th>
+              <th>Fecha</th>
+              <th>Estado</th>
+              <th>Temas tratados</th>
+              <th>Decisiones</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="history-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── ADMIN ── -->
+    <div class="page" id="page-admin">
+      <div class="page-header flex items-center justify-between">
+        <div>
+          <div class="page-title">Gestión de Usuarios</div>
+          <div class="page-sub">Administración de accesos y roles del sistema</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="AdminUI.openNew()">+ Nuevo Usuario</button>
+      </div>
+      <div class="card">
+        <table>
+          <thead>
+            <tr><th>Nombre</th><th>Email</th><th>Rol</th><th>Sección</th><th>Acciones</th></tr>
+          </thead>
+          <tbody id="admin-users-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </main><!-- /main -->
+</div><!-- /app -->
+
+<!-- ══════════ TOPIC MODAL ══════════ -->
+<div class="modal-overlay" id="topic-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="topic-modal-title">Nuevo Tema</div>
+      <button class="modal-close" onclick="TopicsUI.closeModal()">✕</button>
+    </div>
+    <div class="form-group">
+      <label>Título del Tema *</label>
+      <input type="text" id="tm-title" placeholder="Descripción concisa del tema">
+    </div>
+    <div class="form-group">
+      <label>Descripción / Contexto</label>
+      <textarea id="tm-desc" placeholder="Detalle, contexto y antecedentes"></textarea>
+    </div>
+    <div class="grid-2">
+      <div class="form-group">
+        <label>Prioridad</label>
+        <select id="tm-priority">
+          <option value="alta">🔴 Alta</option>
+          <option value="media">🟡 Media</option>
+          <option value="baja">🟢 Baja</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Estado</label>
+        <select id="tm-status">
+          <option value="abierto">Abierto</option>
+          <option value="en_progreso">En Progreso</option>
+          <option value="cerrado">Cerrado</option>
+          <option value="diferido">Diferido</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="form-group">
+        <label>Área / Sección</label>
+        <select id="tm-section">
+          <option value="dg">Dirección General</option>
+          <option value="operaciones">Operaciones</option>
+          <option value="metalurgia">Metalurgia</option>
+          <option value="rrhh">RRHH</option>
+          <option value="finanzas">Finanzas</option>
+          <option value="comite">Comité</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Owner / Responsable</label>
+        <input type="text" id="tm-owner" placeholder="Nombre o cargo">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Acción / Decisión Requerida</label>
+      <textarea id="tm-action" placeholder="¿Qué se necesita decidir o hacer?" style="min-height:60px"></textarea>
+    </div>
+    <div class="flex gap-8 justify-between mt-16">
+      <button class="btn btn-ghost" id="tm-delete-btn" onclick="TopicsUI.deleteTopic()" style="display:none">Eliminar</button>
+      <div class="flex gap-8 ml-auto">
+        <button class="btn btn-ghost" onclick="TopicsUI.closeModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="TopicsUI.saveTopic()">Guardar Tema</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ USER MODAL ══════════ -->
+<div class="modal-overlay" id="user-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="user-modal-title">Nuevo Usuario</div>
+      <button class="modal-close" onclick="AdminUI.closeModal()">✕</button>
+    </div>
+    <div class="form-group">
+      <label>Nombre Completo</label>
+      <input type="text" id="um-name" placeholder="Ej: Juan García">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" id="um-email" placeholder="usuario@mrt.mx">
+    </div>
+    <div class="form-group">
+      <label>Contraseña <span style="color:var(--muted);font-weight:400">(dejar vacío para no cambiar al editar)</span></label>
+      <input type="password" id="um-pass" placeholder="Mínimo 8 caracteres">
+    </div>
+    <div class="grid-2">
+      <div class="form-group">
+        <label>Rol</label>
+        <select id="um-role" onchange="AdminUI.toggleSection()">
+          <option value="admin">Administrador</option>
+          <option value="director">Director</option>
+          <option value="viewer">Solo Lectura</option>
+        </select>
+      </div>
+      <div class="form-group" id="um-section-group">
+        <label>Sección del Director</label>
+        <select id="um-section">
+          <option value="dg">Dirección General</option>
+          <option value="operaciones">Operaciones</option>
+          <option value="metalurgia">Metalurgia</option>
+          <option value="rrhh">RRHH</option>
+          <option value="finanzas">Finanzas</option>
+        </select>
+      </div>
+    </div>
+    <div class="flex gap-8 justify-between mt-16">
+      <button class="btn btn-danger btn-sm" id="um-delete-btn" onclick="AdminUI.deleteUser()" style="display:none">Eliminar</button>
+      <div class="flex gap-8 ml-auto">
+        <button class="btn btn-ghost" onclick="AdminUI.closeModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="AdminUI.saveUser()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ CHANGE PASSWORD MODAL ══════════ -->
+<div class="modal-overlay" id="pwd-modal">
+  <div class="modal" style="width:400px">
+    <div class="modal-header">
+      <div class="modal-title">Cambiar Contraseña</div>
+      <button class="modal-close" onclick="document.getElementById('pwd-modal').classList.remove('open')">✕</button>
+    </div>
+    <div id="pwd-error" class="login-error" style="display:none"></div>
+    <div id="pwd-ok" class="alert alert-success" style="display:none">Contraseña actualizada correctamente.</div>
+    <div class="form-group">
+      <label>Contraseña Actual</label>
+      <input type="password" id="pwd-current" placeholder="••••••••">
+    </div>
+    <div class="form-group">
+      <label>Nueva Contraseña</label>
+      <input type="password" id="pwd-new" placeholder="Mínimo 8 caracteres">
+    </div>
+    <div class="form-group">
+      <label>Confirmar Nueva Contraseña</label>
+      <input type="password" id="pwd-new2" placeholder="Repita la nueva contraseña">
+    </div>
+    <div class="flex gap-8 justify-end mt-16">
+      <button class="btn btn-ghost" onclick="document.getElementById('pwd-modal').classList.remove('open')">Cancelar</button>
+      <button class="btn btn-primary" onclick="Auth.changePassword()">Actualizar Contraseña</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCRIPT ══════════ -->
+<script>
+'use strict';
+
+// ─── CONSTANTS ───────────────────────────────────────────
+const SECTIONS = [
+  { id:'dg',          num:'01', label:'Dirección General',    sub:'Decisiones & Estrategia' },
+  { id:'operaciones', num:'02', label:'Operaciones',           sub:'Producción / OzEqAu / AISC' },
+  { id:'metalurgia',  num:'03', label:'Metalurgia',            sub:'Proceso / Rendimiento / Planta' },
+  { id:'rrhh',        num:'04', label:'RRHH',                  sub:'Headcount / Vacantes / Relaciones' },
+  { id:'finanzas',    num:'05', label:'Finanzas',              sub:'Costo/Oz · Cash Flow · Margen' },
+];
+
+const SECTION_MAP = {};
+SECTIONS.forEach(s => SECTION_MAP[s.id] = s.label);
+
+const STATUS_LABELS = { abierto:'Abierto', en_progreso:'En Progreso', cerrado:'Cerrado', diferido:'Diferido' };
+const PRIORITY_LABELS = { alta:'Alta', media:'Media', baja:'Baja' };
+const ALERT_LABELS = { VERDE:'Verde ●', AMBAR:'Ámbar ◆', ROJO:'Rojo ■' };
+
+// ─── PASSWORD HASHING (Web Crypto API — SHA-256) ─────────
+async function hashPass(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+// ─── STORAGE ─────────────────────────────────────────────
+const DB = {
+  get(k){ try{ return JSON.parse(localStorage.getItem('mrt_'+k)||'null') }catch{return null} },
+  set(k,v){ localStorage.setItem('mrt_'+k, JSON.stringify(v)) },
+  async init(){
+    if(!this.get('meetings')) this.set('meetings',[]);
+    if(!this.get('topics'))   this.set('topics',[]);
+    // Seed operational sample data if not yet done (no users needed here)
+    if(!this.get('seeded')){
+      this._seed();
+      this.set('seeded', true);
+    }
+  },
+  _seed(){
+    const w = weekId(new Date());
+    const meetings = [{
+      id: w,
+      weekNum: getWeekNum(new Date()),
+      year: new Date().getFullYear(),
+      date: toDateStr(new Date()),
+      status: 'borrador',
+      sections:{
+        dg:{
+          alertStatus:'AMBAR',
+          kpi1Label:'Prioridades Ejecutivas',kpi1Value:'3 Decisiones',kpi1Plan:'0 Pendientes',kpi1Impact:'Requiere resolución hoy',
+          kpi2Label:'Semana Nº',kpi2Value:String(getWeekNum(new Date())),kpi2Plan:'—',kpi2Impact:'—',
+          riesgo:'Definición de estructura organizacional de Metalurgia y Exploración pendiente.',
+          apoyo:'Dirección de Metalurgia + RRHH para avalar estructura propuesta.',
+          accion:'DG: Aprobar estructura y presupuesto de exploración esta semana.',
+          updatedBy:'',updatedAt:''
+        },
+        operaciones:{
+          alertStatus:'ROJO',
+          kpi1Label:'OzEqAu Proyección',kpi1Value:'CIE: 2,736 +30% / VM: 565 -46%',kpi1Plan:'CIE: 2,091 / VM: 1,058',kpi1Impact:'+152 Oz +4.8%',
+          kpi2Label:'AISC Proyección',kpi2Value:'2,417 USD/Oz',kpi2Plan:'1,800 USD/Oz',kpi2Impact:'+17%',
+          riesgo:'VM: Compósito a procesar. Permisos ambientales en Namiquipa y Olivos.',
+          apoyo:'Metalurgia: Revisar dimensionamiento de equipos Olivos. Finanzas: Control de costo.',
+          accion:'DG: Plan con Villa Matamoros esta semana.',
+          updatedBy:'operaciones@mrt.mx',updatedAt:new Date().toISOString()
+        },
+        metalurgia:{
+          alertStatus:'ROJO',
+          kpi1Label:'Plan Producción VM — Jul 2026',kpi1Value:'86.5% Au · 75% Ag forecast',kpi1Plan:'1,000 Oz equiv Au',kpi1Impact:'12,000 ton a moler',
+          kpi2Label:'Consumo NaCN Matamoros',kpi2Value:'3.6 kg/t Jun',kpi2Plan:'2.9 kg/t May',kpi2Impact:'+24% consumo',
+          riesgo:'Material de Jales Leo, Toro, JH y Olivos para plan. Existencias físicas no verificadas.',
+          apoyo:'DF y DG: Compra de minerales VM. DO: Aval de plan para iniciar Metalurgia.',
+          accion:'Probar extractantes (resultados esta semana). Pruebas botellas/columnas Namiquipa (URGE).',
+          updatedBy:'metalurgia@mrt.mx',updatedAt:new Date().toISOString()
+        },
+        rrhh:{
+          alertStatus:'VERDE',
+          kpi1Label:'Headcount Total',kpi1Value:'364',kpi1Plan:'± 5%',kpi1Impact:'Dentro de rango',
+          kpi2Label:'Vacantes Prioritarias',kpi2Value:'Namiquipa: 2 · Corporativo: 1',kpi2Plan:'Plantilla ≤ 5%',kpi2Impact:'Bajo impacto',
+          riesgo:'Definición de headcount y diseño organizacional de Metalurgia y Exploración pendiente.',
+          apoyo:'Análisis estructura Metalurgia (Dir. Metalurgia). Vo.Bo. exploración (DG).',
+          accion:'Definir nuevas posiciones y cambios en estructura Metalurgia y Exploración.',
+          updatedBy:'rrhh@mrt.mx',updatedAt:new Date().toISOString()
+        },
+        finanzas:{
+          alertStatus:'AMBAR',
+          kpi1Label:'Costo Total / Oz Eq',kpi1Value:'US$2,417',kpi1Plan:'US$1,800',kpi1Impact:'-US$617/Oz Eq',
+          kpi2Label:'Cash Flow',kpi2Value:'MX$530M',kpi2Plan:'MX$511M',kpi2Impact:'+MX$19M',
+          riesgo:'Precios corto plazo: Au $4,340 · Ag $70. Márgenes 43%–50%. Compra mineral presiona margen.',
+          apoyo:'Próximo ciclo presupuestal. Estrategia compra mineral CIE.',
+          accion:'DG: Definir margen de utilidad objetivo.',
+          updatedBy:'finanzas@mrt.mx',updatedAt:new Date().toISOString()
+        }
+      },
+      decisions:[
+        {id:'d1',title:'Compra Inmediata de Repuesto Crítico',impact:'-285K/sem',deadline:'48 H',owner:'Operaciones + Supply',approved:false},
+        {id:'d2',title:'Freeze Temporal OPEX',impact:'-300K evitable',deadline:'HOY',owner:'Finanzas',approved:false},
+      ],
+      agreements:[
+        {id:'a1',text:'Metalurgia presenta plan de julio con inventarios físicos verificados.',owner:'Dir. Metalurgia',deadline:'Próxima sesión',done:false},
+        {id:'a2',text:'RRHH envía propuesta de estructura Metalurgia para aprobación DG.',owner:'Dir. RRHH',deadline:'72 H',done:false},
+      ]
+    }];
+    this.set('meetings', meetings);
+
+    const topics = [
+      {id:'t1',title:'Diseño Organizacional Metalurgia y Exploración',desc:'Definir headcount, jerarquía y perfiles para ambas áreas.',priority:'alta',status:'abierto',section:'rrhh',owner:'Dir. RRHH',action:'Presentar propuesta a DG esta semana.',appearances:[w],createdAt:new Date().toISOString()},
+      {id:'t2',title:'Permisos Ambientales Namiquipa y Olivos',desc:'Gestión de permisos requeridos para operación.',priority:'alta',status:'en_progreso',section:'operaciones',owner:'Dir. Operaciones',action:'Seguimiento con autoridades regulatorias.',appearances:[w],createdAt:new Date().toISOString()},
+      {id:'t3',title:'Aprobación Presupuesto Exploración',desc:'Presupuesto anual de exploración requiere autorización DG.',priority:'alta',status:'abierto',section:'dg',owner:'DG',action:'DG: Aprobar presupuesto exploración.',appearances:[w],createdAt:new Date().toISOString()},
+      {id:'t4',title:'Plan Producción Villa Matamoros Julio 2026',desc:'Plan de 1,000 OzAu equiv. con 12,000 ton a moler.',priority:'alta',status:'en_progreso',section:'metalurgia',owner:'Dir. Metalurgia',action:'Verificar inventarios físicos y proyectar julio.',appearances:[w],createdAt:new Date().toISOString()},
+      {id:'t5',title:'Extractante Alternativo — Namiquipa',desc:'Pruebas de botellas y columnas para definir extractante en arranque.',priority:'media',status:'en_progreso',section:'metalurgia',owner:'Dir. Metalurgia',action:'Resultados pruebas esta semana (URGE).',appearances:[w],createdAt:new Date().toISOString()},
+      {id:'t6',title:'Margen de Utilidad Objetivo',desc:'DG debe definir margen objetivo para ciclo presupuestal.',priority:'media',status:'abierto',section:'finanzas',owner:'Dir. Finanzas',action:'DG: Definir y comunicar margen objetivo.',appearances:[w],createdAt:new Date().toISOString()},
+    ];
+    this.set('topics', topics);
+  }
+};
+
+// ─── UTILS ───────────────────────────────────────────────
+function uid(){ return 't'+ Date.now().toString(36) + Math.random().toString(36).slice(2,6) }
+function getWeekNum(d){
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  date.setUTCDate(date.getUTCDate() + 4 - (date.getUTCDay()||7));
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(),0,1));
+  return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+}
+function weekId(d){ return d.getFullYear()+'-W'+String(getWeekNum(d)).padStart(2,'0') }
+function toDateStr(d){ return d.toLocaleDateString('es-MX',{weekday:'long',year:'numeric',month:'long',day:'numeric'}) }
+function badge(cls,...txt){ return `<span class="badge badge-${cls}">${txt.join('')}</span>` }
+function statusBadge(s){
+  const m={VERDE:'verde',ROJO:'rojo',AMBAR:'ambar'};
+  return badge(m[s]||'baja', `<span class="status-dot dot-${m[s]||'baja'}"></span> ${s}`)
+}
+function escHtml(s){ const d=document.createElement('div');d.textContent=s;return d.innerHTML }
+
+// ─── AUTH ─────────────────────────────────────────────────
+const Auth = {
+  current: null,
+  async login(){
+    const email = document.getElementById('login-email').value.trim().toLowerCase();
+    const pass  = document.getElementById('login-pass').value;
+    const users = DB.get('users')||[];
+    const h = await hashPass(pass);
+    const u = users.find(u=>u.email.toLowerCase()===email && u.passHash===h);
+    if(!u){ document.getElementById('login-error').style.display='block'; return; }
+    this.current = u;
+    DB.set('session', u.id);
+    this._boot();
+  },
+  logout(){
+    this.current=null;
+    DB.set('session',null);
+    document.getElementById('app').style.display='none';
+    document.getElementById('login-screen').style.display='flex';
+    document.getElementById('login-pass').value='';
+    document.getElementById('login-error').style.display='none';
+  },
+  restore(){
+    const sid = DB.get('session');
+    if(!sid) return false;
+    const u = (DB.get('users')||[]).find(u=>u.id===sid);
+    if(!u) return false;
+    this.current = u;
+    this._boot();
+    return true;
+  },
+  _boot(){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('setup-screen').style.display='none';
+    document.getElementById('app').style.display='block';
+    const u = this.current;
+    document.getElementById('sidebar-avatar').textContent = u.name.charAt(0).toUpperCase();
+    document.getElementById('sidebar-name').textContent = u.name;
+    document.getElementById('sidebar-role').textContent = { admin:'Administrador', director:'Director', viewer:'Solo Lectura' }[u.role];
+    if(u.role==='admin') document.getElementById('nav-admin-section').classList.remove('hidden');
+    else document.getElementById('nav-admin-section').classList.add('hidden');
+    Nav.go('dashboard');
+  },
+  canEdit(sectionId){
+    const u = this.current;
+    if(!u) return false;
+    if(u.role==='admin') return true;
+    if(u.role==='director' && (!sectionId || u.section===sectionId)) return true;
+    return false;
+  },
+  isAdmin(){ return this.current?.role==='admin' },
+  isViewer(){ return this.current?.role==='viewer' },
+  openChangePwd(){
+    ['pwd-current','pwd-new','pwd-new2'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('pwd-error').style.display='none';
+    document.getElementById('pwd-ok').style.display='none';
+    document.getElementById('pwd-modal').classList.add('open');
+  },
+  async changePassword(){
+    const curr  = document.getElementById('pwd-current').value;
+    const nw    = document.getElementById('pwd-new').value;
+    const nw2   = document.getElementById('pwd-new2').value;
+    const errEl = document.getElementById('pwd-error');
+    const okEl  = document.getElementById('pwd-ok');
+    errEl.style.display='none'; okEl.style.display='none';
+    if(!curr||!nw||!nw2){ errEl.textContent='Complete todos los campos.'; errEl.style.display='block'; return; }
+    if(nw.length<8){ errEl.textContent='La contraseña debe tener al menos 8 caracteres.'; errEl.style.display='block'; return; }
+    if(nw!==nw2){ errEl.textContent='Las contraseñas no coinciden.'; errEl.style.display='block'; return; }
+    const hCurr = await hashPass(curr);
+    if(hCurr !== this.current.passHash){ errEl.textContent='La contraseña actual no es correcta.'; errEl.style.display='block'; return; }
+    const hNew = await hashPass(nw);
+    const users = DB.get('users')||[];
+    const u = users.find(u=>u.id===this.current.id);
+    if(u){ u.passHash=hNew; this.current.passHash=hNew; }
+    DB.set('users',users);
+    okEl.style.display='block';
+    setTimeout(()=>document.getElementById('pwd-modal').classList.remove('open'),1800);
+  },
+};
+
+// ─── FIRST-RUN SETUP ─────────────────────────────────────
+const FirstRun = {
+  async setup(){
+    const name  = document.getElementById('setup-name').value.trim();
+    const email = document.getElementById('setup-email').value.trim().toLowerCase();
+    const pass  = document.getElementById('setup-pass').value;
+    const pass2 = document.getElementById('setup-pass2').value;
+    const errEl = document.getElementById('setup-error');
+    errEl.style.display='none';
+    if(!name||!email||!pass||!pass2){ errEl.textContent='Complete todos los campos.'; errEl.style.display='block'; return; }
+    if(pass.length<8){ errEl.textContent='La contraseña debe tener al menos 8 caracteres.'; errEl.style.display='block'; return; }
+    if(pass!==pass2){ errEl.textContent='Las contraseñas no coinciden.'; errEl.style.display='block'; return; }
+    if(!email.includes('@')){ errEl.textContent='Ingrese un email válido.'; errEl.style.display='block'; return; }
+    const h = await hashPass(pass);
+    const admin = {id:uid(), name, email, passHash:h, role:'admin', section:''};
+    DB.set('users',[admin]);
+    Auth.current = admin;
+    DB.set('session', admin.id);
+    Auth._boot();
+  },
+};
+
+// ─── NAVIGATION ──────────────────────────────────────────
+const Nav = {
+  current: 'dashboard',
+  go(page){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    const el = document.getElementById('page-'+page);
+    if(el) el.classList.add('active');
+    const btn = document.querySelector(`[data-page="${page}"]`);
+    if(btn) btn.classList.add('active');
+    this.current = page;
+    if(page==='dashboard')  DashUI.render();
+    if(page==='meeting')    MeetingUI.init();
+    if(page==='topics')     TopicsUI.render();
+    if(page==='history')    HistoryUI.render();
+    if(page==='admin')      AdminUI.render();
+  }
+};
+
+// ─── MEETINGS ────────────────────────────────────────────
+const Meetings = {
+  currentId: null,
+
+  init(){
+    const d = new Date();
+    this.currentId = weekId(d);
+    this._ensure(this.currentId, d);
+  },
+  thisWeek(){
+    const d = new Date();
+    this.currentId = weekId(d);
+    this._ensure(this.currentId, d);
+    MeetingUI.refresh();
+  },
+  prevWeek(){
+    const d = this._dateFromId(this.currentId);
+    d.setDate(d.getDate()-7);
+    this.currentId = weekId(d);
+    this._ensure(this.currentId, d);
+    MeetingUI.refresh();
+  },
+  nextWeek(){
+    const d = this._dateFromId(this.currentId);
+    d.setDate(d.getDate()+7);
+    this.currentId = weekId(d);
+    this._ensure(this.currentId, d);
+    MeetingUI.refresh();
+  },
+  _dateFromId(id){
+    const [yr, wk] = id.split('-W').map(Number);
+    const jan4 = new Date(yr,0,4);
+    const wkStart = new Date(jan4.getTime() + (wk-1)*7*86400000);
+    wkStart.setDate(wkStart.getDate() - (wkStart.getDay()||7) + 1);
+    return wkStart;
+  },
+  _ensure(id, d){
+    const meetings = DB.get('meetings')||[];
+    if(!meetings.find(m=>m.id===id)){
+      const blank = { id, weekNum:getWeekNum(d), year:d.getFullYear(), date:toDateStr(d), status:'borrador',
+        sections:{ dg:{alertStatus:'VERDE',kpi1Label:'',kpi1Value:'',kpi1Plan:'',kpi1Impact:'',kpi2Label:'',kpi2Value:'',kpi2Plan:'',kpi2Impact:'',riesgo:'',apoyo:'',accion:'',updatedBy:'',updatedAt:''},
+          operaciones:{alertStatus:'VERDE',kpi1Label:'',kpi1Value:'',kpi1Plan:'',kpi1Impact:'',kpi2Label:'',kpi2Value:'',kpi2Plan:'',kpi2Impact:'',riesgo:'',apoyo:'',accion:'',updatedBy:'',updatedAt:''},
+          metalurgia:{alertStatus:'VERDE',kpi1Label:'',kpi1Value:'',kpi1Plan:'',kpi1Impact:'',kpi2Label:'',kpi2Value:'',kpi2Plan:'',kpi2Impact:'',riesgo:'',apoyo:'',accion:'',updatedBy:'',updatedAt:''},
+          rrhh:{alertStatus:'VERDE',kpi1Label:'',kpi1Value:'',kpi1Plan:'',kpi1Impact:'',kpi2Label:'',kpi2Value:'',kpi2Plan:'',kpi2Impact:'',riesgo:'',apoyo:'',accion:'',updatedBy:'',updatedAt:''},
+          finanzas:{alertStatus:'VERDE',kpi1Label:'',kpi1Value:'',kpi1Plan:'',kpi1Impact:'',kpi2Label:'',kpi2Value:'',kpi2Plan:'',kpi2Impact:'',riesgo:'',apoyo:'',accion:'',updatedBy:'',updatedAt:''}
+        },
+        decisions:[], agreements:[]
+      };
+      meetings.push(blank);
+      DB.set('meetings', meetings);
+    }
+  },
+  get(id){ return (DB.get('meetings')||[]).find(m=>m.id==(id||this.currentId)) },
+  save(meeting){
+    const meetings = DB.get('meetings')||[];
+    const idx = meetings.findIndex(m=>m.id===meeting.id);
+    if(idx>=0) meetings[idx]=meeting; else meetings.push(meeting);
+    DB.set('meetings', meetings);
+  },
+  publish(){
+    const m = this.get();
+    if(!m) return;
+    m.status = m.status==='publicado'?'borrador':'publicado';
+    this.save(m);
+    MeetingUI.refresh();
+  },
+  saveSection(sectionId){
+    const m = this.get();
+    if(!m) return;
+    const s = m.sections[sectionId];
+    const fields = ['alertStatus','kpi1Label','kpi1Value','kpi1Plan','kpi1Impact','kpi2Label','kpi2Value','kpi2Plan','kpi2Impact','riesgo','apoyo','accion'];
+    fields.forEach(f=>{
+      const el = document.getElementById('s-'+sectionId+'-'+f);
+      if(el) s[f] = el.value;
+    });
+    s.updatedBy = Auth.current?.email||'';
+    s.updatedAt = new Date().toISOString();
+    this.save(m);
+    UI.toast('Sección guardada ✓');
+  },
+  addDecision(data){
+    const m = this.get(); if(!m) return;
+    m.decisions = m.decisions||[];
+    m.decisions.push({id:uid(),...data, approved:false});
+    this.save(m);
+  },
+  removeDecision(id){
+    const m = this.get(); if(!m) return;
+    m.decisions = (m.decisions||[]).filter(d=>d.id!==id);
+    this.save(m);
+  },
+  toggleDecision(id){
+    const m = this.get(); if(!m) return;
+    const d = (m.decisions||[]).find(d=>d.id===id);
+    if(d) d.approved = !d.approved;
+    this.save(m);
+  },
+  addAgreement(text, owner, deadline){
+    const m = this.get(); if(!m) return;
+    m.agreements = m.agreements||[];
+    m.agreements.push({id:uid(), text, owner, deadline, done:false});
+    this.save(m);
+  },
+  toggleAgreement(id){
+    const m = this.get(); if(!m) return;
+    const a = (m.agreements||[]).find(a=>a.id===id);
+    if(a) a.done = !a.done;
+    this.save(m);
+  },
+  removeAgreement(id){
+    const m = this.get(); if(!m) return;
+    m.agreements = (m.agreements||[]).filter(a=>a.id!==id);
+    this.save(m);
+  },
+  all(){ return (DB.get('meetings')||[]).sort((a,b)=>b.id.localeCompare(a.id)) },
+};
+
+// ─── MEETING UI ──────────────────────────────────────────
+const MeetingUI = {
+  activeTab: 'sections',
+  init(){
+    Meetings.init();
+    this.refresh();
+  },
+  refresh(){
+    const m = Meetings.get();
+    if(!m) return;
+    document.getElementById('meeting-week-num').textContent = 'Semana '+m.weekNum+' / '+m.year;
+    document.getElementById('meeting-week-date').textContent = m.date;
+    document.getElementById('meeting-status-badge').innerHTML =
+      m.status==='publicado' ? badge('verde','✓ Publicado') : badge('ambar','● Borrador');
+
+    // Actions
+    const acts = document.getElementById('meeting-actions');
+    acts.innerHTML = '';
+    if(Auth.canEdit()){
+      const pubTxt = m.status==='publicado'?'↩ Revertir':'↑ Publicar';
+      acts.innerHTML = `<button class="btn btn-ghost btn-sm" onclick="window.print()">⎙ Imprimir</button>
+        <button class="btn btn-primary btn-sm" onclick="Meetings.publish()">${pubTxt}</button>`;
+    }
+    this.showTab(this.activeTab);
+  },
+  showTab(tab){
+    this.activeTab = tab;
+    document.querySelectorAll('#meeting-tabs .tab').forEach(t=>t.classList.remove('active'));
+    const tabs = document.querySelectorAll('#meeting-tabs .tab');
+    const map = {sections:0, decisions:1, agreements:2};
+    if(tabs[map[tab]]) tabs[map[tab]].classList.add('active');
+    ['sections','decisions','agreements'].forEach(t=>{
+      const el = document.getElementById('meeting-tab-'+t);
+      if(el) el.classList.toggle('hidden', t!==tab);
+    });
+    if(tab==='sections')   this.renderSections();
+    if(tab==='decisions')  this.renderDecisions();
+    if(tab==='agreements') this.renderAgreements();
+  },
+  renderSections(){
+    const m = Meetings.get(); if(!m) return;
+    const container = document.getElementById('meeting-tab-sections');
+    container.innerHTML = SECTIONS.map(sec=>{
+      const s = m.sections[sec.id]||{};
+      const canEdit = Auth.canEdit(sec.id);
+      const isReadonly = !canEdit || m.status==='publicado';
+      const ro = isReadonly ? 'readonly disabled' : '';
+      const sel = (v,opt) => isReadonly
+        ? `<input type="text" value="${escHtml(v||'')}" readonly disabled>`
+        : `<select id="s-${sec.id}-${opt}">${['VERDE','AMBAR','ROJO'].map(o=>`<option value="${o}" ${v===o?'selected':''}>${o}</option>`).join('')}</select>`;
+
+      const lastUpdate = s.updatedAt ? `<span class="text-xs text-muted">Actualizado: ${new Date(s.updatedAt).toLocaleDateString('es-MX')} · ${s.updatedBy}</span>` : '';
+
+      return `<div class="section-card">
+        <div class="section-header" onclick="UI.toggle(this)">
+          <div class="section-header-left">
+            <span class="section-num">${sec.num}</span>
+            <div>
+              <div class="section-title">${sec.label}</div>
+              <div class="section-sub">${sec.sub}</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-12">
+            ${statusBadge(s.alertStatus||'VERDE')}
+            ${lastUpdate}
+            <span style="color:var(--muted);font-size:18px">▾</span>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="flex items-center gap-12">
+            <div class="field-label" style="white-space:nowrap">Estado General</div>
+            ${isReadonly
+              ? `<div>${statusBadge(s.alertStatus||'VERDE')}</div>`
+              : `<select id="s-${sec.id}-alertStatus" style="width:120px">
+                  ${['VERDE','AMBAR','ROJO'].map(o=>`<option value="${o}" ${(s.alertStatus||'VERDE')===o?'selected':''}>${o}</option>`).join('')}
+                </select>`}
+          </div>
+
+          <div class="kpi-block">
+            <div class="kpi-title">KPI Crítico</div>
+            <div class="field-group">
+              <div class="field-label">Indicador</div>
+              <input type="text" id="s-${sec.id}-kpi1Label" value="${escHtml(s.kpi1Label||'')}" placeholder="Nombre del KPI" ${ro}>
+            </div>
+            <div class="field-row">
+              <div class="field-group">
+                <div class="field-label">Valor Real</div>
+                <input type="text" id="s-${sec.id}-kpi1Value" value="${escHtml(s.kpi1Value||'')}" placeholder="Ej: 2,417 USD/Oz" ${ro}>
+              </div>
+              <div class="field-group">
+                <div class="field-label">◀ Plan</div>
+                <input type="text" id="s-${sec.id}-kpi1Plan" value="${escHtml(s.kpi1Plan||'')}" placeholder="Meta" ${ro}>
+              </div>
+              <div class="field-group">
+                <div class="field-label">Impacto / Desvío</div>
+                <input type="text" id="s-${sec.id}-kpi1Impact" value="${escHtml(s.kpi1Impact||'')}" placeholder="Ej: -17%" ${ro}>
+              </div>
+            </div>
+          </div>
+
+          <div class="kpi-block">
+            <div class="kpi-title">KPI Secundario</div>
+            <div class="field-group">
+              <div class="field-label">Indicador</div>
+              <input type="text" id="s-${sec.id}-kpi2Label" value="${escHtml(s.kpi2Label||'')}" placeholder="Nombre del KPI" ${ro}>
+            </div>
+            <div class="field-row">
+              <div class="field-group">
+                <div class="field-label">Valor Real</div>
+                <input type="text" id="s-${sec.id}-kpi2Value" value="${escHtml(s.kpi2Value||'')}" placeholder="Valor" ${ro}>
+              </div>
+              <div class="field-group">
+                <div class="field-label">◀ Plan</div>
+                <input type="text" id="s-${sec.id}-kpi2Plan" value="${escHtml(s.kpi2Plan||'')}" placeholder="Meta" ${ro}>
+              </div>
+              <div class="field-group">
+                <div class="field-label">Impacto / Desvío</div>
+                <input type="text" id="s-${sec.id}-kpi2Impact" value="${escHtml(s.kpi2Impact||'')}" placeholder="Ej: +10%" ${ro}>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">⚠ Riesgo Identificado</div>
+            <textarea id="s-${sec.id}-riesgo" placeholder="Describa el riesgo o excepción crítica" ${ro}>${escHtml(s.riesgo||'')}</textarea>
+          </div>
+          <div class="field-group">
+            <div class="field-label">Apoyo Requerido</div>
+            <textarea id="s-${sec.id}-apoyo" placeholder="¿Qué apoyo necesita de otras áreas o de DG?" ${ro}>${escHtml(s.apoyo||'')}</textarea>
+          </div>
+          <div class="field-group">
+            <div class="field-label">Acción / Decisión</div>
+            <textarea id="s-${sec.id}-accion" placeholder="Acción concreta o decisión requerida" ${ro}>${escHtml(s.accion||'')}</textarea>
+          </div>
+
+          ${canEdit && m.status!=='publicado' ? `
+          <div class="flex gap-8">
+            <button class="btn btn-primary btn-sm" onclick="Meetings.saveSection('${sec.id}'); MeetingUI.renderSections()">Guardar Sección</button>
+            <button class="btn btn-ghost btn-sm" onclick="TopicsUI.openNewFromSection('${sec.id}')">+ Agregar Tema</button>
+          </div>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+  },
+
+  renderDecisions(){
+    const m = Meetings.get(); if(!m) return;
+    const canEdit = Auth.canEdit();
+    const container = document.getElementById('meeting-tab-decisions');
+    const decisions = m.decisions||[];
+
+    let html = `<div class="card mb-16">
+      <div class="text-sm font-bold uppercase tracking-wide text-gold mb-16">02 / DECISION BOARD — Mecanismo de decisión, no de explicación</div>
+      <div id="decisions-list">`;
+
+    if(decisions.length===0){
+      html += `<div class="empty-state"><div class="icon">◎</div><div>No hay decisiones registradas</div></div>`;
+    } else {
+      decisions.forEach(d=>{
+        html += `<div class="card card-sm mb-8" style="background:var(--surface)">
+          <div class="flex items-center justify-between gap-12">
+            <div style="flex:1">
+              <div class="font-bold">${escHtml(d.title)}</div>
+              <div class="flex gap-16 mt-8 text-sm">
+                <span class="text-muted">Impacto: <strong style="color:var(--red)">${escHtml(d.impact||'—')}</strong></span>
+                <span class="text-muted">Deadline: <strong style="color:var(--amber)">${escHtml(d.deadline||'—')}</strong></span>
+                <span class="text-muted">Owner: <strong>${escHtml(d.owner||'—')}</strong></span>
+              </div>
+            </div>
+            <div class="flex gap-8 items-center">
+              ${d.approved ? badge('verde','✓ Aprobado') : badge('ambar','Pendiente DG')}
+              ${canEdit ? `<button class="btn btn-ghost btn-sm" onclick="Meetings.toggleDecision('${d.id}');MeetingUI.renderDecisions()">${d.approved?'↩':'✓ Aprobar'}</button>
+              <button class="btn btn-danger btn-sm" onclick="Meetings.removeDecision('${d.id}');MeetingUI.renderDecisions()">✕</button>` : ''}
+            </div>
+          </div>
+        </div>`;
+      });
+    }
+    html += `</div>`;
+
+    if(canEdit){
+      html += `<div class="separator"></div>
+      <div class="text-sm font-bold uppercase tracking-wide text-muted mb-12">Nueva Decisión</div>
+      <div class="field-row">
+        <input type="text" id="new-dec-title" placeholder="Título de la decisión" style="grid-column:1/3">
+        <input type="text" id="new-dec-impact" placeholder="Impacto (ej: -285K/sem)">
+      </div>
+      <div class="field-row mt-8">
+        <input type="text" id="new-dec-deadline" placeholder="Deadline (ej: 48 H)">
+        <input type="text" id="new-dec-owner" placeholder="Owner / Responsable">
+        <button class="btn btn-primary" onclick="MeetingUI.addDecision()">+ Agregar</button>
+      </div>`;
+    }
+    html += `</div>`;
+    container.innerHTML = html;
+  },
+
+  addDecision(){
+    const t = document.getElementById('new-dec-title').value.trim();
+    if(!t){ alert('Ingrese el título de la decisión'); return; }
+    Meetings.addDecision({
+      title: t,
+      impact: document.getElementById('new-dec-impact').value.trim(),
+      deadline: document.getElementById('new-dec-deadline').value.trim(),
+      owner: document.getElementById('new-dec-owner').value.trim(),
+    });
+    this.renderDecisions();
+  },
+
+  renderAgreements(){
+    const m = Meetings.get(); if(!m) return;
+    const canEdit = Auth.canEdit();
+    const container = document.getElementById('meeting-tab-agreements');
+    const agreements = m.agreements||[];
+
+    let html = `<div class="card">
+      <div class="text-sm font-bold uppercase tracking-wide text-gold mb-16">Acuerdos y Compromisos de la Sesión</div>
+      <div id="agreements-list">`;
+
+    if(agreements.length===0){
+      html += `<div class="empty-state"><div class="icon">◷</div><div>No hay acuerdos registrados</div></div>`;
+    } else {
+      agreements.forEach(a=>{
+        html += `<div class="flex items-center gap-12 mb-8 p-12 rounded" style="background:var(--surface)">
+          <input type="checkbox" ${a.done?'checked':''} onchange="Meetings.toggleAgreement('${a.id}');MeetingUI.renderAgreements()" ${canEdit?'':'disabled'} style="accent-color:var(--gold);width:16px;height:16px;flex-shrink:0">
+          <div style="flex:1">
+            <div class="${a.done?'text-muted':'font-bold'}" style="${a.done?'text-decoration:line-through':''}">${escHtml(a.text)}</div>
+            <div class="text-xs text-muted mt-4">Owner: ${escHtml(a.owner||'—')} &nbsp;·&nbsp; Plazo: ${escHtml(a.deadline||'—')}</div>
+          </div>
+          ${canEdit ? `<button class="btn btn-danger btn-sm" onclick="Meetings.removeAgreement('${a.id}');MeetingUI.renderAgreements()">✕</button>` : ''}
+        </div>`;
+      });
+    }
+    html += `</div>`;
+
+    if(canEdit){
+      html += `<div class="separator"></div>
+      <div class="text-sm font-bold uppercase tracking-wide text-muted mb-12">Nuevo Acuerdo</div>
+      <div class="field-group mb-8">
+        <textarea id="new-agr-text" placeholder="Descripción del acuerdo o compromiso" style="min-height:60px"></textarea>
+      </div>
+      <div class="field-row">
+        <input type="text" id="new-agr-owner" placeholder="Responsable">
+        <input type="text" id="new-agr-deadline" placeholder="Plazo (ej: 72 H)">
+        <button class="btn btn-primary" onclick="MeetingUI.addAgreement()">+ Agregar</button>
+      </div>`;
+    }
+    html += `</div>`;
+    container.innerHTML = html;
+  },
+
+  addAgreement(){
+    const t = document.getElementById('new-agr-text').value.trim();
+    if(!t){ alert('Ingrese el acuerdo'); return; }
+    Meetings.addAgreement(t,
+      document.getElementById('new-agr-owner').value.trim(),
+      document.getElementById('new-agr-deadline').value.trim()
+    );
+    this.renderAgreements();
+  }
+};
+
+// ─── DASHBOARD UI ────────────────────────────────────────
+const DashUI = {
+  render(){
+    const meetings = Meetings.all();
+    const m = meetings[0];
+    if(!m){ document.getElementById('dash-kpis').innerHTML='<div class="text-muted">Sin datos</div>'; return; }
+    document.getElementById('dash-week-label').textContent = `Semana ${m.weekNum} / ${m.year} — ${m.date}`;
+
+    const topics = DB.get('topics')||[];
+    const open = topics.filter(t=>t.status==='abierto').length;
+    const high = topics.filter(t=>t.priority==='alta'&&t.status!=='cerrado').length;
+    const pubs = meetings.filter(m=>m.status==='publicado').length;
+    const decs = meetings.reduce((n,m)=>n+(m.decisions||[]).length,0);
+
+    document.getElementById('dash-kpis').innerHTML = [
+      {label:'Temas Abiertos', val:open, delta:'activos en tracker'},
+      {label:'Alta Prioridad',  val:high, delta:'requieren acción inmediata', cls:'down'},
+      {label:'Reuniones Publicadas', val:pubs, delta:`de ${meetings.length} registradas`},
+      {label:'Decisiones DG', val:decs, delta:'registradas históricamente'},
+    ].map(k=>`<div class="stat-card">
+      <div class="stat-label">${k.label}</div>
+      <div class="stat-value">${k.val}</div>
+      <div class="stat-delta ${k.cls||''}">${k.delta}</div>
+    </div>`).join('');
+
+    // Status grid
+    const sg = document.getElementById('dash-status-grid');
+    const secs = m.sections||{};
+    sg.innerHTML = SECTIONS.map(sec=>{
+      const s = secs[sec.id]||{};
+      const colMap = {VERDE:'var(--green)',AMBAR:'var(--amber)',ROJO:'var(--red)'};
+      const col = colMap[s.alertStatus]||'var(--muted)';
+      return `<div class="flex items-center justify-between p-12 mb-4 rounded" style="background:var(--surface)">
+        <div>
+          <span class="font-bold">${sec.label}</span>
+          <span class="text-xs text-muted ml-8">${s.kpi1Label||'—'}</span>
+        </div>
+        <div class="flex items-center gap-8">
+          <span class="font-bold" style="color:${col}">${s.kpi1Value||'—'}</span>
+          ${statusBadge(s.alertStatus||'VERDE')}
+        </div>
+      </div>`;
+    }).join('');
+
+    // Topics summary
+    const ts = document.getElementById('dash-topics-summary');
+    const byPri = {alta:0, media:0, baja:0};
+    topics.filter(t=>t.status!=='cerrado').forEach(t=>byPri[t.priority]=(byPri[t.priority]||0)+1);
+    ts.innerHTML = [
+      {label:'Alta Prioridad', n:byPri.alta, col:'var(--red)', badge:'alta'},
+      {label:'Media Prioridad', n:byPri.media, col:'var(--amber)', badge:'media'},
+      {label:'Baja Prioridad', n:byPri.baja, col:'var(--green)', badge:'baja'},
+    ].map(r=>`<div class="flex items-center justify-between p-12 mb-4 rounded" style="background:var(--surface)">
+      <span>${badge(r.badge, r.label)}</span>
+      <span class="font-900 text-xl" style="color:${r.col}">${r.n}</span>
+    </div>`).join('');
+
+    // Decisions
+    const dd = document.getElementById('dash-decisions');
+    const dList = (m.decisions||[]);
+    if(!dList.length){ dd.innerHTML='<div class="empty-state" style="padding:24px"><div>No hay decisiones registradas para esta semana</div></div>'; return; }
+    dd.innerHTML = dList.map(d=>`<div class="flex items-center justify-between gap-12 p-12 mb-4 rounded" style="background:var(--surface)">
+      <div>
+        <div class="font-bold">${escHtml(d.title)}</div>
+        <div class="text-xs text-muted mt-4">Impacto: ${escHtml(d.impact||'—')} &nbsp;·&nbsp; Deadline: ${escHtml(d.deadline||'—')} &nbsp;·&nbsp; Owner: ${escHtml(d.owner||'—')}</div>
+      </div>
+      ${d.approved ? badge('verde','✓ Aprobado') : badge('rojo','Pendiente')}
+    </div>`).join('');
+  }
+};
+
+// ─── TOPICS UI ───────────────────────────────────────────
+const TopicsUI = {
+  editingId: null,
+  render(){
+    const topics = DB.get('topics')||[];
+    // Populate section filter
+    const sf = document.getElementById('filter-section');
+    if(sf.options.length<=1){
+      SECTIONS.forEach(s=>{ const o=document.createElement('option');o.value=s.id;o.textContent=s.label;sf.appendChild(o); });
+    }
+    const fStatus   = document.getElementById('filter-status').value;
+    const fPriority = document.getElementById('filter-priority').value;
+    const fSection  = document.getElementById('filter-section').value;
+    const fSearch   = document.getElementById('filter-search').value.toLowerCase();
+
+    const filtered = topics.filter(t=>{
+      if(fStatus   && t.status!==fStatus)     return false;
+      if(fPriority && t.priority!==fPriority) return false;
+      if(fSection  && t.section!==fSection)   return false;
+      if(fSearch   && !t.title.toLowerCase().includes(fSearch) && !(t.desc||'').toLowerCase().includes(fSearch)) return false;
+      return true;
+    }).sort((a,b)=>{
+      const po = {alta:0,media:1,baja:2};
+      const so = {abierto:0,en_progreso:1,diferido:2,cerrado:3};
+      return (po[a.priority]-po[b.priority]) || (so[a.status]-so[b.status]);
+    });
+
+    const tbody = document.getElementById('topics-table-body');
+    const empty = document.getElementById('topics-empty');
+    const btn   = document.getElementById('btn-new-topic');
+    if(btn) btn.style.display = Auth.isViewer()?'none':'';
+
+    if(!filtered.length){ tbody.innerHTML=''; empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden');
+
+    tbody.innerHTML = filtered.map((t,i)=>`<tr>
+      <td class="text-muted text-xs">${i+1}</td>
+      <td>
+        <div class="topic-row-title">${escHtml(t.title)}</div>
+        ${t.desc?`<div class="text-xs text-muted mt-4">${escHtml(t.desc.substring(0,80))}${t.desc.length>80?'…':''}</div>`:''}
+        ${t.action?`<div class="text-xs mt-4" style="color:var(--blue)">→ ${escHtml(t.action.substring(0,60))}${t.action.length>60?'…':''}</div>`:''}
+      </td>
+      <td><span class="pill-section">${SECTION_MAP[t.section]||t.section||'—'}</span></td>
+      <td>${badge('badge-'+t.priority, PRIORITY_LABELS[t.priority]||t.priority)}</td>
+      <td>${badge('badge-'+(t.status==='en_progreso'?'progreso':t.status), STATUS_LABELS[t.status]||t.status)}</td>
+      <td>
+        <div class="flex items-center gap-8">
+          <strong style="font-size:20px;color:var(--gold)">${(t.appearances||[]).length}</strong>
+          <div class="topic-appearances">${(t.appearances||[]).slice(-4).map(w=>`<span class="week-tag">${w}</span>`).join('')}</div>
+        </div>
+      </td>
+      <td class="text-sm">${escHtml(t.owner||'—')}</td>
+      <td>${!Auth.isViewer()?`<button class="btn btn-ghost btn-sm" onclick="TopicsUI.openEdit('${t.id}')">Editar</button>`:''}</td>
+    </tr>`).join('');
+  },
+  clearFilters(){
+    ['filter-status','filter-priority','filter-section'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('filter-search').value='';
+    this.render();
+  },
+  openNew(){
+    this.editingId = null;
+    document.getElementById('topic-modal-title').textContent = 'Nuevo Tema';
+    document.getElementById('tm-title').value='';
+    document.getElementById('tm-desc').value='';
+    document.getElementById('tm-priority').value='media';
+    document.getElementById('tm-status').value='abierto';
+    document.getElementById('tm-section').value='dg';
+    document.getElementById('tm-owner').value='';
+    document.getElementById('tm-action').value='';
+    document.getElementById('tm-delete-btn').style.display='none';
+    document.getElementById('topic-modal').classList.add('open');
+  },
+  openNewFromSection(sectionId){
+    this.openNew();
+    document.getElementById('tm-section').value=sectionId;
+    document.getElementById('topic-modal').classList.add('open');
+  },
+  openEdit(id){
+    const t = (DB.get('topics')||[]).find(t=>t.id===id);
+    if(!t) return;
+    this.editingId = id;
+    document.getElementById('topic-modal-title').textContent = 'Editar Tema';
+    document.getElementById('tm-title').value=t.title||'';
+    document.getElementById('tm-desc').value=t.desc||'';
+    document.getElementById('tm-priority').value=t.priority||'media';
+    document.getElementById('tm-status').value=t.status||'abierto';
+    document.getElementById('tm-section').value=t.section||'dg';
+    document.getElementById('tm-owner').value=t.owner||'';
+    document.getElementById('tm-action').value=t.action||'';
+    document.getElementById('tm-delete-btn').style.display = Auth.isAdmin()?'inline-flex':'none';
+    document.getElementById('topic-modal').classList.add('open');
+  },
+  saveTopic(){
+    const title = document.getElementById('tm-title').value.trim();
+    if(!title){ alert('El título es obligatorio'); return; }
+    const topics = DB.get('topics')||[];
+    const currentWeek = weekId(new Date());
+
+    if(this.editingId){
+      const t = topics.find(t=>t.id===this.editingId);
+      if(t){
+        t.title    = title;
+        t.desc     = document.getElementById('tm-desc').value.trim();
+        t.priority = document.getElementById('tm-priority').value;
+        t.status   = document.getElementById('tm-status').value;
+        t.section  = document.getElementById('tm-section').value;
+        t.owner    = document.getElementById('tm-owner').value.trim();
+        t.action   = document.getElementById('tm-action').value.trim();
+        // Add current week if not already there
+        if(!(t.appearances||[]).includes(currentWeek)){
+          t.appearances = [...(t.appearances||[]), currentWeek];
+        }
+      }
+    } else {
+      topics.push({
+        id: uid(), title, desc: document.getElementById('tm-desc').value.trim(),
+        priority: document.getElementById('tm-priority').value,
+        status: document.getElementById('tm-status').value,
+        section: document.getElementById('tm-section').value,
+        owner: document.getElementById('tm-owner').value.trim(),
+        action: document.getElementById('tm-action').value.trim(),
+        appearances: [currentWeek],
+        createdAt: new Date().toISOString()
+      });
+    }
+    DB.set('topics', topics);
+    this.closeModal();
+    this.render();
+    UI.toast('Tema guardado ✓');
+  },
+  deleteTopic(){
+    if(!confirm('¿Eliminar este tema?')) return;
+    const topics = (DB.get('topics')||[]).filter(t=>t.id!==this.editingId);
+    DB.set('topics', topics);
+    this.closeModal();
+    this.render();
+  },
+  closeModal(){ document.getElementById('topic-modal').classList.remove('open') }
+};
+
+// ─── HISTORY UI ──────────────────────────────────────────
+const HistoryUI = {
+  render(){
+    const meetings = Meetings.all();
+    const topics   = DB.get('topics')||[];
+
+    // Meeting stats
+    const pubs = meetings.filter(m=>m.status==='publicado').length;
+    document.getElementById('hist-meeting-stats').innerHTML = `
+      <div class="flex items-center justify-between p-12 mb-4 rounded" style="background:var(--surface)">
+        <span>Total Reuniones</span><strong class="text-gold" style="font-size:22px">${meetings.length}</strong>
+      </div>
+      <div class="flex items-center justify-between p-12 mb-4 rounded" style="background:var(--surface)">
+        <span>Publicadas</span><strong class="text-green" style="font-size:22px">${pubs}</strong>
+      </div>
+      <div class="flex items-center justify-between p-12 mb-4 rounded" style="background:var(--surface)">
+        <span>Borradores</span><strong class="text-amber" style="font-size:22px">${meetings.length-pubs}</strong>
+      </div>
+      <div class="flex items-center justify-between p-12 mb-4 rounded" style="background:var(--surface)">
+        <span>Temas Registrados</span><strong style="font-size:22px">${topics.length}</strong>
+      </div>`;
+
+    // Topic frequency (sorted by appearances desc)
+    const sorted = [...topics].sort((a,b)=>(b.appearances||[]).length-(a.appearances||[]).length).slice(0,8);
+    const maxApp = sorted[0]?(sorted[0].appearances||[]).length:1;
+    document.getElementById('hist-topic-freq').innerHTML = sorted.map(t=>{
+      const n = (t.appearances||[]).length;
+      const w = Math.round((n/maxApp)*120);
+      return `<div class="flex items-center gap-8 mb-8">
+        <div style="flex:1;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${escHtml(t.title)}">${escHtml(t.title)}</div>
+        <div class="flex items-center gap-6">
+          <div style="width:${w}px;height:6px;border-radius:3px;background:var(--gold);opacity:.7"></div>
+          <strong class="text-gold" style="font-size:13px;min-width:20px;text-align:right">${n}</strong>
+        </div>
+      </div>`;
+    }).join('') || '<div class="text-muted text-sm">Sin datos</div>';
+
+    // History table
+    document.getElementById('history-table-body').innerHTML = meetings.map(m=>`<tr>
+      <td class="font-bold">Sem ${m.weekNum} / ${m.year}</td>
+      <td class="text-muted text-sm">${m.date||'—'}</td>
+      <td>${m.status==='publicado'?badge('verde','✓ Publicado'):badge('ambar','Borrador')}</td>
+      <td>${topics.filter(t=>(t.appearances||[]).includes(m.id)).length}</td>
+      <td>${(m.decisions||[]).length}</td>
+      <td>
+        <button class="btn btn-ghost btn-sm" onclick="Meetings.currentId='${m.id}';Nav.go('meeting')">Ver →</button>
+      </td>
+    </tr>`).join('') || '<tr><td colspan="6" class="empty-stat  }
+};
+
+// ─── ADMIN UI ────────────────────────────────────────────
+const AdminUI = {
+  editingId: null,
+  render(){
+    if(!Auth.isAdmin()){ Nav.go('dashboard'); return; }
+    const users = DB.get('users')||[];
+    document.getElementById('admin-users-body').innerHTML = users.map(u=>`<tr>
+      <td class="font-bold">${escHtml(u.name)}</td>
+      <td class="text-sm text-muted">${escHtml(u.email)}</td>
+      <td>${{admin:'<span class="badge badge-rojo">Admin</span>', director:'<span class="badge badge-ambar">Director</span>', viewer:'<span class="badge badge-baja">Viewer</span>'}[u.role]||u.role}</td>
+      <td>${u.section?`<span class="pill-section">${SECTION_MAP[u.section]||u.section}</span>`:'<span class="text-muted">—</span>'}</td>
+      <td><button class="btn btn-ghost btn-sm" onclick="AdminUI.openEdit('${u.id}')">Editar</button></td>
+    </tr>`).join('');
+  },
+  openNew(){
+    this.editingId=null;
+    document.getElementById('user-modal-title').textContent='Nuevo Usuario';
+    ['um-name','um-email','um-pass'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('um-role').value='viewer';
+    document.getElementById('um-section').value='dg';
+    document.getElementById('um-delete-btn').style.display='none';
+    this.toggleSection();
+    document.getElementById('user-modal').classList.add('open');
+  },
+  openEdit(id){
+    const u=(DB.get('users')||[]).find(u=>u.id===id); if(!u) return;
+    this.editingId=id;
+    document.getElementById('user-modal-title').textContent='Editar Usuario';
+    document.getElementById('um-name').value=u.name||'';
+    document.getElementById('um-email').value=u.email||'';
+    document.getElementById('um-pass').value='';
+    document.getElementById('um-role').value=u.role||'viewer';
+    document.getElementById('um-section').value=u.section||'dg';
+    document.getElementById('um-delete-btn').style.display='inline-flex';
+    this.toggleSection();
+    document.getElementById('user-modal').classList.add('open');
+  },
+  toggleSection(){
+    const r=document.getElementById('um-role').value;
+    document.getElementById('um-section-group').style.display=r==='director'?'':'none';
+  },
+  async saveUser(){
+    const name=document.getElementById('um-name').value.trim();
+    const email=document.getElementById('um-email').value.trim().toLowerCase();
+    const pass=document.getElementById('um-pass').value;
+    const role=document.getElementById('um-role').value;
+    const section=role==='director'?document.getElementById('um-section').value:'';
+    if(!name||!email){alert('Complete nombre y email');return;}
+    const users=DB.get('users')||[];
+    if(this.editingId){
+      const u=users.find(u=>u.id===this.editingId);
+      if(u){
+        u.name=name; u.email=email; u.role=role; u.section=section;
+        if(pass){ u.passHash = await hashPass(pass); }
+      }
+    } else {
+      if(!pass){alert('Ingrese una contraseña para el nuevo usuario');return;}
+      if(users.find(u=>u.email===email)){alert('Email ya existe');return;}
+      const h = await hashPass(pass);
+      users.push({id:uid(),name,email,passHash:h,role,section});
+    }
+    DB.set('users',users);
+    this.closeModal();
+    this.render();
+    UI.toast('Usuario guardado ✓');
+  },
+  deleteUser(){
+    if(!confirm('¿Eliminar usuario?'))return;
+    DB.set('users',(DB.get('users')||[]).filter(u=>u.id!==this.editingId));
+    this.closeModal();
+    this.render();
+  },
+  closeModal(){document.getElementById('user-modal').classList.remove('open')}
+};
+
+// ─── UI UTILS ────────────────────────────────────────────
+const UI = {
+  toggle(header){
+    const body=header.nextElementSibling;
+    body.classList.toggle('collapsed');
+    const arr=header.querySelector('span:last-child');
+    if(arr) arr.textContent=body.classList.contains('collapsed')?'▸':'▾';
+  },
+  toast(msg){
+    const t=document.createElement('div');
+    t.textContent=msg;
+    t.style.cssText='position:fixed;bottom:24px;right:24px;background:var(--green);color:#fff;padding:12px 20px;border-radius:8px;font-weight:600;font-size:13px;z-index:999;animation:fadeIn .2s';
+    document.body.appendChild(t);
+    setTimeout(()=>t.remove(),2500);
+  },
+  printDash(){ window.print(); }
+};
+
+// ─── BOOT ─────────────────────────────────────────────────
+(async () => {
+  await DB.init();
+
+  document.getElementById('login-pass').addEventListener('keydown', e=>{ if(e.key==='Enter') Auth.login(); });
+  document.getElementById('login-email').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('login-pass').focus(); });
+  document.getElementById('setup-pass2').addEventListener('keydown', e=>{ if(e.key==='Enter') FirstRun.setup(); });
+  document.getElementById('topic-modal').addEventListener('click', function(e){ if(e.target===this) TopicsUI.closeModal(); });
+  document.getElementById('user-modal').addEventListener('click', function(e){ if(e.target===this) AdminUI.closeModal(); });
+  document.getElementById('pwd-modal').addEventListener('click', function(e){ if(e.target===this) this.classList.remove('open'); });
+
+  const users = DB.get('users')||[];
+  if(users.length === 0){
+    // First time: no admin exists — show setup wizard
+    document.getElementById('setup-screen').style.display='flex';
+  } else if(!Auth.restore()){
+    document.getElementById('login-screen').style.display='flex';
+  }
+})();
+
+const style=document.createElement('style');
+style.textContent='@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}';
+document.head.appendChild(style);
+</script>
+</body>
+</html>
+
+</body>
+</html>

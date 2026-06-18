@@ -1261,13 +1261,17 @@ const MeetUI = {
               </div>
             </div>
             ${canEdit?`
-              <div class="field"><label>Riesgo Principal</label><input id="f-rrhh-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Riesgo del área" onchange="MeetUI.autoSave('rrhh')"></div>
-              ${temaBloquesHTML('rrhh', sec, true)}
+              <div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;align-items:start">
+                <div class="field"><label>Riesgo Principal</label><input id="f-rrhh-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Riesgo del área" onchange="MeetUI.autoSave('rrhh')"></div>
+                ${temaBloquesHTML('rrhh', sec, true)}
+              </div>
               <div class="field"><label>Acción / Decisión Requerida</label><input id="f-rrhh-accion" value="${escHtml(sec.accion)}" placeholder="Acción o decisión" onchange="MeetUI.autoSave('rrhh')"></div>
               <button class="btn btn-primary btn-sm mt8" onclick="MeetUI.saveSection('rrhh')">Guardar sección</button>`
             :`<div style="background:var(--surface);border-radius:8px;padding:12px;font-size:13px">
-              ${sec.riesgo?`<div class="mb8"><span class="text-muted text-xs">RIESGO:</span> ${escHtml(sec.riesgo)}</div>`:''}
-              ${temaBloquesHTML('rrhh', sec, false)}
+              <div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;align-items:start">
+                ${sec.riesgo?`<div class="mb8"><span class="text-muted text-xs">RIESGO:</span> ${escHtml(sec.riesgo)}</div>`:'<div></div>'}
+                ${temaBloquesHTML('rrhh', sec, false)}
+              </div>
               ${sec.accion?`<div class="mt8"><span class="text-muted text-xs">ACCIÓN:</span> ${escHtml(sec.accion)}</div>`:''}
               ${!sec.riesgo&&!sec.apoyoTipo&&!sec.apoyoTipo1&&!sec.apoyo&&!sec.apoyo1&&!sec.accion?'<span class="text-muted">Sin observaciones</span>':''}
             </div>`}
@@ -1316,11 +1320,13 @@ const MeetUI = {
               <div class="status-sel">${statusBtns}</div>
             </div>
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">${kpiBoxes}</div>
-            ${canEdit
-              ?`<div class="field"><label>Riesgo Principal</label><input id="f-${s.id}-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Principal riesgo del área" onchange="MeetUI.autoSave('${s.id}')"></div>`
-              :`<div class="field"><label>Riesgo Principal</label><div class="readonly-val">${escHtml(sec.riesgo)||'<span class="text-muted">—</span>'}</div></div>`
-            }
-            ${temaBloquesHTML(s.id, sec, canEdit)}
+            <div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;align-items:start">
+              ${canEdit
+                ?`<div class="field"><label>Riesgo Principal</label><input id="f-${s.id}-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Principal riesgo del área" onchange="MeetUI.autoSave('${s.id}')"></div>`
+                :`<div class="field"><label>Riesgo Principal</label><div class="readonly-val">${escHtml(sec.riesgo)||'<span class="text-muted">—</span>'}</div></div>`
+              }
+              ${temaBloquesHTML(s.id, sec, canEdit)}
+            </div>
             ${canEdit
               ?`<div class="field"><label>Acción / Decisión Requerida</label><input id="f-${s.id}-accion" value="${escHtml(sec.accion)}" placeholder="Acción o decisión que se necesita" onchange="MeetUI.autoSave('${s.id}')"></div>
                 <button class="btn btn-primary btn-sm mt8" onclick="MeetUI.saveSection('${s.id}')">Guardar sección</button>`
@@ -1380,8 +1386,10 @@ const MeetUI = {
               }
             </div>
           </div>
-          ${field('riesgo','Riesgo Principal',sec.riesgo,'Principal riesgo del área')}
-          ${temaBloquesHTML(s.id, sec, canEdit)}
+          <div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;align-items:start">
+            ${field('riesgo','Riesgo Principal',sec.riesgo,'Principal riesgo del área')}
+            ${temaBloquesHTML(s.id, sec, canEdit)}
+          </div>
           ${field('accion','Acción / Decisión Requerida',sec.accion,'Acción o decisión que se necesita')}
           ${canEdit?`<button class="btn btn-primary btn-sm mt8" onclick="MeetUI.saveSection('${s.id}')">Guardar sección</button>`:''}
         </div>

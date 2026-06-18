@@ -1316,32 +1316,10 @@ const MeetUI = {
               <div class="status-sel">${statusBtns}</div>
             </div>
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">${kpiBoxes}</div>
-            <div class="field-row">
-              ${canEdit
-                ?`<div class="field"><label>Riesgo Principal</label><input id="f-${s.id}-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Principal riesgo del área" onchange="MeetUI.autoSave('${s.id}')"></div>`
-                :`<div class="field"><label>Riesgo Principal</label><div class="readonly-val">${escHtml(sec.riesgo)||'<span class="text-muted">—</span>'}</div></div>`
-              }
-              <div class="field">
-                <label>Atención DG Requerida <span style="font-size:10px;color:var(--muted)">(auto → seguimiento)</span></label>
-                ${canEdit
-                  ?`<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-                      <select id="f-${s.id}-apoyoTipo" onchange="MeetUI.autoSave('${s.id}')"
-                        style="background:var(--surface);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:var(--text);padding:6px 10px;font-size:12px;min-width:200px;cursor:pointer">
-                        <option value="" ${!sec.apoyoTipo?'selected':''}>— Sin requerimiento —</option>
-                        <optgroup label="Director General">
-                          <option value="aprobacion" ${sec.apoyoTipo==='aprobacion'?'selected':''}>📋 Aprobación DG</option>
-                          <option value="seguimiento" ${sec.apoyoTipo==='seguimiento'?'selected':''}>👁 Seguimiento DG</option>
-                          <option value="apoyo" ${sec.apoyoTipo==='apoyo'?'selected':''}>🤝 Apoyo DG</option>
-                        </optgroup>
-                        <optgroup label="Coordinación entre Áreas">
-                          ${SECTIONS.filter(x=>x.id!==s.id).map(x=>`<option value="apoyo_${x.id}" ${sec.apoyoTipo==='apoyo_'+x.id?'selected':''}>🔗 Coord. → ${x.label}</option>`).join('')}
-                        </optgroup>
-                      </select>
-                      <input id="f-${s.id}-apoyo" value="${escHtml(sec.apoyo)}" placeholder="Describe la solicitud al DG..." style="flex:1;min-width:160px" onchange="MeetUI.autoSave('${s.id}')">
-                    </div>`
-                }
-              </div>
-            </div>
+            ${canEdit
+              ?`<div class="field"><label>Riesgo Principal</label><input id="f-${s.id}-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Principal riesgo del área" onchange="MeetUI.autoSave('${s.id}')"></div>`
+              :`<div class="field"><label>Riesgo Principal</label><div class="readonly-val">${escHtml(sec.riesgo)||'<span class="text-muted">—</span>'}</div></div>`
+            }
             ${temaBloquesHTML(s.id, sec, canEdit)}
             ${canEdit
               ?`<div class="field"><label>Acción / Decisión Requerida</label><input id="f-${s.id}-accion" value="${escHtml(sec.accion)}" placeholder="Acción o decisión que se necesita" onchange="MeetUI.autoSave('${s.id}')"></div>

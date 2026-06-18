@@ -380,9 +380,18 @@ tr:hover td{background:rgba(255,255,255,.02)}
         </select>
         <select id="tf-dgflag" onchange="TopicUI.render()">
           <option value="">Todos los flags</option>
-          <option value="aprobacion">📋 Aprobación DG</option>
-          <option value="seguimiento">👁 Seguimiento DG</option>
-          <option value="apoyo">🤝 Apoyo DG</option>
+          <optgroup label="Director General">
+            <option value="aprobacion">📋 Aprobación DG</option>
+            <option value="seguimiento">👁 Seguimiento DG</option>
+            <option value="apoyo">🤝 Apoyo DG</option>
+          </optgroup>
+          <optgroup label="Coordinación entre Áreas">
+            <option value="apoyo_operaciones">🔗 Coord. → Operaciones</option>
+            <option value="apoyo_metalurgia">🔗 Coord. → Metalurgia</option>
+            <option value="apoyo_rrhh">🔗 Coord. → RRHH</option>
+            <option value="apoyo_finanzas">🔗 Coord. → Finanzas</option>
+            <option value="apoyo_exploracion">🔗 Coord. → Exploración</option>
+          </optgroup>
         </select>
       </div>
       <div class="card">
@@ -449,12 +458,21 @@ tr:hover td{background:rgba(255,255,255,.02)}
       </div>
       <div class="fg"><label>Owner</label><input type="text" id="tm-owner" placeholder="Responsable"></div>
     </div>
-    <div class="fg"><label>Flag Director General</label>
+    <div class="fg"><label>Flag / Atención Requerida</label>
       <select id="tm-dgflag">
-        <option value="">— Sin flag DG —</option>
-        <option value="aprobacion">📋 Pendiente de Aprobación</option>
-        <option value="seguimiento">👁 En Seguimiento DG</option>
-        <option value="apoyo">🤝 Apoyo Requerido DG</option>
+        <option value="">— Sin flag —</option>
+        <optgroup label="Director General">
+          <option value="aprobacion">📋 Aprobación DG</option>
+          <option value="seguimiento">👁 Seguimiento DG</option>
+          <option value="apoyo">🤝 Apoyo DG</option>
+        </optgroup>
+        <optgroup label="Coordinación entre Áreas">
+          <option value="apoyo_operaciones">🔗 Coord. → Operaciones</option>
+          <option value="apoyo_metalurgia">🔗 Coord. → Metalurgia</option>
+          <option value="apoyo_rrhh">🔗 Coord. → RRHH</option>
+          <option value="apoyo_finanzas">🔗 Coord. → Finanzas</option>
+          <option value="apoyo_exploracion">🔗 Coord. → Exploración</option>
+        </optgroup>
       </select>
     </div>
     <div class="fg"><label>Acción / Próximo paso</label><input type="text" id="tm-action" placeholder="Qué se va a hacer"></div>
@@ -594,6 +612,10 @@ const DG_FLAGS = {
   seguimiento:{label:'👁 Seguimiento DG', cls:'ba', color:'var(--amber)'},
   apoyo:      {label:'🤝 Apoyo DG',       cls:'bb', color:'var(--blue)'},
 };
+// Cross-section coordination flags (auto-generated from SECTIONS)
+SECTIONS.forEach(s => {
+  DG_FLAGS['apoyo_'+s.id] = {label:`🔗 Coord. → ${s.label}`, cls:'bb', color:s.color};
+});
 
 // ─── UTILS ──────────────────────────────────────────────────
 const uid    = () => Date.now().toString(36) + Math.random().toString(36).slice(2,7);
@@ -1163,15 +1185,32 @@ const MeetUI = {
             </div>
             ${canEdit?`<div class="field-row">
               <div class="field"><label>Riesgo Principal</label><input id="f-rrhh-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Riesgo del área" onchange="MeetUI.autoSave('rrhh')"></div>
-              <div class="field"><label>Apoyo Requerido</label><input id="f-rrhh-apoyo" value="${escHtml(sec.apoyo)}" placeholder="Soporte necesario" onchange="MeetUI.autoSave('rrhh')"></div>
+              <div class="field">
+                <label>Atención DG Requerida <span style="font-size:10px;color:var(--muted)">(auto → seguimiento)</span></label>
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                  <select id="f-rrhh-apoyoTipo" onchange="MeetUI.autoSave('rrhh')"
+                    style="background:var(--surface);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:var(--text);padding:6px 10px;font-size:12px;min-width:200px;cursor:pointer">
+                    <option value="" ${!sec.apoyoTipo?'selected':''}>— Sin requerimiento —</option>
+                    <optgroup label="Director General">
+                      <option value="aprobacion" ${sec.apoyoTipo==='aprobacion'?'selected':''}>📋 Aprobación DG</option>
+                      <option value="seguimiento" ${sec.apoyoTipo==='seguimiento'?'selected':''}>👁 Seguimiento DG</option>
+                      <option value="apoyo" ${sec.apoyoTipo==='apoyo'?'selected':''}>🤝 Apoyo DG</option>
+                    </optgroup>
+                    <optgroup label="Coordinación entre Áreas">
+                      ${SECTIONS.filter(x=>x.id!==s.id).map(x=>`<option value="apoyo_${x.id}" ${sec.apoyoTipo==='apoyo_'+x.id?'selected':''}>🔗 Coord. → ${x.label}</option>`).join('')}
+                    </optgroup>
+                  </select>
+                  <input id="f-rrhh-apoyo" value="${escHtml(sec.apoyo)}" placeholder="Describe la solicitud al DG..." style="flex:1;min-width:160px" onchange="MeetUI.autoSave('rrhh')">
+                </div>
+              </div>
             </div>
             <div class="field"><label>Acción / Decisión Requerida</label><input id="f-rrhh-accion" value="${escHtml(sec.accion)}" placeholder="Acción o decisión" onchange="MeetUI.autoSave('rrhh')"></div>
             <button class="btn btn-primary btn-sm mt8" onclick="MeetUI.saveSection('rrhh')">Guardar sección</button>`
             :`<div style="background:var(--surface);border-radius:8px;padding:12px;font-size:13px">
               ${sec.riesgo?`<div class="mb8"><span class="text-muted text-xs">RIESGO:</span> ${escHtml(sec.riesgo)}</div>`:''}
-              ${sec.apoyo?`<div class="mb8"><span class="text-muted text-xs">APOYO:</span> ${escHtml(sec.apoyo)}</div>`:''}
+              ${sec.apoyoTipo?`<div class="mb8"><span class="badge ${DG_FLAGS[sec.apoyoTipo]?.cls||''}" style="margin-right:8px">${DG_FLAGS[sec.apoyoTipo]?.label||''}</span>${escHtml(sec.apoyo)}</div>`:sec.apoyo?`<div class="mb8"><span class="text-muted text-xs">APOYO:</span> ${escHtml(sec.apoyo)}</div>`:''}
               ${sec.accion?`<div><span class="text-muted text-xs">ACCIÓN:</span> ${escHtml(sec.accion)}</div>`:''}
-              ${!sec.riesgo&&!sec.apoyo&&!sec.accion?'<span class="text-muted">Sin observaciones</span>':''}
+              ${!sec.riesgo&&!sec.apoyoTipo&&!sec.apoyo&&!sec.accion?'<span class="text-muted">Sin observaciones</span>':''}
             </div>`}
           </div>
         </div>`;
@@ -1220,11 +1259,32 @@ const MeetUI = {
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">${kpiBoxes}</div>
             <div class="field-row">
               ${canEdit
-                ?`<div class="field"><label>Riesgo Principal</label><input id="f-${s.id}-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Principal riesgo del área" onchange="MeetUI.autoSave('${s.id}')"></div>
-                  <div class="field"><label>Apoyo Requerido</label><input id="f-${s.id}-apoyo" value="${escHtml(sec.apoyo)}" placeholder="Soporte necesario" onchange="MeetUI.autoSave('${s.id}')"></div>`
-                :`<div class="field"><label>Riesgo Principal</label><div class="readonly-val">${escHtml(sec.riesgo)||'<span class="text-muted">—</span>'}</div></div>
-                  <div class="field"><label>Apoyo Requerido</label><div class="readonly-val">${escHtml(sec.apoyo)||'<span class="text-muted">—</span>'}</div></div>`
+                ?`<div class="field"><label>Riesgo Principal</label><input id="f-${s.id}-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Principal riesgo del área" onchange="MeetUI.autoSave('${s.id}')"></div>`
+                :`<div class="field"><label>Riesgo Principal</label><div class="readonly-val">${escHtml(sec.riesgo)||'<span class="text-muted">—</span>'}</div></div>`
               }
+              <div class="field">
+                <label>Atención DG Requerida <span style="font-size:10px;color:var(--muted)">(auto → seguimiento)</span></label>
+                ${canEdit
+                  ?`<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                      <select id="f-${s.id}-apoyoTipo" onchange="MeetUI.autoSave('${s.id}')"
+                        style="background:var(--surface);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:var(--text);padding:6px 10px;font-size:12px;min-width:200px;cursor:pointer">
+                        <option value="" ${!sec.apoyoTipo?'selected':''}>— Sin requerimiento —</option>
+                        <optgroup label="Director General">
+                          <option value="aprobacion" ${sec.apoyoTipo==='aprobacion'?'selected':''}>📋 Aprobación DG</option>
+                          <option value="seguimiento" ${sec.apoyoTipo==='seguimiento'?'selected':''}>👁 Seguimiento DG</option>
+                          <option value="apoyo" ${sec.apoyoTipo==='apoyo'?'selected':''}>🤝 Apoyo DG</option>
+                        </optgroup>
+                        <optgroup label="Coordinación entre Áreas">
+                          ${SECTIONS.filter(x=>x.id!==s.id).map(x=>`<option value="apoyo_${x.id}" ${sec.apoyoTipo==='apoyo_'+x.id?'selected':''}>🔗 Coord. → ${x.label}</option>`).join('')}
+                        </optgroup>
+                      </select>
+                      <input id="f-${s.id}-apoyo" value="${escHtml(sec.apoyo)}" placeholder="Describe la solicitud al DG..." style="flex:1;min-width:160px" onchange="MeetUI.autoSave('${s.id}')">
+                    </div>`
+                  :sec.apoyoTipo
+                    ?`<div class="readonly-val" style="display:flex;align-items:center;gap:8px"><span class="badge ${DG_FLAGS[sec.apoyoTipo]?.cls||''}">${DG_FLAGS[sec.apoyoTipo]?.label||''}</span>${escHtml(sec.apoyo)}</div>`
+                    :`<div class="readonly-val">${escHtml(sec.apoyo)||'<span class="text-muted">—</span>'}</div>`
+                }
+              </div>
             </div>
             ${canEdit
               ?`<div class="field"><label>Acción / Decisión Requerida</label><input id="f-${s.id}-accion" value="${escHtml(sec.accion)}" placeholder="Acción o decisión que se necesita" onchange="MeetUI.autoSave('${s.id}')"></div>
@@ -1287,7 +1347,29 @@ const MeetUI = {
           </div>
           <div class="field-row">
             ${field('riesgo','Riesgo Principal',sec.riesgo,'Principal riesgo del área')}
-            ${field('apoyo','Apoyo Requerido',sec.apoyo,'Soporte necesario')}
+            <div class="field">
+              <label>Atención DG Requerida <span style="font-size:10px;color:var(--muted)">(auto → seguimiento)</span></label>
+              ${canEdit
+                ?`<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                    <select id="f-${s.id}-apoyoTipo" onchange="MeetUI.autoSave('${s.id}')"
+                      style="background:var(--surface);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:var(--text);padding:6px 10px;font-size:12px;min-width:200px;cursor:pointer">
+                      <option value="" ${!sec.apoyoTipo?'selected':''}>— Sin requerimiento —</option>
+                      <optgroup label="Director General">
+                        <option value="aprobacion" ${sec.apoyoTipo==='aprobacion'?'selected':''}>📋 Aprobación DG</option>
+                        <option value="seguimiento" ${sec.apoyoTipo==='seguimiento'?'selected':''}>👁 Seguimiento DG</option>
+                        <option value="apoyo" ${sec.apoyoTipo==='apoyo'?'selected':''}>🤝 Apoyo DG</option>
+                      </optgroup>
+                      <optgroup label="Coordinación entre Áreas">
+                        ${SECTIONS.filter(x=>x.id!==s.id).map(x=>`<option value="apoyo_${x.id}" ${sec.apoyoTipo==='apoyo_'+x.id?'selected':''}>🔗 Coord. → ${x.label}</option>`).join('')}
+                      </optgroup>
+                    </select>
+                    <input id="f-${s.id}-apoyo" value="${escHtml(sec.apoyo)}" placeholder="Describe la solicitud al DG..." style="flex:1;min-width:160px" onchange="MeetUI.autoSave('${s.id}')">
+                  </div>`
+                :sec.apoyoTipo
+                  ?`<div class="readonly-val" style="display:flex;align-items:center;gap:8px"><span class="badge ${DG_FLAGS[sec.apoyoTipo]?.cls||''}">${DG_FLAGS[sec.apoyoTipo]?.label||''}</span>${escHtml(sec.apoyo)}</div>`
+                  :`<div class="readonly-val">${escHtml(sec.apoyo)||'<span class="text-muted">—</span>'}</div>`
+              }
+            </div>
           </div>
           ${field('accion','Acción / Decisión Requerida',sec.accion,'Acción o decisión que se necesita')}
           ${canEdit?`<button class="btn btn-primary btn-sm mt8" onclick="MeetUI.saveSection('${s.id}')">Guardar sección</button>`:''}
@@ -1322,16 +1404,48 @@ const MeetUI = {
     const m=Meetings.get(); if (!m) return;
     const sec=m.sections[sId]||{};
     const rf=fId=>document.getElementById(`f-${sId}-${fId}`)?.value||'';
+    const apoyoTipo=rf('apoyoTipo');
+    const apoyo=rf('apoyo');
     const updated={...sec,
       kpi1Label:rf('kpi1Label'),kpi1Value:rf('kpi1Value'),kpi1Plan:rf('kpi1Plan'),kpi1Impact:rf('kpi1Impact'),
       kpi2Label:rf('kpi2Label'),kpi2Value:rf('kpi2Value'),kpi2Plan:rf('kpi2Plan'),kpi2Impact:rf('kpi2Impact'),
       kpi3Label:rf('kpi3Label'),kpi3Value:rf('kpi3Value'),kpi3Plan:rf('kpi3Plan'),kpi3Impact:rf('kpi3Impact'),
       hcNotas:rf('hcNotas'),vacNotas:rf('vacNotas'),
-      riesgo:rf('riesgo'),apoyo:rf('apoyo'),accion:rf('accion'),
+      riesgo:rf('riesgo'),apoyo,apoyoTipo,accion:rf('accion'),
       updatedBy:Auth.user?.name,updatedAt:new Date().toISOString()
     };
     m.sections[sId]=updated; Meetings.save(m);
+    this.syncAutoTopic(sId, apoyoTipo, apoyo);
     toast('Sección guardada ✓');
+  },
+
+  syncAutoTopic(sId, tipo, texto) {
+    const autoId='auto_'+sId;
+    let topics=DB.get('topics')||[];
+    // Remove existing auto-topic for this section
+    topics=topics.filter(t=>t.id!==autoId);
+    // Create new one if tipo selected and text provided
+    if (tipo && texto && texto.trim()) {
+      const s=SECTIONS.find(x=>x.id===sId);
+      const currentWk=weekId(new Date());
+      topics.push({
+        id:autoId,
+        title:`[${s?.label||sId}] ${texto.trim()}`,
+        desc:'',
+        priority:'alta',
+        status:'abierto',
+        section:sId,
+        owner:Auth.user?.name||'',
+        dgFlag:tipo,
+        action:texto.trim(),
+        appearances:[currentWk],
+        autoGenerated:true,
+        createdAt:new Date().toISOString(),
+      });
+    }
+    DB.set('topics',topics);
+    // Refresh DG panel if dashboard is visible
+    if (document.getElementById('screen-dashboard')?.classList.contains('active')) DashUI.render();
   },
 
   autoSave(sId) {
@@ -1426,25 +1540,49 @@ const DashUI = {
       const aprobacion=dgTopics.filter(t=>t.dgFlag==='aprobacion');
       const seguimiento=dgTopics.filter(t=>t.dgFlag==='seguimiento');
       const apoyo=dgTopics.filter(t=>t.dgFlag==='apoyo');
-      const renderDGCol=(items,flag)=>items.length
-        ?items.map(t=>`<div class="dg-item dg-${flag}" onclick="TopicUI.openEdit('${t.id}')">
-            <div style="font-weight:600;font-size:13px;margin-bottom:4px">${escHtml(t.title)}</div>
-            <div style="font-size:11px;color:var(--muted)">${SECTION_MAP[t.section]||''} · ${(t.appearances||[]).length} sem.</div>
-          </div>`).join('')
-        :'<div class="text-muted text-sm">Sin pendientes</div>';
-      document.getElementById('dg-panel-cols').innerHTML=`
-        <div class="dg-col">
-          <div class="dg-col-head" style="color:var(--red)">📋 Pendientes de Aprobación <span style="background:rgba(229,72,77,.15);color:var(--red);border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">${aprobacion.length}</span></div>
-          ${renderDGCol(aprobacion,'aprobacion')}
-        </div>
-        <div class="dg-col">
-          <div class="dg-col-head" style="color:var(--amber)">👁 En Seguimiento <span style="background:rgba(245,165,36,.15);color:var(--amber);border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">${seguimiento.length}</span></div>
-          ${renderDGCol(seguimiento,'seguimiento')}
-        </div>
-        <div class="dg-col">
-          <div class="dg-col-head" style="color:var(--blue)">🤝 Apoyo Requerido <span style="background:rgba(56,189,248,.15);color:var(--blue);border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">${apoyo.length}</span></div>
-          ${renderDGCol(apoyo,'apoyo')}
+      const crossItems=dgTopics.filter(t=>t.dgFlag&&t.dgFlag.startsWith('apoyo_'));
+      const renderDGItem=(t,borderColor)=>`<div class="dg-item" style="border-left-color:${borderColor};background:rgba(255,255,255,.03)" onclick="TopicUI.openEdit('${t.id}')">
+          <div style="font-weight:600;font-size:13px;margin-bottom:4px">${escHtml(t.title)}</div>
+          <div style="font-size:11px;color:var(--muted)">${SECTION_MAP[t.section]||''} · ${(t.appearances||[]).length} sem.</div>
         </div>`;
+      const renderDGCol=(items,color)=>items.length
+        ?items.map(t=>renderDGItem(t,color)).join('')
+        :'<div class="text-muted text-sm">Sin pendientes</div>';
+      const cnt=(n,c,bg)=>`<span style="background:${bg};color:${c};border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">${n}</span>`;
+      // Cross-director: group by target section
+      const crossBySec = {};
+      crossItems.forEach(t=>{
+        const tgt=t.dgFlag.replace('apoyo_','');
+        if (!crossBySec[tgt]) crossBySec[tgt]=[];
+        crossBySec[tgt].push(t);
+      });
+      const crossCols=Object.entries(crossBySec).map(([tgtId,items])=>{
+        const tgtSec=SECTIONS.find(x=>x.id===tgtId);
+        return `<div class="dg-col">
+          <div class="dg-col-head" style="color:${tgtSec?.color||'var(--text)'}">🔗 → ${tgtSec?.label||tgtId} ${cnt(items.length,tgtSec?.color||'var(--text)','rgba(255,255,255,.07)')}</div>
+          ${items.map(t=>renderDGItem(t,tgtSec?.color||'var(--text)')).join('')}
+        </div>`;
+      }).join('');
+      document.getElementById('dg-panel-cols').innerHTML=`
+        <div class="g3" style="margin-bottom:${crossItems.length?'20px':'0'}">
+          <div class="dg-col">
+            <div class="dg-col-head" style="color:var(--red)">📋 Aprobación DG ${cnt(aprobacion.length,'var(--red)','rgba(229,72,77,.15)')}</div>
+            ${renderDGCol(aprobacion,'var(--red)')}
+          </div>
+          <div class="dg-col">
+            <div class="dg-col-head" style="color:var(--amber)">👁 Seguimiento DG ${cnt(seguimiento.length,'var(--amber)','rgba(245,165,36,.15)')}</div>
+            ${renderDGCol(seguimiento,'var(--amber)')}
+          </div>
+          <div class="dg-col">
+            <div class="dg-col-head" style="color:var(--blue)">🤝 Apoyo DG ${cnt(apoyo.length,'var(--blue)','rgba(56,189,248,.15)')}</div>
+            ${renderDGCol(apoyo,'var(--blue)')}
+          </div>
+        </div>
+        ${crossItems.length?`
+        <div style="border-top:1px solid var(--border);padding-top:16px">
+          <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:700">🔗 Coordinación Entre Áreas ${cnt(crossItems.length,'var(--text)','rgba(255,255,255,.08)')}</div>
+          <div class="g3">${crossCols}</div>
+        </div>`:''}`;
     } else {
       dgPanel.style.display='none';
     }

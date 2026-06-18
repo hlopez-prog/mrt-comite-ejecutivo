@@ -60,6 +60,18 @@ button{cursor:pointer;font-family:var(--font)}
 .nav-item:hover{background:var(--surface);color:var(--text)}
 .nav-item.active{background:rgba(229,193,88,.12);color:var(--gold)}
 .nav-item .ic{width:16px;text-align:center;font-size:14px}
+.nav-badge{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;border-radius:10px;padding:2px 7px;min-width:20px;text-align:center;line-height:16px}
+.nav-badge.amber{background:var(--amber);color:#000}
+/* ── TOPIC SUMMARY CARDS ── */
+.topic-summary-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+.ts-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;border-top:3px solid transparent;position:relative}
+.ts-card .ts-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.ts-card .ts-counts{display:flex;gap:8px;align-items:flex-end}
+.ts-count{text-align:center}
+.ts-count .n{font-size:22px;font-weight:700;line-height:1}
+.ts-count .l{font-size:10px;color:var(--muted);margin-top:2px}
+.ts-alert{position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
 .sb-footer{margin-top:auto;padding:16px;border-top:1px solid var(--border)}
 .user-chip{display:flex;align-items:center;gap:10px}
 .user-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold-d),var(--gold));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#000;flex-shrink:0}
@@ -282,7 +294,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <div class="nav-sec">Módulos</div>
     <button class="nav-item active" onclick="Nav.go('dashboard')" id="nav-dashboard"><span class="ic">◈</span> Dashboard</button>
     <button class="nav-item" onclick="Nav.go('meeting')" id="nav-meeting"><span class="ic">◷</span> Reunión Semanal</button>
-    <button class="nav-item" onclick="Nav.go('topics')" id="nav-topics"><span class="ic">◎</span> Seguimiento Temas</button>
+    <button class="nav-item" onclick="Nav.go('topics')" id="nav-topics"><span class="ic">◎</span> Seguimiento Temas <span id="topics-badge" style="display:none" class="nav-badge"></span></button>
     <button class="nav-item" onclick="Nav.go('history')" id="nav-history"><span class="ic">◑</span> Historial</button>
     <div id="nav-admin-sec" style="display:none">
       <div class="nav-sec">Administración</div>
@@ -357,9 +369,18 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <!-- TEMAS -->
     <div class="page" id="page-topics">
       <div class="pg-head flex items-center justify-between">
-        <div><div class="pg-title">Seguimiento de Temas</div><div class="pg-sub">Registro semana a semana con prioridades</div></div>
-        <button id="btn-new-topic" class="btn btn-primary btn-sm" onclick="TopicUI.openNew()" style="display:none">+ Nuevo Tema</button>
+        <div><div class="pg-title">Seguimiento de Temas</div><div class="pg-sub" id="topics-pg-sub">Registro semana a semana con prioridades</div></div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer">
+            <input type="checkbox" id="tf-show-closed" onchange="TopicUI.render()" style="accent-color:var(--gold)"> Ver cerrados
+          </label>
+          <button id="btn-new-topic" class="btn btn-primary btn-sm" onclick="TopicUI.openNew()" style="display:none">+ Nuevo Tema</button>
+        </div>
       </div>
+      <!-- Summary cards per section -->
+      <div id="topics-summary" class="topic-summary-grid" style="display:none"></div>
+      <!-- Director alert banner -->
+      <div id="topics-alert-banner" style="display:none;background:rgba(229,72,77,.12);border:1px solid var(--red);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:var(--red)"></div>
       <div class="filters">
         <input type="text" id="tf-search" placeholder="Buscar temas..." oninput="TopicUI.render()">
         <select id="tf-status" onchange="TopicUI.render()">
@@ -396,7 +417,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
       </div>
       <div class="card">
         <table>
-          <thead><tr><th>Tema</th><th>Área</th><th>Prioridad</th><th>Estado</th><th>Flag DG</th><th>Apariciones</th><th>Owner</th><th></th></tr></thead>
+          <thead><tr><th>Tema</th><th>Área</th><th>Prioridad</th><th>Estado</th><th>Flag DG</th><th>Semanas</th><th>Owner</th><th>Acciones</th></tr></thead>
           <tbody id="topics-body"></tbody>
         </table>
         <div id="topics-empty" class="empty-state" style="display:none">Sin temas registrados</div>
@@ -896,6 +917,8 @@ const Auth = {
     document.getElementById('nav-admin-sec').style.display = u.role==='admin' ? '' : 'none';
     document.getElementById('btn-new-topic').style.display = u.role!=='viewer' ? '' : 'none';
     Nav.go('dashboard');
+    // Update badge after login (topics already in memory)
+    setTimeout(()=>TopicUI.updateBadge(), 200);
   },
 
   logout() {
@@ -1444,6 +1467,7 @@ const MeetUI = {
       });
     }
     DB.set('topics', topics);
+    TopicUI.updateBadge();
     // Refrescar panel DG si el dashboard está visible
     if (document.getElementById('screen-dashboard')?.classList.contains('active')) DashUI.render();
   },
@@ -1616,51 +1640,200 @@ const DashUI = {
 // ─── TOPICS UI ───────────────────────────────────────────────
 const TopicUI = {
   editingId: null,
+  _initialized: false,
+
+  // ── Badge: count open/progreso topics for current director's section ──
+  updateBadge() {
+    const badge=document.getElementById('topics-badge');
+    if (!badge) return;
+    const all=DB.get('topics')||[];
+    const isDir=Auth.user?.role==='director';
+    const userSec=Auth.user?.section;
+    // Count active (non-closed) topics relevant to this user
+    const active=all.filter(t=>t.status!=='cerrado'&&t.status!=='diferido'
+      &&(isDir?(t.section===userSec||t.dgFlag==='apoyo_'+userSec):true));
+    const urgent=all.filter(t=>t.status==='abierto'&&t.priority==='alta'
+      &&(isDir?(t.section===userSec):true));
+    if (active.length>0){
+      badge.textContent=active.length;
+      badge.className='nav-badge'+(urgent.length?' ':'  amber');
+      badge.style.display='';
+    } else {
+      badge.style.display='none';
+    }
+  },
+
+  // ── Summary cards: one per section ──
+  renderSummary() {
+    const el=document.getElementById('topics-summary');
+    if (!el) return;
+    const all=DB.get('topics')||[];
+    const isDir=Auth.user?.role==='director';
+    // For admin/viewer show all sections; for director show all but highlight theirs
+    el.style.display='';
+    el.innerHTML=SECTIONS.map(s=>{
+      const st=all.filter(t=>t.section===s.id);
+      const ab=st.filter(t=>t.status==='abierto').length;
+      const pr=st.filter(t=>t.status==='progreso').length;
+      const ce=st.filter(t=>t.status==='cerrado').length;
+      const hasAlert=(ab+pr)>0&&(isDir?s.id===Auth.user?.section:true);
+      const isOwn=isDir&&s.id===Auth.user?.section;
+      return `<div class="ts-card" style="border-top-color:${s.color};${isOwn?'box-shadow:0 0 0 2px '+s.color+'44;':''}" onclick="TopicUI.filterSection('${s.id}')">
+        ${hasAlert&&isOwn?'<div class="ts-alert"></div>':''}
+        <div class="ts-label" style="color:${s.color}">${s.label}</div>
+        <div class="ts-counts">
+          <div class="ts-count">
+            <div class="n" style="color:var(--red)">${ab}</div>
+            <div class="l">Abiertos</div>
+          </div>
+          <div class="ts-count" style="margin-left:8px">
+            <div class="n" style="color:var(--amber)">${pr}</div>
+            <div class="l">Progreso</div>
+          </div>
+          <div class="ts-count" style="margin-left:8px">
+            <div class="n" style="color:var(--green)">${ce}</div>
+            <div class="l">Cerrados</div>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  },
+
+  // Click on summary card → filter to that section
+  filterSection(secId) {
+    const sf=document.getElementById('tf-section');
+    if (sf.value===secId) { sf.value=''; } else { sf.value=secId; }
+    this.render();
+  },
 
   render() {
+    // Populate section select once
     const sf=document.getElementById('tf-section');
     if (sf.options.length<=1){
       SECTIONS.forEach(s=>{const o=document.createElement('option');o.value=s.id;o.textContent=s.label;sf.appendChild(o);});
     }
+
+    // First run: set defaults per role
+    if (!this._initialized) {
+      this._initialized=true;
+      const isDir=Auth.user?.role==='director';
+      if (isDir && Auth.user?.section) {
+        // Pre-select director's own section
+        sf.value=Auth.user.section;
+      }
+      // Default: hide closed topics
+      document.getElementById('tf-show-closed').checked=false;
+    }
+
+    // Show/hide "Ver cerrados" checkbox for closed filter
+    const showClosed=document.getElementById('tf-show-closed').checked;
+
     const search=document.getElementById('tf-search').value.toLowerCase();
     const statF=document.getElementById('tf-status').value;
     const prioF=document.getElementById('tf-priority').value;
-    const secF=document.getElementById('tf-section').value;
+    const secF=sf.value;
     const dgF=document.getElementById('tf-dgflag').value;
     let topics=DB.get('topics')||[];
+
     if (search) topics=topics.filter(t=>t.title.toLowerCase().includes(search)||(t.owner||'').toLowerCase().includes(search));
     if (statF)  topics=topics.filter(t=>t.status===statF);
+    else if (!showClosed) topics=topics.filter(t=>t.status!=='cerrado'&&t.status!=='diferido');
     if (prioF)  topics=topics.filter(t=>t.priority===prioF);
     if (secF)   topics=topics.filter(t=>t.section===secF);
     if (dgF)    topics=topics.filter(t=>t.dgFlag===dgF);
+
     const prioOrder={alta:0,media:1,baja:2};
     topics.sort((a,b)=>(prioOrder[a.priority]||1)-(prioOrder[b.priority]||1)||(b.appearances||[]).length-(a.appearances||[]).length);
 
     const prioBadge=t=>`<span class="badge bg-${t.priority}">${t.priority.charAt(0).toUpperCase()+t.priority.slice(1)}</span>`;
     const statBadge=s=>{
-      const map={abierto:'<span class="badge bb">Abierto</span>',progreso:'<span class="badge ba">En Progreso</span>',
-        cerrado:'<span class="badge" style="background:rgba(139,149,161,.15);color:var(--muted);border:1px solid var(--border)">Cerrado</span>',
-        diferido:'<span class="badge" style="background:rgba(139,149,161,.1);color:var(--muted);border:1px dashed var(--border)">Diferido</span>'};
+      const map={
+        abierto:'<span class="badge br">⚠ Abierto</span>',
+        progreso:'<span class="badge ba">↻ En Progreso</span>',
+        cerrado:'<span class="badge" style="background:rgba(48,164,108,.12);color:var(--green);border:1px solid var(--green)">✓ Cerrado</span>',
+        diferido:'<span class="badge" style="background:rgba(139,149,161,.1);color:var(--muted);border:1px dashed var(--border)">⏸ Diferido</span>'
+      };
       return map[s]||s;
     };
     const dgBadge=t=>{
       if (!t.dgFlag||!DG_FLAGS[t.dgFlag]) return '—';
       const f=DG_FLAGS[t.dgFlag];
-      return `<span class="badge ${f.cls}">${f.label}</span>`;
+      return `<span class="badge ${f.cls}" style="font-size:11px">${f.label}</span>`;
+    };
+    const canAct=t=>Auth.canEdit(t.section)||Auth.isAdmin();
+    const actionBtns=t=>{
+      if (!canAct(t)) return '';
+      const btns=[];
+      if (t.status!=='cerrado') {
+        btns.push(`<button class="btn btn-ghost btn-sm" onclick="TopicUI.quickStatus('${t.id}','progreso')" title="Marcar En Progreso" style="color:var(--amber);border-color:var(--amber)">↻</button>`);
+        btns.push(`<button class="btn btn-ghost btn-sm" onclick="TopicUI.quickClose('${t.id}')" title="Cerrar tema" style="color:var(--green);border-color:var(--green)">✓ Cerrar</button>`);
+      } else {
+        btns.push(`<button class="btn btn-ghost btn-sm" onclick="TopicUI.quickStatus('${t.id}','abierto')" title="Reabrir" style="font-size:11px">↩ Reabrir</button>`);
+      }
+      btns.push(`<button class="btn btn-ghost btn-sm" onclick="TopicUI.openEdit('${t.id}')" title="Editar">✎</button>`);
+      return btns.join('');
     };
 
     const tbody=document.getElementById('topics-body');
-    tbody.innerHTML=topics.map(t=>`<tr>
-      <td><div class="font-semibold">${escHtml(t.title)}</div>${t.desc?`<div class="text-xs text-muted mb4">${escHtml(t.desc)}</div>`:''}</td>
-      <td><span class="pill" style="border-color:${SECTIONS.find(s=>s.id===t.section)?.color||'var(--border)'};color:${SECTIONS.find(s=>s.id===t.section)?.color||'var(--muted)'}">${SECTION_MAP[t.section]||t.section}</span></td>
-      <td>${prioBadge(t)}</td>
-      <td>${statBadge(t.status)}</td>
-      <td>${dgBadge(t)}</td>
-      <td><span class="font-bold text-gold">${(t.appearances||[]).length}</span> <span class="text-xs text-muted">sem.</span></td>
-      <td class="text-sm">${escHtml(t.owner||'—')}</td>
-      <td>${(Auth.canEdit(t.section)||Auth.isAdmin())?`<button class="btn btn-ghost btn-sm" onclick="TopicUI.openEdit('${t.id}')">Editar</button>`:''}</td>
-    </tr>`).join('');
+    tbody.innerHTML=topics.map(t=>{
+      const sec=SECTIONS.find(s=>s.id===t.section);
+      const rowStyle=t.status==='cerrado'?'opacity:.55':'';
+      return `<tr style="${rowStyle}">
+        <td><div class="font-semibold">${escHtml(t.title)}</div>${t.desc?`<div class="text-xs text-muted mb4">${escHtml(t.desc)}</div>`:''}</td>
+        <td><span class="pill" style="border-color:${sec?.color||'var(--border)'};color:${sec?.color||'var(--muted)'}">${SECTION_MAP[t.section]||t.section}</span></td>
+        <td>${prioBadge(t)}</td>
+        <td>${statBadge(t.status)}</td>
+        <td>${dgBadge(t)}</td>
+        <td><span class="font-bold text-gold">${(t.appearances||[]).length}</span> <span class="text-xs text-muted">sem.</span></td>
+        <td class="text-sm">${escHtml(t.owner||'—')}</td>
+        <td style="white-space:nowrap;display:flex;gap:4px;flex-wrap:wrap">${actionBtns(t)}</td>
+      </tr>`;
+    }).join('');
     document.getElementById('topics-empty').style.display=topics.length?'none':'';
+
+    // Alert banner for directors with pending items
+    this.renderAlertBanner();
+    this.renderSummary();
+    this.updateBadge();
+  },
+
+  renderAlertBanner() {
+    const banner=document.getElementById('topics-alert-banner');
+    if (!banner||Auth.user?.role!=='director') { if(banner) banner.style.display='none'; return; }
+    const all=DB.get('topics')||[];
+    const sec=Auth.user?.section;
+    const urgentes=all.filter(t=>t.section===sec&&t.status==='abierto'&&t.priority==='alta');
+    const pendientes=all.filter(t=>t.section===sec&&(t.status==='abierto'||t.status==='progreso'));
+    if (urgentes.length>0) {
+      banner.style.display='';
+      banner.innerHTML=`🚨 <strong>Atención:</strong> Tienes ${urgentes.length} tema(s) de <strong>prioridad ALTA</strong> abierto(s) en tu área. ${pendientes.length} total pendiente(s).`;
+    } else if (pendientes.length>0) {
+      banner.style.display='';
+      banner.style.background='rgba(245,165,36,.1)';
+      banner.style.borderColor='var(--amber)';
+      banner.style.color='var(--amber)';
+      banner.innerHTML=`⏳ Tienes <strong>${pendientes.length} tema(s) pendiente(s)</strong> en tu área. Actualiza el estado según corresponda.`;
+    } else {
+      banner.style.display='none';
+    }
+  },
+
+  // Quick close from table row
+  quickClose(id) {
+    const topics=DB.get('topics')||[];
+    const t=topics.find(t=>t.id===id); if (!t) return;
+    t.status='cerrado'; t.closedAt=new Date().toISOString(); t.closedBy=Auth.user?.name||'';
+    DB.set('topics',topics);
+    this.render(); toast('Tema cerrado ✓');
+  },
+
+  // Quick status change
+  quickStatus(id, newStatus) {
+    const topics=DB.get('topics')||[];
+    const t=topics.find(t=>t.id===id); if (!t) return;
+    t.status=newStatus;
+    DB.set('topics',topics);
+    this.render(); toast('Estado actualizado ✓');
   },
 
   openNew() {

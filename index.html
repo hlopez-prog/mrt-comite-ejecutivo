@@ -9,35 +9,35 @@
   --bg:#0A0E13; --card:#161B22; --surface:#1F262F; --border:#2D3748;
   --gold:#E5C158; --gold-d:#C29B23; --text:#E6EDF3; --muted:#8B95A1;
   --green:#30A46C; --red:#E5484D; --amber:#F5A524; --blue:#38BDF8;
+  --purple:#A78BFA; --pink:#F472B6; --teal:#2DD4BF; --orange:#FB923C;
   --r:8px; --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --c-op:#38BDF8; --c-met:#A78BFA; --c-rrhh:#30A46C; --c-fin:#E5C158; --c-exp:#FB923C;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;overflow-x:hidden}
 a{color:var(--gold);text-decoration:none}
 button{cursor:pointer;font-family:var(--font)}
 
-/* ── OVERLAY SCREENS ── */
+/* ── SCREENS ── */
 .screen{display:none;align-items:center;justify-content:center;min-height:100vh}
 .screen.active{display:flex}
 #screen-login{background:radial-gradient(ellipse at 30% 20%,#1a2535 0%,var(--bg) 60%)}
 #screen-setup{background:radial-gradient(ellipse at 70% 80%,#1a2535 0%,var(--bg) 60%)}
-
 .auth-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:48px;width:440px;max-width:95vw}
 .auth-logo{text-align:center;margin-bottom:32px}
 .auth-logo .lg-mrt{font-size:36px;font-weight:900;letter-spacing:6px;color:var(--gold)}
 .auth-logo .lg-sub{font-size:10px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-top:4px}
 .auth-card h2{font-size:17px;font-weight:600;margin-bottom:24px}
 .auth-card p.desc{font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.6}
-
 .fg{margin-bottom:16px}
 .fg label{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .fg input,.fg select{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:11px 14px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s}
 .fg input:focus,.fg select:focus{border-color:var(--gold)}
 .fg select option{background:var(--card)}
-
 .err-box{background:#2d1215;border:1px solid var(--red);border-radius:var(--r);padding:10px 14px;font-size:13px;color:var(--red);margin-bottom:16px;display:none}
 .ok-box{background:#0d2b1e;border:1px solid var(--green);border-radius:var(--r);padding:10px 14px;font-size:13px;color:var(--green);margin-bottom:16px;display:none}
 
+/* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:var(--r);font-size:13px;font-weight:600;border:none;transition:all .2s;letter-spacing:.3px;white-space:nowrap}
 .btn-primary{background:var(--gold);color:#000}
 .btn-primary:hover{background:var(--gold-d)}
@@ -47,9 +47,9 @@ button{cursor:pointer;font-family:var(--font)}
 .btn-danger:hover{opacity:.85}
 .btn-full{width:100%;justify-content:center}
 .btn-sm{padding:7px 14px;font-size:12px}
-.mt8{margin-top:8px} .mt12{margin-top:12px} .mt16{margin-top:16px} .mt24{margin-top:24px}
+.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}.mt24{margin-top:24px}
 
-/* ── APP LAYOUT ── */
+/* ── LAYOUT ── */
 #app{display:none;min-height:100vh}
 .sidebar{position:fixed;top:0;left:0;width:220px;height:100vh;background:var(--card);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;overflow-y:auto}
 .sb-logo{padding:24px 20px 16px;border-bottom:1px solid var(--border)}
@@ -66,8 +66,7 @@ button{cursor:pointer;font-family:var(--font)}
 .user-name{font-size:13px;font-weight:600;color:var(--text)}
 .user-role{font-size:11px;color:var(--muted)}
 .main{margin-left:220px;padding:32px;min-height:100vh}
-.page{display:none}
-.page.active{display:block}
+.page{display:none}.page.active{display:block}
 .pg-head{margin-bottom:28px}
 .pg-title{font-size:22px;font-weight:700}
 .pg-sub{font-size:13px;color:var(--muted);margin-top:4px}
@@ -78,11 +77,11 @@ button{cursor:pointer;font-family:var(--font)}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 .stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
 .stat-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 .stat-val{font-size:32px;font-weight:800;line-height:1}
 .stat-delta{font-size:12px;margin-top:6px;color:var(--muted)}
-.stat-delta.up{color:var(--green)} .stat-delta.dn{color:var(--red)}
 
 /* ── BADGES ── */
 .badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
@@ -90,19 +89,20 @@ button{cursor:pointer;font-family:var(--font)}
 .br{background:rgba(229,72,77,.15);color:var(--red);border:1px solid rgba(229,72,77,.3)}
 .ba{background:rgba(245,165,36,.15);color:var(--amber);border:1px solid rgba(245,165,36,.3)}
 .bb{background:rgba(56,189,248,.15);color:var(--blue);border:1px solid rgba(56,189,248,.3)}
+.bp{background:rgba(167,139,250,.15);color:var(--purple);border:1px solid rgba(167,139,250,.3)}
 .bg-alta{background:rgba(229,72,77,.15);color:var(--red);border:1px solid rgba(229,72,77,.3)}
 .bg-media{background:rgba(245,165,36,.15);color:var(--amber);border:1px solid rgba(245,165,36,.3)}
 .bg-baja{background:rgba(48,164,108,.15);color:var(--green);border:1px solid rgba(48,164,108,.3)}
 .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
-.dot-v{background:var(--green)} .dot-r{background:var(--red)} .dot-a{background:var(--amber)}
+.dot-v{background:var(--green)}.dot-r{background:var(--red)}.dot-a{background:var(--amber)}
 .pill{display:inline-block;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;background:var(--surface);color:var(--muted);border:1px solid var(--border)}
 
 /* ── SECTION CARDS ── */
 .section-card{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:16px;overflow:hidden}
-.section-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;user-select:none;transition:background .2s}
+.section-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;user-select:none;transition:background .2s;border-left:4px solid transparent}
 .section-header:hover{background:var(--surface)}
 .section-header .sh-left{display:flex;align-items:center;gap:12px}
-.section-num{width:28px;height:28px;border-radius:6px;background:rgba(229,193,88,.15);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--gold);letter-spacing:1px}
+.section-num{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;letter-spacing:1px}
 .section-label{font-size:14px;font-weight:700}
 .section-sublabel{font-size:11px;color:var(--muted)}
 .section-body{padding:20px;border-top:1px solid var(--border)}
@@ -113,13 +113,12 @@ button{cursor:pointer;font-family:var(--font)}
 .kpi-val{font-size:20px;font-weight:800;color:var(--gold);margin-bottom:4px}
 .kpi-plan{font-size:11px;color:var(--muted)}
 
-/* ── FORM FIELDS ── */
+/* ── FORM ── */
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 .field{margin-bottom:12px}
 .field label{display:block;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
 .field input,.field textarea,.field select{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:9px 12px;color:var(--text);font-size:13px;outline:none;transition:border-color .2s;resize:vertical}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold)}
-.field input[readonly]{opacity:.6;cursor:default}
 .readonly-val{font-size:14px;color:var(--text);padding:4px 0}
 
 /* ── STATUS SELECTOR ── */
@@ -135,7 +134,7 @@ button{cursor:pointer;font-family:var(--font)}
 .tab.active{color:var(--gold);border-bottom-color:var(--gold)}
 .tab:hover:not(.active){color:var(--text)}
 
-/* ── DECISIONS / AGREEMENTS ── */
+/* ── ITEMS ── */
 .item-row{display:flex;align-items:flex-start;gap:12px;padding:14px;background:var(--surface);border-radius:8px;margin-bottom:8px}
 .item-body{flex:1;min-width:0}
 .item-title{font-size:14px;font-weight:600;margin-bottom:4px}
@@ -157,9 +156,9 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .week-date{font-size:12px;color:var(--muted);margin-top:2px}
 
 /* ── MODAL ── */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 .modal.open{display:flex}
-.modal-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;width:500px;max-width:95vw;max-height:90vh;overflow-y:auto}
+.modal-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;width:520px;max-width:95vw;max-height:90vh;overflow-y:auto}
 .modal-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
 .modal-hd h3{font-size:16px;font-weight:700}
 .modal-close{background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;padding:2px 6px}
@@ -170,35 +169,63 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center}
 .filters input,.filters select{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:8px 12px;color:var(--text);font-size:13px;outline:none}
 .filters input:focus,.filters select:focus{border-color:var(--gold)}
-.filters input{flex:1;min-width:200px}
+.filters input{flex:1;min-width:180px}
 
-/* ── UTILS ── */
-.flex{display:flex} .items-center{align-items:center} .justify-between{justify-content:space-between}
-.gap8{gap:8px} .gap12{gap:12px} .gap16{gap:16px}
-.p12{padding:12px} .mb4{margin-bottom:4px} .mb8{margin-bottom:8px} .mb12{margin-bottom:12px}
-.mb16{margin-bottom:16px} .mb24{margin-bottom:24px}
-.text-muted{color:var(--muted)} .text-gold{color:var(--gold)} .text-green{color:var(--green)}
-.text-red{color:var(--red)} .text-amber{color:var(--amber)}
-.text-sm{font-size:12px} .text-xs{font-size:11px}
-.font-bold{font-weight:700} .font-semibold{font-weight:600}
-.rounded{border-radius:var(--r)}
-.empty-state{text-align:center;padding:40px;color:var(--muted);font-size:14px}
-.divider{height:1px;background:var(--border);margin:20px 0}
-
-/* ── DASH SEMAFORO ── */
+/* ── SEMÁFORO ── */
 .semaforo-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px}
-.sem-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.sem-card{border-radius:10px;padding:14px;text-align:center;border:1px solid var(--border)}
 .sem-area{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.sem-dot{width:20px;height:20px;border-radius:50%;margin:0 auto 6px}
+.sem-dot-lg{width:22px;height:22px;border-radius:50%;margin:0 auto 6px}
 .sem-status{font-size:11px;font-weight:700}
 
-/* ── PRINT ── */
-@media print{
-  .sidebar,.week-nav button,.btn{display:none!important}
-  .main{margin-left:0!important;padding:16px!important}
-  .section-body.collapsed{display:block!important}
-}
+/* ── DG PANEL ── */
+.dg-col{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px}
+.dg-col-head{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);font-weight:700}
+.dg-item{padding:10px 12px;border-radius:var(--r);margin-bottom:8px;font-size:13px;border-left:3px solid transparent;cursor:pointer;transition:background .15s}
+.dg-item:hover{background:rgba(255,255,255,.04)}
+.dg-aprobacion{border-left-color:var(--red);background:rgba(229,72,77,.06)}
+.dg-seguimiento{border-left-color:var(--amber);background:rgba(245,165,36,.06)}
+.dg-apoyo{border-left-color:var(--blue);background:rgba(56,189,248,.06)}
 
+/* ── CHARTS ── */
+.chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px}
+.chart-title{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-weight:700}
+.bar-chart{width:100%;overflow-x:auto}
+.chart-editable-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+.chart-editable-table th{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:6px 8px;border-bottom:1px solid var(--border);text-align:left}
+.chart-editable-table td{padding:5px 8px;border-bottom:1px solid rgba(45,55,72,.4)}
+.chart-editable-table input{background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--text);font-size:12px;width:60px;padding:2px 4px;outline:none}
+.chart-editable-table input:focus{border-bottom-color:var(--gold)}
+
+/* ── UTILS ── */
+.flex{display:flex}.items-center{align-items:center}.justify-between{justify-content:space-between}
+.gap8{gap:8px}.gap12{gap:12px}.gap16{gap:16px}
+.p12{padding:12px}.mb4{margin-bottom:4px}.mb8{margin-bottom:8px}.mb12{margin-bottom:12px}
+.mb16{margin-bottom:16px}.mb24{margin-bottom:24px}
+.text-muted{color:var(--muted)}.text-gold{color:var(--gold)}.text-green{color:var(--green)}
+.text-red{color:var(--red)}.text-amber{color:var(--amber)}.text-blue{color:var(--blue)}
+.text-purple{color:var(--purple)}
+.text-sm{font-size:12px}.text-xs{font-size:11px}
+.font-bold{font-weight:700}.font-semibold{font-weight:600}
+.rounded{border-radius:var(--r)}
+.empty-state{text-align:center;padding:32px;color:var(--muted);font-size:14px}
+.divider{height:1px;background:var(--border);margin:20px 0}
+.colored-label{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700}
+
+/* ── SECTION COLOR BANDS ── */
+.sec-op .section-header{border-left-color:var(--c-op)}
+.sec-op .section-num{background:rgba(56,189,248,.15);color:var(--c-op)}
+.sec-met .section-header{border-left-color:var(--c-met)}
+.sec-met .section-num{background:rgba(167,139,250,.15);color:var(--c-met)}
+.sec-rrhh .section-header{border-left-color:var(--c-rrhh)}
+.sec-rrhh .section-num{background:rgba(48,164,108,.15);color:var(--c-rrhh)}
+.sec-fin .section-header{border-left-color:var(--c-fin)}
+.sec-fin .section-num{background:rgba(229,193,88,.15);color:var(--c-fin)}
+.sec-exp .section-header{border-left-color:var(--c-exp)}
+.sec-exp .section-num{background:rgba(251,146,60,.15);color:var(--c-exp)}
+
+/* ── PRINT ── */
+@media print{.sidebar,.week-nav button,.btn{display:none!important}.main{margin-left:0!important;padding:16px!important}.section-body.collapsed{display:block!important}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .toast-msg{position:fixed;bottom:24px;right:24px;padding:12px 20px;border-radius:8px;font-weight:600;font-size:13px;z-index:999;animation:fadeUp .2s;color:#fff}
 </style>
@@ -214,12 +241,10 @@ tr:hover td{background:rgba(255,255,255,.02)}
     </div>
     <h2>Acceso al Sistema</h2>
     <div id="login-err" class="err-box">Email o contraseña incorrectos</div>
-    <div class="fg">
-      <label>Email corporativo</label>
+    <div class="fg"><label>Email corporativo</label>
       <input type="email" id="login-email" placeholder="usuario@mrt.com" autocomplete="username">
     </div>
-    <div class="fg">
-      <label>Contraseña</label>
+    <div class="fg"><label>Contraseña</label>
       <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password">
     </div>
     <button class="btn btn-primary btn-full mt12" onclick="Auth.login()">Ingresar</button>
@@ -229,7 +254,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
   </div>
 </div>
 
-<!-- ══════════ FIRST-RUN SETUP ══════════ -->
+<!-- ══════════ SETUP ══════════ -->
 <div id="screen-setup" class="screen">
   <div class="auth-card" style="width:480px">
     <div class="auth-logo">
@@ -239,71 +264,40 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <h2>Crear Cuenta de Administrador</h2>
     <p class="desc">Primera vez en este dispositivo. Cree la cuenta de administrador para comenzar.</p>
     <div id="setup-err" class="err-box"></div>
-    <div class="fg">
-      <label>Nombre completo</label>
-      <input type="text" id="setup-name" placeholder="Ej: Daniel López">
-    </div>
-    <div class="fg">
-      <label>Email corporativo</label>
-      <input type="email" id="setup-email" placeholder="admin@mrtcorporativo.mx">
-    </div>
-    <div class="fg">
-      <label>Contraseña (mínimo 8 caracteres)</label>
-      <input type="password" id="setup-pass" placeholder="••••••••">
-    </div>
-    <div class="fg">
-      <label>Confirmar contraseña</label>
-      <input type="password" id="setup-pass2" placeholder="••••••••">
-    </div>
+    <div class="fg"><label>Nombre completo</label><input type="text" id="setup-name" placeholder="Ej: Daniel López"></div>
+    <div class="fg"><label>Email corporativo</label><input type="email" id="setup-email" placeholder="admin@mrtcorporativo.mx"></div>
+    <div class="fg"><label>Contraseña (mínimo 8 caracteres)</label><input type="password" id="setup-pass" placeholder="••••••••"></div>
+    <div class="fg"><label>Confirmar contraseña</label><input type="password" id="setup-pass2" placeholder="••••••••"></div>
     <button class="btn btn-primary btn-full mt12" onclick="FirstRun.setup()">Crear Administrador y Acceder →</button>
   </div>
 </div>
 
-<!-- ══════════ MAIN APP ══════════ -->
+<!-- ══════════ APP ══════════ -->
 <div id="app">
-
-  <!-- SIDEBAR -->
   <nav class="sidebar">
     <div class="sb-logo">
       <div class="mrt">MRT</div>
       <div class="sub">Executive Mining OS</div>
     </div>
-
     <div class="nav-sec">Módulos</div>
-    <button class="nav-item active" onclick="Nav.go('dashboard')" id="nav-dashboard">
-      <span class="ic">◈</span> Dashboard
-    </button>
-    <button class="nav-item" onclick="Nav.go('meeting')" id="nav-meeting">
-      <span class="ic">◷</span> Reunión Semanal
-    </button>
-    <button class="nav-item" onclick="Nav.go('topics')" id="nav-topics">
-      <span class="ic">◎</span> Seguimiento Temas
-    </button>
-    <button class="nav-item" onclick="Nav.go('history')" id="nav-history">
-      <span class="ic">◑</span> Historial
-    </button>
-
+    <button class="nav-item active" onclick="Nav.go('dashboard')" id="nav-dashboard"><span class="ic">◈</span> Dashboard</button>
+    <button class="nav-item" onclick="Nav.go('meeting')" id="nav-meeting"><span class="ic">◷</span> Reunión Semanal</button>
+    <button class="nav-item" onclick="Nav.go('topics')" id="nav-topics"><span class="ic">◎</span> Seguimiento Temas</button>
+    <button class="nav-item" onclick="Nav.go('history')" id="nav-history"><span class="ic">◑</span> Historial</button>
     <div id="nav-admin-sec" style="display:none">
       <div class="nav-sec">Administración</div>
-      <button class="nav-item" onclick="Nav.go('admin')" id="nav-admin">
-        <span class="ic">⚙</span> Usuarios
-      </button>
+      <button class="nav-item" onclick="Nav.go('admin')" id="nav-admin"><span class="ic">⚙</span> Usuarios</button>
     </div>
-
     <div class="sb-footer">
       <div class="user-chip">
         <div class="user-av" id="sb-avatar">?</div>
-        <div>
-          <div class="user-name" id="sb-name">—</div>
-          <div class="user-role" id="sb-role">—</div>
-        </div>
+        <div><div class="user-name" id="sb-name">—</div><div class="user-role" id="sb-role">—</div></div>
       </div>
       <button class="btn btn-ghost btn-sm btn-full mt12" onclick="Auth.openPwd()">Cambiar Contraseña</button>
       <button class="btn btn-ghost btn-sm btn-full mt8" onclick="Auth.logout()">Cerrar Sesión</button>
     </div>
   </nav>
 
-  <!-- CONTENT -->
   <main class="main">
 
     <!-- DASHBOARD -->
@@ -312,27 +306,29 @@ tr:hover td{background:rgba(255,255,255,.02)}
         <div class="pg-title">Dashboard Ejecutivo</div>
         <div class="pg-sub" id="dash-week-lbl">—</div>
       </div>
+      <!-- Semáforo -->
       <div class="semaforo-grid" id="dash-semaforo"></div>
+      <!-- KPIs -->
       <div class="g4 mb24" id="dash-kpis"></div>
+      <!-- DG Panel (solo admin) -->
+      <div id="dg-panel" class="card mb24" style="display:none">
+        <div class="flex items-center justify-between mb16">
+          <div class="font-bold">Panel Director General — Gestión Pendiente</div>
+          <span class="badge bb">Vista Admin</span>
+        </div>
+        <div class="g3" id="dg-panel-cols"></div>
+      </div>
+      <!-- Decision / High Topics -->
       <div class="g2">
-        <div class="card">
-          <div class="font-bold mb16">Decision Board — Semana Actual</div>
-          <div id="dash-decisions"></div>
-        </div>
-        <div class="card">
-          <div class="font-bold mb16">Temas Abiertos de Alta Prioridad</div>
-          <div id="dash-topics-high"></div>
-        </div>
+        <div class="card"><div class="font-bold mb16">Decision Board — Semana Actual</div><div id="dash-decisions"></div></div>
+        <div class="card"><div class="font-bold mb16">Temas de Alta Prioridad</div><div id="dash-topics-high"></div></div>
       </div>
     </div>
 
     <!-- REUNIÓN SEMANAL -->
     <div class="page" id="page-meeting">
       <div class="pg-head flex items-center justify-between">
-        <div>
-          <div class="pg-title">Reunión Semanal</div>
-          <div class="pg-sub">Comité de Dirección — 25 minutos</div>
-        </div>
+        <div><div class="pg-title">Reunión Semanal</div><div class="pg-sub">Comité de Dirección — 25 minutos</div></div>
         <div class="flex gap8">
           <button class="btn btn-ghost btn-sm" onclick="window.print()">🖨 Imprimir</button>
           <button class="btn btn-ghost btn-sm" id="btn-publish" onclick="Meetings.togglePublish()">Publicar</button>
@@ -340,10 +336,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
       </div>
       <div class="week-nav">
         <button class="btn btn-ghost btn-sm" onclick="Meetings.prevWeek()">← Anterior</button>
-        <div class="wn-label">
-          <div class="week-num" id="wk-num">—</div>
-          <div class="week-date" id="wk-date">—</div>
-        </div>
+        <div class="wn-label"><div class="week-num" id="wk-num">—</div><div class="week-date" id="wk-date">—</div></div>
         <button class="btn btn-ghost btn-sm" onclick="Meetings.nextWeek()">Siguiente →</button>
       </div>
       <div class="tabs">
@@ -359,10 +352,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <!-- TEMAS -->
     <div class="page" id="page-topics">
       <div class="pg-head flex items-center justify-between">
-        <div>
-          <div class="pg-title">Seguimiento de Temas</div>
-          <div class="pg-sub">Registro semana a semana con prioridades</div>
-        </div>
+        <div><div class="pg-title">Seguimiento de Temas</div><div class="pg-sub">Registro semana a semana con prioridades</div></div>
         <button id="btn-new-topic" class="btn btn-primary btn-sm" onclick="TopicUI.openNew()" style="display:none">+ Nuevo Tema</button>
       </div>
       <div class="filters">
@@ -383,14 +373,16 @@ tr:hover td{background:rgba(255,255,255,.02)}
         <select id="tf-section" onchange="TopicUI.render()">
           <option value="">Todas las áreas</option>
         </select>
+        <select id="tf-dgflag" onchange="TopicUI.render()">
+          <option value="">Todos los flags</option>
+          <option value="aprobacion">📋 Aprobación DG</option>
+          <option value="seguimiento">👁 Seguimiento DG</option>
+          <option value="apoyo">🤝 Apoyo DG</option>
+        </select>
       </div>
       <div class="card">
         <table>
-          <thead>
-            <tr>
-              <th>Tema</th><th>Área</th><th>Prioridad</th><th>Estado</th><th>Apariciones</th><th>Owner</th><th></th>
-            </tr>
-          </thead>
+          <thead><tr><th>Tema</th><th>Área</th><th>Prioridad</th><th>Estado</th><th>Flag DG</th><th>Apariciones</th><th>Owner</th><th></th></tr></thead>
           <tbody id="topics-body"></tbody>
         </table>
         <div id="topics-empty" class="empty-state" style="display:none">Sin temas registrados</div>
@@ -399,22 +391,14 @@ tr:hover td{background:rgba(255,255,255,.02)}
 
     <!-- HISTORIAL -->
     <div class="page" id="page-history">
-      <div class="pg-head">
-        <div class="pg-title">Historial de Reuniones</div>
-        <div class="pg-sub">Registro completo de comités semanales</div>
-      </div>
+      <div class="pg-head"><div class="pg-title">Historial de Reuniones</div><div class="pg-sub">Registro completo de comités semanales</div></div>
       <div class="g2 mb24">
         <div class="card" id="hist-stats"></div>
-        <div class="card">
-          <div class="font-bold mb16">Temas más recurrentes</div>
-          <div id="hist-freq"></div>
-        </div>
+        <div class="card"><div class="font-bold mb16">Temas más recurrentes</div><div id="hist-freq"></div></div>
       </div>
       <div class="card">
         <table>
-          <thead>
-            <tr><th>Semana</th><th>Fecha</th><th>Estado</th><th>Temas</th><th>Decisiones</th><th></th></tr>
-          </thead>
+          <thead><tr><th>Semana</th><th>Fecha</th><th>Estado</th><th>Temas</th><th>Decisiones</th><th></th></tr></thead>
           <tbody id="hist-body"></tbody>
         </table>
       </div>
@@ -423,17 +407,12 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <!-- ADMIN -->
     <div class="page" id="page-admin">
       <div class="pg-head flex items-center justify-between">
-        <div>
-          <div class="pg-title">Administración de Usuarios</div>
-          <div class="pg-sub">Gestión de accesos y roles</div>
-        </div>
+        <div><div class="pg-title">Administración de Usuarios</div><div class="pg-sub">Gestión de accesos y roles</div></div>
         <button class="btn btn-primary btn-sm" onclick="AdminUI.openNew()">+ Nuevo Usuario</button>
       </div>
       <div class="card">
         <table>
-          <thead>
-            <tr><th>Nombre</th><th>Email</th><th>Rol</th><th>Sección</th><th></th></tr>
-          </thead>
+          <thead><tr><th>Nombre</th><th>Email</th><th>Rol</th><th>Sección</th><th></th></tr></thead>
           <tbody id="admin-users-body"></tbody>
         </table>
       </div>
@@ -445,40 +424,33 @@ tr:hover td{background:rgba(255,255,255,.02)}
 <!-- ══════════ MODAL: TOPIC ══════════ -->
 <div id="modal-topic" class="modal">
   <div class="modal-box">
-    <div class="modal-hd">
-      <h3 id="topic-modal-title">Nuevo Tema</h3>
-      <button class="modal-close" onclick="TopicUI.closeModal()">✕</button>
-    </div>
+    <div class="modal-hd"><h3 id="topic-modal-title">Nuevo Tema</h3><button class="modal-close" onclick="TopicUI.closeModal()">✕</button></div>
     <div class="fg"><label>Título *</label><input type="text" id="tm-title" placeholder="Descripción del tema"></div>
     <div class="fg"><label>Descripción</label><textarea id="tm-desc" rows="2" placeholder="Contexto del tema"></textarea></div>
     <div class="field-row">
       <div class="fg"><label>Prioridad</label>
-        <select id="tm-priority">
-          <option value="alta">Alta</option>
-          <option value="media" selected>Media</option>
-          <option value="baja">Baja</option>
-        </select>
+        <select id="tm-priority"><option value="alta">Alta</option><option value="media" selected>Media</option><option value="baja">Baja</option></select>
       </div>
       <div class="fg"><label>Estado</label>
-        <select id="tm-status">
-          <option value="abierto">Abierto</option>
-          <option value="progreso">En Progreso</option>
-          <option value="cerrado">Cerrado</option>
-          <option value="diferido">Diferido</option>
-        </select>
+        <select id="tm-status"><option value="abierto">Abierto</option><option value="progreso">En Progreso</option><option value="cerrado">Cerrado</option><option value="diferido">Diferido</option></select>
       </div>
     </div>
     <div class="field-row">
       <div class="fg"><label>Área</label>
         <select id="tm-section">
-          <option value="dg">Dirección General</option>
-          <option value="operaciones">Operaciones</option>
-          <option value="metalurgia">Metalurgia</option>
-          <option value="rrhh">RRHH</option>
-          <option value="finanzas">Finanzas</option>
+          <option value="operaciones">Operaciones</option><option value="metalurgia">Metalurgia</option>
+          <option value="rrhh">RRHH</option><option value="finanzas">Finanzas</option><option value="exploracion">Exploración</option>
         </select>
       </div>
       <div class="fg"><label>Owner</label><input type="text" id="tm-owner" placeholder="Responsable"></div>
+    </div>
+    <div class="fg"><label>Flag Director General</label>
+      <select id="tm-dgflag">
+        <option value="">— Sin flag DG —</option>
+        <option value="aprobacion">📋 Pendiente de Aprobación</option>
+        <option value="seguimiento">👁 En Seguimiento DG</option>
+        <option value="apoyo">🤝 Apoyo Requerido DG</option>
+      </select>
     </div>
     <div class="fg"><label>Acción / Próximo paso</label><input type="text" id="tm-action" placeholder="Qué se va a hacer"></div>
     <div class="modal-footer">
@@ -492,10 +464,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
 <!-- ══════════ MODAL: USER ══════════ -->
 <div id="modal-user" class="modal">
   <div class="modal-box">
-    <div class="modal-hd">
-      <h3 id="user-modal-title">Nuevo Usuario</h3>
-      <button class="modal-close" onclick="AdminUI.closeModal()">✕</button>
-    </div>
+    <div class="modal-hd"><h3 id="user-modal-title">Nuevo Usuario</h3><button class="modal-close" onclick="AdminUI.closeModal()">✕</button></div>
     <div class="fg"><label>Nombre completo *</label><input type="text" id="um-name" placeholder="Nombre del usuario"></div>
     <div class="fg"><label>Email corporativo *</label><input type="email" id="um-email" placeholder="usuario@mrt.com"></div>
     <div class="fg"><label>Contraseña <span id="um-pass-hint" style="font-weight:400;text-transform:none;letter-spacing:0">(dejar vacío = no cambiar)</span></label>
@@ -510,11 +479,8 @@ tr:hover td{background:rgba(255,255,255,.02)}
     </div>
     <div class="fg" id="um-section-grp" style="display:none"><label>Sección del Director</label>
       <select id="um-section">
-        <option value="dg">Dirección General</option>
-        <option value="operaciones">Operaciones</option>
-        <option value="metalurgia">Metalurgia</option>
-        <option value="rrhh">RRHH</option>
-        <option value="finanzas">Finanzas</option>
+        <option value="operaciones">Operaciones</option><option value="metalurgia">Metalurgia</option>
+        <option value="rrhh">RRHH</option><option value="finanzas">Finanzas</option><option value="exploracion">Exploración</option>
       </select>
     </div>
     <div class="modal-footer">
@@ -528,10 +494,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
 <!-- ══════════ MODAL: CHANGE PASSWORD ══════════ -->
 <div id="modal-pwd" class="modal">
   <div class="modal-box" style="width:400px">
-    <div class="modal-hd">
-      <h3>Cambiar Contraseña</h3>
-      <button class="modal-close" onclick="document.getElementById('modal-pwd').classList.remove('open')">✕</button>
-    </div>
+    <div class="modal-hd"><h3>Cambiar Contraseña</h3><button class="modal-close" onclick="document.getElementById('modal-pwd').classList.remove('open')">✕</button></div>
     <div id="pwd-err" class="err-box"></div>
     <div id="pwd-ok" class="ok-box">Contraseña actualizada correctamente ✓</div>
     <div class="fg"><label>Contraseña actual</label><input type="password" id="pwd-curr" placeholder="••••••••"></div>
@@ -544,21 +507,14 @@ tr:hover td{background:rgba(255,255,255,.02)}
   </div>
 </div>
 
-<!-- ══════════ MODAL: ADD DECISION ══════════ -->
+<!-- ══════════ MODAL: DECISION ══════════ -->
 <div id="modal-dec" class="modal">
   <div class="modal-box" style="width:460px">
-    <div class="modal-hd">
-      <h3>Nueva Decisión</h3>
-      <button class="modal-close" onclick="document.getElementById('modal-dec').classList.remove('open')">✕</button>
-    </div>
+    <div class="modal-hd"><h3>Nueva Decisión</h3><button class="modal-close" onclick="document.getElementById('modal-dec').classList.remove('open')">✕</button></div>
     <div class="fg"><label>Decisión *</label><input type="text" id="dec-text" placeholder="Descripción de la decisión"></div>
     <div class="field-row">
       <div class="fg"><label>Impacto</label>
-        <select id="dec-impact">
-          <option value="alto">Alto</option>
-          <option value="medio" selected>Medio</option>
-          <option value="bajo">Bajo</option>
-        </select>
+        <select id="dec-impact"><option value="alto">Alto</option><option value="medio" selected>Medio</option><option value="bajo">Bajo</option></select>
       </div>
       <div class="fg"><label>Deadline</label><input type="date" id="dec-deadline"></div>
     </div>
@@ -570,13 +526,10 @@ tr:hover td{background:rgba(255,255,255,.02)}
   </div>
 </div>
 
-<!-- ══════════ MODAL: ADD AGREEMENT ══════════ -->
+<!-- ══════════ MODAL: AGREEMENT ══════════ -->
 <div id="modal-agr" class="modal">
   <div class="modal-box" style="width:460px">
-    <div class="modal-hd">
-      <h3>Nuevo Acuerdo</h3>
-      <button class="modal-close" onclick="document.getElementById('modal-agr').classList.remove('open')">✕</button>
-    </div>
+    <div class="modal-hd"><h3>Nuevo Acuerdo</h3><button class="modal-close" onclick="document.getElementById('modal-agr').classList.remove('open')">✕</button></div>
     <div class="fg"><label>Acuerdo *</label><input type="text" id="agr-text" placeholder="Descripción del acuerdo"></div>
     <div class="field-row">
       <div class="fg"><label>Responsable</label><input type="text" id="agr-owner" placeholder="Nombre"></div>
@@ -589,74 +542,236 @@ tr:hover td{background:rgba(255,255,255,.02)}
   </div>
 </div>
 
+<!-- ══════════ MODAL: RRHH EDITOR ══════════ -->
+<div id="modal-rrhh" class="modal">
+  <div class="modal-box" style="width:640px">
+    <div class="modal-hd"><h3>Editar Datos RRHH</h3><button class="modal-close" onclick="document.getElementById('modal-rrhh').classList.remove('open')">✕</button></div>
+    <div style="margin-bottom:16px">
+      <div class="font-bold text-sm mb8" style="color:var(--c-rrhh)">Headcount por Sitio</div>
+      <table class="chart-editable-table" id="hc-table">
+        <thead><tr><th>Sitio</th><th>Real</th><th>Plan</th><th></th></tr></thead>
+        <tbody id="hc-tbody"></tbody>
+      </table>
+      <button class="btn btn-ghost btn-sm mt8" onclick="RRHHEditor.addHCRow()">+ Agregar sitio</button>
+    </div>
+    <div class="divider"></div>
+    <div>
+      <div class="font-bold text-sm mb8" style="color:var(--c-rrhh)">Vacantes Abiertas</div>
+      <table class="chart-editable-table" id="vac-table">
+        <thead><tr><th>Cargo</th><th>Área</th><th>Vacantes</th><th>Días</th><th></th></tr></thead>
+        <tbody id="vac-tbody"></tbody>
+      </table>
+      <button class="btn btn-ghost btn-sm mt8" onclick="RRHHEditor.addVacRow()">+ Agregar vacante</button>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('modal-rrhh').classList.remove('open')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="RRHHEditor.save()">Guardar y Actualizar Gráficos</button>
+    </div>
+  </div>
+</div>
+
 <script>
 'use strict';
 
-// ─── CONSTANTS ─────────────────────────────────────────────
+// ─── CONSTANTS ──────────────────────────────────────────────
 const SECTIONS = [
-  {id:'dg',          num:'01', label:'Dirección General',  sub:'Decisiones & Estrategia',    time:'5 min'},
-  {id:'operaciones', num:'02', label:'Operaciones',          sub:'OzEqAu / AISC / Producción', time:'5 min'},
-  {id:'metalurgia',  num:'03', label:'Metalurgia',           sub:'Recuperación / Throughput',  time:'4 min'},
-  {id:'rrhh',        num:'04', label:'RRHH',                 sub:'Headcount / Vacantes',       time:'4 min'},
-  {id:'finanzas',    num:'05', label:'Finanzas',             sub:'Costo/Oz / Cash Flow',       time:'4 min'},
+  {id:'operaciones', num:'01', label:'Operaciones',  sub:'OzEqAu / AISC / Producción',    time:'5 min', cls:'sec-op',   color:'var(--c-op)'},
+  {id:'metalurgia',  num:'02', label:'Metalurgia',   sub:'Recuperación / Throughput',      time:'5 min', cls:'sec-met',  color:'var(--c-met)'},
+  {id:'rrhh',        num:'03', label:'RRHH',          sub:'Headcount / Vacantes',           time:'5 min', cls:'sec-rrhh', color:'var(--c-rrhh)'},
+  {id:'finanzas',    num:'04', label:'Finanzas',      sub:'Costo/Oz / Cash Flow',           time:'5 min', cls:'sec-fin',  color:'var(--c-fin)'},
+  {id:'exploracion', num:'05', label:'Exploración',   sub:'Sondeos / Recursos / Reservas',  time:'5 min', cls:'sec-exp',  color:'var(--c-exp)'},
 ];
 
-const SECTION_MAP = {dg:'Dirección General', operaciones:'Operaciones', metalurgia:'Metalurgia', rrhh:'RRHH', finanzas:'Finanzas'};
+const SECTION_MAP = {operaciones:'Operaciones', metalurgia:'Metalurgia', rrhh:'RRHH', finanzas:'Finanzas', exploracion:'Exploración'};
 
-// ─── UTILITIES ─────────────────────────────────────────────
-const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+const DG_FLAGS = {
+  aprobacion: {label:'📋 Aprobación DG', cls:'br', color:'var(--red)'},
+  seguimiento:{label:'👁 Seguimiento DG', cls:'ba', color:'var(--amber)'},
+  apoyo:      {label:'🤝 Apoyo DG',       cls:'bb', color:'var(--blue)'},
+};
 
-const escHtml = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+// ─── UTILS ──────────────────────────────────────────────────
+const uid    = () => Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+const escHtml= s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
-
-// ISO week number
 function getWeekNum(d) {
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  date.setUTCDate(date.getUTCDate() + 4 - (date.getUTCDay() || 7));
-  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
-  return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+  const date = new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));
+  date.setUTCDate(date.getUTCDate()+4-(date.getUTCDay()||7));
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(),0,1));
+  return Math.ceil((((date-yearStart)/86400000)+1)/7);
 }
-
-// Unique week ID: "2025-W24"
 function weekId(d) {
-  const wn = getWeekNum(d);
-  // The year of the ISO week may differ from calendar year
-  const tmp = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  tmp.setUTCDate(tmp.getUTCDate() + 4 - (tmp.getUTCDay() || 7));
+  const wn  = getWeekNum(d);
+  const tmp = new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));
+  tmp.setUTCDate(tmp.getUTCDate()+4-(tmp.getUTCDay()||7));
   return `${tmp.getUTCFullYear()}-W${String(wn).padStart(2,'0')}`;
 }
-
 function toDateStr(d) {
   return d.toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
-
-function toast(msg, color='var(--green)') {
-  const t = document.createElement('div');
-  t.className = 'toast-msg';
-  t.style.background = color;
-  t.textContent = msg;
-  document.body.appendChild(t);
-  setTimeout(() => t.remove(), 2600);
+function toast(msg,color='var(--green)') {
+  const t=document.createElement('div'); t.className='toast-msg';
+  t.style.background=color; t.textContent=msg;
+  document.body.appendChild(t); setTimeout(()=>t.remove(),2600);
 }
 
-// ─── STORAGE ───────────────────────────────────────────────
+// ─── CHARTS ─────────────────────────────────────────────────
+const Charts = {
+  headcount(data, canvasId) {
+    if (!data || !data.length) return '<div class="text-muted text-sm">Sin datos de headcount</div>';
+    const total = data.reduce((s,d) => s + (d.real||0), 0);
+    const maxVal = Math.max(...data.map(d => Math.max(d.real||0, d.plan||0)), 1);
+    const barH   = 180;
+    const barW   = Math.max(36, Math.floor(560 / data.length) - 8);
+    const gap    = 6;
+    const svgW   = data.length * (barW + gap) + 60;
+    const svgH   = barH + 70;
+
+    let bars = '';
+    data.forEach((d, i) => {
+      const x     = 30 + i * (barW + gap);
+      const hReal = Math.round(((d.real||0)/maxVal) * barH);
+      const hPlan = Math.round(((d.plan||0)/maxVal) * barH);
+      const yR    = barH - hReal + 10;
+      const yP    = barH - hPlan + 10;
+      const pct   = total ? Math.round(((d.real||0)/total)*100) : 0;
+      const hw    = Math.floor(barW/2)-1;
+
+      // Plan bar (lighter, behind)
+      bars += `<rect x="${x}" y="${yP}" width="${hw}" height="${hPlan}" fill="rgba(229,193,88,.25)" rx="2"/>`;
+      // Real bar (solid)
+      bars += `<rect x="${x+hw+2}" y="${yR}" width="${hw}" height="${hReal}" fill="#E5C158" rx="2"/>`;
+      // Value label
+      bars += `<text x="${x+barW/2}" y="${yR-5}" text-anchor="middle" fill="#E6EDF3" font-size="11" font-weight="700">${d.real||0}</text>`;
+      // Pct label
+      bars += `<text x="${x+barW/2}" y="${yR-17}" text-anchor="middle" fill="#8B95A1" font-size="10">${pct}%</text>`;
+      // Site label
+      const lbl = d.site.length > 7 ? d.site.slice(0,7) : d.site;
+      bars += `<text x="${x+barW/2}" y="${barH+25}" text-anchor="middle" fill="#8B95A1" font-size="9" transform="rotate(-35,${x+barW/2},${barH+25})">${lbl}</text>`;
+    });
+
+    const legend = `
+      <rect x="30" y="${svgH-16}" width="12" height="8" fill="rgba(229,193,88,.25)" rx="1"/>
+      <text x="46" y="${svgH-9}" fill="#8B95A1" font-size="10">Plan</text>
+      <rect x="80" y="${svgH-16}" width="12" height="8" fill="#E5C158" rx="1"/>
+      <text x="96" y="${svgH-9}" fill="#8B95A1" font-size="10">Real</text>
+      <text x="${svgW-10}" y="${svgH-9}" text-anchor="end" fill="#8B95A1" font-size="10">Total: ${total}</text>`;
+
+    return `<svg viewBox="0 0 ${svgW} ${svgH}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:220px">${bars}${legend}</svg>`;
+  },
+
+  vacantes(data) {
+    if (!data || !data.length) return '<div class="text-muted text-sm">Sin vacantes registradas</div>';
+    const maxV = Math.max(...data.map(d => d.abiertas||0), 1);
+    const rows = data.map(d => {
+      const w = Math.round(((d.abiertas||0)/maxV)*200);
+      const urgColor = (d.dias||0) > 60 ? '#E5484D' : (d.dias||0) > 30 ? '#F5A524' : '#30A46C';
+      return `<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:12px">
+        <div style="width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">${escHtml(d.cargo)}</div>
+        <div style="flex:1;max-width:200px">
+          <div style="height:16px;background:rgba(56,189,248,.25);border-radius:3px;overflow:hidden">
+            <div style="height:100%;width:${w}px;background:var(--blue);border-radius:3px;transition:width .4s"></div>
+          </div>
+        </div>
+        <div style="min-width:28px;text-align:right;font-weight:700;color:var(--blue)">${d.abiertas||0}</div>
+        <div style="min-width:60px;text-align:right;font-size:11px;color:${urgColor}">${d.dias||0} días</div>
+      </div>`;
+    }).join('');
+    return rows;
+  }
+};
+
+// ─── RRHH EDITOR ────────────────────────────────────────────
+const RRHHEditor = {
+  meetingId: null,
+  hcData:  [],
+  vacData: [],
+
+  open(mId) {
+    this.meetingId = mId;
+    const m   = Meetings.get(mId);
+    const sec = m?.sections?.rrhh || {};
+    this.hcData  = JSON.parse(JSON.stringify(sec.headcount  || []));
+    this.vacData = JSON.parse(JSON.stringify(sec.vacantes   || []));
+    this.renderHC();
+    this.renderVac();
+    document.getElementById('modal-rrhh').classList.add('open');
+  },
+
+  renderHC() {
+    document.getElementById('hc-tbody').innerHTML = this.hcData.map((d,i) => `<tr>
+      <td><input value="${escHtml(d.site)}" onchange="RRHHEditor.hcData[${i}].site=this.value" style="width:100px"></td>
+      <td><input type="number" value="${d.real||0}" onchange="RRHHEditor.hcData[${i}].real=+this.value"></td>
+      <td><input type="number" value="${d.plan||0}" onchange="RRHHEditor.hcData[${i}].plan=+this.value"></td>
+      <td><button onclick="RRHHEditor.hcData.splice(${i},1);RRHHEditor.renderHC()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px">✕</button></td>
+    </tr>`).join('');
+  },
+
+  renderVac() {
+    document.getElementById('vac-tbody').innerHTML = this.vacData.map((d,i) => `<tr>
+      <td><input value="${escHtml(d.cargo)}" onchange="RRHHEditor.vacData[${i}].cargo=this.value" style="width:130px"></td>
+      <td><input value="${escHtml(d.area)}" onchange="RRHHEditor.vacData[${i}].area=this.value" style="width:100px"></td>
+      <td><input type="number" value="${d.abiertas||0}" onchange="RRHHEditor.vacData[${i}].abiertas=+this.value"></td>
+      <td><input type="number" value="${d.dias||0}" onchange="RRHHEditor.vacData[${i}].dias=+this.value"></td>
+      <td><button onclick="RRHHEditor.vacData.splice(${i},1);RRHHEditor.renderVac()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px">✕</button></td>
+    </tr>`).join('');
+  },
+
+  addHCRow()  { this.hcData.push({site:'NUEVO',real:0,plan:0}); this.renderHC(); },
+  addVacRow() { this.vacData.push({cargo:'Nuevo Cargo',area:'',abiertas:0,dias:0}); this.renderVac(); },
+
+  save() {
+    const m = Meetings.get(this.meetingId); if (!m) return;
+    m.sections.rrhh = m.sections.rrhh || {};
+    m.sections.rrhh.headcount = this.hcData;
+    m.sections.rrhh.vacantes  = this.vacData;
+    m.sections.rrhh.updatedBy = Auth.user?.name;
+    m.sections.rrhh.updatedAt = new Date().toISOString();
+    Meetings.save(m);
+    document.getElementById('modal-rrhh').classList.remove('open');
+    MeetUI.render();
+    toast('Datos RRHH actualizados ✓', 'var(--c-rrhh)');
+  }
+};
+
+// ─── STORAGE ────────────────────────────────────────────────
 const DB = {
   KEY: 'mrt_',
-  get(k)    { try { return JSON.parse(localStorage.getItem(this.KEY+k)||'null'); } catch { return null; } },
-  set(k, v) { localStorage.setItem(this.KEY+k, JSON.stringify(v)); },
-  remove(k) { localStorage.removeItem(this.KEY+k); },
+  get(k)    { try{return JSON.parse(localStorage.getItem(this.KEY+k)||'null')}catch{return null} },
+  set(k,v)  { localStorage.setItem(this.KEY+k, JSON.stringify(v)) },
+  remove(k) { localStorage.removeItem(this.KEY+k) },
 
   init() {
     if (!this.get('meetings')) this.set('meetings', []);
-    if (!this.get('topics'))   this.set('topics', []);
-    if (!this.get('seeded')) {
-      this._seed();
-      this.set('seeded', true);
-    }
+    if (!this.get('topics'))   this.set('topics',   []);
+    if (!this.get('seeded'))  { this._seed(); this.set('seeded',true); }
+  },
+
+  _emptySection() {
+    return {alertStatus:'VERDE',kpi1Label:'',kpi1Value:'',kpi1Plan:'',kpi1Impact:'',
+      kpi2Label:'',kpi2Value:'',kpi2Plan:'',kpi2Impact:'',riesgo:'',apoyo:'',accion:'',updatedBy:'',updatedAt:''};
+  },
+
+  _emptyRRHH() {
+    return {...this._emptySection(),
+      headcount:[
+        {site:'CIENEGUITA',real:144,plan:150},{site:'REALITO',real:15,plan:16},
+        {site:'MATAMOROS',real:82,plan:85},{site:'OLIVOS',real:27,plan:30},
+        {site:'CHOIX',real:7,plan:8},{site:'CORPORATIVO',real:47,plan:50},
+        {site:'NAMIQUIPA',real:9,plan:10},{site:'GEOLOGÍA',real:10,plan:12},
+        {site:'BARRENACIÓN',real:17,plan:20},{site:'SAN PEDRO',real:6,plan:8}
+      ],
+      vacantes:[
+        {cargo:'Operador de Equipo',area:'Operaciones',abiertas:12,dias:45},
+        {cargo:'Mecánico Industrial',area:'Mantenimiento',abiertas:5,dias:30},
+        {cargo:'Técnico Metalurgista',area:'Metalurgia',abiertas:3,dias:20},
+        {cargo:'Analista Contable',area:'Finanzas',abiertas:2,dias:15}
+      ]
+    };
   },
 
   _seed() {
@@ -664,736 +779,698 @@ const DB = {
     const wId   = weekId(today);
     const wn    = getWeekNum(today);
     const yr    = today.getFullYear();
-
-    const emptySection = () => ({
-      alertStatus:'VERDE', kpi1Label:'', kpi1Value:'', kpi1Plan:'', kpi1Impact:'',
-      kpi2Label:'', kpi2Value:'', kpi2Plan:'', kpi2Impact:'',
-      riesgo:'', apoyo:'', accion:'', updatedBy:'', updatedAt:''
-    });
-
     const meetings = [{
-      id: wId, weekNum: wn, year: yr, date: toDateStr(today), status:'borrador',
-      sections: {
-        dg:          emptySection(),
-        operaciones: emptySection(),
-        metalurgia:  emptySection(),
-        rrhh:        emptySection(),
-        finanzas:    emptySection()
+      id:wId, weekNum:wn, year:yr, date:toDateStr(today), status:'borrador',
+      sections:{
+        operaciones: this._emptySection(),
+        metalurgia:  this._emptySection(),
+        rrhh:        this._emptyRRHH(),
+        finanzas:    this._emptySection(),
+        exploracion: this._emptySection()
       },
-      decisions: [], agreements: []
+      decisions:[], agreements:[]
     }];
     this.set('meetings', meetings);
   }
 };
 
-// ─── AUTH ──────────────────────────────────────────────────
+// ─── AUTH ────────────────────────────────────────────────────
 const Auth = {
   user: null,
 
   async login() {
     const email = document.getElementById('login-email').value.trim().toLowerCase();
     const pass  = document.getElementById('login-pass').value;
-    if (!email || !pass) { this._showLoginErr('Complete los campos.'); return; }
-
-    const users = DB.get('users') || [];
+    if (!email||!pass) { this._err('Complete los campos.'); return; }
+    const users = DB.get('users')||[];
     const h     = await sha256(pass);
-    const u     = users.find(u => u.email.toLowerCase() === email && u.passHash === h);
-
-    if (!u) { this._showLoginErr('Email o contraseña incorrectos.'); return; }
+    const u     = users.find(u => u.email.toLowerCase()===email && u.passHash===h);
+    if (!u) { this._err('Email o contraseña incorrectos.'); return; }
     this._startSession(u);
   },
 
   restore() {
-    const sid   = DB.get('session');
-    const users = DB.get('users') || [];
+    const sid=DB.get('session'); const users=DB.get('users')||[];
     if (!sid) return false;
-    const u = users.find(u => u.id === sid);
+    const u = users.find(u=>u.id===sid);
     if (!u) return false;
-    this._startSession(u);
-    return true;
+    this._startSession(u); return true;
   },
 
   _startSession(u) {
-    this.user = u;
-    DB.set('session', u.id);
-    // Hide all screens, show app
+    this.user = u; DB.set('session', u.id);
     document.getElementById('screen-login').classList.remove('active');
     document.getElementById('screen-setup').classList.remove('active');
     document.getElementById('app').style.display = 'block';
-    // Fill sidebar
     document.getElementById('sb-avatar').textContent = u.name.charAt(0).toUpperCase();
     document.getElementById('sb-name').textContent   = u.name;
-    document.getElementById('sb-role').textContent   = {admin:'Administrador', director:'Director', viewer:'Solo lectura'}[u.role] || u.role;
-    // Show admin section only for admin
-    document.getElementById('nav-admin-sec').style.display = u.role === 'admin' ? '' : 'none';
-    // Show new-topic button for admin/director
-    document.getElementById('btn-new-topic').style.display = u.role !== 'viewer' ? '' : 'none';
-    // Boot default page
+    document.getElementById('sb-role').textContent   = {admin:'Administrador',director:'Director',viewer:'Solo lectura'}[u.role]||u.role;
+    document.getElementById('nav-admin-sec').style.display = u.role==='admin' ? '' : 'none';
+    document.getElementById('btn-new-topic').style.display = u.role!=='viewer' ? '' : 'none';
     Nav.go('dashboard');
   },
 
   logout() {
-    this.user = null;
-    DB.remove('session');
-    document.getElementById('app').style.display = 'none';
+    this.user=null; DB.remove('session');
+    document.getElementById('app').style.display='none';
     document.getElementById('screen-login').classList.add('active');
-    document.getElementById('login-pass').value = '';
-    document.getElementById('login-email').value = '';
-    document.getElementById('login-err').style.display = 'none';
+    document.getElementById('login-pass').value='';
+    document.getElementById('login-email').value='';
+    document.getElementById('login-err').style.display='none';
   },
 
-  _showLoginErr(msg) {
-    const el = document.getElementById('login-err');
-    el.textContent = msg;
-    el.style.display = 'block';
-  },
+  _err(msg) { const el=document.getElementById('login-err'); el.textContent=msg; el.style.display='block'; },
 
-  isAdmin()    { return this.user && this.user.role === 'admin'; },
-  isDirector() { return this.user && this.user.role === 'director'; },
-
-  canEdit(sectionId) {
+  isAdmin()    { return this.user && this.user.role==='admin'; },
+  isDirector() { return this.user && this.user.role==='director'; },
+  canEdit(sid) {
     if (!this.user) return false;
-    if (this.user.role === 'admin')    return true;
-    if (this.user.role === 'director') return this.user.section === sectionId;
+    if (this.user.role==='admin') return true;
+    if (this.user.role==='director') return this.user.section===sid;
     return false;
   },
 
   openPwd() {
-    ['pwd-curr','pwd-new','pwd-new2'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('pwd-err').style.display = 'none';
-    document.getElementById('pwd-ok').style.display  = 'none';
+    ['pwd-curr','pwd-new','pwd-new2'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('pwd-err').style.display='none';
+    document.getElementById('pwd-ok').style.display='none';
     document.getElementById('modal-pwd').classList.add('open');
   },
 
   async changePass() {
-    const curr = document.getElementById('pwd-curr').value;
-    const nw   = document.getElementById('pwd-new').value;
-    const nw2  = document.getElementById('pwd-new2').value;
-    const errEl= document.getElementById('pwd-err');
-    const okEl = document.getElementById('pwd-ok');
-    errEl.style.display = 'none'; okEl.style.display = 'none';
-
-    if (nw.length < 8) { errEl.textContent = 'Mínimo 8 caracteres.'; errEl.style.display='block'; return; }
-    if (nw !== nw2)    { errEl.textContent = 'Las contraseñas no coinciden.'; errEl.style.display='block'; return; }
-
-    const hCurr = await sha256(curr);
-    if (hCurr !== this.user.passHash) { errEl.textContent = 'Contraseña actual incorrecta.'; errEl.style.display='block'; return; }
-
-    const hNew  = await sha256(nw);
-    const users = DB.get('users') || [];
-    const u     = users.find(u => u.id === this.user.id);
-    if (u) { u.passHash = hNew; this.user.passHash = hNew; }
-    DB.set('users', users);
-    okEl.style.display = 'block';
-    setTimeout(() => document.getElementById('modal-pwd').classList.remove('open'), 1800);
+    const curr=document.getElementById('pwd-curr').value;
+    const nw=document.getElementById('pwd-new').value;
+    const nw2=document.getElementById('pwd-new2').value;
+    const errEl=document.getElementById('pwd-err'); const okEl=document.getElementById('pwd-ok');
+    errEl.style.display='none'; okEl.style.display='none';
+    if (nw.length<8){errEl.textContent='Mínimo 8 caracteres.';errEl.style.display='block';return;}
+    if (nw!==nw2){errEl.textContent='Las contraseñas no coinciden.';errEl.style.display='block';return;}
+    const hCurr=await sha256(curr);
+    if (hCurr!==this.user.passHash){errEl.textContent='Contraseña actual incorrecta.';errEl.style.display='block';return;}
+    const hNew=await sha256(nw);
+    const users=DB.get('users')||[];
+    const u=users.find(u=>u.id===this.user.id);
+    if (u){u.passHash=hNew;this.user.passHash=hNew;}
+    DB.set('users',users); okEl.style.display='block';
+    setTimeout(()=>document.getElementById('modal-pwd').classList.remove('open'),1800);
   }
 };
 
-// ─── FIRST RUN SETUP ───────────────────────────────────────
+// ─── FIRST RUN ───────────────────────────────────────────────
 const FirstRun = {
   async setup() {
-    const name   = document.getElementById('setup-name').value.trim();
-    const email  = document.getElementById('setup-email').value.trim().toLowerCase();
-    const pass   = document.getElementById('setup-pass').value;
-    const pass2  = document.getElementById('setup-pass2').value;
-    const errEl  = document.getElementById('setup-err');
-    errEl.style.display = 'none';
-
-    if (!name || !email || !pass || !pass2) {
-      errEl.textContent = 'Complete todos los campos.';
-      errEl.style.display = 'block'; return;
-    }
-    if (!email.includes('@')) {
-      errEl.textContent = 'Ingrese un email válido.';
-      errEl.style.display = 'block'; return;
-    }
-    if (pass.length < 8) {
-      errEl.textContent = 'La contraseña debe tener al menos 8 caracteres.';
-      errEl.style.display = 'block'; return;
-    }
-    if (pass !== pass2) {
-      errEl.textContent = 'Las contraseñas no coinciden.';
-      errEl.style.display = 'block'; return;
-    }
-
-    const h     = await sha256(pass);
-    const admin = { id: uid(), name, email, passHash: h, role: 'admin', section: '' };
-    DB.set('users', [admin]);
+    const name=document.getElementById('setup-name').value.trim();
+    const email=document.getElementById('setup-email').value.trim().toLowerCase();
+    const pass=document.getElementById('setup-pass').value;
+    const pass2=document.getElementById('setup-pass2').value;
+    const errEl=document.getElementById('setup-err');
+    errEl.style.display='none';
+    if (!name||!email||!pass||!pass2){errEl.textContent='Complete todos los campos.';errEl.style.display='block';return;}
+    if (!email.includes('@')){errEl.textContent='Ingrese un email válido.';errEl.style.display='block';return;}
+    if (pass.length<8){errEl.textContent='Mínimo 8 caracteres.';errEl.style.display='block';return;}
+    if (pass!==pass2){errEl.textContent='Las contraseñas no coinciden.';errEl.style.display='block';return;}
+    const h=await sha256(pass);
+    const admin={id:uid(),name,email,passHash:h,role:'admin',section:''};
+    DB.set('users',[admin]);
     Auth._startSession(admin);
   }
 };
 
-// ─── NAVIGATION ────────────────────────────────────────────
+// ─── NAVIGATION ──────────────────────────────────────────────
 const Nav = {
-  current: null,
-  pages: ['dashboard','meeting','topics','history','admin'],
-
+  pages:['dashboard','meeting','topics','history','admin'],
   go(page) {
-    if (page === 'admin' && !Auth.isAdmin()) { this.go('dashboard'); return; }
-    this.pages.forEach(p => {
+    if (page==='admin' && !Auth.isAdmin()){this.go('dashboard');return;}
+    this.pages.forEach(p=>{
       document.getElementById('page-'+p)?.classList.remove('active');
       document.getElementById('nav-'+p)?.classList.remove('active');
     });
     document.getElementById('page-'+page)?.classList.add('active');
     document.getElementById('nav-'+page)?.classList.add('active');
-    this.current = page;
-    // Render on nav
-    if (page === 'dashboard') DashUI.render();
-    if (page === 'meeting')   { Meetings.ensureCurrentWeek(); MeetUI.render(); }
-    if (page === 'topics')    TopicUI.render();
-    if (page === 'history')   HistoryUI.render();
-    if (page === 'admin')     AdminUI.render();
+    if (page==='dashboard') DashUI.render();
+    if (page==='meeting')   {Meetings.ensureCurrentWeek();MeetUI.render();}
+    if (page==='topics')    TopicUI.render();
+    if (page==='history')   HistoryUI.render();
+    if (page==='admin')     AdminUI.render();
   }
 };
 
-// ─── MEETINGS ──────────────────────────────────────────────
+// ─── MEETINGS ────────────────────────────────────────────────
 const Meetings = {
   currentId: null,
 
   ensureCurrentWeek() {
-    const today = new Date();
-    const wId   = weekId(today);
-    if (!this.currentId) this.currentId = wId;
+    if (!this.currentId) this.currentId = weekId(new Date());
     this._ensure(this.currentId);
   },
 
   _ensure(id) {
-    const meetings = DB.get('meetings') || [];
-    if (meetings.find(m => m.id === id)) return;
-
-    // Parse week from id "YYYY-WNN"
-    const [yr, wPart] = id.split('-W');
-    const wn  = parseInt(wPart, 10);
-    // Monday of that ISO week
-    const jan4 = new Date(Date.UTC(parseInt(yr,10), 0, 4));
-    const wkStart = new Date(jan4.getTime() + (wn-1)*7*86400000);
-    wkStart.setDate(wkStart.getDate() - (wkStart.getDay() || 7) + 1);
-
-    const emptySection = () => ({
-      alertStatus:'VERDE', kpi1Label:'', kpi1Value:'', kpi1Plan:'', kpi1Impact:'',
-      kpi2Label:'', kpi2Value:'', kpi2Plan:'', kpi2Impact:'',
-      riesgo:'', apoyo:'', accion:'', updatedBy:'', updatedAt:''
-    });
-
+    const meetings = DB.get('meetings')||[];
+    if (meetings.find(m=>m.id===id)) return;
+    const [yr,wPart]=id.split('-W');
+    const wn=parseInt(wPart,10);
+    const jan4=new Date(Date.UTC(parseInt(yr,10),0,4));
+    const wkStart=new Date(jan4.getTime()+(wn-1)*7*86400000);
+    wkStart.setDate(wkStart.getDate()-(wkStart.getDay()||7)+1);
     meetings.push({
-      id, weekNum: wn, year: parseInt(yr,10), date: toDateStr(wkStart), status:'borrador',
-      sections: {
-        dg: emptySection(), operaciones: emptySection(), metalurgia: emptySection(),
-        rrhh: emptySection(), finanzas: emptySection()
+      id, weekNum:wn, year:parseInt(yr,10), date:toDateStr(wkStart), status:'borrador',
+      sections:{
+        operaciones:DB._emptySection(), metalurgia:DB._emptySection(),
+        rrhh:DB._emptyRRHH(), finanzas:DB._emptySection(), exploracion:DB._emptySection()
       },
-      decisions: [], agreements: []
+      decisions:[], agreements:[]
     });
-    DB.set('meetings', meetings);
+    DB.set('meetings',meetings);
   },
 
-  get(id) {
-    return (DB.get('meetings') || []).find(m => m.id === (id || this.currentId));
-  },
+  get(id)  { return (DB.get('meetings')||[]).find(m=>m.id===(id||this.currentId)); },
+  all()    { return (DB.get('meetings')||[]).sort((a,b)=>b.id.localeCompare(a.id)); },
 
   save(m) {
-    const meetings = DB.get('meetings') || [];
-    const idx = meetings.findIndex(x => x.id === m.id);
-    if (idx >= 0) meetings[idx] = m; else meetings.push(m);
-    DB.set('meetings', meetings);
-  },
-
-  all() {
-    return (DB.get('meetings') || []).sort((a,b) => b.id.localeCompare(a.id));
+    const meetings=DB.get('meetings')||[];
+    const idx=meetings.findIndex(x=>x.id===m.id);
+    if (idx>=0) meetings[idx]=m; else meetings.push(m);
+    DB.set('meetings',meetings);
   },
 
   prevWeek() {
-    const [yr, wPart] = this.currentId.split('-W');
-    let wn = parseInt(wPart, 10) - 1;
-    let year = parseInt(yr, 10);
-    if (wn < 1) { year--; wn = getWeekNum(new Date(year, 11, 28)); }
-    this.currentId = `${year}-W${String(wn).padStart(2,'0')}`;
-    this._ensure(this.currentId);
-    MeetUI.render();
+    const [yr,wPart]=this.currentId.split('-W');
+    let wn=parseInt(wPart,10)-1, year=parseInt(yr,10);
+    if (wn<1){year--;wn=getWeekNum(new Date(year,11,28));}
+    this.currentId=`${year}-W${String(wn).padStart(2,'0')}`;
+    this._ensure(this.currentId); MeetUI.render();
   },
 
   nextWeek() {
-    const [yr, wPart] = this.currentId.split('-W');
-    let wn = parseInt(wPart, 10) + 1;
-    let year = parseInt(yr, 10);
-    const maxWk = getWeekNum(new Date(year, 11, 28));
-    if (wn > maxWk) { year++; wn = 1; }
-    this.currentId = `${year}-W${String(wn).padStart(2,'0')}`;
-    this._ensure(this.currentId);
-    MeetUI.render();
+    const [yr,wPart]=this.currentId.split('-W');
+    let wn=parseInt(wPart,10)+1, year=parseInt(yr,10);
+    const maxWk=getWeekNum(new Date(year,11,28));
+    if (wn>maxWk){year++;wn=1;}
+    this.currentId=`${year}-W${String(wn).padStart(2,'0')}`;
+    this._ensure(this.currentId); MeetUI.render();
   },
 
   togglePublish() {
-    const m = this.get(); if (!m || !Auth.isAdmin()) return;
-    m.status = m.status === 'publicado' ? 'borrador' : 'publicado';
-    this.save(m);
-    MeetUI.render();
-    toast(m.status === 'publicado' ? 'Reunión publicada ✓' : 'Volvió a borrador');
-  },
-
-  saveSection(sId, data) {
-    const m = this.get(); if (!m) return;
-    m.sections[sId] = { ...m.sections[sId], ...data, updatedBy: Auth.user?.name, updatedAt: new Date().toISOString() };
-    this.save(m);
+    const m=this.get(); if (!m||!Auth.isAdmin()) return;
+    m.status=m.status==='publicado'?'borrador':'publicado';
+    this.save(m); MeetUI.render();
+    toast(m.status==='publicado'?'Reunión publicada ✓':'Volvió a borrador');
   },
 
   addDecision() {
-    const text = document.getElementById('dec-text').value.trim();
-    if (!text) { alert('Ingrese la decisión'); return; }
-    const m = this.get(); if (!m) return;
-    m.decisions = m.decisions || [];
-    m.decisions.push({
-      id: uid(), text,
-      impact:   document.getElementById('dec-impact').value,
-      deadline: document.getElementById('dec-deadline').value,
-      owner:    document.getElementById('dec-owner').value.trim()
-    });
+    const text=document.getElementById('dec-text').value.trim();
+    if (!text){alert('Ingrese la decisión');return;}
+    const m=this.get(); if (!m) return;
+    m.decisions=m.decisions||[];
+    m.decisions.push({id:uid(),text,impact:document.getElementById('dec-impact').value,
+      deadline:document.getElementById('dec-deadline').value,
+      owner:document.getElementById('dec-owner').value.trim()});
     this.save(m);
     document.getElementById('modal-dec').classList.remove('open');
-    MeetUI.renderDecisions(m);
-    toast('Decisión agregada ✓');
+    MeetUI.renderDecisions(m); toast('Decisión agregada ✓');
   },
 
   removeDecision(id) {
-    const m = this.get(); if (!m) return;
-    m.decisions = (m.decisions||[]).filter(d => d.id !== id);
+    const m=this.get(); if (!m) return;
+    m.decisions=(m.decisions||[]).filter(d=>d.id!==id);
     this.save(m); MeetUI.renderDecisions(m);
   },
 
   addAgreement() {
-    const text = document.getElementById('agr-text').value.trim();
-    if (!text) { alert('Ingrese el acuerdo'); return; }
-    const m = this.get(); if (!m) return;
-    m.agreements = m.agreements || [];
-    m.agreements.push({
-      id: uid(), text,
-      owner:    document.getElementById('agr-owner').value.trim(),
-      deadline: document.getElementById('agr-deadline').value
-    });
+    const text=document.getElementById('agr-text').value.trim();
+    if (!text){alert('Ingrese el acuerdo');return;}
+    const m=this.get(); if (!m) return;
+    m.agreements=m.agreements||[];
+    m.agreements.push({id:uid(),text,
+      owner:document.getElementById('agr-owner').value.trim(),
+      deadline:document.getElementById('agr-deadline').value});
     this.save(m);
     document.getElementById('modal-agr').classList.remove('open');
-    MeetUI.renderAgreements(m);
-    toast('Acuerdo agregado ✓');
+    MeetUI.renderAgreements(m); toast('Acuerdo agregado ✓');
   },
 
   removeAgreement(id) {
-    const m = this.get(); if (!m) return;
-    m.agreements = (m.agreements||[]).filter(a => a.id !== id);
+    const m=this.get(); if (!m) return;
+    m.agreements=(m.agreements||[]).filter(a=>a.id!==id);
     this.save(m); MeetUI.renderAgreements(m);
   }
 };
 
-// ─── MEETING UI ────────────────────────────────────────────
+// ─── MEETING UI ──────────────────────────────────────────────
 const MeetUI = {
-  activeTab: 'sections',
-
-  tab(name, btn) {
-    this.activeTab = name;
-    ['sections','decisions','agreements'].forEach(t => {
-      document.getElementById('tab-'+t).style.display = t===name ? '' : 'none';
+  tab(name,btn) {
+    ['sections','decisions','agreements'].forEach(t=>{
+      document.getElementById('tab-'+t).style.display=t===name?'':'none';
     });
-    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
   },
 
   render() {
-    const m = Meetings.get();
-    if (!m) return;
-
-    document.getElementById('wk-num').textContent  = `Semana ${m.weekNum} / ${m.year}`;
-    document.getElementById('wk-date').textContent = m.date || '';
-    const pubBtn = document.getElementById('btn-publish');
-    pubBtn.textContent = m.status === 'publicado' ? '↺ Volver a Borrador' : '↑ Publicar';
-    pubBtn.style.display = Auth.isAdmin() ? '' : 'none';
-
+    const m=Meetings.get(); if (!m) return;
+    document.getElementById('wk-num').textContent =`Semana ${m.weekNum} / ${m.year}`;
+    document.getElementById('wk-date').textContent= m.date||'';
+    const pubBtn=document.getElementById('btn-publish');
+    pubBtn.textContent=m.status==='publicado'?'↺ Borrador':'↑ Publicar';
+    pubBtn.style.display=Auth.isAdmin()?'':'none';
     this.renderSections(m);
     this.renderDecisions(m);
     this.renderAgreements(m);
   },
 
   renderSections(m) {
-    const el = document.getElementById('tab-sections');
+    const el=document.getElementById('tab-sections');
     el.innerHTML = SECTIONS.map(s => {
-      const sec    = m.sections[s.id] || {};
-      const canEdit= Auth.canEdit(s.id);
-      const statusColors = { VERDE:'var(--green)', AMBAR:'var(--amber)', ROJO:'var(--red)' };
-      const statusColor  = statusColors[sec.alertStatus] || 'var(--green)';
-
-      const statusBtns = ['VERDE','AMBAR','ROJO'].map(st => {
-        const cls = sec.alertStatus === st ? `active-${st.toLowerCase()}` : '';
-        return `<button class="status-btn ${cls}" onclick="${canEdit ? `MeetUI.setStatus('${s.id}','${st}',this)` : ''}" ${canEdit?'':'disabled'} style="${!canEdit?'opacity:.5;cursor:default':''}">${st}</button>`;
+      const sec=m.sections[s.id]||{};
+      const canEdit=Auth.canEdit(s.id);
+      const statusColors={VERDE:'var(--green)',AMBAR:'var(--amber)',ROJO:'var(--red)'};
+      const statusColor=statusColors[sec.alertStatus]||'var(--green)';
+      const statusBtns=['VERDE','AMBAR','ROJO'].map(st=>{
+        const cls=sec.alertStatus===st?`active-${st.toLowerCase()}`:'';
+        return `<button class="status-btn ${cls}" onclick="${canEdit?`MeetUI.setStatus('${s.id}','${st}',this)`:''}" ${canEdit?'':'disabled'} style="${!canEdit?'opacity:.5;cursor:default':''}">${st}</button>`;
       }).join('');
+      const updInfo=sec.updatedBy?`<span class="text-xs text-muted" style="margin-left:auto">Por ${escHtml(sec.updatedBy)}</span>`:'';
 
-      const field = (fId, label, val, type='text', placeholder='', rows=0) => {
-        const id = `f-${s.id}-${fId}`;
+      // Special RRHH rendering with charts
+      if (s.id==='rrhh') {
+        const hc  = sec.headcount||[];
+        const vac = sec.vacantes||[];
+        const total = hc.reduce((s,d)=>s+(d.real||0),0);
+        const openVac = vac.reduce((s,d)=>s+(d.abiertas||0),0);
+        return `<div class="section-card ${s.cls}" id="sc-rrhh">
+          <div class="section-header" onclick="MeetUI.toggleSection('rrhh')">
+            <div class="sh-left">
+              <div class="section-num">${s.num}</div>
+              <div>
+                <div class="section-label flex items-center gap8">
+                  <span class="dot" style="background:${statusColor}"></span>${s.label}
+                </div>
+                <div class="section-sublabel">${s.sub} — ${s.time}
+                  <span style="margin-left:8px;color:${s.color};font-weight:700">HC: ${total} · Vacantes: ${openVac}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap8">${updInfo}<span>▾</span></div>
+          </div>
+          <div class="section-body" id="sb-rrhh">
+            <div class="mb12">
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Estado de Alerta</div>
+              <div class="status-sel">${statusBtns}</div>
+            </div>
+            <div class="chart-wrap">
+              <div class="flex items-center justify-between">
+                <div class="chart-title">HEADCOUNT POR SITIO</div>
+                ${canEdit?`<button class="btn btn-ghost btn-sm" onclick="RRHHEditor.open('${m.id}');event.stopPropagation()">✏️ Editar datos</button>`:''}
+              </div>
+              <div class="bar-chart">${Charts.headcount(hc)}</div>
+            </div>
+            <div class="chart-wrap">
+              <div class="chart-title">VACANTES ABIERTAS</div>
+              ${Charts.vacantes(vac)}
+            </div>
+            ${canEdit?`<div class="field-row">
+              <div class="field"><label>Riesgo Principal</label><input id="f-rrhh-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Riesgo del área" onchange="MeetUI.autoSave('rrhh')"></div>
+              <div class="field"><label>Apoyo Requerido</label><input id="f-rrhh-apoyo" value="${escHtml(sec.apoyo)}" placeholder="Soporte necesario" onchange="MeetUI.autoSave('rrhh')"></div>
+            </div>
+            <div class="field"><label>Acción / Decisión Requerida</label><input id="f-rrhh-accion" value="${escHtml(sec.accion)}" placeholder="Acción o decisión" onchange="MeetUI.autoSave('rrhh')"></div>
+            <button class="btn btn-primary btn-sm mt8" onclick="MeetUI.saveSection('rrhh')">Guardar sección</button>`
+            :`<div style="background:var(--surface);border-radius:8px;padding:12px;font-size:13px">
+              ${sec.riesgo?`<div class="mb8"><span class="text-muted text-xs">RIESGO:</span> ${escHtml(sec.riesgo)}</div>`:''}
+              ${sec.apoyo?`<div class="mb8"><span class="text-muted text-xs">APOYO:</span> ${escHtml(sec.apoyo)}</div>`:''}
+              ${sec.accion?`<div><span class="text-muted text-xs">ACCIÓN:</span> ${escHtml(sec.accion)}</div>`:''}
+              ${!sec.riesgo&&!sec.apoyo&&!sec.accion?'<span class="text-muted">Sin observaciones</span>':''}
+            </div>`}
+          </div>
+        </div>`;
+      }
+
+      // Standard section rendering
+      const field=(fId,label,val,placeholder='',rows=0)=>{
+        const id=`f-${s.id}-${fId}`;
         if (!canEdit) return `<div class="field"><label>${label}</label><div class="readonly-val">${escHtml(val)||'<span class="text-muted">—</span>'}</div></div>`;
-        if (rows > 0) return `<div class="field"><label>${label}</label><textarea id="${id}" rows="${rows}" placeholder="${placeholder}" onchange="MeetUI.autoSave('${s.id}')">${escHtml(val)}</textarea></div>`;
-        return `<div class="field"><label>${label}</label><input type="${type}" id="${id}" value="${escHtml(val)}" placeholder="${placeholder}" onchange="MeetUI.autoSave('${s.id}')"></div>`;
+        if (rows>0) return `<div class="field"><label>${label}</label><textarea id="${id}" rows="${rows}" placeholder="${placeholder}" onchange="MeetUI.autoSave('${s.id}')">${escHtml(val)}</textarea></div>`;
+        return `<div class="field"><label>${label}</label><input id="${id}" value="${escHtml(val)}" placeholder="${placeholder}" onchange="MeetUI.autoSave('${s.id}')"></div>`;
       };
 
-      const updInfo = sec.updatedBy ? `<span class="text-xs text-muted" style="margin-left:auto">Actualizado por ${escHtml(sec.updatedBy)}</span>` : '';
-
-      return `<div class="section-card" id="sc-${s.id}">
+      return `<div class="section-card ${s.cls}" id="sc-${s.id}">
         <div class="section-header" onclick="MeetUI.toggleSection('${s.id}')">
           <div class="sh-left">
             <div class="section-num">${s.num}</div>
             <div>
               <div class="section-label flex items-center gap8">
-                <span class="dot" style="background:${statusColor}"></span>
-                ${s.label}
+                <span class="dot" style="background:${statusColor}"></span>${s.label}
               </div>
               <div class="section-sublabel">${s.sub} — ${s.time}</div>
             </div>
           </div>
-          <div class="flex items-center gap8">
-            ${updInfo}
-            <span>▾</span>
-          </div>
+          <div class="flex items-center gap8">${updInfo}<span>▾</span></div>
         </div>
         <div class="section-body" id="sb-${s.id}">
-          <div class="mb12"><div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Estado de Alerta</div>
+          <div class="mb12">
+            <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Estado de Alerta</div>
             <div class="status-sel">${statusBtns}</div>
           </div>
           <div class="kpi-grid">
-            <div class="kpi-box">
-              <div class="kpi-hd">KPI Crítico</div>
+            <div class="kpi-box" style="border-top:2px solid ${s.color}">
+              <div class="kpi-hd" style="color:${s.color}">KPI Crítico</div>
               ${canEdit
-                ? `<div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi1Label" value="${escHtml(sec.kpi1Label)}" placeholder="Nombre del KPI" onchange="MeetUI.autoSave('${s.id}')"></div>
-                   <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi1Value" value="${escHtml(sec.kpi1Value)}" placeholder="Valor actual" onchange="MeetUI.autoSave('${s.id}')"></div>
-                   <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi1Plan" value="${escHtml(sec.kpi1Plan)}" placeholder="Plan/objetivo" onchange="MeetUI.autoSave('${s.id}')"></div>
-                   <div class="field"><input id="f-${s.id}-kpi1Impact" value="${escHtml(sec.kpi1Impact)}" placeholder="Impacto" onchange="MeetUI.autoSave('${s.id}')"></div>`
-                : `<div class="kpi-val">${escHtml(sec.kpi1Value)||'—'}</div>
-                   <div class="kpi-plan">${escHtml(sec.kpi1Label)} ${sec.kpi1Plan?'· Plan: '+sec.kpi1Plan:''}</div>`
+                ?`<div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi1Label" value="${escHtml(sec.kpi1Label)}" placeholder="Nombre del KPI" onchange="MeetUI.autoSave('${s.id}')"></div>
+                  <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi1Value" value="${escHtml(sec.kpi1Value)}" placeholder="Valor actual" onchange="MeetUI.autoSave('${s.id}')"></div>
+                  <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi1Plan" value="${escHtml(sec.kpi1Plan)}" placeholder="Plan/objetivo" onchange="MeetUI.autoSave('${s.id}')"></div>
+                  <div class="field"><input id="f-${s.id}-kpi1Impact" value="${escHtml(sec.kpi1Impact)}" placeholder="Impacto" onchange="MeetUI.autoSave('${s.id}')"></div>`
+                :`<div class="kpi-val" style="color:${s.color}">${escHtml(sec.kpi1Value)||'—'}</div>
+                  <div class="kpi-plan">${escHtml(sec.kpi1Label)} ${sec.kpi1Plan?'· Plan: '+sec.kpi1Plan:''}</div>`
               }
             </div>
-            <div class="kpi-box">
+            <div class="kpi-box" style="border-top:2px solid ${s.color}40">
               <div class="kpi-hd">KPI Secundario</div>
               ${canEdit
-                ? `<div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi2Label" value="${escHtml(sec.kpi2Label)}" placeholder="Nombre del KPI" onchange="MeetUI.autoSave('${s.id}')"></div>
-                   <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi2Value" value="${escHtml(sec.kpi2Value)}" placeholder="Valor actual" onchange="MeetUI.autoSave('${s.id}')"></div>
-                   <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi2Plan" value="${escHtml(sec.kpi2Plan)}" placeholder="Plan/objetivo" onchange="MeetUI.autoSave('${s.id}')"></div>
-                   <div class="field"><input id="f-${s.id}-kpi2Impact" value="${escHtml(sec.kpi2Impact)}" placeholder="Impacto" onchange="MeetUI.autoSave('${s.id}')"></div>`
-                : `<div class="kpi-val">${escHtml(sec.kpi2Value)||'—'}</div>
-                   <div class="kpi-plan">${escHtml(sec.kpi2Label)} ${sec.kpi2Plan?'· Plan: '+sec.kpi2Plan:''}</div>`
+                ?`<div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi2Label" value="${escHtml(sec.kpi2Label)}" placeholder="Nombre del KPI" onchange="MeetUI.autoSave('${s.id}')"></div>
+                  <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi2Value" value="${escHtml(sec.kpi2Value)}" placeholder="Valor actual" onchange="MeetUI.autoSave('${s.id}')"></div>
+                  <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi2Plan" value="${escHtml(sec.kpi2Plan)}" placeholder="Plan/objetivo" onchange="MeetUI.autoSave('${s.id}')"></div>
+                  <div class="field"><input id="f-${s.id}-kpi2Impact" value="${escHtml(sec.kpi2Impact)}" placeholder="Impacto" onchange="MeetUI.autoSave('${s.id}')"></div>`
+                :`<div class="kpi-val">${escHtml(sec.kpi2Value)||'—'}</div>
+                  <div class="kpi-plan">${escHtml(sec.kpi2Label)} ${sec.kpi2Plan?'· Plan: '+sec.kpi2Plan:''}</div>`
               }
             </div>
           </div>
           <div class="field-row">
-            ${field('riesgo',  'Riesgo Principal', sec.riesgo,  'text', 'Principal riesgo del área')}
-            ${field('apoyo',   'Apoyo Requerido',  sec.apoyo,   'text', 'Soporte necesario')}
+            ${field('riesgo','Riesgo Principal',sec.riesgo,'Principal riesgo del área')}
+            ${field('apoyo','Apoyo Requerido',sec.apoyo,'Soporte necesario')}
           </div>
-          ${field('accion','Acción / Decisión Requerida', sec.accion, 'text', 'Acción o decisión que se necesita')}
-          ${canEdit ? `<button class="btn btn-primary btn-sm mt8" onclick="MeetUI.saveSection('${s.id}')">Guardar sección</button>` : ''}
+          ${field('accion','Acción / Decisión Requerida',sec.accion,'Acción o decisión que se necesita')}
+          ${canEdit?`<button class="btn btn-primary btn-sm mt8" onclick="MeetUI.saveSection('${s.id}')">Guardar sección</button>`:''}
         </div>
       </div>`;
     }).join('');
   },
 
   toggleSection(id) {
-    const body = document.getElementById('sb-'+id);
-    if (!body) return;
-    const header = body.previousElementSibling;
+    const body=document.getElementById('sb-'+id); if (!body) return;
+    const header=body.previousElementSibling;
     body.classList.toggle('collapsed');
-    const arrow = header?.querySelector('span:last-child');
-    if (arrow) arrow.textContent = body.classList.contains('collapsed') ? '▸' : '▾';
+    const arrow=header?.querySelector('span:last-child');
+    if (arrow) arrow.textContent=body.classList.contains('collapsed')?'▸':'▾';
   },
 
-  setStatus(sId, status, btn) {
-    // Update visual immediately
-    btn.closest('.status-sel').querySelectorAll('.status-btn').forEach(b => {
-      b.className = 'status-btn';
-    });
-    btn.className = `status-btn active-${status.toLowerCase()}`;
-    // Update dot in header
-    const card = document.getElementById('sc-'+sId);
-    const dot  = card?.querySelector('.dot');
-    const colors = {VERDE:'var(--green)',AMBAR:'var(--amber)',ROJO:'var(--red)'};
-    if (dot) dot.style.background = colors[status];
-    // Save
-    const m = Meetings.get(); if (!m) return;
-    m.sections[sId] = m.sections[sId] || {};
-    m.sections[sId].alertStatus = status;
-    m.sections[sId].updatedBy   = Auth.user?.name;
-    m.sections[sId].updatedAt   = new Date().toISOString();
+  setStatus(sId,status,btn) {
+    btn.closest('.status-sel').querySelectorAll('.status-btn').forEach(b=>{b.className='status-btn';});
+    btn.className=`status-btn active-${status.toLowerCase()}`;
+    const dot=document.getElementById('sc-'+sId)?.querySelector('.dot');
+    const colors={VERDE:'var(--green)',AMBAR:'var(--amber)',ROJO:'var(--red)'};
+    if (dot) dot.style.background=colors[status];
+    const m=Meetings.get(); if (!m) return;
+    m.sections[sId]=m.sections[sId]||{};
+    m.sections[sId].alertStatus=status;
+    m.sections[sId].updatedBy=Auth.user?.name;
+    m.sections[sId].updatedAt=new Date().toISOString();
     Meetings.save(m);
   },
 
   saveSection(sId) {
-    const m = Meetings.get(); if (!m) return;
-    const sec = m.sections[sId] || {};
-    const readField = (fId) => document.getElementById(`f-${sId}-${fId}`)?.value || '';
-    const updated = {
-      ...sec,
-      kpi1Label: readField('kpi1Label'), kpi1Value: readField('kpi1Value'),
-      kpi1Plan:  readField('kpi1Plan'),  kpi1Impact: readField('kpi1Impact'),
-      kpi2Label: readField('kpi2Label'), kpi2Value: readField('kpi2Value'),
-      kpi2Plan:  readField('kpi2Plan'),  kpi2Impact: readField('kpi2Impact'),
-      riesgo:    readField('riesgo'),    apoyo:      readField('apoyo'),
-      accion:    readField('accion'),
-      updatedBy: Auth.user?.name, updatedAt: new Date().toISOString()
+    const m=Meetings.get(); if (!m) return;
+    const sec=m.sections[sId]||{};
+    const rf=fId=>document.getElementById(`f-${sId}-${fId}`)?.value||'';
+    const updated={...sec,
+      kpi1Label:rf('kpi1Label'),kpi1Value:rf('kpi1Value'),kpi1Plan:rf('kpi1Plan'),kpi1Impact:rf('kpi1Impact'),
+      kpi2Label:rf('kpi2Label'),kpi2Value:rf('kpi2Value'),kpi2Plan:rf('kpi2Plan'),kpi2Impact:rf('kpi2Impact'),
+      riesgo:rf('riesgo'),apoyo:rf('apoyo'),accion:rf('accion'),
+      updatedBy:Auth.user?.name,updatedAt:new Date().toISOString()
     };
-    m.sections[sId] = updated;
-    Meetings.save(m);
+    m.sections[sId]=updated; Meetings.save(m);
     toast('Sección guardada ✓');
   },
 
   autoSave(sId) {
-    // Debounced auto-save
-    clearTimeout(this._saveTimer);
-    this._saveTimer = setTimeout(() => this.saveSection(sId), 1200);
+    clearTimeout(this._t);
+    this._t=setTimeout(()=>this.saveSection(sId),1200);
   },
 
   renderDecisions(m) {
-    const el  = document.getElementById('tab-decisions');
-    const can = Auth.canEdit('dg');
-    const impactBadge = {'alto':'<span class="badge br">Alto</span>','medio':'<span class="badge ba">Medio</span>','bajo':'<span class="badge bv">Bajo</span>'};
-    el.innerHTML = `
-      ${can ? `<button class="btn btn-primary btn-sm mb16" onclick="MeetUI.openDec()">+ Nueva Decisión</button>` : ''}
-      <div id="dec-list">${(m.decisions||[]).map(d => `
-        <div class="item-row">
-          <div class="item-body">
-            <div class="item-title">${escHtml(d.text)}</div>
-            <div class="item-meta">
-              ${d.impact ? impactBadge[d.impact]||'' : ''}
-              ${d.owner ? `· Owner: ${escHtml(d.owner)}` : ''}
-              ${d.deadline ? `· Plazo: ${d.deadline}` : ''}
-            </div>
-          </div>
-          ${can ? `<button class="item-del" onclick="Meetings.removeDecision('${d.id}')" title="Eliminar">✕</button>` : ''}
-        </div>`).join('') || '<div class="empty-state">Sin decisiones registradas</div>'}
-      </div>`;
+    const el=document.getElementById('tab-decisions');
+    const can=Auth.isAdmin();
+    const ib={alto:'<span class="badge br">Alto</span>',medio:'<span class="badge ba">Medio</span>',bajo:'<span class="badge bv">Bajo</span>'};
+    el.innerHTML=`
+      ${can?`<button class="btn btn-primary btn-sm mb16" onclick="MeetUI.openDec()">+ Nueva Decisión</button>`:''}
+      ${(m.decisions||[]).map(d=>`<div class="item-row">
+        <div class="item-body">
+          <div class="item-title">${escHtml(d.text)}</div>
+          <div class="item-meta">${d.impact?ib[d.impact]||'':''} ${d.owner?'· '+escHtml(d.owner):''} ${d.deadline?'· '+d.deadline:''}</div>
+        </div>
+        ${can?`<button class="item-del" onclick="Meetings.removeDecision('${d.id}')">✕</button>`:''}
+      </div>`).join('')||'<div class="empty-state">Sin decisiones registradas</div>'}`;
   },
 
   openDec() {
-    ['dec-text','dec-owner','dec-deadline'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('dec-impact').value = 'medio';
+    ['dec-text','dec-owner','dec-deadline'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('dec-impact').value='medio';
     document.getElementById('modal-dec').classList.add('open');
   },
 
   renderAgreements(m) {
-    const el  = document.getElementById('tab-agreements');
-    const can = Auth.canEdit('dg');
-    el.innerHTML = `
-      ${can ? `<button class="btn btn-primary btn-sm mb16" onclick="MeetUI.openAgr()">+ Nuevo Acuerdo</button>` : ''}
-      <div id="agr-list">${(m.agreements||[]).map(a => `
-        <div class="item-row">
-          <div class="item-body">
-            <div class="item-title">${escHtml(a.text)}</div>
-            <div class="item-meta">
-              ${a.owner ? `Responsable: ${escHtml(a.owner)}` : ''}
-              ${a.deadline ? `· Plazo: ${a.deadline}` : ''}
-            </div>
-          </div>
-          ${can ? `<button class="item-del" onclick="Meetings.removeAgreement('${a.id}')" title="Eliminar">✕</button>` : ''}
-        </div>`).join('') || '<div class="empty-state">Sin acuerdos registrados</div>'}
-      </div>`;
+    const el=document.getElementById('tab-agreements');
+    const can=Auth.isAdmin();
+    el.innerHTML=`
+      ${can?`<button class="btn btn-primary btn-sm mb16" onclick="MeetUI.openAgr()">+ Nuevo Acuerdo</button>`:''}
+      ${(m.agreements||[]).map(a=>`<div class="item-row">
+        <div class="item-body">
+          <div class="item-title">${escHtml(a.text)}</div>
+          <div class="item-meta">${a.owner?'Responsable: '+escHtml(a.owner):''} ${a.deadline?'· '+a.deadline:''}</div>
+        </div>
+        ${can?`<button class="item-del" onclick="Meetings.removeAgreement('${a.id}')">✕</button>`:''}
+      </div>`).join('')||'<div class="empty-state">Sin acuerdos registrados</div>'}`;
   },
 
   openAgr() {
-    ['agr-text','agr-owner','agr-deadline'].forEach(id => document.getElementById(id).value = '');
+    ['agr-text','agr-owner','agr-deadline'].forEach(id=>document.getElementById(id).value='');
     document.getElementById('modal-agr').classList.add('open');
   }
 };
 
-// ─── DASHBOARD UI ──────────────────────────────────────────
+// ─── DASHBOARD UI ────────────────────────────────────────────
 const DashUI = {
   render() {
-    const meetings = Meetings.all();
-    const m        = meetings[0];
-    const topics   = DB.get('topics') || [];
+    const meetings=Meetings.all();
+    const m=meetings[0];
+    const topics=DB.get('topics')||[];
 
-    document.getElementById('dash-week-lbl').textContent = m
-      ? `Semana ${m.weekNum} / ${m.year} — ${m.date}`
-      : 'Sin reuniones registradas';
+    document.getElementById('dash-week-lbl').textContent=m
+      ?`Semana ${m.weekNum} / ${m.year} — ${m.date}`
+      :'Sin reuniones registradas';
 
-    // KPI stats
-    const open   = topics.filter(t => t.status === 'abierto').length;
-    const highP  = topics.filter(t => t.priority === 'alta' && t.status !== 'cerrado').length;
-    const pubs   = meetings.filter(x => x.status === 'publicado').length;
-    const decs   = meetings.reduce((n,x) => n + (x.decisions||[]).length, 0);
-
-    document.getElementById('dash-kpis').innerHTML = `
-      <div class="stat-card"><div class="stat-lbl">Temas Abiertos</div><div class="stat-val">${open}</div></div>
-      <div class="stat-card"><div class="stat-lbl">Prioridad Alta</div><div class="stat-val text-red">${highP}</div></div>
-      <div class="stat-card"><div class="stat-lbl">Comités Publicados</div><div class="stat-val text-green">${pubs}</div></div>
-      <div class="stat-card"><div class="stat-lbl">Decisiones Totales</div><div class="stat-val text-gold">${decs}</div></div>`;
+    // KPIs
+    const open=topics.filter(t=>t.status==='abierto').length;
+    const highP=topics.filter(t=>t.priority==='alta'&&t.status!=='cerrado').length;
+    const pubs=meetings.filter(x=>x.status==='publicado').length;
+    const decs=meetings.reduce((n,x)=>n+(x.decisions||[]).length,0);
+    document.getElementById('dash-kpis').innerHTML=`
+      <div class="stat-card" style="border-top:3px solid var(--blue)"><div class="stat-lbl">Temas Abiertos</div><div class="stat-val text-blue">${open}</div></div>
+      <div class="stat-card" style="border-top:3px solid var(--red)"><div class="stat-lbl">Prioridad Alta</div><div class="stat-val text-red">${highP}</div></div>
+      <div class="stat-card" style="border-top:3px solid var(--green)"><div class="stat-lbl">Comités Publicados</div><div class="stat-val text-green">${pubs}</div></div>
+      <div class="stat-card" style="border-top:3px solid var(--gold)"><div class="stat-lbl">Decisiones Totales</div><div class="stat-val text-gold">${decs}</div></div>`;
 
     // Semáforo
-    const secs = m ? m.sections : {};
-    const colors = {VERDE:'dot-v',AMBAR:'dot-a',ROJO:'dot-r'};
-    document.getElementById('dash-semaforo').innerHTML = SECTIONS.map(s => {
-      const st = (secs[s.id]||{}).alertStatus || 'VERDE';
-      return `<div class="sem-card">
-        <div class="sem-area">${s.label}</div>
-        <div class="sem-dot ${colors[st]||'dot-v'}"></div>
+    const secs=m?m.sections:{};
+    const colors={VERDE:'dot-v',AMBAR:'dot-a',ROJO:'dot-r'};
+    const secBg={operaciones:'rgba(56,189,248,.06)',metalurgia:'rgba(167,139,250,.06)',
+      rrhh:'rgba(48,164,108,.06)',finanzas:'rgba(229,193,88,.06)',exploracion:'rgba(251,146,60,.06)'};
+    const secBorder={operaciones:'rgba(56,189,248,.2)',metalurgia:'rgba(167,139,250,.2)',
+      rrhh:'rgba(48,164,108,.2)',finanzas:'rgba(229,193,88,.2)',exploracion:'rgba(251,146,60,.2)'};
+    document.getElementById('dash-semaforo').innerHTML=SECTIONS.map(s=>{
+      const st=(secs[s.id]||{}).alertStatus||'VERDE';
+      return `<div class="sem-card" style="background:${secBg[s.id]};border-color:${secBorder[s.id]}">
+        <div class="sem-area" style="color:${s.color}">${s.label}</div>
+        <div class="sem-dot-lg ${colors[st]||'dot-v'}"></div>
         <div class="sem-status text-${st==='VERDE'?'green':st==='AMBAR'?'amber':'red'}">${st}</div>
       </div>`;
     }).join('');
 
+    // DG Panel (admin only)
+    const dgPanel=document.getElementById('dg-panel');
+    if (Auth.isAdmin()) {
+      dgPanel.style.display='';
+      const dgTopics=topics.filter(t=>t.dgFlag&&t.status!=='cerrado');
+      const aprobacion=dgTopics.filter(t=>t.dgFlag==='aprobacion');
+      const seguimiento=dgTopics.filter(t=>t.dgFlag==='seguimiento');
+      const apoyo=dgTopics.filter(t=>t.dgFlag==='apoyo');
+      const renderDGCol=(items,flag)=>items.length
+        ?items.map(t=>`<div class="dg-item dg-${flag}" onclick="TopicUI.openEdit('${t.id}')">
+            <div style="font-weight:600;font-size:13px;margin-bottom:4px">${escHtml(t.title)}</div>
+            <div style="font-size:11px;color:var(--muted)">${SECTION_MAP[t.section]||''} · ${(t.appearances||[]).length} sem.</div>
+          </div>`).join('')
+        :'<div class="text-muted text-sm">Sin pendientes</div>';
+      document.getElementById('dg-panel-cols').innerHTML=`
+        <div class="dg-col">
+          <div class="dg-col-head" style="color:var(--red)">📋 Pendientes de Aprobación <span style="background:rgba(229,72,77,.15);color:var(--red);border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">${aprobacion.length}</span></div>
+          ${renderDGCol(aprobacion,'aprobacion')}
+        </div>
+        <div class="dg-col">
+          <div class="dg-col-head" style="color:var(--amber)">👁 En Seguimiento <span style="background:rgba(245,165,36,.15);color:var(--amber);border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">${seguimiento.length}</span></div>
+          ${renderDGCol(seguimiento,'seguimiento')}
+        </div>
+        <div class="dg-col">
+          <div class="dg-col-head" style="color:var(--blue)">🤝 Apoyo Requerido <span style="background:rgba(56,189,248,.15);color:var(--blue);border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">${apoyo.length}</span></div>
+          ${renderDGCol(apoyo,'apoyo')}
+        </div>`;
+    } else {
+      dgPanel.style.display='none';
+    }
+
     // Decisions
-    const dList = m ? (m.decisions||[]) : [];
-    const impBadge = {alto:'<span class="badge br">Alto</span>',medio:'<span class="badge ba">Medio</span>',bajo:'<span class="badge bv">Bajo</span>'};
-    document.getElementById('dash-decisions').innerHTML = dList.length
-      ? dList.map(d => `<div class="item-row mb8">
+    const dList=m?(m.decisions||[]):[];
+    const ib={alto:'<span class="badge br">Alto</span>',medio:'<span class="badge ba">Medio</span>',bajo:'<span class="badge bv">Bajo</span>'};
+    document.getElementById('dash-decisions').innerHTML=dList.length
+      ?dList.map(d=>`<div class="item-row mb8">
           <div class="item-body">
             <div class="item-title">${escHtml(d.text)}</div>
-            <div class="item-meta">${d.impact?impBadge[d.impact]||'':''} ${d.owner?'· '+escHtml(d.owner):''} ${d.deadline?'· '+d.deadline:''}</div>
+            <div class="item-meta">${d.impact?ib[d.impact]||'':''} ${d.owner?'· '+escHtml(d.owner):''} ${d.deadline?'· '+d.deadline:''}</div>
           </div>
         </div>`).join('')
-      : '<div class="empty-state">Sin decisiones esta semana</div>';
+      :'<div class="empty-state">Sin decisiones esta semana</div>';
 
-    // High priority topics
-    const highTopics = topics.filter(t => t.priority==='alta' && t.status!=='cerrado').slice(0,5);
-    document.getElementById('dash-topics-high').innerHTML = highTopics.length
-      ? highTopics.map(t => `<div class="item-row mb8">
+    // High topics
+    const highTopics=topics.filter(t=>t.priority==='alta'&&t.status!=='cerrado').slice(0,5);
+    document.getElementById('dash-topics-high').innerHTML=highTopics.length
+      ?highTopics.map(t=>`<div class="item-row mb8">
           <div class="item-body">
             <div class="item-title">${escHtml(t.title)}</div>
-            <div class="item-meta">${SECTION_MAP[t.section]||t.section} · ${escHtml(t.owner||'Sin owner')} · ${(t.appearances||[]).length} aparición(es)</div>
+            <div class="item-meta">${SECTION_MAP[t.section]||t.section} · ${(t.appearances||[]).length} aparición(es)</div>
           </div>
           <span class="badge bg-alta">Alta</span>
         </div>`).join('')
-      : '<div class="empty-state">Sin temas de alta prioridad abiertos</div>';
+      :'<div class="empty-state">Sin temas de alta prioridad abiertos</div>';
   }
 };
 
-// ─── TOPICS UI ─────────────────────────────────────────────
+// ─── TOPICS UI ───────────────────────────────────────────────
 const TopicUI = {
   editingId: null,
 
   render() {
-    // Populate section filter once
-    const sf = document.getElementById('tf-section');
-    if (sf.options.length <= 1) {
-      SECTIONS.forEach(s => {
-        const o = document.createElement('option');
-        o.value = s.id; o.textContent = s.label;
-        sf.appendChild(o);
-      });
+    const sf=document.getElementById('tf-section');
+    if (sf.options.length<=1){
+      SECTIONS.forEach(s=>{const o=document.createElement('option');o.value=s.id;o.textContent=s.label;sf.appendChild(o);});
     }
+    const search=document.getElementById('tf-search').value.toLowerCase();
+    const statF=document.getElementById('tf-status').value;
+    const prioF=document.getElementById('tf-priority').value;
+    const secF=document.getElementById('tf-section').value;
+    const dgF=document.getElementById('tf-dgflag').value;
+    let topics=DB.get('topics')||[];
+    if (search) topics=topics.filter(t=>t.title.toLowerCase().includes(search)||(t.owner||'').toLowerCase().includes(search));
+    if (statF)  topics=topics.filter(t=>t.status===statF);
+    if (prioF)  topics=topics.filter(t=>t.priority===prioF);
+    if (secF)   topics=topics.filter(t=>t.section===secF);
+    if (dgF)    topics=topics.filter(t=>t.dgFlag===dgF);
+    const prioOrder={alta:0,media:1,baja:2};
+    topics.sort((a,b)=>(prioOrder[a.priority]||1)-(prioOrder[b.priority]||1)||(b.appearances||[]).length-(a.appearances||[]).length);
 
-    const search   = document.getElementById('tf-search').value.toLowerCase();
-    const statF    = document.getElementById('tf-status').value;
-    const prioF    = document.getElementById('tf-priority').value;
-    const secF     = document.getElementById('tf-section').value;
-    let topics     = DB.get('topics') || [];
-
-    if (search)  topics = topics.filter(t => t.title.toLowerCase().includes(search) || (t.owner||'').toLowerCase().includes(search));
-    if (statF)   topics = topics.filter(t => t.status   === statF);
-    if (prioF)   topics = topics.filter(t => t.priority === prioF);
-    if (secF)    topics = topics.filter(t => t.section  === secF);
-
-    // Sort: alta primero, luego media, baja; dentro de cada grupo por appearances desc
-    const prioOrder = {alta:0,media:1,baja:2};
-    topics.sort((a,b) => (prioOrder[a.priority]||1) - (prioOrder[b.priority]||1) || (b.appearances||[]).length - (a.appearances||[]).length);
-
-    const can = Auth.canEdit('dg') || Auth.isAdmin();
-    const prioBadge = t => `<span class="badge bg-${t.priority}">${t.priority.charAt(0).toUpperCase()+t.priority.slice(1)}</span>`;
-    const statBadge = s => {
-      const map = {abierto:'<span class="badge bb">Abierto</span>',progreso:'<span class="badge ba">En Progreso</span>',cerrado:'<span class="badge" style="background:rgba(139,149,161,.15);color:var(--muted);border:1px solid var(--border)">Cerrado</span>',diferido:'<span class="badge" style="background:rgba(139,149,161,.1);color:var(--muted);border:1px dashed var(--border)">Diferido</span>'};
-      return map[s] || s;
+    const prioBadge=t=>`<span class="badge bg-${t.priority}">${t.priority.charAt(0).toUpperCase()+t.priority.slice(1)}</span>`;
+    const statBadge=s=>{
+      const map={abierto:'<span class="badge bb">Abierto</span>',progreso:'<span class="badge ba">En Progreso</span>',
+        cerrado:'<span class="badge" style="background:rgba(139,149,161,.15);color:var(--muted);border:1px solid var(--border)">Cerrado</span>',
+        diferido:'<span class="badge" style="background:rgba(139,149,161,.1);color:var(--muted);border:1px dashed var(--border)">Diferido</span>'};
+      return map[s]||s;
+    };
+    const dgBadge=t=>{
+      if (!t.dgFlag||!DG_FLAGS[t.dgFlag]) return '—';
+      const f=DG_FLAGS[t.dgFlag];
+      return `<span class="badge ${f.cls}">${f.label}</span>`;
     };
 
-    const tbody = document.getElementById('topics-body');
-    tbody.innerHTML = topics.map(t => `<tr>
-      <td><div class="font-semibold">${escHtml(t.title)}</div>${t.desc?`<div class="text-xs text-muted mt4">${escHtml(t.desc)}</div>`:''}</td>
-      <td class="text-sm text-muted">${SECTION_MAP[t.section]||t.section}</td>
+    const tbody=document.getElementById('topics-body');
+    tbody.innerHTML=topics.map(t=>`<tr>
+      <td><div class="font-semibold">${escHtml(t.title)}</div>${t.desc?`<div class="text-xs text-muted mb4">${escHtml(t.desc)}</div>`:''}</td>
+      <td><span class="pill" style="border-color:${SECTIONS.find(s=>s.id===t.section)?.color||'var(--border)'};color:${SECTIONS.find(s=>s.id===t.section)?.color||'var(--muted)'}">${SECTION_MAP[t.section]||t.section}</span></td>
       <td>${prioBadge(t)}</td>
       <td>${statBadge(t.status)}</td>
+      <td>${dgBadge(t)}</td>
       <td><span class="font-bold text-gold">${(t.appearances||[]).length}</span> <span class="text-xs text-muted">sem.</span></td>
       <td class="text-sm">${escHtml(t.owner||'—')}</td>
-      <td>${(can || Auth.canEdit(t.section)) ? `<button class="btn btn-ghost btn-sm" onclick="TopicUI.openEdit('${t.id}')">Editar</button>` : ''}</td>
+      <td>${(Auth.canEdit(t.section)||Auth.isAdmin())?`<button class="btn btn-ghost btn-sm" onclick="TopicUI.openEdit('${t.id}')">Editar</button>`:''}</td>
     </tr>`).join('');
-
-    document.getElementById('topics-empty').style.display = topics.length ? 'none' : '';
+    document.getElementById('topics-empty').style.display=topics.length?'none':'';
   },
 
   openNew() {
-    this.editingId = null;
-    document.getElementById('topic-modal-title').textContent = 'Nuevo Tema';
-    document.getElementById('tm-title').value = '';
-    document.getElementById('tm-desc').value  = '';
-    document.getElementById('tm-priority').value = 'media';
-    document.getElementById('tm-status').value   = 'abierto';
-    document.getElementById('tm-section').value  = Auth.user?.section || 'dg';
-    document.getElementById('tm-owner').value  = '';
-    document.getElementById('tm-action').value = '';
-    document.getElementById('tm-delete-btn').style.display = 'none';
+    this.editingId=null;
+    document.getElementById('topic-modal-title').textContent='Nuevo Tema';
+    document.getElementById('tm-title').value='';
+    document.getElementById('tm-desc').value='';
+    document.getElementById('tm-priority').value='media';
+    document.getElementById('tm-status').value='abierto';
+    document.getElementById('tm-section').value=Auth.user?.section||'operaciones';
+    document.getElementById('tm-owner').value='';
+    document.getElementById('tm-dgflag').value='';
+    document.getElementById('tm-action').value='';
+    document.getElementById('tm-delete-btn').style.display='none';
     document.getElementById('modal-topic').classList.add('open');
   },
 
   openEdit(id) {
-    const t = (DB.get('topics')||[]).find(t => t.id === id);
-    if (!t) return;
-    this.editingId = id;
-    document.getElementById('topic-modal-title').textContent = 'Editar Tema';
-    document.getElementById('tm-title').value    = t.title    || '';
-    document.getElementById('tm-desc').value     = t.desc     || '';
-    document.getElementById('tm-priority').value = t.priority || 'media';
-    document.getElementById('tm-status').value   = t.status   || 'abierto';
-    document.getElementById('tm-section').value  = t.section  || 'dg';
-    document.getElementById('tm-owner').value    = t.owner    || '';
-    document.getElementById('tm-action').value   = t.action   || '';
-    document.getElementById('tm-delete-btn').style.display = Auth.isAdmin() ? 'inline-flex' : 'none';
+    const t=(DB.get('topics')||[]).find(t=>t.id===id); if (!t) return;
+    this.editingId=id;
+    document.getElementById('topic-modal-title').textContent='Editar Tema';
+    document.getElementById('tm-title').value=t.title||'';
+    document.getElementById('tm-desc').value=t.desc||'';
+    document.getElementById('tm-priority').value=t.priority||'media';
+    document.getElementById('tm-status').value=t.status||'abierto';
+    document.getElementById('tm-section').value=t.section||'operaciones';
+    document.getElementById('tm-owner').value=t.owner||'';
+    document.getElementById('tm-dgflag').value=t.dgFlag||'';
+    document.getElementById('tm-action').value=t.action||'';
+    document.getElementById('tm-delete-btn').style.display=Auth.isAdmin()?'inline-flex':'none';
     document.getElementById('modal-topic').classList.add('open');
   },
 
   saveTopic() {
-    const title = document.getElementById('tm-title').value.trim();
-    if (!title) { alert('El título es obligatorio'); return; }
-    const topics     = DB.get('topics') || [];
-    const currentWk  = weekId(new Date());
-
+    const title=document.getElementById('tm-title').value.trim();
+    if (!title){alert('El título es obligatorio');return;}
+    const topics=DB.get('topics')||[];
+    const currentWk=weekId(new Date());
     if (this.editingId) {
-      const t = topics.find(t => t.id === this.editingId);
-      if (t) {
-        t.title    = title;
-        t.desc     = document.getElementById('tm-desc').value.trim();
-        t.priority = document.getElementById('tm-priority').value;
-        t.status   = document.getElementById('tm-status').value;
-        t.section  = document.getElementById('tm-section').value;
-        t.owner    = document.getElementById('tm-owner').value.trim();
-        t.action   = document.getElementById('tm-action').value.trim();
-        if (!(t.appearances||[]).includes(currentWk)) {
-          t.appearances = [...(t.appearances||[]), currentWk];
-        }
+      const t=topics.find(t=>t.id===this.editingId);
+      if (t){
+        t.title=title;t.desc=document.getElementById('tm-desc').value.trim();
+        t.priority=document.getElementById('tm-priority').value;
+        t.status=document.getElementById('tm-status').value;
+        t.section=document.getElementById('tm-section').value;
+        t.owner=document.getElementById('tm-owner').value.trim();
+        t.dgFlag=document.getElementById('tm-dgflag').value;
+        t.action=document.getElementById('tm-action').value.trim();
+        if (!(t.appearances||[]).includes(currentWk)) t.appearances=[...(t.appearances||[]),currentWk];
       }
     } else {
-      topics.push({
-        id: uid(), title,
-        desc:     document.getElementById('tm-desc').value.trim(),
-        priority: document.getElementById('tm-priority').value,
-        status:   document.getElementById('tm-status').value,
-        section:  document.getElementById('tm-section').value,
-        owner:    document.getElementById('tm-owner').value.trim(),
-        action:   document.getElementById('tm-action').value.trim(),
-        appearances: [currentWk],
-        createdAt:   new Date().toISOString()
+      topics.push({id:uid(),title,
+        desc:document.getElementById('tm-desc').value.trim(),
+        priority:document.getElementById('tm-priority').value,
+        status:document.getElementById('tm-status').value,
+        section:document.getElementById('tm-section').value,
+        owner:document.getElementById('tm-owner').value.trim(),
+        dgFlag:document.getElementById('tm-dgflag').value,
+        action:document.getElementById('tm-action').value.trim(),
+        appearances:[currentWk],createdAt:new Date().toISOString()
       });
     }
-    DB.set('topics', topics);
-    this.closeModal();
-    this.render();
-    toast('Tema guardado ✓');
+    DB.set('topics',topics);
+    this.closeModal(); this.render(); toast('Tema guardado ✓');
   },
 
   deleteTopic() {
     if (!confirm('¿Eliminar este tema?')) return;
-    const topics = (DB.get('topics')||[]).filter(t => t.id !== this.editingId);
-    DB.set('topics', topics);
-    this.closeModal();
-    this.render();
+    DB.set('topics',(DB.get('topics')||[]).filter(t=>t.id!==this.editingId));
+    this.closeModal(); this.render();
   },
 
   closeModal() { document.getElementById('modal-topic').classList.remove('open'); }
 };
 
-// ─── HISTORY UI ────────────────────────────────────────────
+// ─── HISTORY UI ──────────────────────────────────────────────
 const HistoryUI = {
   render() {
-    const meetings = Meetings.all();
-    const topics   = DB.get('topics') || [];
-    const pubs     = meetings.filter(m => m.status === 'publicado').length;
-
-    document.getElementById('hist-stats').innerHTML = `
+    const meetings=Meetings.all(); const topics=DB.get('topics')||[];
+    const pubs=meetings.filter(m=>m.status==='publicado').length;
+    document.getElementById('hist-stats').innerHTML=`
       <div class="font-bold mb16">Estadísticas Generales</div>
       <div class="flex items-center justify-between p12 mb8 rounded" style="background:var(--surface)">
         <span>Total Reuniones</span><strong class="text-gold" style="font-size:20px">${meetings.length}</strong>
@@ -1401,6 +1478,7 @@ const HistoryUI = {
       <div class="flex items-center justify-between p12 mb8 rounded" style="background:var(--surface)">
         <span>Publicadas</span><strong class="text-green" style="font-size:20px">${pubs}</strong>
       </div>
+      <div class="flex items-      </div>
       <div class="flex items-center justify-between p12 mb8 rounded" style="background:var(--surface)">
         <span>Borradores</span><strong class="text-amber" style="font-size:20px">${meetings.length-pubs}</strong>
       </div>
@@ -1408,165 +1486,140 @@ const HistoryUI = {
         <span>Temas Registrados</span><strong style="font-size:20px">${topics.length}</strong>
       </div>`;
 
-    const sorted = [...topics].sort((a,b) => (b.appearances||[]).length - (a.appearances||[]).length).slice(0,8);
-    const maxApp = sorted[0] ? (sorted[0].appearances||[]).length : 1;
-    document.getElementById('hist-freq').innerHTML = sorted.length
-      ? sorted.map(t => {
-          const n = (t.appearances||[]).length;
-          const w = Math.round((n/maxApp)*130);
+    const sorted=[...topics].sort((a,b)=>(b.appearances||[]).length-(a.appearances||[]).length).slice(0,8);
+    const maxApp=sorted[0]?(sorted[0].appearances||[]).length:1;
+    document.getElementById('hist-freq').innerHTML=sorted.length
+      ?sorted.map(t=>{
+          const n=(t.appearances||[]).length;
+          const w=Math.round((n/maxApp)*130);
+          const s=SECTIONS.find(x=>x.id===t.section);
           return `<div class="flex items-center gap8 mb8">
             <div style="flex:1;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(t.title)}</div>
             <div style="display:flex;align-items:center;gap:6px">
-              <div style="width:${w}px;height:6px;border-radius:3px;background:var(--gold);opacity:.7"></div>
-              <strong class="text-gold" style="font-size:12px;min-width:18px;text-align:right">${n}</strong>
+              <div style="width:${w}px;height:6px;border-radius:3px;background:${s?.color||'var(--gold)'};opacity:.8"></div>
+              <strong style="font-size:12px;min-width:18px;text-align:right;color:${s?.color||'var(--gold)'}">${n}</strong>
             </div>
           </div>`;
         }).join('')
-      : '<div class="text-muted text-sm">Sin datos</div>';
+      :'<div class="text-muted text-sm">Sin datos</div>';
 
-    document.getElementById('hist-body').innerHTML = meetings.map(m => `<tr>
+    document.getElementById('hist-body').innerHTML=meetings.map(m=>`<tr>
       <td class="font-bold">Sem ${m.weekNum} / ${m.year}</td>
-      <td class="text-muted text-sm">${m.date||'—'}</td>
-      <td>${m.status==='publicado'
-        ? '<span class="badge bv">✓ Publicado</span>'
-        : '<span class="badge ba">Borrador</span>'}</td>
-      <td>${topics.filter(t => (t.appearances||[]).includes(m.id)).length}</td>
+      <td class="text-muted text-sm">${m.date||''}</td>
+      <td>${m.status==='publicado'?'<span class="badge bv">Publicado</span>':'<span class="badge ba">Borrador</span>'}</td>
+      <td>${topics.filter(t=>(t.appearances||[]).includes(m.id)).length}</td>
       <td>${(m.decisions||[]).length}</td>
-      <td><button class="btn btn-ghost btn-sm" onclick="Meetings.currentId='${m.id}';Nav.go('meeting')">Ver →</button></td>
-    </tr>`).join('') || '<tr><td colspan="6" class="empty-state">Sin reuniones</td></tr>';
+      <td><button class="btn btn-ghost btn-sm" onclick="Meetings.currentId='${m.id}';Nav.go('meeting')">Ver</button></td>
+    </tr>`).join('')||'<tr><td colspan="6" class="empty-state">Sin reuniones</td></tr>';
   }
 };
 
-// ─── ADMIN UI ──────────────────────────────────────────────
+// ADMIN UI
 const AdminUI = {
   editingId: null,
-
   render() {
-    if (!Auth.isAdmin()) { Nav.go('dashboard'); return; }
-    const users = DB.get('users') || [];
-    const roleBadge = {
-      admin:    '<span class="badge br">Admin</span>',
-      director: '<span class="badge ba">Director</span>',
-      viewer:   '<span class="badge bv">Solo lectura</span>'
-    };
-    document.getElementById('admin-users-body').innerHTML = users.map(u => `<tr>
+    if (!Auth.isAdmin()){Nav.go('dashboard');return;}
+    const users=DB.get('users')||[];
+    const rb={admin:'<span class="badge br">Admin</span>',director:'<span class="badge ba">Director</span>',viewer:'<span class="badge bv">Solo lectura</span>'};
+    document.getElementById('admin-users-body').innerHTML=users.map(u=>`<tr>
       <td class="font-bold">${escHtml(u.name)}</td>
       <td class="text-sm text-muted">${escHtml(u.email)}</td>
-      <td>${roleBadge[u.role]||u.role}</td>
-      <td>${u.section ? `<span class="pill">${SECTION_MAP[u.section]||u.section}</span>` : '<span class="text-muted">—</span>'}</td>
+      <td>${rb[u.role]||u.role}</td>
+      <td>${u.section?`<span class="pill" style="border-color:${SECTIONS.find(s=>s.id===u.section)?.color||'var(--border)'}">${SECTION_MAP[u.section]||u.section}</span>`:'<span class="text-muted">--</span>'}</td>
       <td><button class="btn btn-ghost btn-sm" onclick="AdminUI.openEdit('${u.id}')">Editar</button></td>
-    </tr>`).join('') || '<tr><td colspan="5" class="empty-state">Sin usuarios</td></tr>';
+    </tr>`).join('')||'<tr><td colspan="5" class="empty-state">Sin usuarios</td></tr>';
   },
-
   openNew() {
-    this.editingId = null;
-    document.getElementById('user-modal-title').textContent = 'Nuevo Usuario';
-    ['um-name','um-email','um-pass'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('um-role').value    = 'viewer';
-    document.getElementById('um-section').value = 'dg';
-    document.getElementById('um-pass-hint').textContent = '';
-    document.getElementById('um-delete-btn').style.display = 'none';
+    this.editingId=null;
+    document.getElementById('user-modal-title').textContent='Nuevo Usuario';
+    ['um-name','um-email','um-pass'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('um-role').value='viewer';
+    document.getElementById('um-section').value='operaciones';
+    document.getElementById('um-pass-hint').textContent='';
+    document.getElementById('um-delete-btn').style.display='none';
     this.toggleSection();
     document.getElementById('modal-user').classList.add('open');
   },
-
   openEdit(id) {
-    const u = (DB.get('users')||[]).find(u => u.id === id);
-    if (!u) return;
-    this.editingId = id;
-    document.getElementById('user-modal-title').textContent = 'Editar Usuario';
-    document.getElementById('um-name').value    = u.name    || '';
-    document.getElementById('um-email').value   = u.email   || '';
-    document.getElementById('um-pass').value    = '';
-    document.getElementById('um-role').value    = u.role    || 'viewer';
-    document.getElementById('um-section').value = u.section || 'dg';
-    document.getElementById('um-pass-hint').textContent = '(dejar vacío = no cambiar)';
-    document.getElementById('um-delete-btn').style.display = 'inline-flex';
+    const u=(DB.get('users')||[]).find(u=>u.id===id); if (!u) return;
+    this.editingId=id;
+    document.getElementById('user-modal-title').textContent='Editar Usuario';
+    document.getElementById('um-name').value=u.name||'';
+    document.getElementById('um-email').value=u.email||'';
+    document.getElementById('um-pass').value='';
+    document.getElementById('um-role').value=u.role||'viewer';
+    document.getElementById('um-section').value=u.section||'operaciones';
+    document.getElementById('um-pass-hint').textContent='(dejar vacio = no cambiar)';
+    document.getElementById('um-delete-btn').style.display='inline-flex';
     this.toggleSection();
     document.getElementById('modal-user').classList.add('open');
   },
-
   toggleSection() {
-    const r = document.getElementById('um-role').value;
-    document.getElementById('um-section-grp').style.display = r === 'director' ? '' : 'none';
+    document.getElementById('um-section-grp').style.display=document.getElementById('um-role').value==='director'?'':'none';
   },
-
   async saveUser() {
-    const name    = document.getElementById('um-name').value.trim();
-    const email   = document.getElementById('um-email').value.trim().toLowerCase();
-    const pass    = document.getElementById('um-pass').value;
-    const role    = document.getElementById('um-role').value;
-    const section = role === 'director' ? document.getElementById('um-section').value : '';
-
-    if (!name || !email) { alert('Complete nombre y email'); return; }
-    if (!email.includes('@')) { alert('Email inválido'); return; }
-
-    const users = DB.get('users') || [];
-
-    if (this.editingId) {
-      const u = users.find(u => u.id === this.editingId);
-      if (u) {
-        u.name = name; u.email = email; u.role = role; u.section = section;
-        if (pass) { u.passHash = await sha256(pass); }
-      }
+    const name=document.getElementById('um-name').value.trim();
+    const email=document.getElementById('um-email').value.trim().toLowerCase();
+    const pass=document.getElementById('um-pass').value;
+    const role=document.getElementById('um-role').value;
+    const section=role==='director'?document.getElementById('um-section').value:'';
+    if (!name||!email){alert('Complete nombre y email');return;}
+    if (!email.includes('@')){alert('Email invalido');return;}
+    const users=DB.get('users')||[];
+    if (this.editingId){
+      const u=users.find(u=>u.id===this.editingId);
+      if (u){u.name=name;u.email=email;u.role=role;u.section=section;if(pass)u.passHash=await sha256(pass);}
     } else {
-      if (!pass) { alert('Ingrese una contraseña para el nuevo usuario'); return; }
-      if (pass.length < 6) { alert('Contraseña muy corta (mínimo 6 caracteres)'); return; }
-      if (users.find(u => u.email === email)) { alert('Este email ya existe'); return; }
-      users.push({ id: uid(), name, email, passHash: await sha256(pass), role, section });
+      if (!pass){alert('Ingrese una contrasena');return;}
+      if (pass.length<6){alert('Contrasena muy corta');return;}
+      if (users.find(u=>u.email===email)){alert('Email ya existe');return;}
+      users.push({id:uid(),name,email,passHash:await sha256(pass),role,section});
     }
-
-    DB.set('users', users);
-    this.closeModal();
-    this.render();
-    toast('Usuario guardado ✓');
+    DB.set('users',users); this.closeModal(); this.render(); toast('Usuario guardado');
   },
-
   deleteUser() {
-    if (!confirm('¿Eliminar este usuario?')) return;
-    DB.set('users', (DB.get('users')||[]).filter(u => u.id !== this.editingId));
-    this.closeModal();
-    this.render();
-    toast('Usuario eliminado', 'var(--red)');
+    if (!confirm('Eliminar usuario?')) return;
+    DB.set('users',(DB.get('users')||[]).filter(u=>u.id!==this.editingId));
+    this.closeModal(); this.render(); toast('Usuario eliminado','var(--red)');
   },
-
   closeModal() { document.getElementById('modal-user').classList.remove('open'); }
 };
 
-// ─── BOOT ──────────────────────────────────────────────────
+// BOOT
 (function boot() {
-  // 1. Handle ?reset parameter → clears all app data and shows setup
-  const params = new URLSearchParams(location.search);
-  if (params.has('reset')) {
-    Object.keys(localStorage)
-      .filter(k => k.startsWith('mrt_'))
-      .forEach(k => localStorage.removeItem(k));
-    history.replaceState(null, '', location.pathname);
+  const params=new URLSearchParams(location.search);
+  if (params.has('reset')){
+    Object.keys(localStorage).filter(k=>k.startsWith('mrt_')).forEach(k=>localStorage.removeItem(k));
+    history.replaceState(null,'',location.pathname);
   }
-
-  // 2. Init DB (creates empty meetings/topics if not present)
   DB.init();
-
-  // 3. Keyboard shortcuts for auth forms
-  document.getElementById('login-pass').addEventListener('keydown', e => { if (e.key === 'Enter') Auth.login(); });
-  document.getElementById('login-email').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('login-pass').focus(); });
-  document.getElementById('setup-pass2').addEventListener('keydown', e => { if (e.key === 'Enter') FirstRun.setup(); });
-
-  // 4. Close modals on backdrop click
-  ['modal-topic','modal-user','modal-pwd','modal-dec','modal-agr'].forEach(id => {
-    document.getElementById(id).addEventListener('click', function(e) {
-      if (e.target === this) this.classList.remove('open');
-    });
+  document.getElementById('login-pass').addEventListener('keydown',e=>{if(e.key==='Enter')Auth.login();});
+  document.getElementById('login-email').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('login-pass').focus();});
+  document.getElementById('setup-pass2').addEventListener('keydown',e=>{if(e.key==='Enter')FirstRun.setup();});
+  ['modal-topic','modal-user','modal-pwd','modal-dec','modal-agr','modal-rrhh'].forEach(id=>{
+    document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
   });
-
-  // 5. Decide which screen to show
-  const users = DB.get('users') || [];
-  if (users.length === 0) {
+  const users=DB.get('users')||[];
+  if (users.length===0){
     document.getElementById('screen-setup').classList.add('active');
-  } else if (!Auth.restore()) {
+  } else if (!Auth.restore()){
     document.getElementById('screen-login').classList.add('active');
   }
-  // If Auth.restore() returned true, the app is already showing
+})();
+</script>
+</body>
+</html>
+=>{
+    document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
+  });
+
+  // Show correct screen
+  const users=DB.get('users')||[];
+  if (users.length===0){
+    document.getElementById('screen-setup').classList.add('active');
+  } else if (!Auth.restore()){
+    document.getElementById('screen-login').classList.add('active');
+  }
 })();
 </script>
 </body>

@@ -1120,6 +1120,32 @@ const Meetings = {
   }
 };
 
+// ─── RIESGO SLOT HELPERS ─────────────────────────────────────
+function riesgoSlotHTML(sId, sec, n, canEdit) {
+  const val = sec[`riesgo${n}`] ?? (n===1 ? (sec.riesgo ?? '') : '');
+  if (canEdit) {
+    return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+      <span style="font-size:10px;font-weight:700;color:var(--muted);min-width:22px;text-align:right">R${n}</span>
+      <input id="f-${sId}-riesgo${n}" value="${escHtml(val)}" placeholder="Riesgo ${n}..."
+        style="flex:1" onchange="MeetUI.autoSave('${sId}')">
+    </div>`;
+  }
+  if (!val) return '';
+  return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+    <span style="font-size:10px;color:var(--muted);min-width:22px">R${n}:</span>
+    <span style="font-size:13px">${escHtml(val)}</span>
+  </div>`;
+}
+function riesgoBloquesHTML(sId, sec, canEdit) {
+  const slots = [1,2,3].map(n => riesgoSlotHTML(sId, sec, n, canEdit)).filter(Boolean).join('');
+  if (canEdit) {
+    return `<div class="field"><label>Riesgo Principal</label>${slots}</div>`;
+  }
+  return slots
+    ? `<div class="field"><label>Riesgo Principal</label><div class="readonly-val">${slots}</div></div>`
+    : '';
+}
+
 // ─── TEMA SLOT HELPERS ───────────────────────────────────────
 function temaSelectOpts(sId, curVal) {
   return `<option value="" ${!curVal?'selected':''}>— Sin requerimiento —</option>
@@ -1141,11 +1167,11 @@ function temaSlotHTML(sId, sec, n, canEdit) {
     return `<div class="tema-slot">
       <span class="tema-num">Tema ${n}</span>
       <select id="f-${sId}-apoyoTipo${n}" onchange="MeetUI.autoSave('${sId}')"
-        style="background:var(--surface);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:var(--text);padding:6px 10px;font-size:12px;min-width:190px;cursor:pointer">
+        style="flex:3 1 0;min-width:90px;background:var(--surface);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:var(--text);padding:6px 8px;font-size:12px;cursor:pointer">
         ${temaSelectOpts(sId, tipo)}
       </select>
       <input id="f-${sId}-apoyo${n}" value="${escHtml(texto)}" placeholder="Describe la solicitud..."
-        style="flex:1;min-width:120px" onchange="MeetUI.autoSave('${sId}')">
+        style="flex:7 1 0;min-width:80px" onchange="MeetUI.autoSave('${sId}')">
     </div>`;
   }
   if (!tipo && !texto) return '';
@@ -1261,19 +1287,19 @@ const MeetUI = {
               </div>
             </div>
             ${canEdit?`
-              <div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;align-items:start">
-                <div class="field"><label>Riesgo Principal</label><input id="f-rrhh-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Riesgo del área" onchange="MeetUI.autoSave('rrhh')"></div>
+              <div style="display:grid;grid-template-columns:2fr 3fr;gap:16px;align-items:start">
+                ${riesgoBloquesHTML('rrhh', sec, true)}
                 ${temaBloquesHTML('rrhh', sec, true)}
               </div>
               <div class="field"><label>Acción / Decisión Requerida</label><input id="f-rrhh-accion" value="${escHtml(sec.accion)}" placeholder="Acción o decisión" onchange="MeetUI.autoSave('rrhh')"></div>
               <button class="btn btn-primary btn-sm mt8" onclick="MeetUI.saveSection('rrhh')">Guardar sección</button>`
             :`<div style="background:var(--surface);border-radius:8px;padding:12px;font-size:13px">
-              <div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;align-items:start">
-                ${sec.riesgo?`<div class="mb8"><span class="text-muted text-xs">RIESGO:</span> ${escHtml(sec.riesgo)}</div>`:'<div></div>'}
+              <div style="display:grid;grid-template-columns:2fr 3fr;gap:16px;align-items:start">
+                ${riesgoBloquesHTML('rrhh', sec, false)||'<div></div>'}
                 ${temaBloquesHTML('rrhh', sec, false)}
               </div>
               ${sec.accion?`<div class="mt8"><span class="text-muted text-xs">ACCIÓN:</span> ${escHtml(sec.accion)}</div>`:''}
-              ${!sec.riesgo&&!sec.apoyoTipo&&!sec.apoyoTipo1&&!sec.apoyo&&!sec.apoyo1&&!sec.accion?'<span class="text-muted">Sin observaciones</span>':''}
+              ${!sec.riesgo1&&!sec.riesgo&&!sec.apoyoTipo&&!sec.apoyoTipo1&&!sec.apoyo&&!sec.apoyo1&&!sec.accion?'<span class="text-muted">Sin observaciones</span>':''}
             </div>`}
           </div>
         </div>`;
@@ -1320,11 +1346,8 @@ const MeetUI = {
               <div class="status-sel">${statusBtns}</div>
             </div>
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">${kpiBoxes}</div>
-            <div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;align-items:start">
-              ${canEdit
-                ?`<div class="field"><label>Riesgo Principal</label><input id="f-${s.id}-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Principal riesgo del área" onchange="MeetUI.autoSave('${s.id}')"></div>`
-                :`<div class="field"><label>Riesgo Principal</label><div class="readonly-val">${escHtml(sec.riesgo)||'<span class="text-muted">—</span>'}</div></div>`
-              }
+            <div style="display:grid;grid-template-columns:2fr 3fr;gap:16px;align-items:start">
+              ${riesgoBloquesHTML(s.id, sec, canEdit)}
               ${temaBloquesHTML(s.id, sec, canEdit)}
             </div>
             ${canEdit
@@ -1386,8 +1409,8 @@ const MeetUI = {
               }
             </div>
           </div>
-          <div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;align-items:start">
-            ${field('riesgo','Riesgo Principal',sec.riesgo,'Principal riesgo del área')}
+          <div style="display:grid;grid-template-columns:2fr 3fr;gap:16px;align-items:start">
+            ${riesgoBloquesHTML(s.id, sec, canEdit)}
             ${temaBloquesHTML(s.id, sec, canEdit)}
           </div>
           ${field('accion','Acción / Decisión Requerida',sec.accion,'Acción o decisión que se necesita')}
@@ -1427,16 +1450,18 @@ const MeetUI = {
     const at1=rf('apoyoTipo1'), ap1=rf('apoyo1');
     const at2=rf('apoyoTipo2'), ap2=rf('apoyo2');
     const at3=rf('apoyoTipo3'), ap3=rf('apoyo3');
+    const rg1=rf('riesgo1'), rg2=rf('riesgo2'), rg3=rf('riesgo3');
     const updated={...sec,
       kpi1Label:rf('kpi1Label'),kpi1Value:rf('kpi1Value'),kpi1Plan:rf('kpi1Plan'),kpi1Impact:rf('kpi1Impact'),
       kpi2Label:rf('kpi2Label'),kpi2Value:rf('kpi2Value'),kpi2Plan:rf('kpi2Plan'),kpi2Impact:rf('kpi2Impact'),
       kpi3Label:rf('kpi3Label'),kpi3Value:rf('kpi3Value'),kpi3Plan:rf('kpi3Plan'),kpi3Impact:rf('kpi3Impact'),
       hcNotas:rf('hcNotas'),vacNotas:rf('vacNotas'),
-      riesgo:rf('riesgo'),accion:rf('accion'),
+      riesgo1:rg1,riesgo2:rg2,riesgo3:rg3,
+      riesgo:rg1, // legacy backward compat
+      accion:rf('accion'),
       apoyoTipo1:at1,apoyo1:ap1,
       apoyoTipo2:at2,apoyo2:ap2,
       apoyoTipo3:at3,apoyo3:ap3,
-      // Keep legacy fields pointing to slot 1 for backward compat with DG panel reads
       apoyoTipo:at1,apoyo:ap1,
       updatedBy:Auth.user?.name,updatedAt:new Date().toISOString()
     };
@@ -1445,8 +1470,8 @@ const MeetUI = {
     this.syncAutoTopic(sId, at1, ap1, 1);
     this.syncAutoTopic(sId, at2, ap2, 2);
     this.syncAutoTopic(sId, at3, ap3, 3);
-    // Sync Riesgo and Acción fields
-    this.syncRiesgoAccion(sId, rf('riesgo'), rf('accion'));
+    // Sync 3 Riesgo slots + Acción
+    this.syncRiesgoAccion(sId, [rg1,rg2,rg3], rf('accion'));
     toast('Sección guardada ✓');
   },
 
@@ -1482,32 +1507,38 @@ const MeetUI = {
     if (document.getElementById('screen-dashboard')?.classList.contains('active')) DashUI.render();
   },
 
-  // Sync Riesgo and Acción fields as auto-topics
-  syncRiesgoAccion(sId, riesgo, accion) {
+  // Sync Riesgo (array of 3) and Acción fields as auto-topics
+  syncRiesgoAccion(sId, riesgos, accion) {
     const currentWk = weekId(new Date());
     const s = SECTIONS.find(x => x.id === sId);
     let topics = DB.get('topics') || [];
 
-    // ── Riesgo → Seguimiento DG ──────────────────────────────
-    const riesgoId = 'auto_' + sId + '_' + currentWk + '_riesgo';
-    topics = topics.filter(t => t.id !== riesgoId);
-    if (riesgo && riesgo.trim()) {
-      topics.push({
-        id: riesgoId,
-        title: `[${s?.label||sId} — Riesgo] ${riesgo.trim()}`,
-        desc: 'Riesgo registrado automáticamente desde la sección semanal.',
-        priority: 'alta',
-        status: 'abierto',
-        section: sId,
-        owner: Auth.user?.name || '',
-        dgFlag: 'seguimiento',
-        action: riesgo.trim(),
-        appearances: [currentWk],
-        autoGenerated: true,
-        slotIdx: 'riesgo',
-        createdAt: new Date().toISOString(),
-      });
-    }
+    // ── 3 Riesgo slots → Seguimiento DG ─────────────────────
+    const rArr = Array.isArray(riesgos) ? riesgos : [riesgos,'',''];
+    [1,2,3].forEach(n => {
+      const rId = `auto_${sId}_${currentWk}_riesgo${n===1?'':n}`;
+      // Also remove old single-slot id for slot 1 backward compat
+      const legacyId = 'auto_' + sId + '_' + currentWk + '_riesgo';
+      topics = topics.filter(t => t.id !== rId && (n!==1 || t.id !== legacyId));
+      const txt = (rArr[n-1]||'').trim();
+      if (txt) {
+        topics.push({
+          id: rId,
+          title: `[${s?.label||sId} — Riesgo ${n}] ${txt}`,
+          desc: 'Riesgo registrado automáticamente desde la sección semanal.',
+          priority: 'alta',
+          status: 'abierto',
+          section: sId,
+          owner: Auth.user?.name || '',
+          dgFlag: 'seguimiento',
+          action: txt,
+          appearances: [currentWk],
+          autoGenerated: true,
+          slotIdx: `riesgo${n}`,
+          createdAt: new Date().toISOString(),
+        });
+      }
+    });
 
     // ── Acción / Decisión ────────────────────────────────────
     const accionId = 'auto_' + sId + '_' + currentWk + '_accion';

@@ -338,6 +338,11 @@ tr:hover td{background:rgba(255,255,255,.02)}
         <button class="btn btn-ghost btn-sm" onclick="Meetings.prevWeek()">← Anterior</button>
         <div class="wn-label"><div class="week-num" id="wk-num">—</div><div class="week-date" id="wk-date">—</div></div>
         <button class="btn btn-ghost btn-sm" onclick="Meetings.nextWeek()">Siguiente →</button>
+        <div style="display:flex;align-items:center;gap:6px;margin-left:12px;border-left:1px solid rgba(255,255,255,.1);padding-left:12px">
+          <label style="font-size:11px;color:var(--muted);white-space:nowrap">Ir a semana:</label>
+          <input type="date" id="week-jump" onchange="Meetings.goToDate(this.value)"
+            style="background:var(--surface);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:var(--text);padding:4px 8px;font-size:12px;cursor:pointer">
+        </div>
       </div>
       <div class="tabs">
         <button class="tab active" onclick="MeetUI.tab('sections',this)">Secciones</button>
@@ -1009,6 +1014,15 @@ const Meetings = {
     if (wn>maxWk){year++;wn=1;}
     this.currentId=`${year}-W${String(wn).padStart(2,'0')}`;
     this._ensure(this.currentId); MeetUI.render();
+  },
+
+  goToDate(dateStr) {
+    if (!dateStr) return;
+    const d = new Date(dateStr + 'T12:00:00');
+    if (isNaN(d)) return;
+    this.currentId = weekId(d);
+    this._ensure(this.currentId);
+    MeetUI.render();
   },
 
   togglePublish() {

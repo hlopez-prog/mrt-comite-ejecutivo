@@ -621,55 +621,88 @@ function toast(msg,color='var(--green)') {
 
 // ─── CHARTS ─────────────────────────────────────────────────
 const Charts = {
-  headcount(data, canvasId) {
+  headcount(data) {
     if (!data || !data.length) return '<div class="text-muted text-sm">Sin datos de headcount</div>';
-    const total = data.reduce((s,d) => s + (d.real||0), 0);
+    const total  = data.reduce((s,d) => s + (d.real||0), 0);
     const maxVal = Math.max(...data.map(d => Math.max(d.real||0, d.plan||0)), 1);
-    const barH   = 180;
-    const barW   = Math.max(36, Math.floor(560 / data.length) - 8);
-    const gap    = 6;
-    const svgW   = data.length * (barW + gap) + 60;
-    const svgH   = barH + 70;
+    const barH   = 200;
+    const barW   = 54;
+    const gap    = 12;
+    const padL   = 44;
+    const padR   = 16;
+    const padT   = 34;
+    const padB   = 110;
+    const svgW   = padL + data.length * (barW + gap) - gap + padR;
+    const svgH   = padT + barH + padB;
+
+    // Y-axis gridlines + labels
+    let grid = '';
+    [0.25, 0.5, 0.75, 1].forEach(frac => {
+      const y   = padT + barH - Math.round(frac * barH);
+      const val = Math.round(frac * maxVal);
+      grid += `<line x1="${padL}" y1="${y}" x2="${svgW - padR}" y2="${y}" stroke="rgba(255,255,255,.07)" stroke-width="1"/>`;
+      grid += `<text x="${padL - 6}" y="${y + 4}" text-anchor="end" fill="#606C7A" font-size="10">${val}</text>`;
+    });
+    // Zero baseline
+    grid += `<line x1="${padL}" y1="${padT + barH}" x2="${svgW - padR}" y2="${padT + barH}" stroke="rgba(255,255,255,.18)" stroke-width="1"/>`;
 
     let bars = '';
     data.forEach((d, i) => {
-      const x     = 30 + i * (barW + gap);
-      const hReal = Math.round(((d.real||0)/maxVal) * barH);
-      const hPlan = Math.round(((d.plan||0)/maxVal) * barH);
-      const yR    = barH - hReal + 10;
-      const yP    = barH - hPlan + 10;
-      const pct   = total ? Math.round(((d.real||0)/total)*100) : 0;
-      const hw    = Math.floor(barW/2)-1;
+      const x     = padL + i * (barW + gap);
+      const hReal = Math.round(((d.real||0) / maxVal) * barH);
+      const hPlan = Math.round(((d.plan||0) / maxVal) * barH);
+      const yR    = padT + barH - hReal;
+      const yP    = padT + barH - hPlan;
+      const pct   = total ? Math.round(((d.real||0) / total) * 100) : 0;
+      const hw    = Math.floor(barW / 2) - 2;
 
-      // Plan bar (lighter, behind)
-      bars += `<rect x="${x}" y="${yP}" width="${hw}" height="${hPlan}" fill="rgba(229,193,88,.25)" rx="2"/>`;
-      // Real bar (solid)
-      bars += `<rect x="${x+hw+2}" y="${yR}" width="${hw}" height="${hReal}" fill="#E5C158" rx="2"/>`;
-      // Value label
-      bars += `<text x="${x+barW/2}" y="${yR-5}" text-anchor="middle" fill="#E6EDF3" font-size="11" font-weight="700">${d.real||0}</text>`;
-      // Pct label
-      bars += `<text x="${x+barW/2}" y="${yR-17}" text-anchor="middle" fill="#8B95A1" font-size="10">${pct}%</text>`;
-      // Site label
-      const lbl = d.site.length > 7 ? d.site.slice(0,7) : d.site;
-      bars += `<text x="${x+barW/2}" y="${barH+25}" text-anchor="middle" fill="#8B95A1" font-size="9" transform="rotate(-35,${x+barW/2},${barH+25})">${lbl}</text>`;
+      // Plan bar (left half, muted)
+      if (d.plan) bars += `<rect x="${x}" y="${yP}" width="${hw}" height="${hPlan}" fill="rgba(229,193,88,.22)" rx="2"/>`;
+      // Real bar (right half, solid)
+      bars += `<rect x="${x + hw + 4}" y="${yR}" width="${hw}" height="${hReal}" fill="#E5C158" rx="2"/>`;
+      // Pct badge above bar
+      bars += `<text x="${x + barW/2}" y="${yR - 18}" text-anchor="middle" fill="#E5C158" font-size="10" font-weight="600">${pct}%</text>`;
+      // Value count
+      bars += `<text x="${x + barW/2}" y="${yR - 6}" text-anchor="middle" fill="#E6EDF3" font-size="11" font-weight="700">${d.real||0}</text>`;
+      // Site label — full name, rotated -45°
+      const lx = x + barW/2 + 2;
+      const ly = padT + barH + 12;
+      bars += `<text x="${lx}" y="${ly}" text-anchor="end" fill="#A0ADB8" font-size="10" transform="rotate(-45,${lx},${ly})">${escHtml(d.site)}</text>`;
     });
 
+    const gy = svgH - 14;
     const legend = `
-      <rect x="30" y="${svgH-16}" width="12" height="8" fill="rgba(229,193,88,.25)" rx="1"/>
-      <text x="46" y="${svgH-9}" fill="#8B95A1" font-size="10">Plan</text>
-      <rect x="80" y="${svgH-16}" width="12" height="8" fill="#E5C158" rx="1"/>
-      <text x="96" y="${svgH-9}" fill="#8B95A1" font-size="10">Real</text>
-      <text x="${svgW-10}" y="${svgH-9}" text-anchor="end" fill="#8B95A1" font-size="10">Total: ${total}</text>`;
+      <rect x="${padL}" y="${gy - 8}" width="12" height="8" fill="rgba(229,193,88,.22)" rx="1"/>
+      <text x="${padL + 16}" y="${gy}" fill="#606C7A" font-size="10">Plan</text>
+      <rect x="${padL + 54}" y="${gy - 8}" width="12" height="8" fill="#E5C158" rx="1"/>
+      <text x="${padL + 70}" y="${gy}" fill="#606C7A" font-size="10">Real</text>
+      <text x="${svgW - padR}" y="${gy}" text-anchor="end" fill="#8B95A1" font-size="10" font-weight="600">Total HC: ${total}</text>`;
 
-    return `<svg viewBox="0 0 ${svgW} ${svgH}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:220px">${bars}${legend}</svg>`;
+    return `<svg viewBox="0 0 ${svgW} ${svgH}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:300px">${grid}${bars}${legend}</svg>`;
   },
 
-  vacantes(data) {
+  vacantes(data, hcData) {
     if (!data || !data.length) return '<div class="text-muted text-sm">Sin vacantes registradas</div>';
+    const totalVac = data.reduce((s,d) => s + (d.abiertas||0), 0);
+    const totalHC  = (hcData||[]).reduce((s,d) => s + (d.real||0), 0);
     const maxV = Math.max(...data.map(d => d.abiertas||0), 1);
+
+    // Header row
+    const header = `<div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)">
+      <div style="width:160px">Cargo / Área</div>
+      <div style="flex:1;max-width:200px">Vacantes</div>
+      <div style="min-width:28px;text-align:right">#</div>
+      <div style="min-width:54px;text-align:right">% Vac.</div>
+      <div style="min-width:54px;text-align:right">% HC</div>
+      <div style="min-width:60px;text-align:right">Antigüedad</div>
+    </div>`;
+
     const rows = data.map(d => {
-      const w = Math.round(((d.abiertas||0)/maxV)*200);
+      const ab = d.abiertas||0;
+      const w = Math.round((ab/maxV)*200);
       const urgColor = (d.dias||0) > 60 ? '#E5484D' : (d.dias||0) > 30 ? '#F5A524' : '#30A46C';
+      const pctVac = totalVac ? Math.round((ab/totalVac)*100) : 0;
+      const pctHC  = totalHC  ? +(ab/totalHC*100).toFixed(1)  : 0;
       return `<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:12px">
         <div style="width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">${escHtml(d.cargo)}</div>
         <div style="flex:1;max-width:200px">
@@ -677,11 +710,19 @@ const Charts = {
             <div style="height:100%;width:${w}px;background:var(--blue);border-radius:3px;transition:width .4s"></div>
           </div>
         </div>
-        <div style="min-width:28px;text-align:right;font-weight:700;color:var(--blue)">${d.abiertas||0}</div>
+        <div style="min-width:28px;text-align:right;font-weight:700;color:var(--blue)">${ab}</div>
+        <div style="min-width:54px;text-align:right;font-weight:600;color:#38BDF8">${pctVac}%</div>
+        <div style="min-width:54px;text-align:right;font-weight:600;color:#A78BFA">${pctHC}%</div>
         <div style="min-width:60px;text-align:right;font-size:11px;color:${urgColor}">${d.dias||0} días</div>
       </div>`;
     }).join('');
-    return rows;
+
+    const footer = `<div style="display:flex;gap:20px;margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:var(--muted)">
+      <span>Total vacantes: <strong style="color:var(--blue)">${totalVac}</strong></span>
+      ${totalHC ? `<span>% vs HC total: <strong style="color:#A78BFA">${totalHC ? +(totalVac/totalHC*100).toFixed(1) : 0}%</strong></span>` : ''}
+    </div>`;
+
+    return header + rows + footer;
   }
 };
 
@@ -1078,15 +1119,33 @@ const MeetUI = {
               <div class="status-sel">${statusBtns}</div>
             </div>
             <div class="chart-wrap">
-              <div class="flex items-center justify-between">
+              <div class="flex items-center justify-between" style="margin-bottom:10px">
                 <div class="chart-title">HEADCOUNT POR SITIO</div>
                 ${canEdit?`<button class="btn btn-ghost btn-sm" onclick="RRHHEditor.open('${m.id}');event.stopPropagation()">✏️ Editar datos</button>`:''}
               </div>
-              <div class="bar-chart">${Charts.headcount(hc)}</div>
+              <div style="display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start">
+                <div class="bar-chart">${Charts.headcount(hc)}</div>
+                <div>
+                  <div style="font-size:10px;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Notas / Observaciones HC</div>
+                  ${canEdit
+                    ?`<textarea id="f-rrhh-hcNotas" rows="9" placeholder="Observaciones sobre headcount, rotación, incorporaciones, bajas..." onchange="MeetUI.autoSave('rrhh')" style="width:100%;background:var(--surface);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:var(--text);padding:8px;font-size:12px;resize:vertical">${escHtml(sec.hcNotas)}</textarea>`
+                    :`<div style="background:var(--surface);border-radius:6px;padding:10px;font-size:12px;min-height:80px;color:var(--text)">${escHtml(sec.hcNotas)||'<span class="text-muted">Sin notas</span>'}</div>`
+                  }
+                </div>
+              </div>
             </div>
             <div class="chart-wrap">
-              <div class="chart-title">VACANTES ABIERTAS</div>
-              ${Charts.vacantes(vac)}
+              <div class="chart-title" style="margin-bottom:10px">VACANTES ABIERTAS</div>
+              <div style="display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start">
+                <div>${Charts.vacantes(vac, hc)}</div>
+                <div>
+                  <div style="font-size:10px;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Estado de Procesos</div>
+                  ${canEdit
+                    ?`<textarea id="f-rrhh-vacNotas" rows="9" placeholder="Estado de procesos de reclutamiento, candidatos en pipeline, fechas estimadas de cierre..." onchange="MeetUI.autoSave('rrhh')" style="width:100%;background:var(--surface);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:var(--text);padding:8px;font-size:12px;resize:vertical">${escHtml(sec.vacNotas)}</textarea>`
+                    :`<div style="background:var(--surface);border-radius:6px;padding:10px;font-size:12px;min-height:80px;color:var(--text)">${escHtml(sec.vacNotas)||'<span class="text-muted">Sin notas</span>'}</div>`
+                  }
+                </div>
+              </div>
             </div>
             ${canEdit?`<div class="field-row">
               <div class="field"><label>Riesgo Principal</label><input id="f-rrhh-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Riesgo del área" onchange="MeetUI.autoSave('rrhh')"></div>
@@ -1100,6 +1159,64 @@ const MeetUI = {
               ${sec.accion?`<div><span class="text-muted text-xs">ACCIÓN:</span> ${escHtml(sec.accion)}</div>`:''}
               ${!sec.riesgo&&!sec.apoyo&&!sec.accion?'<span class="text-muted">Sin observaciones</span>':''}
             </div>`}
+          </div>
+        </div>`;
+      }
+
+      // Special Exploración rendering — 3 KPI boxes
+      if (s.id==='exploracion') {
+        const kpis = [
+          {key:'kpi1', label:'Unidad Olivos',  color:s.color},
+          {key:'kpi2', label:'Unidad Realito', color:s.color+'CC'},
+          {key:'kpi3', label:'Proyectos',      color:'rgba(251,146,60,.55)'},
+        ];
+        const kpiBoxes = kpis.map(k => {
+          const lV=sec[k.key+'Label'], vV=sec[k.key+'Value'], pV=sec[k.key+'Plan'], iV=sec[k.key+'Impact'];
+          return `<div class="kpi-box" style="border-top:2px solid ${k.color}">
+            <div class="kpi-hd" style="color:${k.color}">${k.label}</div>
+            ${canEdit
+              ?`<div class="field" style="margin-bottom:6px"><input id="f-exploracion-${k.key}Label" value="${escHtml(lV)}" placeholder="Indicador (ej: Metros perforados)" onchange="MeetUI.autoSave('exploracion')"></div>
+                <div class="field" style="margin-bottom:6px"><input id="f-exploracion-${k.key}Value" value="${escHtml(vV)}" placeholder="Valor actual" onchange="MeetUI.autoSave('exploracion')"></div>
+                <div class="field" style="margin-bottom:6px"><input id="f-exploracion-${k.key}Plan" value="${escHtml(pV)}" placeholder="Plan/objetivo" onchange="MeetUI.autoSave('exploracion')"></div>
+                <div class="field"><input id="f-exploracion-${k.key}Impact" value="${escHtml(iV)}" placeholder="Observación / impacto" onchange="MeetUI.autoSave('exploracion')"></div>`
+              :`<div class="kpi-val" style="color:${k.color}">${escHtml(vV)||'—'}</div>
+                <div class="kpi-plan">${escHtml(lV)||''} ${pV?'· Plan: '+pV:''}</div>
+                ${iV?`<div class="kpi-plan" style="margin-top:4px;color:var(--muted)">${escHtml(iV)}</div>`:''}`
+            }
+          </div>`;
+        }).join('');
+        return `<div class="section-card ${s.cls}" id="sc-${s.id}">
+          <div class="section-header" onclick="MeetUI.toggleSection('${s.id}')">
+            <div class="sh-left">
+              <div class="section-num">${s.num}</div>
+              <div>
+                <div class="section-label flex items-center gap8">
+                  <span class="dot" style="background:${statusColor}"></span>${s.label}
+                </div>
+                <div class="section-sublabel">${s.sub} — ${s.time}</div>
+              </div>
+            </div>
+            <div class="flex items-center gap8">${updInfo}<span>▾</span></div>
+          </div>
+          <div class="section-body" id="sb-${s.id}">
+            <div class="mb12">
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Estado de Alerta</div>
+              <div class="status-sel">${statusBtns}</div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">${kpiBoxes}</div>
+            <div class="field-row">
+              ${canEdit
+                ?`<div class="field"><label>Riesgo Principal</label><input id="f-${s.id}-riesgo" value="${escHtml(sec.riesgo)}" placeholder="Principal riesgo del área" onchange="MeetUI.autoSave('${s.id}')"></div>
+                  <div class="field"><label>Apoyo Requerido</label><input id="f-${s.id}-apoyo" value="${escHtml(sec.apoyo)}" placeholder="Soporte necesario" onchange="MeetUI.autoSave('${s.id}')"></div>`
+                :`<div class="field"><label>Riesgo Principal</label><div class="readonly-val">${escHtml(sec.riesgo)||'<span class="text-muted">—</span>'}</div></div>
+                  <div class="field"><label>Apoyo Requerido</label><div class="readonly-val">${escHtml(sec.apoyo)||'<span class="text-muted">—</span>'}</div></div>`
+              }
+            </div>
+            ${canEdit
+              ?`<div class="field"><label>Acción / Decisión Requerida</label><input id="f-${s.id}-accion" value="${escHtml(sec.accion)}" placeholder="Acción o decisión que se necesita" onchange="MeetUI.autoSave('${s.id}')"></div>
+                <button class="btn btn-primary btn-sm mt8" onclick="MeetUI.saveSection('${s.id}')">Guardar sección</button>`
+              :`<div class="field"><label>Acción</label><div class="readonly-val">${escHtml(sec.accion)||'<span class="text-muted">—</span>'}</div></div>`
+            }
           </div>
         </div>`;
       }
@@ -1194,6 +1311,8 @@ const MeetUI = {
     const updated={...sec,
       kpi1Label:rf('kpi1Label'),kpi1Value:rf('kpi1Value'),kpi1Plan:rf('kpi1Plan'),kpi1Impact:rf('kpi1Impact'),
       kpi2Label:rf('kpi2Label'),kpi2Value:rf('kpi2Value'),kpi2Plan:rf('kpi2Plan'),kpi2Impact:rf('kpi2Impact'),
+      kpi3Label:rf('kpi3Label'),kpi3Value:rf('kpi3Value'),kpi3Plan:rf('kpi3Plan'),kpi3Impact:rf('kpi3Impact'),
+      hcNotas:rf('hcNotas'),vacNotas:rf('vacNotas'),
       riesgo:rf('riesgo'),apoyo:rf('apoyo'),accion:rf('accion'),
       updatedBy:Auth.user?.name,updatedAt:new Date().toISOString()
     };
@@ -1599,21 +1718,6 @@ const AdminUI = {
   ['modal-topic','modal-user','modal-pwd','modal-dec','modal-agr','modal-rrhh'].forEach(id=>{
     document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
   });
-  const users=DB.get('users')||[];
-  if (users.length===0){
-    document.getElementById('screen-setup').classList.add('active');
-  } else if (!Auth.restore()){
-    document.getElementById('screen-login').classList.add('active');
-  }
-})();
-</script>
-</body>
-</html>
-=>{
-    document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
-  });
-
-  // Show correct screen
   const users=DB.get('users')||[];
   if (users.length===0){
     document.getElementById('screen-setup').classList.add('active');

@@ -1,0 +1,308 @@
+{
+  "meetings": [
+    {
+      "id": "2026-W25",
+      "weekNum": 25,
+      "year": 2026,
+      "date": "jueves, 18 de junio de 2026",
+      "status": "borrador",
+      "sections": {
+        "operaciones": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "Daniel Lopez",
+          "updatedAt": "2026-06-18T18:52:03.756Z",
+          "kpi3Label": "",
+          "kpi3Value": "",
+          "kpi3Plan": "",
+          "kpi3Impact": "",
+          "hcNotas": "",
+          "vacNotas": "",
+          "apoyoTipo": ""
+        },
+        "metalurgia": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "rrhh": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "Headcount y Diseño Organizacional de Metalurgia",
+          "accion": "",
+          "updatedBy": "Daniel Lopez",
+          "updatedAt": "2026-06-21T15:55:06.403Z",
+          "headcount": [
+            {
+              "site": "CIENEGUITA",
+              "real": 144,
+              "plan": 144
+            },
+            {
+              "site": "REALITO",
+              "real": 15,
+              "plan": 16
+            },
+            {
+              "site": "MATAMOROS",
+              "real": 82,
+              "plan": 83
+            },
+            {
+              "site": "OLIVOS",
+              "real": 27,
+              "plan": 29
+            },
+            {
+              "site": "CHOIX",
+              "real": 7,
+              "plan": 7
+            },
+            {
+              "site": "CORPORATIVO",
+              "real": 47,
+              "plan": 47
+            },
+            {
+              "site": "NAMIQUIPA",
+              "real": 9,
+              "plan": 70
+            },
+            {
+              "site": "GEOLOGÍA",
+              "real": 10,
+              "plan": 10
+            },
+            {
+              "site": "BARRENACIÓN",
+              "real": 17,
+              "plan": 17
+            },
+            {
+              "site": "SAN PEDRO",
+              "real": 6,
+              "plan": 6
+            }
+          ],
+          "vacantes": [
+            {
+              "cargo": "Realito",
+              "area": "Geología",
+              "abiertas": 1,
+              "dias": 15
+            },
+            {
+              "cargo": "Matamoros",
+              "area": "Ayudante",
+              "abiertas": 1,
+              "dias": 5
+            },
+            {
+              "cargo": "Olivos",
+              "area": "Operación",
+              "abiertas": 2,
+              "dias": 7
+            },
+            {
+              "cargo": "Namiquipa",
+              "area": "Administración",
+              "abiertas": 2,
+              "dias": 7
+            }
+          ],
+          "kpi3Label": "",
+          "kpi3Value": "",
+          "kpi3Plan": "",
+          "kpi3Impact": "",
+          "hcNotas": "Se iniciaron los análisis de los presupuestos 2027 de todas las areas y proyectos.",
+          "vacNotas": "",
+          "apoyoTipo": "apoyo_metalurgia",
+          "riesgo1": "",
+          "riesgo2": "",
+          "riesgo3": "",
+          "apoyoTipo1": "apoyo_metalurgia",
+          "apoyo1": "Headcount y Diseño Organizacional de Metalurgia",
+          "apoyoTipo2": "aprobacion",
+          "apoyo2": "Headcount y Diseño Organizacional de Exploraciones ",
+          "apoyoTipo3": "apoyo_finanzas",
+          "apoyo3": "Onboarding de nuevos ingresos del área"
+        },
+        "finanzas": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "exploracion": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        }
+      },
+      "decisions": [],
+      "agreements": []
+    }
+  ],
+  "topics": [
+    {
+      "id": "auto_rrhh_2026-W25",
+      "title": "[RRHH] Headcount y Diseño Organizacional de Metalurgia",
+      "desc": "",
+      "priority": "alta",
+      "status": "abierto",
+      "section": "rrhh",
+      "owner": "Daniel Lopez",
+      "dgFlag": "apoyo_metalurgia",
+      "action": "Headcount y Diseño Organizacional de Metalurgia",
+      "appearances": [
+        "2026-W25"
+      ],
+      "autoGenerated": true,
+      "slotIdx": 1,
+      "createdAt": "2026-06-21T15:55:06.404Z"
+    },
+    {
+      "id": "auto_rrhh_2026-W25_2",
+      "title": "[RRHH — Tema 2] Headcount y Diseño Organizacional de Exploraciones",
+      "desc": "",
+      "priority": "alta",
+      "status": "abierto",
+      "section": "rrhh",
+      "owner": "Daniel Lopez",
+      "dgFlag": "aprobacion",
+      "action": "Headcount y Diseño Organizacional de Exploraciones",
+      "appearances": [
+        "2026-W25"
+      ],
+      "autoGenerated": true,
+      "slotIdx": 2,
+      "createdAt": "2026-06-21T15:55:06.405Z"
+    },
+    {
+      "id": "auto_rrhh_2026-W25_3",
+      "title": "[RRHH — Tema 3] Onboarding de nuevos ingresos del área",
+      "desc": "",
+      "priority": "alta",
+      "status": "abierto",
+      "section": "rrhh",
+      "owner": "Daniel Lopez",
+      "dgFlag": "apoyo_finanzas",
+      "action": "Onboarding de nuevos ingresos del área",
+      "appearances": [
+        "2026-W25"
+      ],
+      "autoGenerated": true,
+      "slotIdx": 3,
+      "createdAt": "2026-06-21T15:55:06.405Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "mqjowswzbbk0l",
+      "name": "Daniel Lopez",
+      "email": "hlopez@mrtcorporativo.mx",
+      "passHash": "fe1a7bc09288c8e21dac54f45370dc514e2b9f08a149fbbd43f30decca03fddd",
+      "role": "admin",
+      "section": ""
+    },
+    {
+      "id": "mqjpcliqn9dxs",
+      "name": "Omar Ayub",
+      "email": "omar.ayub@mrtcorporativo.mx",
+      "passHash": "1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1",
+      "role": "viewer",
+      "section": ""
+    },
+    {
+      "id": "mqjpd3kyuu21w",
+      "name": "Noel Menera",
+      "email": "nmenera@mrtcorporativo.mx",
+      "passHash": "1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1",
+      "role": "director",
+      "section": "operaciones"
+    },
+    {
+      "id": "mqjpdmb0t2udx",
+      "name": "Juan Luis Frias",
+      "email": "jfrias@mrtcorporativo.mx",
+      "passHash": "1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1",
+      "role": "director",
+      "section": "exploracion"
+    },
+    {
+      "id": "mqjpe38urac2i",
+      "name": "Ernesto Torres",
+      "email": "etorres@mrtcorporativo.mx",
+      "passHash": "1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1",
+      "role": "director",
+      "section": "metalurgia"
+    },
+    {
+      "id": "mqjpeok1g5157",
+      "name": "Alvaro Urquidez",
+      "email": "aurquidez@mrtcorporativo.mx",
+      "passHash": "1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1",
+      "role": "director",
+      "section": "finanzas"
+    },
+    {
+      "id": "mqjynewvs1v6o",
+      "name": "Joel Estrada",
+      "email": "jestrada@empresasefectivas.com",
+      "passHash": "1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1",
+      "role": "viewer",
+      "section": ""
+    }
+  ],
+  "_savedAt": "2026-06-21T17:02:33.058Z"
+}

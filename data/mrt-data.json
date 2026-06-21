@@ -33,8 +33,8 @@
         "metalurgia": {
           "alertStatus": "VERDE",
           "kpi1Label": "Producción VM junio ",
-          "kpi1Value": "314",
-          "kpi1Plan": "",
+          "kpi1Value": "314 ",
+          "kpi1Plan": "1000",
           "kpi1Impact": "",
           "kpi2Label": "",
           "kpi2Value": "",
@@ -44,7 +44,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Torres C",
-          "updatedAt": "2026-06-21T20:44:24.829Z",
+          "updatedAt": "2026-06-21T20:44:31.008Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -320,5 +320,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-21T20:44:26.844Z"
+  "_savedAt": "2026-06-21T20:44:33.010Z"
 }

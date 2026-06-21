@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MRT | Executive Mining OS — Comité Semanal</title>
+<!-- GitHub API sync — no external dependencies needed -->
 <style>
 :root{
   --bg:#0A0E13; --card:#161B22; --surface:#1F262F; --border:#2D3748;
@@ -303,6 +304,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <div id="nav-admin-sec" style="display:none">
       <div class="nav-sec">Administración</div>
       <button class="nav-item" onclick="Nav.go('admin')" id="nav-admin"><span class="ic">⚙</span> Usuarios</button>
+      <button class="nav-item" onclick="Nav.go('sync')" id="nav-sync"><span class="ic">☁</span> Sincronización <span id="sync-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--muted);margin-left:auto;flex-shrink:0"></span></button>
     </div>
     <div class="sb-footer">
       <div class="user-chip">
@@ -440,6 +442,74 @@ tr:hover td{background:rgba(255,255,255,.02)}
           <thead><tr><th>Semana</th><th>Fecha</th><th>Estado</th><th>Temas</th><th>Decisiones</th><th></th></tr></thead>
           <tbody id="hist-body"></tbody>
         </table>
+      </div>
+    </div>
+
+    <!-- SYNC -->
+    <div class="page" id="page-sync">
+      <div class="pg-head flex items-center justify-between">
+        <div><div class="pg-title">☁ Sincronización en la Nube</div><div class="pg-sub">GitHub API — sincronización entre dispositivos en tiempo real</div></div>
+        <div id="sync-status-badge" style="display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:20px;background:var(--surface);border:1px solid var(--border);font-size:13px;font-weight:600">
+          <span id="sync-status-dot" style="width:10px;height:10px;border-radius:50%;background:var(--muted);display:inline-block"></span>
+          <span id="sync-status-text">Sin conexión</span>
+        </div>
+      </div>
+
+      <!-- Status card -->
+      <div class="card mb16" id="sync-status-card">
+        <div style="display:flex;align-items:center;gap:16px">
+          <div style="font-size:36px">☁️</div>
+          <div>
+            <div style="font-weight:700;font-size:15px;margin-bottom:4px" id="sync-main-msg">No conectado — modo local (solo este dispositivo)</div>
+            <div style="font-size:12px;color:var(--muted)" id="sync-sub-msg">Conecta Firebase para sincronizar entre computadora, tablet y celular.</div>
+          </div>
+          <div style="margin-left:auto;display:flex;gap:8px">
+            <button class="btn btn-ghost btn-sm" onclick="DB.pushAll()" id="sync-push-btn" style="display:none">⬆ Forzar sync</button>
+            <button class="btn btn-ghost btn-sm" onclick="SyncUI.disconnect()" id="sync-disconnect-btn" style="display:none;color:var(--red)">✕ Desconectar</button>
+          </div>
+        </div>
+        <div id="sync-last-update" style="font-size:11px;color:var(--muted);margin-top:8px;display:none"></div>
+      </div>
+
+      <!-- Instructions -->
+      <div class="card mb16" id="sync-instructions">
+        <div style="font-size:14px;font-weight:700;margin-bottom:12px;color:var(--gold)">📋 Cómo configurar (5 minutos, gratis)</div>
+        <div style="font-size:13px;line-height:1.8;color:var(--text)">
+          <div style="display:flex;gap:12px;margin-bottom:8px"><span style="color:var(--gold);font-weight:700;min-width:22px">1.</span><span>Entra a <strong>github.com</strong> con tu cuenta → ve al repo de la plataforma</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:8px"><span style="color:var(--gold);font-weight:700;min-width:22px">2.</span><span>Click en tu avatar (esquina superior derecha) → <strong>Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token</strong></span></div>
+          <div style="display:flex;gap:12px;margin-bottom:8px"><span style="color:var(--gold);font-weight:700;min-width:22px">3.</span><span>En <strong>Repository access</strong>: selecciona el repo de la plataforma. En <strong>Permissions</strong>: <strong>Contents → Read and write</strong>. Genera y copia el token.</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:8px"><span style="color:var(--gold);font-weight:700;min-width:22px">4.</span><span>Pega el token + nombre de usuario + nombre del repo abajo y presiona <strong>Conectar</strong>. Los datos se guardarán en <code style="background:var(--surface);padding:2px 5px;border-radius:3px">data/mrt-data.json</code> en el repo.</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:4px"><span style="color:var(--muted);font-weight:700;min-width:22px">💡</span><span style="color:var(--muted)">La configuración se guarda en este dispositivo. Repite el paso 4 en cada equipo (tablet, otra computadora) usando el mismo token.</span></div>
+        </div>
+      </div>
+
+      <!-- Config form -->
+      <div class="card" id="sync-config-card">
+        <div style="font-size:14px;font-weight:700;margin-bottom:16px">Configuración GitHub</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+          <div class="field" style="margin:0">
+            <label>Usuario u Organización GitHub</label>
+            <input id="sync-owner" placeholder="ej: mrtcorporativo" style="width:100%">
+          </div>
+          <div class="field" style="margin:0">
+            <label>Nombre del Repositorio</label>
+            <input id="sync-repo" placeholder="ej: mining-os" style="width:100%">
+          </div>
+        </div>
+        <div class="field">
+          <label>Personal Access Token (se guarda en este dispositivo solamente)</label>
+          <input id="sync-token" type="password" placeholder="github_pat_..." style="width:100%;font-family:monospace">
+        </div>
+        <div class="field">
+          <label>Branch <span style="color:var(--muted);font-size:11px">(normalmente: main)</span></label>
+          <input id="sync-branch" value="main" style="width:160px">
+        </div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="btn btn-primary" onclick="SyncUI.connect()">⚡ Conectar y sincronizar</button>
+          <button class="btn btn-ghost btn-sm" onclick="DB.pushAll()">⬆ Forzar envío</button>
+          <button class="btn btn-ghost btn-sm" onclick="SyncUI.pullNow()">↓ Forzar descarga</button>
+        </div>
+        <div id="sync-cfg-error" style="display:none;font-size:12px;margin-top:8px"></div>
       </div>
     </div>
 
@@ -834,14 +904,160 @@ const RRHHEditor = {
 // ─── STORAGE ────────────────────────────────────────────────
 const DB = {
   KEY: 'mrt_',
-  get(k)    { try{return JSON.parse(localStorage.getItem(this.KEY+k)||'null')}catch{return null} },
-  set(k,v)  { localStorage.setItem(this.KEY+k, JSON.stringify(v)) },
-  remove(k) { localStorage.removeItem(this.KEY+k) },
+  _cloudKeys: ['meetings','topics','users'],
+  _pushTimer: null,
+  _pollTimer: null,
+  _gh: null,   // { owner, repo, token, sha, branch }
+
+  // ── Local cache ───────────────────────────────────────────
+  _lget(k)  { try{return JSON.parse(localStorage.getItem(this.KEY+k)||'null')}catch{return null} },
+  _lset(k,v){ localStorage.setItem(this.KEY+k, JSON.stringify(v)) },
+  _lrm(k)   { localStorage.removeItem(this.KEY+k) },
+
+  // ── Public API (same interface as before) ─────────────────
+  get(k)   { return this._lget(k); },
+  set(k,v) { this._lset(k,v); this._schedulePush(); },
+  remove(k){ this._lrm(k); this._schedulePush(); },
+
+  // ── GitHub API helpers ────────────────────────────────────
+  _apiUrl() {
+    const {owner,repo,branch} = this._gh;
+    return `https://api.github.com/repos/${owner}/${repo}/contents/data/mrt-data.json?ref=${branch}`;
+  },
+  _headers() {
+    return {
+      'Authorization': 'token ' + this._gh.token,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    };
+  },
+
+  // ── Debounced push (fires 2 s after last DB.set) ──────────
+  _schedulePush() {
+    if (!this._gh) return;
+    clearTimeout(this._pushTimer);
+    this._pushTimer = setTimeout(() => this._doPush(), 2000);
+  },
+
+  async _doPush() {
+    if (!this._gh) return;
+    try {
+      const payload = {};
+      this._cloudKeys.forEach(k => { payload[k] = this._lget(k) || []; });
+      payload._savedAt = new Date().toISOString();
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))));
+      const body = {
+        message: `MRT sync ${payload._savedAt.slice(0,16).replace('T',' ')}`,
+        content,
+        branch: this._gh.branch,
+      };
+      if (this._gh.sha) body.sha = this._gh.sha;
+      const res = await fetch(this._apiUrl(), { method:'PUT', headers:this._headers(), body:JSON.stringify(body) });
+      if (!res.ok) { const e=await res.json(); throw new Error(e.message); }
+      const data = await res.json();
+      this._gh.sha = data.content.sha;
+      this._lset('_ghcfg', this._gh);
+      SyncUI.flashSync('push');
+    } catch(e) {
+      console.warn('[DB] push error:', e.message);
+      SyncUI.setStatus('error', e.message);
+    }
+  },
+
+  // ── Pull from GitHub → update local → refresh UI ─────────
+  async _doPull(silent=false) {
+    if (!this._gh) return;
+    try {
+      const res = await fetch(this._apiUrl(), { headers: this._headers() });
+      if (res.status === 404) {
+        // File doesn't exist yet — push local data to create it
+        await this._doPush();
+        return;
+      }
+      if (!res.ok) throw new Error('HTTP '+res.status);
+      const file = await res.json();
+      this._gh.sha = file.sha;
+      const raw  = JSON.parse(decodeURIComponent(escape(atob(file.content.replace(/\n/g,'')))));
+      const savedAt = raw._savedAt || '';
+      const localAt = this._lget('_savedAt') || '';
+      // Only update if cloud is newer
+      if (savedAt > localAt) {
+        this._cloudKeys.forEach(k => { if (raw[k] != null) this._lset(k, raw[k]); });
+        this._lset('_savedAt', savedAt);
+        this._onRemoteUpdate();
+        if (!silent) toast('↓ Datos actualizados desde GitHub', 'var(--blue)');
+      }
+      this._lset('_ghcfg', this._gh);
+      SyncUI.setStatus('connected');
+    } catch(e) {
+      console.warn('[DB] pull error:', e.message);
+      if (!silent) SyncUI.setStatus('error', e.message);
+    }
+  },
+
+  // ── Connect using GitHub config ───────────────────────────
+  async connectCloud(cfg) {
+    this._gh = { owner:cfg.owner, repo:cfg.repo, token:cfg.token, branch:cfg.branch||'main', sha:null };
+    SyncUI.setStatus('connecting');
+    await this._doPull(false);
+    // Poll every 45 s for changes from other devices
+    clearInterval(this._pollTimer);
+    this._pollTimer = setInterval(() => this._doPull(true), 45000);
+    toast('✓ Conectado a GitHub — sincronización activa', 'var(--green)');
+  },
+
+  disconnectCloud() {
+    clearInterval(this._pollTimer);
+    clearTimeout(this._pushTimer);
+    this._gh = null;
+    this._lrm('_ghcfg');
+    SyncUI.setStatus('disconnected');
+    toast('Sincronización desactivada — modo local', 'var(--amber)');
+  },
+
+  // Manual push now
+  pushAll() {
+    if (!this._gh) { toast('No hay conexión activa','var(--amber)'); return; }
+    clearTimeout(this._pushTimer);
+    this._doPush().then(()=>toast('✓ Datos enviados a GitHub','var(--green)'));
+  },
+
+  // ── React to remote pull ──────────────────────────────────
+  _onRemoteUpdate() {
+    // Refresh Auth.user from updated users array (role may have changed after pull)
+    const users = this._lget('users') || [];
+    if (Auth.user) {
+      const fresh = users.find(u => u.id === Auth.user.id);
+      if (fresh) {
+        Auth.user = fresh;
+        const adminSec = document.getElementById('nav-admin-sec');
+        if (adminSec) adminSec.style.display = fresh.role==='admin' ? '' : 'none';
+      }
+    } else {
+      // Not logged in yet — if pull brought users, try restore from stored session
+      const sid = this._lget('session');
+      if (sid) {
+        const u = users.find(u => u.id === sid);
+        if (u) Auth._startSession(u);
+      }
+    }
+    const active = document.querySelector('.page.active')?.id;
+    if (active==='page-meeting')   MeetUI.render();
+    if (active==='page-dashboard') DashUI.render();
+    if (active==='page-history')   HistoryUI.render();
+    if (active==='page-topics')  { TopicUI.render(); TopicUI.updateBadge(); }
+    if (active==='page-admin')     AdminUI.render();
+    TopicUI.updateBadge();
+    SyncUI.flashSync('pull');
+  },
 
   init() {
-    if (!this.get('meetings')) this.set('meetings', []);
-    if (!this.get('topics'))   this.set('topics',   []);
-    if (!this.get('seeded'))  { this._seed(); this.set('seeded',true); }
+    if (!this._lget('meetings')) this._lset('meetings', []);
+    if (!this._lget('topics'))   this._lset('topics',   []);
+    if (!this._lget('seeded'))  { this._seed(); this._lset('seeded',true); }
+    // Auto-connect if GitHub config was saved
+    const saved = this._lget('_ghcfg');
+    if (saved) setTimeout(()=>this.connectCloud(saved), 800);
   },
 
   _emptySection() {
@@ -993,9 +1209,9 @@ const FirstRun = {
 
 // ─── NAVIGATION ──────────────────────────────────────────────
 const Nav = {
-  pages:['dashboard','meeting','topics','history','admin'],
+  pages:['dashboard','meeting','topics','history','sync','admin'],
   go(page) {
-    if (page==='admin' && !Auth.isAdmin()){this.go('dashboard');return;}
+    if ((page==='admin'||page==='sync') && !Auth.isAdmin()){this.go('dashboard');return;}
     this.pages.forEach(p=>{
       document.getElementById('page-'+p)?.classList.remove('active');
       document.getElementById('nav-'+p)?.classList.remove('active');
@@ -1007,6 +1223,7 @@ const Nav = {
     if (page==='topics')    TopicUI.render();
     if (page==='history')   HistoryUI.render();
     if (page==='admin')     AdminUI.render();
+    if (page==='sync')      SyncUI.render();
   }
 };
 
@@ -2049,6 +2266,105 @@ const HistoryUI = {
       <td>${(m.decisions||[]).length}</td>
       <td><button class="btn btn-ghost btn-sm" onclick="Meetings.currentId='${m.id}';Nav.go('meeting')">Ver</button></td>
     </tr>`).join('')||'<tr><td colspan="6" class="empty-state">Sin reuniones</td></tr>';
+  }
+};
+
+// ─── SYNC UI ─────────────────────────────────────────────────
+const SyncUI = {
+  _status: 'disconnected', // 'connected' | 'disconnected' | 'error'
+  _flashT: null,
+
+  setStatus(s, detail) {
+    this._status = s;
+    const dot  = document.getElementById('sync-status-dot');
+    const text = document.getElementById('sync-status-text');
+    const navDot = document.getElementById('sync-dot');
+    const pushBtn = document.getElementById('sync-push-btn');
+    const discBtn = document.getElementById('sync-disconnect-btn');
+    const mainMsg = document.getElementById('sync-main-msg');
+    const subMsg  = document.getElementById('sync-sub-msg');
+    const cfgCard = document.getElementById('sync-config-card');
+    const instrCard = document.getElementById('sync-instructions');
+
+    if (s === 'connected') {
+      const c = 'var(--green)';
+      if (dot)  { dot.style.background=c; dot.style.boxShadow='0 0 0 3px rgba(48,164,108,.25)'; }
+      if (text) text.textContent = 'Conectado — sync activo';
+      if (navDot) navDot.style.background = c;
+      if (pushBtn) pushBtn.style.display = '';
+      if (discBtn) discBtn.style.display = '';
+      if (mainMsg) mainMsg.textContent = '✓ Conectado a GitHub — datos sincronizados entre todos los dispositivos';
+      if (subMsg)  subMsg.textContent  = 'Cualquier cambio en computadora, tablet o celular se actualiza para todos los usuarios (polling cada 45 s).';
+      if (cfgCard) cfgCard.style.display = 'none';
+      if (instrCard) instrCard.style.display = 'none';
+    } else if (s === 'error') {
+      const c = 'var(--red)';
+      if (dot)  { dot.style.background=c; dot.style.boxShadow='none'; }
+      if (text) text.textContent = 'Error — ver consola';
+      if (navDot) navDot.style.background = c;
+      if (mainMsg) mainMsg.textContent = '⚠ Error de conexión — ' + (detail||'revisa el token o el nombre del repo');
+    } else if (s === 'connecting') {
+      if (dot)  { dot.style.background='var(--amber)'; dot.style.boxShadow='none'; }
+      if (text) text.textContent = 'Conectando…';
+      if (navDot) navDot.style.background = 'var(--amber)';
+      if (mainMsg) mainMsg.textContent = 'Conectando con GitHub…';
+    } else {
+      if (dot)  { dot.style.background='var(--muted)'; dot.style.boxShadow='none'; }
+      if (text) text.textContent = 'Sin conexión (local)';
+      if (navDot) navDot.style.background = 'var(--muted)';
+      if (pushBtn) pushBtn.style.display = 'none';
+      if (discBtn) discBtn.style.display = 'none';
+      if (mainMsg) mainMsg.textContent = 'No conectado — modo local (solo este dispositivo)';
+      if (subMsg)  subMsg.textContent  = 'Conecta GitHub para sincronizar entre computadora, tablet y celular.';
+      if (cfgCard) cfgCard.style.display = '';
+      if (instrCard) instrCard.style.display = '';
+    }
+    const lu = document.getElementById('sync-last-update');
+    if (lu && s==='connected') { lu.style.display=''; lu.textContent='Última sincronización: '+new Date().toLocaleTimeString('es-MX'); }
+  },
+
+  flashSync(dir) {
+    const navDot = document.getElementById('sync-dot');
+    if (!navDot) return;
+    navDot.style.background = dir==='push' ? 'var(--gold)' : 'var(--blue)';
+    clearTimeout(this._flashT);
+    this._flashT = setTimeout(()=>{ if(this._status==='connected') navDot.style.background='var(--green)'; }, 700);
+    const lu = document.getElementById('sync-last-update');
+    if (lu) { lu.style.display=''; lu.textContent=(dir==='push'?'↑ Enviado':'↓ Recibido')+': '+new Date().toLocaleTimeString('es-MX'); }
+  },
+
+  render() {
+    this.setStatus(this._status);
+    const saved = DB._lget('_ghcfg');
+    if (saved) {
+      const o=document.getElementById('sync-owner'), r=document.getElementById('sync-repo'), b=document.getElementById('sync-branch');
+      if (o && !o.value) o.value = saved.owner||'';
+      if (r && !r.value) r.value = saved.repo||'';
+      if (b) b.value = saved.branch||'main';
+      // Don't pre-fill token for security — user must re-enter to change
+    }
+  },
+
+  connect() {
+    const err   = document.getElementById('sync-cfg-error');
+    const owner = document.getElementById('sync-owner')?.value?.trim();
+    const repo  = document.getElementById('sync-repo')?.value?.trim();
+    const token = document.getElementById('sync-token')?.value?.trim();
+    const branch= document.getElementById('sync-branch')?.value?.trim()||'main';
+    const show  = (msg,ok)=>{ err.style.display=''; err.style.color=ok?'var(--green)':'var(--red)'; err.textContent=msg; };
+    if (!owner) { show('Ingresa el usuario u organización GitHub'); return; }
+    if (!repo)  { show('Ingresa el nombre del repositorio'); return; }
+    if (!token) { show('Ingresa el Personal Access Token'); return; }
+    err.style.display='none';
+    DB.connectCloud({owner,repo,token,branch});
+  },
+
+  pullNow() { DB._doPull(false); },
+
+  disconnect() {
+    if (!confirm('¿Desconectar sincronización? Los datos quedarán solo en este dispositivo.')) return;
+    DB.disconnectCloud();
+    ['sync-owner','sync-repo','sync-token'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
   }
 };
 

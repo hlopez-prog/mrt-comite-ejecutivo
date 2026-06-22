@@ -223,13 +223,13 @@
           "kpi1Impact": "",
           "kpi2Label": "",
           "kpi2Value": "",
-          "kpi2Plan": "",
+          "kpi2Plan": "1800",
           "kpi2Impact": "",
           "riesgo": "",
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-06-22T19:50:26.101Z",
+          "updatedAt": "2026-06-22T19:50:32.526Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -914,5 +914,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-22T19:50:28.108Z"
+  "_savedAt": "2026-06-22T19:50:34.545Z"
 }

@@ -234,8 +234,8 @@
         "metalurgia": {
           "alertStatus": "VERDE",
           "kpi1Label": "Producción VM junio ",
-          "kpi1Value": "",
-          "kpi1Plan": "",
+          "kpi1Value": "350 oz Equiv",
+          "kpi1Plan": "1000",
           "kpi1Impact": "",
           "kpi2Label": "",
           "kpi2Value": "Minimizar mala producción VM",
@@ -245,7 +245,7 @@
           "apoyo": "coordinar con DO y DG el escenario para Julio",
           "accion": "",
           "updatedBy": "Ernesto Torres C",
-          "updatedAt": "2026-06-22T18:19:11.221Z",
+          "updatedAt": "2026-06-22T18:19:37.730Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -258,7 +258,7 @@
           "apoyoTipo1": "",
           "apoyo1": "coordinar con DO y DG el escenario para Julio",
           "apoyoTipo2": "",
-          "apoyo2": "Ver posibilidades de trabajar en VM resto de Junio o hasta agotar inventarios",
+          "apoyo2": "",
           "apoyoTipo3": "",
           "apoyo3": "",
           "apoyoTipo": ""
@@ -875,5 +875,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-22T18:19:13.224Z"
+  "_savedAt": "2026-06-22T18:19:39.732Z"
 }

@@ -400,8 +400,8 @@
           "kpi1Label": "AISC/Oz Eq",
           "kpi1Value": "$ 2,417",
           "kpi1Plan": "$1,800",
-          "kpi1Impact": "-",
-          "kpi2Label": "",
+          "kpi1Impact": "-US$617/Oz Eq",
+          "kpi2Label": "C",
           "kpi2Value": "",
           "kpi2Plan": "",
           "kpi2Impact": "",
@@ -409,7 +409,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Alvaro Urquidez",
-          "updatedAt": "2026-06-22T21:07:48.106Z",
+          "updatedAt": "2026-06-22T21:07:54.468Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1032,5 +1032,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-22T21:07:50.113Z"
+  "_savedAt": "2026-06-22T21:07:56.470Z"
 }

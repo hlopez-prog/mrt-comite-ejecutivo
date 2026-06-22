@@ -745,9 +745,10 @@ function toast(msg,color='var(--green)',duration=2600) {
 const Charts = {
   headcount(data) {
     if (!data || !data.length) return '<div class="text-muted text-sm">Sin datos de headcount</div>';
-    const total  = data.reduce((s,d) => s + (d.real||0), 0);
-    const totalPlan = data.reduce((s,d) => s + (d.plan||0), 0);
-    const maxVal = Math.max(...data.map(d => Math.max(d.real||0, d.plan||0)), 1);
+    // Force numeric — values may arrive as strings from JSON/localStorage
+    const total     = data.reduce((s,d) => s + (+(d.real)||0), 0);
+    const totalPlan = data.reduce((s,d) => s + (+(d.plan)||0), 0);
+    const maxVal    = Math.max(...data.map(d => Math.max(+(d.real)||0, +(d.plan)||0)), 1);
     const barH   = 180;
     const barW   = 58;
     const gap    = 14;
@@ -772,8 +773,8 @@ const Charts = {
     let bars = '';
     data.forEach((d, i) => {
       const x      = padL + i * (barW + gap);
-      const rVal   = d.real || 0;
-      const pVal   = d.plan || 0;
+      const rVal   = +(d.real) || 0;
+      const pVal   = +(d.plan) || 0;
       const hReal  = Math.round((rVal / maxVal) * barH);
       const hPlan  = Math.round((pVal / maxVal) * barH);
       const yR     = padT + barH - hReal;

@@ -261,12 +261,12 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-06-22T16:35:58.809Z",
+          "updatedAt": "2026-06-22T16:39:24.557Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
               "real": 144,
-              "plan": 165
+              "plan": 160
             },
             {
               "site": "REALITO",
@@ -276,42 +276,42 @@
             {
               "site": "MATAMOROS",
               "real": 82,
-              "plan": 85
+              "plan": 82
             },
             {
               "site": "OLIVOS",
               "real": 27,
-              "plan": 30
+              "plan": 29
             },
             {
               "site": "CHOIX",
               "real": 7,
-              "plan": 8
+              "plan": 7
             },
             {
               "site": "CORPORATIVO",
               "real": 47,
-              "plan": 50
+              "plan": 51
             },
             {
               "site": "NAMIQUIPA",
               "real": 9,
-              "plan": 10
+              "plan": 11
             },
             {
               "site": "GEOLOGÍA",
               "real": 10,
-              "plan": 12
+              "plan": 10
             },
             {
               "site": "BARRENACIÓN",
               "real": 17,
-              "plan": 20
+              "plan": 18
             },
             {
               "site": "SAN PEDRO",
               "real": 6,
-              "plan": 8
+              "plan": 6
             }
           ],
           "vacantes": [
@@ -727,5 +727,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-22T16:36:00.811Z"
+  "_savedAt": "2026-06-22T16:39:26.561Z"
 }

@@ -242,10 +242,10 @@
           "kpi2Plan": "Programa de arranque Namiquipa y apoyo en el desarollo Olovos B",
           "kpi2Impact": "Organigrama final Metalurgia",
           "riesgo": "",
-          "apoyo": "",
+          "apoyo": "coordinar con DO y DG el escenario para Julio",
           "accion": "",
           "updatedBy": "Ernesto Torres C",
-          "updatedAt": "2026-06-22T18:16:47.447Z",
+          "updatedAt": "2026-06-22T18:19:07.772Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -256,7 +256,7 @@
           "riesgo2": "",
           "riesgo3": "",
           "apoyoTipo1": "",
-          "apoyo1": "",
+          "apoyo1": "coordinar con DO y DG el escenario para Julio",
           "apoyoTipo2": "",
           "apoyo2": "",
           "apoyoTipo3": "",
@@ -875,5 +875,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-22T18:17:05.612Z"
+  "_savedAt": "2026-06-22T18:19:09.775Z"
 }

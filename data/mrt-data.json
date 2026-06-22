@@ -232,7 +232,7 @@
           "updatedAt": ""
         },
         "metalurgia": {
-          "alertStatus": "VERDE",
+          "alertStatus": "ROJO",
           "kpi1Label": "Producción VM junio ",
           "kpi1Value": "350 oz Equiv",
           "kpi1Plan": "1000",
@@ -245,7 +245,7 @@
           "apoyo": "coordinar con DO y DG el escenario para Julio",
           "accion": "Coordinación con DO y DF si se decide o define operar aun en VM , apoyo directo a nuevos proyectos con plan de arranque , en espera del reporte de auditoría 17025, pero ya se inian correcciones",
           "updatedBy": "Ernesto Torres C",
-          "updatedAt": "2026-06-22T18:21:01.927Z",
+          "updatedAt": "2026-06-22T18:21:05.260Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -994,5 +994,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-22T18:21:03.940Z"
+  "_savedAt": "2026-06-22T18:21:07.271Z"
 }

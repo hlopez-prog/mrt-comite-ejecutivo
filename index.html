@@ -788,10 +788,10 @@ const Charts = {
       const pctTotal = total > 0 ? Math.round((rVal / total) * 100) : 0;
 
       // ── Fixed label block above bars (4 rows, always same Y) ──
-      // Row 1: % cumplimiento vs plan (color coded, grande)
-      bars += `<text x="${cx}" y="${padT - 68}" text-anchor="middle" fill="${pctCol}" font-size="13" font-weight="800">${pct}%</text>`;
-      // Row 2: % peso vs total headcount (muted, pequeño)
-      bars += `<text x="${cx}" y="${padT - 52}" text-anchor="middle" fill="#606C7A" font-size="9">${pctTotal}% HC</text>`;
+      // Row 1: % peso vs total headcount (GRANDE, protagonista)
+      bars += `<text x="${cx}" y="${padT - 68}" text-anchor="middle" fill="#E6EDF3" font-size="14" font-weight="800">${pctTotal}%</text>`;
+      // Row 2: % cumplimiento vs plan (pequeño, color coded)
+      bars += `<text x="${cx}" y="${padT - 52}" text-anchor="middle" fill="${pctCol}" font-size="9" font-weight="700">Cumpl: ${pct}%</text>`;
       // Row 3: Presupuesto
       bars += `<text x="${cx - 1}" y="${padT - 34}" text-anchor="middle" fill="#8B95A1" font-size="9" font-weight="500">P: </text>`;
       bars += `<text x="${cx + 8}" y="${padT - 34}" text-anchor="middle" fill="#A8B3BE" font-size="10" font-weight="700">${pVal}</text>`;

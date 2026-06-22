@@ -735,10 +735,10 @@ function weekId(d) {
 function toDateStr(d) {
   return d.toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
-function toast(msg,color='var(--green)') {
+function toast(msg,color='var(--green)',duration=2600) {
   const t=document.createElement('div'); t.className='toast-msg';
   t.style.background=color; t.textContent=msg;
-  document.body.appendChild(t); setTimeout(()=>t.remove(),2600);
+  document.body.appendChild(t); setTimeout(()=>t.remove(),duration);
 }
 
 // ─── CHARTS ─────────────────────────────────────────────────
@@ -2184,8 +2184,17 @@ const TopicUI = {
     const topics=DB.get('topics')||[];
     const currentWk=weekId(new Date());
     if (this.editingId) {
+      // ── Editing existing topic ──────────────────────────────
       const t=topics.find(t=>t.id===this.editingId);
       if (t){
+        // Check duplicate title against OTHER topics (not self)
+        const titleLow=title.toLowerCase();
+        const dup=topics.find(x=>x.id!==this.editingId && x.title.toLowerCase()===titleLow);
+        if (dup){
+          const statusLabel={abierto:'Abierto',cerrado:'Cerrado',pausado:'Pausado'}[dup.status]||dup.status;
+          toast(`⚠ Ya existe un tema con ese título (${statusLabel})`, 'var(--amber)', 4000);
+          return;
+        }
         t.title=title;t.desc=document.getElementById('tm-desc').value.trim();
         t.priority=document.getElementById('tm-priority').value;
         t.status=document.getElementById('tm-status').value;
@@ -2196,6 +2205,14 @@ const TopicUI = {
         if (!(t.appearances||[]).includes(currentWk)) t.appearances=[...(t.appearances||[]),currentWk];
       }
     } else {
+      // ── New topic — check for duplicates first ──────────────
+      const titleLow=title.toLowerCase();
+      const dup=topics.find(x=>x.title.toLowerCase()===titleLow);
+      if (dup){
+        const statusLabel={abierto:'Abierto',cerrado:'Cerrado',pausado:'Pausado'}[dup.status]||dup.status;
+        const proceed=confirm(`Ya existe un tema con este título:\n"${dup.title}"\nEstado: ${statusLabel}\n\n¿Deseas crearlo de todas formas?`);
+        if (!proceed) return;
+      }
       topics.push({id:uid(),title,
         desc:document.getElementById('tm-desc').value.trim(),
         priority:document.getElementById('tm-priority').value,

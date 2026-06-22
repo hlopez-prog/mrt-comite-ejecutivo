@@ -261,7 +261,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-06-22T16:39:24.557Z",
+          "updatedAt": "2026-06-22T16:42:47.315Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -291,7 +291,7 @@
             {
               "site": "CORPORATIVO",
               "real": 47,
-              "plan": 51
+              "plan": 50
             },
             {
               "site": "NAMIQUIPA",
@@ -316,28 +316,34 @@
           ],
           "vacantes": [
             {
-              "cargo": "Operador de Equipo",
+              "cargo": "Cieneguita",
               "area": "Operaciones",
-              "abiertas": 12,
-              "dias": 45
+              "abiertas": 16,
+              "dias": 7
             },
             {
-              "cargo": "Mecánico Industrial",
-              "area": "Mantenimiento",
-              "abiertas": 5,
+              "cargo": "Realito",
+              "area": "MIna",
+              "abiertas": 1,
+              "dias": 7
+            },
+            {
+              "cargo": "Olivos",
+              "area": "Proyecto",
+              "abiertas": 3,
+              "dias": 7
+            },
+            {
+              "cargo": "Corporativo",
+              "area": "Finanzas",
+              "abiertas": 3,
               "dias": 30
             },
             {
-              "cargo": "Técnico Metalurgista",
-              "area": "Metalurgia",
-              "abiertas": 3,
-              "dias": 20
-            },
-            {
-              "cargo": "Analista Contable",
-              "area": "Finanzas",
+              "cargo": "Namiquipa",
+              "area": "Proyecto",
               "abiertas": 2,
-              "dias": 15
+              "dias": 10
             }
           ]
         },
@@ -727,5 +733,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-22T16:39:26.561Z"
+  "_savedAt": "2026-06-22T16:42:49.324Z"
 }

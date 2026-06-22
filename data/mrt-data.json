@@ -248,7 +248,7 @@
           "updatedAt": ""
         },
         "rrhh": {
-          "alertStatus": "VERDE",
+          "alertStatus": "AMBAR",
           "kpi1Label": "",
           "kpi1Value": "",
           "kpi1Plan": "",
@@ -261,7 +261,7 @@
           "apoyo": "Headcount y Diseño Organizacional de Metalurgia",
           "accion": "Aprobaciones de nuevos puestos y presupuestos ya analizados",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-06-22T17:02:23.070Z",
+          "updatedAt": "2026-06-22T17:25:58.440Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -857,5 +857,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-22T17:14:01.175Z"
+  "_savedAt": "2026-06-22T17:26:00.446Z"
 }

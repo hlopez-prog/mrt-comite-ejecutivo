@@ -260,13 +260,13 @@
           "riesgo": "",
           "apoyo": "",
           "accion": "",
-          "updatedBy": "",
-          "updatedAt": "",
+          "updatedBy": "Daniel Lopez",
+          "updatedAt": "2026-06-22T16:35:58.809Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
               "real": 144,
-              "plan": 150
+              "plan": 165
             },
             {
               "site": "REALITO",
@@ -727,5 +727,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-22T16:23:22.068Z"
+  "_savedAt": "2026-06-22T16:36:00.811Z"
 }

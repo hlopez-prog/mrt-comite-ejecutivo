@@ -265,7 +265,18 @@ tr:hover td{background:rgba(255,255,255,.02)}
       <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password">
     </div>
     <button class="btn btn-primary btn-full mt12" onclick="Auth.login()">Ingresar</button>
-    <div style="text-align:center;margin-top:20px">
+    <!-- Sync config — shown when no local users (new device, needs to pull from GitHub first) -->
+    <div id="login-sync-panel" style="display:none;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
+      <div style="font-size:12px;color:var(--amber);margin-bottom:12px;text-align:center">
+        ☁ Primer acceso en este dispositivo — conecta con GitHub para cargar tus credenciales
+      </div>
+      <div class="fg"><label>Usuario GitHub (Owner)</label><input type="text" id="ls-owner" placeholder="hlopez-prog"></div>
+      <div class="fg"><label>Repositorio</label><input type="text" id="ls-repo" placeholder="mrt-comite-ejecutivo"></div>
+      <div class="fg"><label>Token de acceso</label><input type="password" id="ls-token" placeholder="github_pat_..."></div>
+      <div id="ls-err" class="err-box"></div>
+      <button class="btn btn-ghost btn-full" onclick="FirstRun.connectAndLogin()" style="border-color:var(--amber);color:var(--amber)">Conectar y cargar usuarios →</button>
+    </div>
+    <div style="text-align:center;margin-top:16px">
       <a href="?reset" style="font-size:11px;color:var(--muted)">¿Problemas de acceso? Reiniciar sistema</a>
     </div>
   </div>
@@ -279,13 +290,17 @@ tr:hover td{background:rgba(255,255,255,.02)}
       <div class="lg-sub">Configuración Inicial</div>
     </div>
     <h2>Crear Cuenta de Administrador</h2>
-    <p class="desc">Primera vez en este dispositivo. Cree la cuenta de administrador para comenzar.</p>
+    <p class="desc">Solo el administrador del sistema debe completar este formulario por primera vez.</p>
     <div id="setup-err" class="err-box"></div>
     <div class="fg"><label>Nombre completo</label><input type="text" id="setup-name" placeholder="Ej: Daniel López"></div>
     <div class="fg"><label>Email corporativo</label><input type="email" id="setup-email" placeholder="admin@mrtcorporativo.mx"></div>
     <div class="fg"><label>Contraseña (mínimo 8 caracteres)</label><input type="password" id="setup-pass" placeholder="••••••••"></div>
     <div class="fg"><label>Confirmar contraseña</label><input type="password" id="setup-pass2" placeholder="••••••••"></div>
     <button class="btn btn-primary btn-full mt12" onclick="FirstRun.setup()">Crear Administrador y Acceder →</button>
+    <div style="text-align:center;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
+      <span style="font-size:12px;color:var(--muted)">¿Ya tienes credenciales de acceso?</span><br>
+      <button class="btn btn-ghost btn-sm mt8" onclick="FirstRun.showLogin()">Ir a inicio de sesión →</button>
+    </div>
   </div>
 </div>
 
@@ -1275,6 +1290,42 @@ const FirstRun = {
     const admin={id:uid(),name,email,passHash:h,role:'admin',section:''};
     DB.set('users',[admin]);
     Auth._startSession(admin);
+  },
+
+  // Switch setup screen → login screen
+  showLogin() {
+    document.getElementById('screen-setup').classList.remove('active');
+    document.getElementById('screen-login').classList.add('active');
+    // Show sync panel since they need to pull users first
+    const users = DB.get('users')||[];
+    if (users.length === 0) {
+      document.getElementById('login-sync-panel').style.display = '';
+    }
+  },
+
+  // Connect GitHub from login screen and pull users, then let user log in normally
+  async connectAndLogin() {
+    const owner = document.getElementById('ls-owner').value.trim();
+    const repo  = document.getElementById('ls-repo').value.trim();
+    const token = document.getElementById('ls-token').value.trim();
+    const errEl = document.getElementById('ls-err');
+    errEl.style.display = 'none';
+    if (!owner||!repo||!token) { errEl.textContent='Completa todos los campos.'; errEl.style.display='block'; return; }
+    try {
+      await DB.connectCloud({owner, repo, token, branch:'main'});
+      const users = DB.get('users')||[];
+      if (users.length === 0) {
+        errEl.textContent = 'Conexión exitosa pero no se encontraron usuarios. Contacta al administrador.';
+        errEl.style.display = 'block';
+        return;
+      }
+      // Hide sync panel — users loaded, ready to log in
+      document.getElementById('login-sync-panel').style.display = 'none';
+      toast('✓ Usuarios cargados. Ingresa tus credenciales.', 'var(--green)', 4000);
+    } catch(e) {
+      errEl.textContent = 'Error al conectar: ' + e.message;
+      errEl.style.display = 'block';
+    }
   }
 };
 
@@ -2557,7 +2608,14 @@ const AdminUI = {
   });
   const users=DB.get('users')||[];
   if (users.length===0){
-    document.getElementById('screen-setup').classList.add('active');
+    if (DB._lget('_ghcfg')) {
+      // Device already has GitHub config — skip setup, show login + sync will auto-pull users
+      document.getElementById('screen-login').classList.add('active');
+      document.getElementById('login-sync-panel').style.display='';
+    } else {
+      // True first time — show setup (admin only)
+      document.getElementById('screen-setup').classList.add('active');
+    }
   } else if (!Auth.restore()){
     document.getElementById('screen-login').classList.add('active');
   }

@@ -749,6 +749,20 @@ const Charts = {
     const total     = data.reduce((s,d) => s + (+(d.real)||0), 0);
     const totalPlan = data.reduce((s,d) => s + (+(d.plan)||0), 0);
     const maxVal    = Math.max(...data.map(d => Math.max(+(d.real)||0, +(d.plan)||0)), 1);
+
+    // Hamilton method: distribute weights so they always sum to exactly 100%
+    const exactWeights = total > 0
+      ? data.map(d => ((+(d.real)||0) / total) * 100)
+      : data.map(() => 0);
+    const floorWeights = exactWeights.map(v => Math.floor(v));
+    if (total > 0) {
+      const remainder = 100 - floorWeights.reduce((s,v) => s + v, 0);
+      exactWeights
+        .map((v, i) => ({ i, frac: v - Math.floor(v) }))
+        .sort((a, b) => b.frac - a.frac)
+        .slice(0, remainder)
+        .forEach(({ i }) => floorWeights[i]++);
+    }
     const barH   = 180;
     const barW   = 58;
     const gap    = 14;
@@ -785,8 +799,8 @@ const Charts = {
       // % real vs plan (cumplimiento presupuesto)
       const pct    = pVal > 0 ? Math.round((rVal / pVal) * 100) : 0;
       const pctCol = pct >= 95 ? '#30A46C' : pct >= 80 ? '#F5A524' : '#E5484D';
-      // % real vs total headcount (peso operación)
-      const pctTotal = total > 0 ? Math.round((rVal / total) * 100) : 0;
+      // % peso vs total — usa Hamilton method (suma exacta 100%)
+      const pctTotal = floorWeights[i];
 
       // ── Fixed label block above bars (4 rows, always same Y) ──
       // Row 1: % peso vs total headcount (GRANDE, protagonista)

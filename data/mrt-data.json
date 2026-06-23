@@ -1104,7 +1104,7 @@
       "id": "mqjpeok1g5157",
       "name": "Alvaro Urquidez",
       "email": "aurquidez@mrtcorporativo.mx",
-      "passHash": "1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1",
+      "passHash": "aecaf7b75d3472f1adac766c12932a3131e8f77b96c0ef1254c76015c455ea6d",
       "role": "director",
       "section": "finanzas"
     },
@@ -1117,5 +1117,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-23T02:06:23.131Z"
+  "_savedAt": "2026-06-23T02:07:25.813Z"
 }

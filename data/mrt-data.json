@@ -795,9 +795,9 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Juan Luis Frias",
-          "updatedAt": "2026-06-29T22:19:25.676Z",
+          "updatedAt": "2026-06-29T22:32:53.671Z",
           "kpi3Label": "Jaleros Los Azules",
-          "kpi3Value": "308,000 toneladas",
+          "kpi3Value": "300,000 toneladas",
           "kpi3Plan": "",
           "kpi3Impact": "",
           "hcNotas": "",
@@ -1453,5 +1453,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-29T22:19:38.099Z"
+  "_savedAt": "2026-06-29T22:32:55.674Z"
 }

@@ -790,12 +790,12 @@
           "kpi2Label": "",
           "kpi2Value": "196 real",
           "kpi2Plan": "215 plan",
-          "kpi2Impact": "umplimiento 91.06",
+          "kpi2Impact": "Cumplimiento 91.06",
           "riesgo": "",
           "apoyo": "",
           "accion": "",
           "updatedBy": "Juan Luis Frias",
-          "updatedAt": "2026-06-29T22:15:33.465Z",
+          "updatedAt": "2026-06-29T22:15:38.504Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1453,5 +1453,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-29T22:15:35.480Z"
+  "_savedAt": "2026-06-29T22:15:40.516Z"
 }

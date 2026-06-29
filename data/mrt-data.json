@@ -789,13 +789,13 @@
           "kpi1Impact": "108.87 % cumplimiento y 82% recuperacion terreno semicompacto",
           "kpi2Label": "",
           "kpi2Value": "196",
-          "kpi2Plan": "21",
+          "kpi2Plan": "215",
           "kpi2Impact": "",
           "riesgo": "",
           "apoyo": "",
           "accion": "",
           "updatedBy": "Juan Luis Frias",
-          "updatedAt": "2026-06-29T22:13:58.527Z",
+          "updatedAt": "2026-06-29T22:14:01.971Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1453,5 +1453,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-29T22:14:00.534Z"
+  "_savedAt": "2026-06-29T22:14:03.990Z"
 }

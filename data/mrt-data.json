@@ -786,7 +786,7 @@
           "kpi1Label": "Mts perforados",
           "kpi1Value": "359",
           "kpi1Plan": "330",
-          "kpi1Impact": "82% recuperacion",
+          "kpi1Impact": "108.87 % cumplimiento y 82% recuperacion terreno semicompacto",
           "kpi2Label": "",
           "kpi2Value": "",
           "kpi2Plan": "",
@@ -795,7 +795,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Juan Luis Frias",
-          "updatedAt": "2026-06-29T22:10:03.200Z",
+          "updatedAt": "2026-06-29T22:11:49.580Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1453,5 +1453,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-06-29T22:10:05.209Z"
+  "_savedAt": "2026-06-29T22:11:51.592Z"
 }

@@ -1535,6 +1535,66 @@ function temaBloquesHTML(sId, sec, canEdit) {
     : '';
 }
 
+// ─── DESAFÍO DEL MES HELPERS ─────────────────────────────────
+function desafioSlotHTML(sId, sec, n, canEdit) {
+  const titulo  = escHtml(sec[`desafio${n}Titulo`]  || '');
+  const pct     = parseInt(sec[`desafio${n}Pct`])   || 0;
+  const bloqueo = escHtml(sec[`desafio${n}Bloqueo`] || '');
+  const pctColor = pct >= 80 ? 'var(--green)' : pct >= 40 ? 'var(--amber)' : 'var(--red)';
+
+  if (canEdit) {
+    return `<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:10px 12px;margin-bottom:10px">
+      <div style="font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Tarea ${n}</div>
+      <input id="f-${sId}-desafio${n}Titulo" value="${titulo}"
+        placeholder="Descripción de la tarea del mes..."
+        style="width:100%;margin-bottom:8px"
+        onchange="MeetUI.autoSave('${sId}')">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <span style="font-size:11px;color:var(--muted);min-width:72px">Cumplimiento</span>
+        <input type="range" id="f-${sId}-desafio${n}Pct" min="0" max="100" value="${pct}"
+          oninput="MeetUI.updateDesafioPct('${sId}',${n},this.value)"
+          onchange="MeetUI.autoSave('${sId}')"
+          style="flex:1;accent-color:${pctColor}">
+        <span id="pct-label-${sId}-${n}" style="font-size:13px;font-weight:700;color:${pctColor};min-width:38px;text-align:right">${pct}%</span>
+      </div>
+      <div style="height:6px;background:rgba(255,255,255,.08);border-radius:3px;margin-bottom:8px;overflow:hidden">
+        <div id="pct-bar-${sId}-${n}" style="height:100%;width:${pct}%;background:${pctColor};border-radius:3px;transition:width .3s"></div>
+      </div>
+      <input id="f-${sId}-desafio${n}Bloqueo" value="${bloqueo}"
+        placeholder="¿Qué lo está bloqueando o qué necesita?"
+        style="width:100%;border-color:rgba(239,68,68,.3)"
+        onchange="MeetUI.autoSave('${sId}')">
+    </div>`;
+  }
+
+  // Readonly view — only show if has content
+  if (!titulo && !pct && !bloqueo) return '';
+  return `<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:10px 12px;margin-bottom:8px">
+    <div style="font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Tarea ${n}</div>
+    ${titulo ? `<div style="font-size:13px;margin-bottom:6px">${titulo}</div>` : ''}
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:5px">
+      <div style="flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:${pctColor};border-radius:3px"></div>
+      </div>
+      <span style="font-size:13px;font-weight:700;color:${pctColor};min-width:38px;text-align:right">${pct}%</span>
+    </div>
+    ${bloqueo ? `<div style="font-size:12px;color:var(--red);margin-top:4px">⚠ ${bloqueo}</div>` : ''}
+  </div>`;
+}
+
+function desafioMensualHTML(sId, sec, canEdit) {
+  const s1 = desafioSlotHTML(sId, sec, 1, canEdit);
+  const s2 = desafioSlotHTML(sId, sec, 2, canEdit);
+  if (!canEdit && !s1 && !s2) return '';
+  return `<div style="border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px;margin-bottom:14px;background:rgba(255,255,255,.02)">
+    <div style="font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:6px">
+      🎯 <span>Desafío del Mes</span>
+      <span style="font-size:10px;color:var(--muted);margin-left:auto;text-transform:none;letter-spacing:0">hasta 2 tareas mensuales</span>
+    </div>
+    ${s1}${s2}
+  </div>`;
+}
+
 // ─── MEETING UI ──────────────────────────────────────────────
 const MeetUI = {
   tab(name,btn) {
@@ -1625,6 +1685,7 @@ const MeetUI = {
                 </div>
               </div>
             </div>
+            ${desafioMensualHTML('rrhh', sec, canEdit)}
             ${canEdit?`
               <div style="display:grid;grid-template-columns:2fr 3fr;gap:16px;align-items:start">
                 ${riesgoBloquesHTML('rrhh', sec, true)}
@@ -1689,6 +1750,7 @@ const MeetUI = {
               ${riesgoBloquesHTML(s.id, sec, canEdit)}
               ${temaBloquesHTML(s.id, sec, canEdit)}
             </div>
+            ${desafioMensualHTML(s.id, sec, canEdit)}
             ${canEdit
               ?`<div class="field"><label>Acción / Decisión Requerida</label><input id="f-${s.id}-accion" value="${escHtml(sec.accion)}" placeholder="Acción o decisión que se necesita" onchange="MeetUI.autoSave('${s.id}')"></div>
                 <button class="btn btn-primary btn-sm mt8" onclick="MeetUI.saveSection('${s.id}')">Guardar sección</button>`
@@ -1752,6 +1814,7 @@ const MeetUI = {
             ${riesgoBloquesHTML(s.id, sec, canEdit)}
             ${temaBloquesHTML(s.id, sec, canEdit)}
           </div>
+          ${desafioMensualHTML(s.id, sec, canEdit)}
           ${field('accion','Acción / Decisión Requerida',sec.accion,'Acción o decisión que se necesita')}
           ${canEdit?`<button class="btn btn-primary btn-sm mt8" onclick="MeetUI.saveSection('${s.id}')">Guardar sección</button>`:''}
         </div>
@@ -1802,6 +1865,13 @@ const MeetUI = {
       apoyoTipo2:at2,apoyo2:ap2,
       apoyoTipo3:at3,apoyo3:ap3,
       apoyoTipo:at1,apoyo:ap1,
+      // Desafío del Mes — 2 tareas
+      desafio1Titulo:rf('desafio1Titulo'),
+      desafio1Pct:parseInt(document.getElementById(`f-${sId}-desafio1Pct`)?.value)||0,
+      desafio1Bloqueo:rf('desafio1Bloqueo'),
+      desafio2Titulo:rf('desafio2Titulo'),
+      desafio2Pct:parseInt(document.getElementById(`f-${sId}-desafio2Pct`)?.value)||0,
+      desafio2Bloqueo:rf('desafio2Bloqueo'),
       updatedBy:Auth.user?.name,updatedAt:new Date().toISOString()
     };
     m.sections[sId]=updated; Meetings.save(m);
@@ -1904,6 +1974,17 @@ const MeetUI = {
     DB.set('topics', topics);
     TopicUI.updateBadge();
     if (document.getElementById('screen-dashboard')?.classList.contains('active')) DashUI.render();
+  },
+
+  updateDesafioPct(sId, n, val) {
+    const v = parseInt(val) || 0;
+    const color = v >= 80 ? 'var(--green)' : v >= 40 ? 'var(--amber)' : 'var(--red)';
+    const lbl = document.getElementById(`pct-label-${sId}-${n}`);
+    const bar = document.getElementById(`pct-bar-${sId}-${n}`);
+    const rng = document.getElementById(`f-${sId}-desafio${n}Pct`);
+    if (lbl) { lbl.textContent = v + '%'; lbl.style.color = color; }
+    if (bar) { bar.style.width = v + '%'; bar.style.background = color; }
+    if (rng) rng.style.accentColor = color;
   },
 
   autoSave(sId) {

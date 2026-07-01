@@ -669,7 +669,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-01T17:06:24.533Z",
+          "updatedAt": "2026-07-01T17:06:27.666Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -687,7 +687,7 @@
           "apoyo3": "",
           "apoyoTipo": "",
           "desafio1Titulo": "",
-          "desafio1Pct": 28,
+          "desafio1Pct": 0,
           "desafio1Bloqueo": "",
           "desafio2Titulo": "",
           "desafio2Pct": 0,
@@ -1384,5 +1384,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-01T17:06:26.537Z"
+  "_savedAt": "2026-07-01T17:06:29.668Z"
 }

@@ -1543,42 +1543,45 @@ function desafioSlotHTML(sId, sec, n, canEdit) {
   const pctColor = pct >= 80 ? 'var(--green)' : pct >= 40 ? 'var(--amber)' : 'var(--red)';
 
   if (canEdit) {
-    return `<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:10px 12px;margin-bottom:10px">
-      <div style="font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Tarea ${n}</div>
-      <input id="f-${sId}-desafio${n}Titulo" value="${titulo}"
-        placeholder="Descripción de la tarea del mes..."
-        style="width:100%;margin-bottom:8px"
-        onchange="MeetUI.autoSave('${sId}')">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+    return `<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px;margin-bottom:10px">
+      <div style="font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Tarea ${n}</div>
+      <div class="field" style="margin-bottom:8px">
+        <input id="f-${sId}-desafio${n}Titulo" value="${titulo}"
+          placeholder="Descripción de la tarea del mes..."
+          onchange="MeetUI.autoSave('${sId}')">
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
         <span style="font-size:11px;color:var(--muted);min-width:72px">Cumplimiento</span>
         <input type="range" id="f-${sId}-desafio${n}Pct" min="0" max="100" value="${pct}"
           oninput="MeetUI.updateDesafioPct('${sId}',${n},this.value)"
           onchange="MeetUI.autoSave('${sId}')"
-          style="flex:1;accent-color:${pctColor}">
+          style="flex:1;accent-color:${pctColor};cursor:pointer">
         <span id="pct-label-${sId}-${n}" style="font-size:13px;font-weight:700;color:${pctColor};min-width:38px;text-align:right">${pct}%</span>
       </div>
-      <div style="height:6px;background:rgba(255,255,255,.08);border-radius:3px;margin-bottom:8px;overflow:hidden">
+      <div style="height:5px;background:var(--border);border-radius:3px;margin-bottom:8px;overflow:hidden">
         <div id="pct-bar-${sId}-${n}" style="height:100%;width:${pct}%;background:${pctColor};border-radius:3px;transition:width .3s"></div>
       </div>
-      <input id="f-${sId}-desafio${n}Bloqueo" value="${bloqueo}"
-        placeholder="¿Qué lo está bloqueando o qué necesita?"
-        style="width:100%;border-color:rgba(239,68,68,.3)"
-        onchange="MeetUI.autoSave('${sId}')">
+      <div class="field" style="margin-bottom:0">
+        <input id="f-${sId}-desafio${n}Bloqueo" value="${bloqueo}"
+          placeholder="¿Qué lo está bloqueando o qué necesita?"
+          style="border-color:rgba(239,68,68,.4)"
+          onchange="MeetUI.autoSave('${sId}')">
+      </div>
     </div>`;
   }
 
   // Readonly view — only show if has content
   if (!titulo && !pct && !bloqueo) return '';
-  return `<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:10px 12px;margin-bottom:8px">
-    <div style="font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Tarea ${n}</div>
-    ${titulo ? `<div style="font-size:13px;margin-bottom:6px">${titulo}</div>` : ''}
+  return `<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px;margin-bottom:8px">
+    <div style="font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Tarea ${n}</div>
+    ${titulo ? `<div style="font-size:13px;color:var(--text);margin-bottom:7px">${titulo}</div>` : ''}
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:5px">
-      <div style="flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden">
+      <div style="flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden">
         <div style="height:100%;width:${pct}%;background:${pctColor};border-radius:3px"></div>
       </div>
       <span style="font-size:13px;font-weight:700;color:${pctColor};min-width:38px;text-align:right">${pct}%</span>
     </div>
-    ${bloqueo ? `<div style="font-size:12px;color:var(--red);margin-top:4px">⚠ ${bloqueo}</div>` : ''}
+    ${bloqueo ? `<div style="font-size:12px;color:var(--red);margin-top:5px">⚠ ${escHtml(bloqueo)}</div>` : ''}
   </div>`;
 }
 

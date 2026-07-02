@@ -707,7 +707,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-02T18:08:57.540Z",
+          "updatedAt": "2026-07-02T18:09:39.225Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -764,8 +764,8 @@
             {
               "cargo": "Cieneguita",
               "area": "Operaciones",
-              "abiertas": 12,
-              "dias": 45
+              "abiertas": 23,
+              "dias": 7
             },
             {
               "cargo": "Realito",
@@ -1390,5 +1390,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-02T18:08:59.552Z"
+  "_savedAt": "2026-07-02T18:09:41.235Z"
 }

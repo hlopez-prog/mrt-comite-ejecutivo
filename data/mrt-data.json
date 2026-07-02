@@ -707,7 +707,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-02T18:08:17.596Z",
+          "updatedAt": "2026-07-02T18:08:57.540Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -780,10 +780,16 @@
               "dias": 20
             },
             {
-              "cargo": "Analista Contable",
+              "cargo": "Corporativo",
               "area": "Finanzas",
               "abiertas": 2,
               "dias": 15
+            },
+            {
+              "cargo": "Namiquipa",
+              "area": "",
+              "abiertas": 0,
+              "dias": 0
             }
           ]
         },
@@ -1384,5 +1390,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-02T18:08:19.605Z"
+  "_savedAt": "2026-07-02T18:08:59.552Z"
 }

@@ -707,7 +707,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-02T18:11:06.582Z",
+          "updatedAt": "2026-07-02T18:51:38.901Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -770,8 +770,8 @@
             {
               "cargo": "Realito",
               "area": "Mantenimiento",
-              "abiertas": 5,
-              "dias": 30
+              "abiertas": 1,
+              "dias": 10
             },
             {
               "cargo": "Olivos",
@@ -782,13 +782,13 @@
             {
               "cargo": "Corporativo",
               "area": "Finanzas",
-              "abiertas": 2,
+              "abiertas": 3,
               "dias": 15
             },
             {
               "cargo": "Namiquipa",
               "area": "",
-              "abiertas": 0,
+              "abiertas": 1,
               "dias": 0
             }
           ]
@@ -1392,5 +1392,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-02T18:17:52.535Z"
+  "_savedAt": "2026-07-02T18:51:40.914Z"
 }

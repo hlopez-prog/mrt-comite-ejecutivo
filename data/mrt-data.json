@@ -1021,7 +1021,7 @@
       "title": "[RRHH] Headcount y Diseño Organizacional de Metalurgia",
       "desc": "",
       "priority": "alta",
-      "status": "abierto",
+      "status": "progreso",
       "section": "rrhh",
       "owner": "Daniel Lopez",
       "dgFlag": "apoyo_metalurgia",
@@ -1390,5 +1390,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-02T18:11:08.599Z"
+  "_savedAt": "2026-07-02T18:16:55.033Z"
 }

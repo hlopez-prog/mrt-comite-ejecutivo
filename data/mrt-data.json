@@ -926,12 +926,12 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-06T21:58:11.925Z",
+          "updatedAt": "2026-07-06T22:00:27.391Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
-              "real": 144,
-              "plan": 150
+              "real": 142,
+              "plan": 165
             },
             {
               "site": "REALITO",
@@ -941,7 +941,7 @@
             {
               "site": "MATAMOROS",
               "real": 82,
-              "plan": 85
+              "plan": 82
             },
             {
               "site": "OLIVOS",
@@ -951,32 +951,32 @@
             {
               "site": "CHOIX",
               "real": 7,
-              "plan": 8
+              "plan": 7
             },
             {
               "site": "CORPORATIVO",
-              "real": 47,
+              "real": 49,
               "plan": 50
             },
             {
               "site": "NAMIQUIPA",
-              "real": 9,
-              "plan": 10
+              "real": 11,
+              "plan": 12
             },
             {
               "site": "GEOLOGÍA",
               "real": 10,
-              "plan": 12
+              "plan": 10
             },
             {
               "site": "BARRENACIÓN",
               "real": 17,
-              "plan": 20
+              "plan": 17
             },
             {
               "site": "SAN PEDRO",
               "real": 6,
-              "plan": 8
+              "plan": 6
             }
           ],
           "vacantes": [
@@ -993,16 +993,16 @@
               "dias": 30
             },
             {
-              "cargo": "Técnico Metalurgista",
-              "area": "Metalurgia",
-              "abiertas": 3,
-              "dias": 20
+              "cargo": "",
+              "area": "",
+              "abiertas": 0,
+              "dias": 0
             },
             {
-              "cargo": "Analista Contable",
-              "area": "Finanzas",
-              "abiertas": 2,
-              "dias": 15
+              "cargo": "",
+              "area": "",
+              "abiertas": 0,
+              "dias": 0
             }
           ]
         },
@@ -1589,5 +1589,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-06T21:58:13.926Z"
+  "_savedAt": "2026-07-06T22:00:29.407Z"
 }

@@ -925,8 +925,8 @@
           "riesgo": "",
           "apoyo": "",
           "accion": "",
-          "updatedBy": "",
-          "updatedAt": "",
+          "updatedBy": "Daniel Lopez",
+          "updatedAt": "2026-07-06T21:58:11.925Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -981,15 +981,15 @@
           ],
           "vacantes": [
             {
-              "cargo": "Operador de Equipo",
+              "cargo": "Cieneguita",
               "area": "Operaciones",
-              "abiertas": 12,
-              "dias": 45
+              "abiertas": 22,
+              "dias": 7
             },
             {
-              "cargo": "Mecánico Industrial",
-              "area": "Mantenimiento",
-              "abiertas": 5,
+              "cargo": "Realito",
+              "area": "Mina",
+              "abiertas": 1,
               "dias": 30
             },
             {
@@ -1589,5 +1589,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-06T19:53:54.012Z"
+  "_savedAt": "2026-07-06T21:58:13.926Z"
 }

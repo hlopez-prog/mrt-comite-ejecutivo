@@ -865,14 +865,14 @@
           "kpi1Plan": "2865        (9000 trimestre)",
           "kpi1Impact": "-76 Oz AuEq  -2.6%   (+65OzAuEq  trimestre)",
           "kpi2Label": "Costo  usd/OzAuEq (Proyección)",
-          "kpi2Value": "",
+          "kpi2Value": "2417",
           "kpi2Plan": "1800",
           "kpi2Impact": "",
           "riesgo": "",
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-06T19:31:00.102Z",
+          "updatedAt": "2026-07-06T19:31:04.521Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1521,5 +1521,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-06T19:31:02.104Z"
+  "_savedAt": "2026-07-06T19:31:06.539Z"
 }

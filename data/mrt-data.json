@@ -926,7 +926,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-06T22:01:40.178Z",
+          "updatedAt": "2026-07-06T22:01:47.853Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -1025,7 +1025,7 @@
           "desafio1Pct": 15,
           "desafio1Bloqueo": "",
           "desafio2Titulo": "Presupuesto Headcount 2026-2027 MRT",
-          "desafio2Pct": 39,
+          "desafio2Pct": 80,
           "desafio2Bloqueo": ""
         },
         "finanzas": {
@@ -1498,5 +1498,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-06T22:01:42.194Z"
+  "_savedAt": "2026-07-06T22:01:49.869Z"
 }

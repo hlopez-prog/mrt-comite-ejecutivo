@@ -861,7 +861,7 @@
         "operaciones": {
           "alertStatus": "VERDE",
           "kpi1Label": "Cierre junio Producción OzAuEq",
-          "kpi1Value": "",
+          "kpi1Value": "2789       ( 9065 trimestre)",
           "kpi1Plan": "2865        (9000 trimestre)",
           "kpi1Impact": "",
           "kpi2Label": "",
@@ -872,7 +872,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-06T19:25:16.224Z",
+          "updatedAt": "2026-07-06T19:26:30.602Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1521,5 +1521,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-06T19:25:18.226Z"
+  "_savedAt": "2026-07-06T19:26:32.606Z"
 }

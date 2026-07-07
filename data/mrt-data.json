@@ -1063,8 +1063,8 @@
         "exploracion": {
           "alertStatus": "VERDE",
           "kpi1Label": "Mts perforados",
-          "kpi1Value": "",
-          "kpi1Plan": "",
+          "kpi1Value": "223",
+          "kpi1Plan": "23",
           "kpi1Impact": "",
           "kpi2Label": "",
           "kpi2Value": "",
@@ -1074,7 +1074,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Juan Luis Frias",
-          "updatedAt": "2026-07-07T00:26:58.863Z",
+          "updatedAt": "2026-07-07T00:27:23.378Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1570,5 +1570,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-07T00:27:00.871Z"
+  "_savedAt": "2026-07-07T00:27:25.386Z"
 }

@@ -1487,7 +1487,7 @@
       "title": "[Finanzas] Forecast Q32026 - Estrategia de cobertura de precios con LGT",
       "desc": "",
       "priority": "alta",
-      "status": "abierto",
+      "status": "progreso",
       "section": "finanzas",
       "owner": "Alvaro Urquidez",
       "dgFlag": "seguimiento",
@@ -1626,5 +1626,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-07T14:37:26.546Z"
+  "_savedAt": "2026-07-07T14:38:44.651Z"
 }

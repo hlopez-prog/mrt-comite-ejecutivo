@@ -1065,7 +1065,7 @@
           "kpi1Label": "Mts perforados",
           "kpi1Value": "223",
           "kpi1Plan": "230",
-          "kpi1Impact": "82% recuperacion",
+          "kpi1Impact": "85% recuperacion",
           "kpi2Label": "",
           "kpi2Value": "",
           "kpi2Plan": "",
@@ -1074,7 +1074,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Juan Luis Frias",
-          "updatedAt": "2026-07-07T00:28:12.173Z",
+          "updatedAt": "2026-07-07T00:28:18.440Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1570,5 +1570,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-07T00:28:14.175Z"
+  "_savedAt": "2026-07-07T00:28:20.458Z"
 }

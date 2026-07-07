@@ -1045,7 +1045,7 @@
           "desafio2Bloqueo": ""
         },
         "finanzas": {
-          "alertStatus": "VERDE",
+          "alertStatus": "AMBAR",
           "kpi1Label": "AISC/Oz Eq",
           "kpi1Value": "$ 2,417",
           "kpi1Plan": "$1,800",
@@ -1058,7 +1058,7 @@
           "apoyo": "Forecast Q32026 - Estrategia de cobertura de precios con LGT",
           "accion": "",
           "updatedBy": "Alvaro Urquidez",
-          "updatedAt": "2026-07-07T14:31:21.337Z",
+          "updatedAt": "2026-07-07T14:31:32.097Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1609,5 +1609,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-07T14:31:23.342Z"
+  "_savedAt": "2026-07-07T14:31:34.101Z"
 }

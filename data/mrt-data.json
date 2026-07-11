@@ -1157,7 +1157,7 @@
           "alertStatus": "VERDE",
           "kpi1Label": "Arranque Maniquipa ",
           "kpi1Value": "",
-          "kpi1Plan": "",
+          "kpi1Plan": "03 de agosto del 2026",
           "kpi1Impact": "",
           "kpi2Label": "",
           "kpi2Value": "",
@@ -1167,7 +1167,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Torres",
-          "updatedAt": "2026-07-11T23:42:04.155Z",
+          "updatedAt": "2026-07-11T23:42:14.203Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1569,5 +1569,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-11T23:42:06.157Z"
+  "_savedAt": "2026-07-11T23:42:16.218Z"
 }

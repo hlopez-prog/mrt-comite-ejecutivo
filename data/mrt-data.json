@@ -1151,7 +1151,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-13T17:13:44.289Z",
+          "updatedAt": "2026-07-13T17:13:49.905Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1170,7 +1170,7 @@
           "apoyoTipo": "",
           "desafio1Titulo": "Arranque de proyecto Namiquipa",
           "desafio1Pct": 20,
-          "desafio1Bloqueo": "",
+          "desafio1Bloqueo": "Armado de equipos ",
           "desafio2Titulo": "",
           "desafio2Pct": 0,
           "desafio2Bloqueo": ""
@@ -1608,5 +1608,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-13T17:13:46.302Z"
+  "_savedAt": "2026-07-13T17:13:51.921Z"
 }

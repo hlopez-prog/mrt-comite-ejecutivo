@@ -1151,7 +1151,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-13T17:15:42.153Z",
+          "updatedAt": "2026-07-13T17:16:01.832Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1161,13 +1161,13 @@
           "riesgo1": "",
           "riesgo2": "",
           "riesgo3": "",
-          "apoyoTipo1": "",
+          "apoyoTipo1": "apoyo_metalurgia",
           "apoyo1": "",
           "apoyoTipo2": "",
           "apoyo2": "",
           "apoyoTipo3": "",
           "apoyo3": "",
-          "apoyoTipo": "",
+          "apoyoTipo": "apoyo_metalurgia",
           "desafio1Titulo": "Arranque de proyecto Namiquipa",
           "desafio1Pct": 20,
           "desafio1Bloqueo": "Armado de equipos , libranzas de CFE",
@@ -1608,5 +1608,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-13T17:15:44.163Z"
+  "_savedAt": "2026-07-13T17:16:03.844Z"
 }

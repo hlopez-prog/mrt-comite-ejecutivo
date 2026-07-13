@@ -1227,7 +1227,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-13T22:03:04.380Z",
+          "updatedAt": "2026-07-13T22:05:02.223Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -1282,28 +1282,22 @@
           ],
           "vacantes": [
             {
-              "cargo": "Operador de Equipo",
+              "cargo": "Cieneguita",
               "area": "Operaciones",
-              "abiertas": 12,
-              "dias": 45
+              "abiertas": 21,
+              "dias": 14
             },
             {
-              "cargo": "Mecánico Industrial",
-              "area": "Mantenimiento",
-              "abiertas": 5,
-              "dias": 30
+              "cargo": "Namiquipa-Ayudantes",
+              "area": "Construcción",
+              "abiertas": 4,
+              "dias": 7
             },
             {
-              "cargo": "Técnico Metalurgista",
-              "area": "Metalurgia",
-              "abiertas": 3,
-              "dias": 20
-            },
-            {
-              "cargo": "Analista Contable",
-              "area": "Finanzas",
-              "abiertas": 2,
-              "dias": 15
+              "cargo": "Realito",
+              "area": "Operación",
+              "abiertas": 1,
+              "dias": 14
             }
           ]
         },
@@ -1676,5 +1670,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-13T22:03:06.396Z"
+  "_savedAt": "2026-07-13T22:05:04.225Z"
 }

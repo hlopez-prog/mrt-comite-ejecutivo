@@ -1227,7 +1227,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-13T22:06:34.342Z",
+          "updatedAt": "2026-07-13T22:07:01.861Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -1318,7 +1318,7 @@
           "apoyoTipo": "",
           "desafio1Titulo": "inicio de proceso de Plan Anual de capacitación",
           "desafio1Pct": 30,
-          "desafio1Bloqueo": "",
+          "desafio1Bloqueo": "Etapa de relevamiento y diagnóstico de capacitación",
           "desafio2Titulo": "Presupuesto Headcount 2026-2027 MRT",
           "desafio2Pct": 88,
           "desafio2Bloqueo": ""
@@ -1714,5 +1714,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-13T22:06:36.353Z"
+  "_savedAt": "2026-07-13T22:07:03.866Z"
 }

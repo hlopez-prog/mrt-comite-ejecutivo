@@ -1151,7 +1151,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-13T17:14:56.849Z",
+          "updatedAt": "2026-07-13T17:15:21.315Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1172,7 +1172,7 @@
           "desafio1Pct": 20,
           "desafio1Bloqueo": "Armado de equipos , libranzas de CFE",
           "desafio2Titulo": "Rehabilitación Planta Olivos Au/Ag",
-          "desafio2Pct": 0,
+          "desafio2Pct": 20,
           "desafio2Bloqueo": "culminar pedidos de equipos a china"
         },
         "metalurgia": {
@@ -1608,5 +1608,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-13T17:14:58.860Z"
+  "_savedAt": "2026-07-13T17:15:23.323Z"
 }

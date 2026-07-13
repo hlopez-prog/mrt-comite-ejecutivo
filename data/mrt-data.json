@@ -1143,7 +1143,7 @@
           "kpi1Value": "2060",
           "kpi1Plan": "2194",
           "kpi1Impact": "-134 Oz",
-          "kpi2Label": "",
+          "kpi2Label": "Costo  usd/OzAuEq",
           "kpi2Value": "",
           "kpi2Plan": "",
           "kpi2Impact": "",
@@ -1151,7 +1151,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-13T17:11:42.630Z",
+          "updatedAt": "2026-07-13T17:11:53.598Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1608,5 +1608,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-13T17:11:44.637Z"
+  "_savedAt": "2026-07-13T17:11:55.615Z"
 }

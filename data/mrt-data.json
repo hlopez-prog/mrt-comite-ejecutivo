@@ -1227,7 +1227,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-13T22:05:02.223Z",
+          "updatedAt": "2026-07-13T22:06:26.829Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -1299,7 +1299,29 @@
               "abiertas": 1,
               "dias": 14
             }
-          ]
+          ],
+          "kpi3Label": "",
+          "kpi3Value": "",
+          "kpi3Plan": "",
+          "kpi3Impact": "",
+          "hcNotas": "",
+          "vacNotas": "",
+          "riesgo1": "",
+          "riesgo2": "",
+          "riesgo3": "",
+          "apoyoTipo1": "",
+          "apoyo1": "",
+          "apoyoTipo2": "",
+          "apoyo2": "",
+          "apoyoTipo3": "",
+          "apoyo3": "",
+          "apoyoTipo": "",
+          "desafio1Titulo": "inicio de proceso de Plan Anual de capacitación",
+          "desafio1Pct": 30,
+          "desafio1Bloqueo": "",
+          "desafio2Titulo": "Presupuesto Headcount 2026-2027 MRT",
+          "desafio2Pct": 0,
+          "desafio2Bloqueo": ""
         },
         "finanzas": {
           "alertStatus": "VERDE",
@@ -1692,5 +1714,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-13T22:06:20.436Z"
+  "_savedAt": "2026-07-13T22:06:28.841Z"
 }

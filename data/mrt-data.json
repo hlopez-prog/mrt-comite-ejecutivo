@@ -1151,7 +1151,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-13T17:14:37.596Z",
+          "updatedAt": "2026-07-13T17:14:56.849Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1173,7 +1173,7 @@
           "desafio1Bloqueo": "Armado de equipos , libranzas de CFE",
           "desafio2Titulo": "Rehabilitación Planta Olivos Au/Ag",
           "desafio2Pct": 0,
-          "desafio2Bloqueo": ""
+          "desafio2Bloqueo": "culminar pedidos de equipos a china"
         },
         "metalurgia": {
           "alertStatus": "AMBAR",
@@ -1608,5 +1608,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-13T17:14:39.609Z"
+  "_savedAt": "2026-07-13T17:14:58.860Z"
 }

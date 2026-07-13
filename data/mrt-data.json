@@ -1151,7 +1151,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-13T17:14:07.300Z",
+          "updatedAt": "2026-07-13T17:14:37.596Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1171,7 +1171,7 @@
           "desafio1Titulo": "Arranque de proyecto Namiquipa",
           "desafio1Pct": 20,
           "desafio1Bloqueo": "Armado de equipos , libranzas de CFE",
-          "desafio2Titulo": "",
+          "desafio2Titulo": "Rehabilitación Planta Olivos Au/Ag",
           "desafio2Pct": 0,
           "desafio2Bloqueo": ""
         },
@@ -1608,5 +1608,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-13T17:14:09.302Z"
+  "_savedAt": "2026-07-13T17:14:39.609Z"
 }

@@ -1327,7 +1327,7 @@
           "alertStatus": "VERDE",
           "kpi1Label": "AISC/Oz Eq",
           "kpi1Value": "$ 2,449",
-          "kpi1Plan": "$1,800",
+          "kpi1Plan": "$2,417",
           "kpi1Impact": "",
           "kpi2Label": "",
           "kpi2Value": "",
@@ -1337,7 +1337,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Alvaro Urquidez",
-          "updatedAt": "2026-07-14T05:13:41.634Z",
+          "updatedAt": "2026-07-14T05:13:52.625Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1702,5 +1702,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-14T05:13:43.638Z"
+  "_savedAt": "2026-07-14T05:13:54.629Z"
 }

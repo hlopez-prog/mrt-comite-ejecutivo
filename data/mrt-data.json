@@ -1214,7 +1214,7 @@
           "desafio2Bloqueo": "Muestra # 3 se logra incrementar de 67% recup Au a 91% ( +24% adicionales ) falta checar con muestras 1 y 2 en proceso esta semana tenemos resultdos"
         },
         "rrhh": {
-          "alertStatus": "VERDE",
+          "alertStatus": "AMBAR",
           "kpi1Label": "",
           "kpi1Value": "",
           "kpi1Plan": "",
@@ -1227,7 +1227,7 @@
           "apoyo": "Elaboración de 2 escenarios para definir plan de Headcount y Pasivo Laboral",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-13T22:09:47.682Z",
+          "updatedAt": "2026-07-16T18:08:23.249Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2657,5 +2657,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-16T17:50:09.685Z"
+  "_savedAt": "2026-07-16T18:08:25.256Z"
 }

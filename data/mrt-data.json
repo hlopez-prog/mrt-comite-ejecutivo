@@ -1402,6 +1402,851 @@
       },
       "decisions": [],
       "agreements": []
+    },
+    {
+      "id": "2026-W30",
+      "weekNum": 30,
+      "year": 2026,
+      "date": "lunes, 20 de julio de 2026",
+      "status": "borrador",
+      "sections": {
+        "operaciones": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "metalurgia": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "rrhh": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": "",
+          "headcount": [
+            {
+              "site": "CIENEGUITA",
+              "real": 144,
+              "plan": 150
+            },
+            {
+              "site": "REALITO",
+              "real": 15,
+              "plan": 16
+            },
+            {
+              "site": "MATAMOROS",
+              "real": 82,
+              "plan": 85
+            },
+            {
+              "site": "OLIVOS",
+              "real": 27,
+              "plan": 30
+            },
+            {
+              "site": "CHOIX",
+              "real": 7,
+              "plan": 8
+            },
+            {
+              "site": "CORPORATIVO",
+              "real": 47,
+              "plan": 50
+            },
+            {
+              "site": "NAMIQUIPA",
+              "real": 9,
+              "plan": 10
+            },
+            {
+              "site": "GEOLOGÍA",
+              "real": 10,
+              "plan": 12
+            },
+            {
+              "site": "BARRENACIÓN",
+              "real": 17,
+              "plan": 20
+            },
+            {
+              "site": "SAN PEDRO",
+              "real": 6,
+              "plan": 8
+            }
+          ],
+          "vacantes": [
+            {
+              "cargo": "Operador de Equipo",
+              "area": "Operaciones",
+              "abiertas": 12,
+              "dias": 45
+            },
+            {
+              "cargo": "Mecánico Industrial",
+              "area": "Mantenimiento",
+              "abiertas": 5,
+              "dias": 30
+            },
+            {
+              "cargo": "Técnico Metalurgista",
+              "area": "Metalurgia",
+              "abiertas": 3,
+              "dias": 20
+            },
+            {
+              "cargo": "Analista Contable",
+              "area": "Finanzas",
+              "abiertas": 2,
+              "dias": 15
+            }
+          ]
+        },
+        "finanzas": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "exploracion": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        }
+      },
+      "decisions": [],
+      "agreements": []
+    },
+    {
+      "id": "2026-W31",
+      "weekNum": 31,
+      "year": 2026,
+      "date": "lunes, 27 de julio de 2026",
+      "status": "borrador",
+      "sections": {
+        "operaciones": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "metalurgia": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "rrhh": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": "",
+          "headcount": [
+            {
+              "site": "CIENEGUITA",
+              "real": 144,
+              "plan": 150
+            },
+            {
+              "site": "REALITO",
+              "real": 15,
+              "plan": 16
+            },
+            {
+              "site": "MATAMOROS",
+              "real": 82,
+              "plan": 85
+            },
+            {
+              "site": "OLIVOS",
+              "real": 27,
+              "plan": 30
+            },
+            {
+              "site": "CHOIX",
+              "real": 7,
+              "plan": 8
+            },
+            {
+              "site": "CORPORATIVO",
+              "real": 47,
+              "plan": 50
+            },
+            {
+              "site": "NAMIQUIPA",
+              "real": 9,
+              "plan": 10
+            },
+            {
+              "site": "GEOLOGÍA",
+              "real": 10,
+              "plan": 12
+            },
+            {
+              "site": "BARRENACIÓN",
+              "real": 17,
+              "plan": 20
+            },
+            {
+              "site": "SAN PEDRO",
+              "real": 6,
+              "plan": 8
+            }
+          ],
+          "vacantes": [
+            {
+              "cargo": "Operador de Equipo",
+              "area": "Operaciones",
+              "abiertas": 12,
+              "dias": 45
+            },
+            {
+              "cargo": "Mecánico Industrial",
+              "area": "Mantenimiento",
+              "abiertas": 5,
+              "dias": 30
+            },
+            {
+              "cargo": "Técnico Metalurgista",
+              "area": "Metalurgia",
+              "abiertas": 3,
+              "dias": 20
+            },
+            {
+              "cargo": "Analista Contable",
+              "area": "Finanzas",
+              "abiertas": 2,
+              "dias": 15
+            }
+          ]
+        },
+        "finanzas": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "exploracion": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        }
+      },
+      "decisions": [],
+      "agreements": []
+    },
+    {
+      "id": "2026-W32",
+      "weekNum": 32,
+      "year": 2026,
+      "date": "lunes, 3 de agosto de 2026",
+      "status": "borrador",
+      "sections": {
+        "operaciones": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "metalurgia": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "rrhh": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": "",
+          "headcount": [
+            {
+              "site": "CIENEGUITA",
+              "real": 144,
+              "plan": 150
+            },
+            {
+              "site": "REALITO",
+              "real": 15,
+              "plan": 16
+            },
+            {
+              "site": "MATAMOROS",
+              "real": 82,
+              "plan": 85
+            },
+            {
+              "site": "OLIVOS",
+              "real": 27,
+              "plan": 30
+            },
+            {
+              "site": "CHOIX",
+              "real": 7,
+              "plan": 8
+            },
+            {
+              "site": "CORPORATIVO",
+              "real": 47,
+              "plan": 50
+            },
+            {
+              "site": "NAMIQUIPA",
+              "real": 9,
+              "plan": 10
+            },
+            {
+              "site": "GEOLOGÍA",
+              "real": 10,
+              "plan": 12
+            },
+            {
+              "site": "BARRENACIÓN",
+              "real": 17,
+              "plan": 20
+            },
+            {
+              "site": "SAN PEDRO",
+              "real": 6,
+              "plan": 8
+            }
+          ],
+          "vacantes": [
+            {
+              "cargo": "Operador de Equipo",
+              "area": "Operaciones",
+              "abiertas": 12,
+              "dias": 45
+            },
+            {
+              "cargo": "Mecánico Industrial",
+              "area": "Mantenimiento",
+              "abiertas": 5,
+              "dias": 30
+            },
+            {
+              "cargo": "Técnico Metalurgista",
+              "area": "Metalurgia",
+              "abiertas": 3,
+              "dias": 20
+            },
+            {
+              "cargo": "Analista Contable",
+              "area": "Finanzas",
+              "abiertas": 2,
+              "dias": 15
+            }
+          ]
+        },
+        "finanzas": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "exploracion": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        }
+      },
+      "decisions": [],
+      "agreements": []
+    },
+    {
+      "id": "2026-W33",
+      "weekNum": 33,
+      "year": 2026,
+      "date": "lunes, 10 de agosto de 2026",
+      "status": "borrador",
+      "sections": {
+        "operaciones": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "metalurgia": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "rrhh": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": "",
+          "headcount": [
+            {
+              "site": "CIENEGUITA",
+              "real": 144,
+              "plan": 150
+            },
+            {
+              "site": "REALITO",
+              "real": 15,
+              "plan": 16
+            },
+            {
+              "site": "MATAMOROS",
+              "real": 82,
+              "plan": 85
+            },
+            {
+              "site": "OLIVOS",
+              "real": 27,
+              "plan": 30
+            },
+            {
+              "site": "CHOIX",
+              "real": 7,
+              "plan": 8
+            },
+            {
+              "site": "CORPORATIVO",
+              "real": 47,
+              "plan": 50
+            },
+            {
+              "site": "NAMIQUIPA",
+              "real": 9,
+              "plan": 10
+            },
+            {
+              "site": "GEOLOGÍA",
+              "real": 10,
+              "plan": 12
+            },
+            {
+              "site": "BARRENACIÓN",
+              "real": 17,
+              "plan": 20
+            },
+            {
+              "site": "SAN PEDRO",
+              "real": 6,
+              "plan": 8
+            }
+          ],
+          "vacantes": [
+            {
+              "cargo": "Operador de Equipo",
+              "area": "Operaciones",
+              "abiertas": 12,
+              "dias": 45
+            },
+            {
+              "cargo": "Mecánico Industrial",
+              "area": "Mantenimiento",
+              "abiertas": 5,
+              "dias": 30
+            },
+            {
+              "cargo": "Técnico Metalurgista",
+              "area": "Metalurgia",
+              "abiertas": 3,
+              "dias": 20
+            },
+            {
+              "cargo": "Analista Contable",
+              "area": "Finanzas",
+              "abiertas": 2,
+              "dias": 15
+            }
+          ]
+        },
+        "finanzas": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "exploracion": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        }
+      },
+      "decisions": [],
+      "agreements": []
+    },
+    {
+      "id": "2026-W34",
+      "weekNum": 34,
+      "year": 2026,
+      "date": "lunes, 17 de agosto de 2026",
+      "status": "borrador",
+      "sections": {
+        "operaciones": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "metalurgia": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "rrhh": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": "",
+          "headcount": [
+            {
+              "site": "CIENEGUITA",
+              "real": 144,
+              "plan": 150
+            },
+            {
+              "site": "REALITO",
+              "real": 15,
+              "plan": 16
+            },
+            {
+              "site": "MATAMOROS",
+              "real": 82,
+              "plan": 85
+            },
+            {
+              "site": "OLIVOS",
+              "real": 27,
+              "plan": 30
+            },
+            {
+              "site": "CHOIX",
+              "real": 7,
+              "plan": 8
+            },
+            {
+              "site": "CORPORATIVO",
+              "real": 47,
+              "plan": 50
+            },
+            {
+              "site": "NAMIQUIPA",
+              "real": 9,
+              "plan": 10
+            },
+            {
+              "site": "GEOLOGÍA",
+              "real": 10,
+              "plan": 12
+            },
+            {
+              "site": "BARRENACIÓN",
+              "real": 17,
+              "plan": 20
+            },
+            {
+              "site": "SAN PEDRO",
+              "real": 6,
+              "plan": 8
+            }
+          ],
+          "vacantes": [
+            {
+              "cargo": "Operador de Equipo",
+              "area": "Operaciones",
+              "abiertas": 12,
+              "dias": 45
+            },
+            {
+              "cargo": "Mecánico Industrial",
+              "area": "Mantenimiento",
+              "abiertas": 5,
+              "dias": 30
+            },
+            {
+              "cargo": "Técnico Metalurgista",
+              "area": "Metalurgia",
+              "abiertas": 3,
+              "dias": 20
+            },
+            {
+              "cargo": "Analista Contable",
+              "area": "Finanzas",
+              "abiertas": 2,
+              "dias": 15
+            }
+          ]
+        },
+        "finanzas": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "exploracion": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        }
+      },
+      "decisions": [],
+      "agreements": []
     }
   ],
   "topics": [
@@ -1812,5 +2657,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-16T15:03:13.274Z"
+  "_savedAt": "2026-07-16T15:08:23.875Z"
 }

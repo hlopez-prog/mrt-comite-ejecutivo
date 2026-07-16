@@ -315,6 +315,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <button class="nav-item active" onclick="Nav.go('dashboard')" id="nav-dashboard"><span class="ic">◈</span> Dashboard</button>
     <button class="nav-item" onclick="Nav.go('meeting')" id="nav-meeting"><span class="ic">◷</span> Reunión Semanal</button>
     <button class="nav-item" onclick="Nav.go('topics')" id="nav-topics"><span class="ic">◎</span> Seguimiento Temas <span id="topics-badge" style="display:none" class="nav-badge"></span></button>
+    <button class="nav-item" onclick="Nav.go('acuerdos')" id="nav-acuerdos"><span class="ic">✓</span> Acuerdos Semanales</button>
     <button class="nav-item" onclick="Nav.go('history')" id="nav-history"><span class="ic">◑</span> Historial</button>
     <button class="nav-item" onclick="Nav.go('sync')" id="nav-sync"><span class="ic">☁</span> Sincronización <span id="sync-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--muted);margin-left:auto;flex-shrink:0"></span></button>
     <div id="nav-admin-sec" style="display:none">
@@ -447,6 +448,73 @@ tr:hover td{background:rgba(255,255,255,.02)}
     </div>
 
     <!-- HISTORIAL -->
+    <!-- ACUERDOS SEMANALES -->
+    <div class="page" id="page-acuerdos">
+      <div class="pg-head flex items-center justify-between">
+        <div>
+          <div class="pg-title">✓ Acuerdos Semanales</div>
+          <div class="pg-sub">Seguimiento de compromisos y acuerdos de comité — Asistente DG</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <select id="acuerdos-filter-status" onchange="AcuerdosUI.render()"
+            style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--text);padding:7px 10px;font-size:12px;cursor:pointer">
+            <option value="">Todos los estados</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="en_proceso">En Proceso</option>
+            <option value="cumplido">Cumplido</option>
+            <option value="cancelado">Cancelado</option>
+          </select>
+          <select id="acuerdos-filter-area" onchange="AcuerdosUI.render()"
+            style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--text);padding:7px 10px;font-size:12px;cursor:pointer">
+            <option value="">Todas las áreas</option>
+            <option value="general">General / DG</option>
+            <option value="operaciones">Operaciones</option>
+            <option value="metalurgia">Metalurgia</option>
+            <option value="rrhh">RRHH</option>
+            <option value="finanzas">Finanzas</option>
+            <option value="exploracion">Exploración</option>
+          </select>
+          <button class="btn btn-primary btn-sm" id="btn-nuevo-acuerdo" onclick="AcuerdosUI.openNew()">+ Nuevo Acuerdo</button>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px">
+        <div class="card" style="padding:14px;text-align:center">
+          <div style="font-size:26px;font-weight:800;color:var(--amber)" id="stat-pendiente">0</div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px">Pendientes</div>
+        </div>
+        <div class="card" style="padding:14px;text-align:center">
+          <div style="font-size:26px;font-weight:800;color:#60a5fa" id="stat-en_proceso">0</div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px">En Proceso</div>
+        </div>
+        <div class="card" style="padding:14px;text-align:center">
+          <div style="font-size:26px;font-weight:800;color:var(--green)" id="stat-cumplido">0</div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px">Cumplidos</div>
+        </div>
+        <div class="card" style="padding:14px;text-align:center">
+          <div style="font-size:26px;font-weight:800;color:var(--text)" id="stat-total">0</div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px">Total</div>
+        </div>
+      </div>
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Semana</th>
+              <th>Acuerdo / Compromiso</th>
+              <th>Área</th>
+              <th>Responsable</th>
+              <th>Fecha Límite</th>
+              <th>Estado</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="acuerdos-body">
+            <tr><td colspan="7" class="empty-state">Sin acuerdos registrados</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <div class="page" id="page-history">
       <div class="pg-head"><div class="pg-title">Historial de Reuniones</div><div class="pg-sub">Registro completo de comités semanales</div></div>
       <div class="g2 mb24">
@@ -544,6 +612,65 @@ tr:hover td{background:rgba(255,255,255,.02)}
     </div>
 
   </main>
+</div>
+
+<!-- ══════════ MODAL: ACUERDO ══════════ -->
+<div id="modal-acuerdo" class="modal">
+  <div class="modal-box" style="max-width:520px">
+    <div class="modal-head">
+      <span id="acuerdo-modal-title">Nuevo Acuerdo</span>
+      <button class="modal-close" onclick="AcuerdosUI.closeModal()">✕</button>
+    </div>
+    <div class="field">
+      <label>Acuerdo / Compromiso</label>
+      <input id="ac-titulo" placeholder="Descripción del acuerdo tomado...">
+    </div>
+    <div class="field">
+      <label>Detalle <span style="color:var(--muted);font-size:10px">(opcional)</span></label>
+      <textarea id="ac-desc" rows="3" placeholder="Contexto, condiciones o seguimiento..."></textarea>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="field">
+        <label>Área</label>
+        <select id="ac-area">
+          <option value="general">General / DG</option>
+          <option value="operaciones">Operaciones</option>
+          <option value="metalurgia">Metalurgia</option>
+          <option value="rrhh">RRHH</option>
+          <option value="finanzas">Finanzas</option>
+          <option value="exploracion">Exploración</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Responsable</label>
+        <input id="ac-responsable" placeholder="Nombre del responsable">
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="field">
+        <label>Fecha del Acuerdo</label>
+        <input id="ac-fecha" type="date">
+      </div>
+      <div class="field">
+        <label>Fecha Límite</label>
+        <input id="ac-limite" type="date">
+      </div>
+    </div>
+    <div class="field">
+      <label>Estado</label>
+      <select id="ac-status">
+        <option value="pendiente">⏳ Pendiente</option>
+        <option value="en_proceso">🔄 En Proceso</option>
+        <option value="cumplido">✅ Cumplido</option>
+        <option value="cancelado">❌ Cancelado</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:4px">
+      <button id="ac-delete-btn" class="btn btn-ghost btn-sm" style="color:var(--red);display:none" onclick="AcuerdosUI.deleteAcuerdo()">Eliminar</button>
+      <button class="btn btn-ghost btn-sm" onclick="AcuerdosUI.closeModal()">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="AcuerdosUI.save()">Guardar</button>
+    </div>
+  </div>
 </div>
 
 <!-- ══════════ MODAL: TOPIC ══════════ -->
@@ -1331,7 +1458,7 @@ const FirstRun = {
 
 // ─── NAVIGATION ──────────────────────────────────────────────
 const Nav = {
-  pages:['dashboard','meeting','topics','history','sync','admin'],
+  pages:['dashboard','meeting','topics','acuerdos','history','sync','admin'],
   go(page) {
     if (page==='admin' && !Auth.isAdmin()){this.go('dashboard');return;}
     this.pages.forEach(p=>{
@@ -1345,6 +1472,7 @@ const Nav = {
     if (page==='topics')    TopicUI.render();
     if (page==='history')   HistoryUI.render();
     if (page==='admin')     AdminUI.render();
+    if (page==='acuerdos')  AcuerdosUI.render();
     if (page==='sync')      SyncUI.render();
   }
 };
@@ -2605,6 +2733,148 @@ const SyncUI = {
   }
 };
 
+
+// ─── ACUERDOS SEMANALES ──────────────────────────────────────
+const AcuerdosUI = {
+  editingId: null,
+
+  _all() { return DB.get('acuerdos') || []; },
+
+  _statusBadge(s) {
+    const map = {
+      pendiente:  {cls:'ba', label:'⏳ Pendiente',  color:'var(--amber)'},
+      en_proceso: {cls:'',   label:'🔄 En Proceso', color:'#60a5fa'},
+      cumplido:   {cls:'bv', label:'✅ Cumplido',   color:'var(--green)'},
+      cancelado:  {cls:'br', label:'❌ Cancelado',  color:'var(--muted)'},
+    };
+    const d = map[s] || map.pendiente;
+    return `<span style="font-size:11px;font-weight:600;color:${d.color};background:${d.color}22;padding:3px 8px;border-radius:10px;white-space:nowrap">${d.label}</span>`;
+  },
+
+  _areaLabel(a) {
+    const map = {general:'General/DG',operaciones:'Operaciones',metalurgia:'Metalurgia',
+      rrhh:'RRHH',finanzas:'Finanzas',exploracion:'Exploración'};
+    return map[a] || a;
+  },
+
+  render() {
+    const canEdit = Auth.isAdmin();
+    const btnNuevo = document.getElementById('btn-nuevo-acuerdo');
+    if (btnNuevo) btnNuevo.style.display = canEdit ? '' : 'none';
+
+    const filterStatus = document.getElementById('acuerdos-filter-status')?.value || '';
+    const filterArea   = document.getElementById('acuerdos-filter-area')?.value   || '';
+
+    let items = this._all().sort((a,b) => (b.createdAt||'').localeCompare(a.createdAt||''));
+    if (filterStatus) items = items.filter(a => a.status === filterStatus);
+    if (filterArea)   items = items.filter(a => a.area   === filterArea);
+
+    // Stats (always from full list)
+    const all = this._all();
+    ['pendiente','en_proceso','cumplido'].forEach(s => {
+      const el = document.getElementById('stat-'+s);
+      if (el) el.textContent = all.filter(a=>a.status===s).length;
+    });
+    const tot = document.getElementById('stat-total');
+    if (tot) tot.textContent = all.length;
+
+    const body = document.getElementById('acuerdos-body');
+    if (!body) return;
+    if (!items.length) {
+      body.innerHTML = '<tr><td colspan="7" class="empty-state">Sin acuerdos' +
+        (filterStatus||filterArea ? ' para el filtro seleccionado' : ' registrados') + '</td></tr>';
+      return;
+    }
+    body.innerHTML = items.map(a => {
+      const semLabel = a.semana ? a.semana.replace('-W',' Sem ') : '—';
+      const limite = a.limite ? new Date(a.limite+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'}) : '—';
+      const editBtn = canEdit
+        ? `<button class="btn btn-ghost btn-sm" onclick="AcuerdosUI.openEdit('${a.id}')">Editar</button>`
+        : '';
+      return `<tr>
+        <td class="text-muted text-sm" style="white-space:nowrap">${escHtml(semLabel)}</td>
+        <td>
+          <div style="font-weight:600;font-size:13px">${escHtml(a.titulo)}</div>
+          ${a.desc ? `<div style="font-size:11px;color:var(--muted);margin-top:2px">${escHtml(a.desc)}</div>` : ''}
+        </td>
+        <td><span class="text-sm text-muted">${escHtml(this._areaLabel(a.area))}</span></td>
+        <td class="text-sm">${escHtml(a.responsable||'—')}</td>
+        <td class="text-sm" style="white-space:nowrap">${limite}</td>
+        <td>${this._statusBadge(a.status)}</td>
+        <td>${editBtn}</td>
+      </tr>`;
+    }).join('');
+  },
+
+  openNew() {
+    if (!Auth.isAdmin()) return;
+    this.editingId = null;
+    document.getElementById('acuerdo-modal-title').textContent = 'Nuevo Acuerdo';
+    document.getElementById('ac-titulo').value = '';
+    document.getElementById('ac-desc').value = '';
+    document.getElementById('ac-area').value = 'general';
+    document.getElementById('ac-responsable').value = '';
+    document.getElementById('ac-fecha').value = new Date().toISOString().slice(0,10);
+    document.getElementById('ac-limite').value = '';
+    document.getElementById('ac-status').value = 'pendiente';
+    document.getElementById('ac-delete-btn').style.display = 'none';
+    document.getElementById('modal-acuerdo').classList.add('open');
+    setTimeout(()=>document.getElementById('ac-titulo').focus(),100);
+  },
+
+  openEdit(id) {
+    if (!Auth.isAdmin()) return;
+    const a = this._all().find(x=>x.id===id); if (!a) return;
+    this.editingId = id;
+    document.getElementById('acuerdo-modal-title').textContent = 'Editar Acuerdo';
+    document.getElementById('ac-titulo').value = a.titulo || '';
+    document.getElementById('ac-desc').value = a.desc || '';
+    document.getElementById('ac-area').value = a.area || 'general';
+    document.getElementById('ac-responsable').value = a.responsable || '';
+    document.getElementById('ac-fecha').value = a.fecha || '';
+    document.getElementById('ac-limite').value = a.limite || '';
+    document.getElementById('ac-status').value = a.status || 'pendiente';
+    document.getElementById('ac-delete-btn').style.display = '';
+    document.getElementById('modal-acuerdo').classList.add('open');
+  },
+
+  save() {
+    const titulo = document.getElementById('ac-titulo').value.trim();
+    if (!titulo) { alert('Ingresa el acuerdo o compromiso.'); return; }
+    const item = {
+      titulo,
+      desc:         document.getElementById('ac-desc').value.trim(),
+      area:         document.getElementById('ac-area').value,
+      responsable:  document.getElementById('ac-responsable').value.trim(),
+      fecha:        document.getElementById('ac-fecha').value,
+      limite:       document.getElementById('ac-limite').value,
+      status:       document.getElementById('ac-status').value,
+    };
+    let all = this._all();
+    if (this.editingId) {
+      const idx = all.findIndex(a=>a.id===this.editingId);
+      if (idx>=0) all[idx] = {...all[idx], ...item};
+    } else {
+      all.push({id:uid(), semana:weekId(new Date()), createdBy:Auth.user?.name,
+        createdAt:new Date().toISOString(), ...item});
+    }
+    DB.set('acuerdos', all);
+    this.closeModal();
+    this.render();
+    toast(this.editingId ? 'Acuerdo actualizado ✓' : 'Acuerdo registrado ✓');
+  },
+
+  deleteAcuerdo() {
+    if (!confirm('¿Eliminar este acuerdo? Esta acción no se puede deshacer.')) return;
+    DB.set('acuerdos', this._all().filter(a=>a.id!==this.editingId));
+    this.closeModal();
+    this.render();
+    toast('Acuerdo eliminado', 'var(--red)');
+  },
+
+  closeModal() { document.getElementById('modal-acuerdo').classList.remove('open'); }
+};
+
 // ADMIN UI
 const AdminUI = {
   editingId: null,
@@ -2687,7 +2957,7 @@ const AdminUI = {
   document.getElementById('login-pass').addEventListener('keydown',e=>{if(e.key==='Enter')Auth.login();});
   document.getElementById('login-email').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('login-pass').focus();});
   document.getElementById('setup-pass2').addEventListener('keydown',e=>{if(e.key==='Enter')FirstRun.setup();});
-  ['modal-topic','modal-user','modal-pwd','modal-dec','modal-agr','modal-rrhh'].forEach(id=>{
+  ['modal-acuerdo','modal-topic','modal-user','modal-pwd','modal-dec','modal-agr','modal-rrhh'].forEach(id=>{
     document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
   });
   const users=DB.get('users')||[];

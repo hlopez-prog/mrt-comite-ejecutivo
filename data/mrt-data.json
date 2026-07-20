@@ -1427,7 +1427,7 @@
           "updatedAt": ""
         },
         "metalurgia": {
-          "alertStatus": "VERDE",
+          "alertStatus": "AMBAR",
           "kpi1Label": "Arranque Naniquipa ",
           "kpi1Value": "80% avance",
           "kpi1Plan": "03 de agosto del 2026",
@@ -1440,7 +1440,7 @@
           "apoyo": "y personal técnico operativo de Cieneguita",
           "accion": "Tambien se están probando extractantes alternos al CN , solos y en combinación con CN , buenas expectativas",
           "updatedBy": "Ernesto Torres",
-          "updatedAt": "2026-07-20T17:25:28.477Z",
+          "updatedAt": "2026-07-20T17:25:30.803Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2645,5 +2645,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-20T17:25:30.485Z"
+  "_savedAt": "2026-07-20T17:25:32.809Z"
 }

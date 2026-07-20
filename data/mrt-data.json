@@ -1424,7 +1424,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-20T19:07:16.377Z",
+          "updatedAt": "2026-07-20T19:07:46.210Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1434,13 +1434,13 @@
           "riesgo1": "",
           "riesgo2": "",
           "riesgo3": "",
-          "apoyoTipo1": "",
+          "apoyoTipo1": "apoyo_metalurgia",
           "apoyo1": "",
           "apoyoTipo2": "",
           "apoyo2": "",
           "apoyoTipo3": "",
           "apoyo3": "",
-          "apoyoTipo": "",
+          "apoyoTipo": "apoyo_metalurgia",
           "desafio1Titulo": "",
           "desafio1Pct": 80,
           "desafio1Bloqueo": "Se continúa con el armado de equipos. Se mantienen la fecha tentativa de arranque para el 3 de agosto",
@@ -2633,5 +2633,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-20T19:07:18.388Z"
+  "_savedAt": "2026-07-20T19:07:48.215Z"
 }

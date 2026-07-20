@@ -1429,7 +1429,7 @@
         "metalurgia": {
           "alertStatus": "VERDE",
           "kpi1Label": "Arranque Maniquipa ",
-          "kpi1Value": "",
+          "kpi1Value": "75% avance",
           "kpi1Plan": "",
           "kpi1Impact": "",
           "kpi2Label": "",
@@ -1440,7 +1440,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Torres",
-          "updatedAt": "2026-07-20T17:12:08.855Z",
+          "updatedAt": "2026-07-20T17:12:13.518Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2577,5 +2577,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-20T17:12:10.872Z"
+  "_savedAt": "2026-07-20T17:12:15.520Z"
 }

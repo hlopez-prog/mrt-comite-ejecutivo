@@ -1424,7 +1424,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-20T19:05:56.580Z",
+          "updatedAt": "2026-07-20T19:06:18.786Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1443,7 +1443,7 @@
           "apoyoTipo": "",
           "desafio1Titulo": "",
           "desafio1Pct": 80,
-          "desafio1Bloqueo": "Se xontinúa con el armado de equipos.",
+          "desafio1Bloqueo": "Se continúa con el armado de equipos. Se mantienen la fecha tentativa de arranque para el 3 de agosto",
           "desafio2Titulo": "",
           "desafio2Pct": 35,
           "desafio2Bloqueo": ""
@@ -2633,5 +2633,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-20T19:05:58.602Z"
+  "_savedAt": "2026-07-20T19:06:20.801Z"
 }

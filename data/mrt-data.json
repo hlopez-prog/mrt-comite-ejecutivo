@@ -1419,12 +1419,12 @@
           "kpi2Label": "Costo  usd/OzAuEq",
           "kpi2Value": "1910",
           "kpi2Plan": "2021",
-          "kpi2Impact": "",
+          "kpi2Impact": "-111 OzAuEq",
           "riesgo": "",
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-20T19:03:41.193Z",
+          "updatedAt": "2026-07-20T19:04:00.013Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2633,5 +2633,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-20T19:03:43.199Z"
+  "_savedAt": "2026-07-20T19:04:02.023Z"
 }

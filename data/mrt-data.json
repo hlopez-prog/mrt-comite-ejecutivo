@@ -1435,12 +1435,12 @@
           "kpi2Label": "coordinar el incremento de la capacidad a 2000 t/mes en Cieneguita",
           "kpi2Value": "1100 t/mes",
           "kpi2Plan": "2000 ",
-          "kpi2Impact": "Apoyo para ambos proyectos claves ",
+          "kpi2Impact": "Apoyo para ambos proyectos claves Namiquipa y Plan B Olivos",
           "riesgo": "",
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Torres",
-          "updatedAt": "2026-07-20T17:14:45.243Z",
+          "updatedAt": "2026-07-20T17:15:28.647Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2577,5 +2577,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-20T17:14:47.247Z"
+  "_savedAt": "2026-07-20T17:15:30.663Z"
 }

@@ -1424,7 +1424,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-20T19:04:03.116Z",
+          "updatedAt": "2026-07-20T19:04:47.039Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1442,7 +1442,7 @@
           "apoyo3": "",
           "apoyoTipo": "",
           "desafio1Titulo": "",
-          "desafio1Pct": 0,
+          "desafio1Pct": 80,
           "desafio1Bloqueo": "",
           "desafio2Titulo": "",
           "desafio2Pct": 0,
@@ -2633,5 +2633,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-20T19:04:05.132Z"
+  "_savedAt": "2026-07-20T19:04:49.048Z"
 }

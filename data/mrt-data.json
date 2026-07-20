@@ -1424,7 +1424,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-20T19:04:47.039Z",
+          "updatedAt": "2026-07-20T19:04:56.768Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1445,7 +1445,7 @@
           "desafio1Pct": 80,
           "desafio1Bloqueo": "",
           "desafio2Titulo": "",
-          "desafio2Pct": 0,
+          "desafio2Pct": 35,
           "desafio2Bloqueo": ""
         },
         "metalurgia": {
@@ -2633,5 +2633,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-20T19:04:49.048Z"
+  "_savedAt": "2026-07-20T19:04:58.787Z"
 }

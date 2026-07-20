@@ -1434,13 +1434,13 @@
           "kpi1Impact": "",
           "kpi2Label": "coordinar el incremento de la capacidad a 2000 t/mes en Cieneguita",
           "kpi2Value": "1100 t/mes",
-          "kpi2Plan": "",
+          "kpi2Plan": "2000 ",
           "kpi2Impact": "",
           "riesgo": "",
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Torres",
-          "updatedAt": "2026-07-20T17:14:30.997Z",
+          "updatedAt": "2026-07-20T17:14:36.176Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2577,5 +2577,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-20T17:14:33.006Z"
+  "_savedAt": "2026-07-20T17:14:38.178Z"
 }

@@ -1432,7 +1432,7 @@
           "kpi1Value": "75% avance",
           "kpi1Plan": "03 de agosto del 2026",
           "kpi1Impact": "",
-          "kpi2Label": "",
+          "kpi2Label": "coordinar el incremento de la capacidad a 2000 t/mes en Cieneguita",
           "kpi2Value": "",
           "kpi2Plan": "",
           "kpi2Impact": "",
@@ -1440,7 +1440,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Torres",
-          "updatedAt": "2026-07-20T17:14:18.981Z",
+          "updatedAt": "2026-07-20T17:14:27.437Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2577,5 +2577,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-20T17:14:20.984Z"
+  "_savedAt": "2026-07-20T17:14:29.446Z"
 }

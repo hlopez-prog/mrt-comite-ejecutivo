@@ -1653,7 +1653,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Torres",
-          "updatedAt": "2026-07-26T19:10:26.599Z",
+          "updatedAt": "2026-07-26T19:10:44.181Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1675,7 +1675,7 @@
           "desafio1Bloqueo": "apoyar pruebas de filtración jales secos ",
           "desafio2Titulo": "Incrementar la recuperación de jales los azules para que sean realmente economicos para negociar y ayuden a incrementar reservas para Olivos B",
           "desafio2Pct": 100,
-          "desafio2Bloqueo": ""
+          "desafio2Bloqueo": "reporte enviado "
         },
         "rrhh": {
           "alertStatus": "VERDE",
@@ -2621,5 +2621,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-26T19:10:28.611Z"
+  "_savedAt": "2026-07-26T19:10:46.194Z"
 }

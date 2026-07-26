@@ -1645,7 +1645,7 @@
           "kpi1Value": "Alto",
           "kpi1Plan": "Rehabilitación para arrancar en el menor tiempo posible",
           "kpi1Impact": "",
-          "kpi2Label": "",
+          "kpi2Label": "Arranque Namiquipa y desarrollo Olivos B",
           "kpi2Value": "",
           "kpi2Plan": "",
           "kpi2Impact": "",
@@ -1653,7 +1653,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Torres",
-          "updatedAt": "2026-07-26T19:07:53.242Z",
+          "updatedAt": "2026-07-26T19:08:14.789Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2621,5 +2621,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-26T19:07:55.259Z"
+  "_savedAt": "2026-07-26T19:08:16.806Z"
 }

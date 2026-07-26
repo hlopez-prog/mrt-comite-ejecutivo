@@ -1653,7 +1653,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Torres",
-          "updatedAt": "2026-07-26T19:09:26.669Z",
+          "updatedAt": "2026-07-26T19:09:29.356Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1674,7 +1674,7 @@
           "desafio1Pct": 81,
           "desafio1Bloqueo": "",
           "desafio2Titulo": "Incrementar la recuperación de jales los azules para que sean realmente economicos para negociar y ayuden a incrementar reservas para Olivos B",
-          "desafio2Pct": 0,
+          "desafio2Pct": 100,
           "desafio2Bloqueo": ""
         },
         "rrhh": {
@@ -2621,5 +2621,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-26T19:09:28.671Z"
+  "_savedAt": "2026-07-26T19:09:31.358Z"
 }

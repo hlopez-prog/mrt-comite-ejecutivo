@@ -1642,7 +1642,7 @@
         "metalurgia": {
           "alertStatus": "VERDE",
           "kpi1Label": "Reestructuración Olivos",
-          "kpi1Value": "",
+          "kpi1Value": "Alto",
           "kpi1Plan": "",
           "kpi1Impact": "",
           "kpi2Label": "",
@@ -1653,7 +1653,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Torres",
-          "updatedAt": "2026-07-26T19:06:10.758Z",
+          "updatedAt": "2026-07-26T19:06:28.037Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2621,5 +2621,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-26T19:06:12.776Z"
+  "_savedAt": "2026-07-26T19:06:30.039Z"
 }

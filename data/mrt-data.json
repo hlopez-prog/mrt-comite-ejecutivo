@@ -1653,7 +1653,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Torres",
-          "updatedAt": "2026-07-26T19:09:38.828Z",
+          "updatedAt": "2026-07-26T19:10:04.538Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1672,7 +1672,7 @@
           "apoyoTipo": "",
           "desafio1Titulo": "Calcular el dimensionamiento del equipo necesario para esta nueva capacidad este mes en CIE, el proximo mes tener la Ingeniería conceptual avaluada",
           "desafio1Pct": 81,
-          "desafio1Bloqueo": "",
+          "desafio1Bloqueo": "apoyar pruebas de ",
           "desafio2Titulo": "Incrementar la recuperación de jales los azules para que sean realmente economicos para negociar y ayuden a incrementar reservas para Olivos B",
           "desafio2Pct": 100,
           "desafio2Bloqueo": ""
@@ -2621,5 +2621,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-26T19:09:40.832Z"
+  "_savedAt": "2026-07-26T19:10:06.555Z"
 }

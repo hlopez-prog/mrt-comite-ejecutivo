@@ -1653,7 +1653,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Torres",
-          "updatedAt": "2026-07-26T19:09:17.205Z",
+          "updatedAt": "2026-07-26T19:09:21.443Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1671,7 +1671,7 @@
           "apoyo3": "",
           "apoyoTipo": "",
           "desafio1Titulo": "Calcular el dimensionamiento del equipo necesario para esta nueva capacidad este mes en CIE, el proximo mes tener la Ingeniería conceptual avaluada",
-          "desafio1Pct": 0,
+          "desafio1Pct": 81,
           "desafio1Bloqueo": "",
           "desafio2Titulo": "",
           "desafio2Pct": 0,
@@ -2621,5 +2621,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-26T19:09:19.210Z"
+  "_savedAt": "2026-07-26T19:09:23.457Z"
 }

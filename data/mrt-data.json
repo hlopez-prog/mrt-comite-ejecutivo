@@ -1626,7 +1626,7 @@
         "operaciones": {
           "alertStatus": "VERDE",
           "kpi1Label": "Proyección Producción OzAuEq",
-          "kpi1Value": "2062",
+          "kpi1Value": "",
           "kpi1Plan": "2194",
           "kpi1Impact": "",
           "kpi2Label": "",
@@ -1637,7 +1637,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-07-27T19:52:05.550Z",
+          "updatedAt": "2026-07-27T19:52:08.084Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2660,5 +2660,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-27T19:52:07.555Z"
+  "_savedAt": "2026-07-27T19:52:10.099Z"
 }

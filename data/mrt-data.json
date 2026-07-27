@@ -1846,7 +1846,7 @@
           "kpi1Label": "",
           "kpi1Value": "Real 315",
           "kpi1Plan": "Plan 330",
-          "kpi1Impact": "",
+          "kpi1Impact": "Maniobra cambio de planilla",
           "kpi2Label": "",
           "kpi2Value": "",
           "kpi2Plan": "",
@@ -1855,7 +1855,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Juan Luis Frias",
-          "updatedAt": "2026-07-27T22:39:51.849Z",
+          "updatedAt": "2026-07-27T22:40:14.366Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2782,5 +2782,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-27T22:39:53.855Z"
+  "_savedAt": "2026-07-27T22:40:16.377Z"
 }

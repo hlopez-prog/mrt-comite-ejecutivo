@@ -1735,7 +1735,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-27T20:54:30.656Z",
+          "updatedAt": "2026-07-27T20:55:04.714Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -1823,7 +1823,7 @@
           "desafio1Bloqueo": "",
           "desafio2Titulo": "",
           "desafio2Pct": 0,
-          "desafio2Bloqueo": "Definición de los presupuestos de los proyectos de Olivos y Namiquipa"
+          "desafio2Bloqueo": "Definición de los presupuestos de los proyectos de Olivos "
         },
         "finanzas": {
           "alertStatus": "VERDE",
@@ -2743,5 +2743,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-27T20:54:32.672Z"
+  "_savedAt": "2026-07-27T20:55:06.730Z"
 }

@@ -1713,57 +1713,57 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-27T20:38:29.388Z",
+          "updatedAt": "2026-07-27T20:52:52.935Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
-              "real": 144,
-              "plan": 150
+              "real": 147,
+              "plan": 153
             },
             {
               "site": "REALITO",
-              "real": 15,
+              "real": 16,
               "plan": 16
             },
             {
               "site": "MATAMOROS",
-              "real": 82,
-              "plan": 85
+              "real": 6,
+              "plan": 6
             },
             {
               "site": "OLIVOS",
-              "real": 27,
-              "plan": 30
+              "real": 32,
+              "plan": 32
             },
             {
               "site": "CHOIX",
               "real": 7,
-              "plan": 8
+              "plan": 7
             },
             {
               "site": "CORPORATIVO",
-              "real": 47,
-              "plan": 50
+              "real": 50,
+              "plan": 51
             },
             {
               "site": "NAMIQUIPA",
-              "real": 9,
-              "plan": 10
+              "real": 14,
+              "plan": 52
             },
             {
               "site": "GEOLOGÍA",
-              "real": 10,
-              "plan": 12
+              "real": 11,
+              "plan": 11
             },
             {
               "site": "BARRENACIÓN",
               "real": 17,
-              "plan": 20
+              "plan": 17
             },
             {
               "site": "SAN PEDRO",
-              "real": 6,
-              "plan": 8
+              "real": 7,
+              "plan": 7
             }
           ],
           "vacantes": [
@@ -2733,5 +2733,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-27T20:38:31.403Z"
+  "_savedAt": "2026-07-27T20:52:54.951Z"
 }

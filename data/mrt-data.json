@@ -1722,7 +1722,7 @@
           "desafio2Bloqueo": "reporte enviado "
         },
         "rrhh": {
-          "alertStatus": "VERDE",
+          "alertStatus": "AMBAR",
           "kpi1Label": "",
           "kpi1Value": "",
           "kpi1Plan": "",
@@ -1735,7 +1735,7 @@
           "apoyo": "Cierre Laboral de Matamoros",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-27T20:56:57.579Z",
+          "updatedAt": "2026-07-27T20:57:02.622Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2794,5 +2794,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-27T20:56:59.581Z"
+  "_savedAt": "2026-07-27T20:57:04.624Z"
 }

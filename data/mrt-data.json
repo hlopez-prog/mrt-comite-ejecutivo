@@ -1735,12 +1735,12 @@
           "apoyo": "Cierre Laboral de Matamoros",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-07-27T20:58:46.083Z",
+          "updatedAt": "2026-07-28T14:08:06.912Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
               "real": 147,
-              "plan": 153
+              "plan": 166
             },
             {
               "site": "REALITO",
@@ -2821,5 +2821,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-07-28T13:18:13.308Z"
+  "_savedAt": "2026-07-28T14:08:08.921Z"
 }

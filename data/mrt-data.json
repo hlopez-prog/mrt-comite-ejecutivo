@@ -2109,7 +2109,7 @@
           "kpi1Label": "",
           "kpi1Value": "810 mt  rea",
           "kpi1Plan": "1200 mt plan",
-          "kpi1Impact": "",
+          "kpi1Impact": "87% recuperación",
           "kpi2Label": "",
           "kpi2Value": "",
           "kpi2Plan": "",
@@ -2118,7 +2118,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Juan Luis Frias",
-          "updatedAt": "2026-08-03T22:23:44.247Z",
+          "updatedAt": "2026-08-03T22:24:06.136Z",
           "kpi3Label": "Vista SPC recorrido interior mina",
           "kpi3Value": "Vista Olivos recorrido en campo bdd Armanda y Karol Infil",
           "kpi3Plan": "Visita Parral con JH avances topografía y muestreo x veta",
@@ -3335,5 +3335,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-03T22:23:50.021Z"
+  "_savedAt": "2026-08-03T22:24:08.141Z"
 }

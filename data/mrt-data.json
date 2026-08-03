@@ -1926,13 +1926,13 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-08-03T17:51:34.966Z",
+          "updatedAt": "2026-08-03T17:52:36.209Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
           "kpi3Impact": "",
           "proy1": "Proyección de cierre julio y plan agosto CIE",
-          "proy2": "Costo Acarreo Namiquipa",
+          "proy2": "Costo Acarreo Namiquipa y plan de arranque",
           "proy3": "Entrevista candidatos SRH",
           "hcNotas": "",
           "vacNotas": "",
@@ -2769,5 +2769,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-03T17:51:36.975Z"
+  "_savedAt": "2026-08-03T17:52:38.221Z"
 }

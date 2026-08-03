@@ -1958,7 +1958,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-03T01:29:33.356Z",
+          "updatedAt": "2026-08-03T01:31:07.319Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2041,7 +2041,7 @@
           "kpi3Value": "",
           "kpi3Plan": "",
           "kpi3Impact": "",
-          "proy1": "Junta con Juan Carlos en cieneguita para definir el Plan de capacitación",
+          "proy1": "Junta con Juan Carlos y Ana en cieneguita para definir el Plan de capacitación",
           "proy2": "Seguimiento con Namiquipa para ver status del plan de reclutamiento",
           "proy3": "Llamada con Joel Estrada para plan de perfiles",
           "hcNotas": "",
@@ -2795,5 +2795,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-03T01:29:35.367Z"
+  "_savedAt": "2026-08-03T01:31:09.322Z"
 }

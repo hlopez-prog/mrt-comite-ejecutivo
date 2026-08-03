@@ -1280,11 +1280,11 @@ const DB = {
   _emptyRRHH() {
     return {...this._emptySection(),
       headcount:[
-        {site:'CIENEGUITA',real:144,plan:150},{site:'REALITO',real:15,plan:16},
-        {site:'MATAMOROS',real:82,plan:85},{site:'OLIVOS',real:27,plan:30},
-        {site:'CHOIX',real:7,plan:8},{site:'CORPORATIVO',real:47,plan:50},
-        {site:'NAMIQUIPA',real:9,plan:10},{site:'GEOLOGÍA',real:10,plan:12},
-        {site:'BARRENACIÓN',real:17,plan:20},{site:'SAN PEDRO',real:6,plan:8}
+        {site:'CIENEGUITA',real:147,plan:150},{site:'REALITO',real:16,plan:16},
+        {site:'MATAMOROS',real:6,plan:8},{site:'OLIVOS',real:32,plan:35},
+        {site:'CHOIX',real:7,plan:8},{site:'CORPORATIVO',real:50,plan:50},
+        {site:'NAMIQUIPA',real:14,plan:15},{site:'GEOLOGÍA',real:11,plan:12},
+        {site:'BARRENACIÓN DIAMANTE',real:17,plan:20},{site:'SAN PEDRO CORRALITOS',real:7,plan:8}
       ],
       vacantes:[
         {cargo:'Operador de Equipo',area:'Operaciones',abiertas:12,dias:45},
@@ -1761,29 +1761,12 @@ const MeetUI = {
       }).join('');
       const updInfo=sec.updatedBy?`<span class="text-xs text-muted" style="margin-left:auto">Por ${escHtml(sec.updatedBy)}</span>`:'';
 
-      // Special RRHH rendering — 3 KPI boxes (headcount en modal independiente)
+      // Special RRHH rendering — headcount charts + Proyectos Semanales
       if (s.id==='rrhh') {
-        const kpisRRHH = [
-          {key:'kpi1', label:'KPI Crítico',         color:s.color},
-          {key:'kpi2', label:'KPI Secundario',       color:s.color+'88'},
-          {key:'kpi3', label:'Proyectos Semanales',  color:'rgba(251,146,60,.6)'},
-        ];
-        const kpiBoxesRRHH = kpisRRHH.map(k => {
-          const lV=sec[k.key+'Label']||'', vV=sec[k.key+'Value']||'', pV=sec[k.key+'Plan']||'', iV=sec[k.key+'Impact']||'';
-          const isProj = k.key==='kpi3';
-          return `<div class="kpi-box" style="border-top:2px solid ${k.color}">
-            <div class="kpi-hd" style="color:${k.color}">${k.label}</div>
-            ${canEdit
-              ?`<div class="field" style="margin-bottom:6px"><input id="f-rrhh-${k.key}Label" value="${escHtml(lV)}" placeholder="${isProj?'Proyecto / iniciativa':'Nombre del KPI'}" onchange="MeetUI.autoSave('rrhh')"></div>
-                <div class="field" style="margin-bottom:6px"><input id="f-rrhh-${k.key}Value" value="${escHtml(vV)}" placeholder="${isProj?'Avance / estado':'Valor actual'}" onchange="MeetUI.autoSave('rrhh')"></div>
-                <div class="field" style="margin-bottom:6px"><input id="f-rrhh-${k.key}Plan" value="${escHtml(pV)}" placeholder="${isProj?'Meta de la semana':'Plan/objetivo'}" onchange="MeetUI.autoSave('rrhh')"></div>
-                <div class="field"><input id="f-rrhh-${k.key}Impact" value="${escHtml(iV)}" placeholder="Observación" onchange="MeetUI.autoSave('rrhh')"></div>`
-              :`<div class="kpi-val" style="color:${k.color}">${escHtml(vV)||'—'}</div>
-                <div class="kpi-plan">${escHtml(lV)} ${pV?'· '+(isProj?'Meta: ':'Plan: ')+pV:''}</div>
-                ${iV?`<div class="kpi-plan" style="margin-top:4px;color:var(--muted)">${escHtml(iV)}</div>`:''}`
-            }
-          </div>`;
-        }).join('');
+        const hc  = sec.headcount||[];
+        const vac = sec.vacantes||[];
+        const total = hc.reduce((s,d)=>s+(d.real||0),0);
+        const openVac = vac.reduce((s,d)=>s+(d.abiertas||0),0);
         return `<div class="section-card ${s.cls}" id="sc-rrhh">
           <div class="section-header" onclick="MeetUI.toggleSection('rrhh')">
             <div class="sh-left">
@@ -1792,7 +1775,9 @@ const MeetUI = {
                 <div class="section-label flex items-center gap8">
                   <span class="dot" style="background:${statusColor}"></span>${s.label}
                 </div>
-                <div class="section-sublabel">${s.sub} — ${s.time}</div>
+                <div class="section-sublabel">${s.sub} — ${s.time}
+                  <span style="margin-left:8px;color:${s.color};font-weight:700">HC: ${total} · Vacantes: ${openVac}</span>
+                </div>
               </div>
             </div>
             <div class="flex items-center gap8">${updInfo}<span>▾</span></div>
@@ -1802,7 +1787,49 @@ const MeetUI = {
               <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Estado de Alerta</div>
               <div class="status-sel">${statusBtns}</div>
             </div>
-            <div class="kpi-grid">${kpiBoxesRRHH}</div>
+            <div class="chart-wrap">
+              <div class="flex items-center justify-between" style="margin-bottom:10px">
+                <div class="chart-title">HEADCOUNT POR SITIO</div>
+                ${canEdit?`<button class="btn btn-ghost btn-sm" onclick="RRHHEditor.open('${m.id}');event.stopPropagation()">✏️ Editar datos</button>`:''}
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start">
+                <div class="bar-chart">${Charts.headcount(hc)}</div>
+                <div>
+                  <div style="font-size:10px;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Notas / Observaciones HC</div>
+                  ${canEdit
+                    ?`<textarea id="f-rrhh-hcNotas" rows="9" placeholder="Observaciones sobre headcount, rotación, incorporaciones, bajas..." onchange="MeetUI.autoSave('rrhh')" style="width:100%;background:var(--surface);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:var(--text);padding:8px;font-size:12px;resize:vertical">${escHtml(sec.hcNotas||'')}</textarea>`
+                    :`<div style="background:var(--surface);border-radius:6px;padding:10px;font-size:12px;min-height:80px;color:var(--text)">${escHtml(sec.hcNotas||'')||'<span class="text-muted">Sin notas</span>'}</div>`
+                  }
+                </div>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <div class="chart-title" style="margin-bottom:10px">VACANTES ABIERTAS</div>
+              <div style="display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start">
+                <div>${Charts.vacantes(vac, hc)}</div>
+                <div>
+                  <div style="font-size:10px;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Estado de Procesos</div>
+                  ${canEdit
+                    ?`<textarea id="f-rrhh-vacNotas" rows="9" placeholder="Estado de procesos de reclutamiento, candidatos en pipeline, fechas estimadas de cierre..." onchange="MeetUI.autoSave('rrhh')" style="width:100%;background:var(--surface);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:var(--text);padding:8px;font-size:12px;resize:vertical">${escHtml(sec.vacNotas||'')}</textarea>`
+                    :`<div style="background:var(--surface);border-radius:6px;padding:10px;font-size:12px;min-height:80px;color:var(--text)">${escHtml(sec.vacNotas||'')||'<span class="text-muted">Sin notas</span>'}</div>`
+                  }
+                </div>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <div class="chart-title" style="margin-bottom:10px">PROYECTOS SEMANALES</div>
+              <div class="kpi-box" style="border-top:2px solid rgba(251,146,60,.6);background:var(--card);border-radius:var(--r);padding:14px">
+                ${canEdit
+                  ?`<div class="field" style="margin-bottom:6px"><label>Tarea 1</label><input id="f-rrhh-proy1" value="${escHtml(sec.proy1||'')}" placeholder="Proyecto o tarea 1..." onchange="MeetUI.autoSave('rrhh')"></div>
+                    <div class="field" style="margin-bottom:6px"><label>Tarea 2</label><input id="f-rrhh-proy2" value="${escHtml(sec.proy2||'')}" placeholder="Proyecto o tarea 2..." onchange="MeetUI.autoSave('rrhh')"></div>
+                    <div class="field" style="margin-bottom:0"><label>Tarea 3</label><input id="f-rrhh-proy3" value="${escHtml(sec.proy3||'')}" placeholder="Proyecto o tarea 3..." onchange="MeetUI.autoSave('rrhh')"></div>`
+                  :`${sec.proy1?`<div style="font-size:13px;margin-bottom:4px">1. ${escHtml(sec.proy1)}</div>`:''}
+                    ${sec.proy2?`<div style="font-size:13px;margin-bottom:4px">2. ${escHtml(sec.proy2)}</div>`:''}
+                    ${sec.proy3?`<div style="font-size:13px">3. ${escHtml(sec.proy3)}</div>`:''}
+                    ${!sec.proy1&&!sec.proy2&&!sec.proy3?'<span class="text-muted text-sm">—</span>':''}`
+                }
+              </div>
+            </div>
             ${desafioMensualHTML('rrhh', sec, canEdit)}
             ${canEdit?`
               <div style="display:grid;grid-template-columns:2fr 3fr;gap:16px;align-items:start">
@@ -1929,13 +1956,13 @@ const MeetUI = {
             <div class="kpi-box" style="border-top:2px solid rgba(251,146,60,.6)">
               <div class="kpi-hd" style="color:rgba(251,146,60,.9)">Proyectos Semanales</div>
               ${canEdit
-                ?`<div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi3Label" value="${escHtml(sec.kpi3Label)}" placeholder="Proyecto / iniciativa" onchange="MeetUI.autoSave('${s.id}')"></div>
-                  <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi3Value" value="${escHtml(sec.kpi3Value)}" placeholder="Avance / estado" onchange="MeetUI.autoSave('${s.id}')"></div>
-                  <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi3Plan" value="${escHtml(sec.kpi3Plan)}" placeholder="Meta de la semana" onchange="MeetUI.autoSave('${s.id}')"></div>
-                  <div class="field"><input id="f-${s.id}-kpi3Impact" value="${escHtml(sec.kpi3Impact)}" placeholder="Observación" onchange="MeetUI.autoSave('${s.id}')"></div>`
-                :`<div class="kpi-val" style="color:rgba(251,146,60,.9)">${escHtml(sec.kpi3Value)||'—'}</div>
-                  <div class="kpi-plan">${escHtml(sec.kpi3Label)||''} ${sec.kpi3Plan?'· Meta: '+sec.kpi3Plan:''}</div>
-                  ${sec.kpi3Impact?`<div class="kpi-plan" style="margin-top:4px;color:var(--muted)">${escHtml(sec.kpi3Impact)}</div>`:''}`
+                ?`<div class="field" style="margin-bottom:6px"><label>Tarea 1</label><input id="f-${s.id}-proy1" value="${escHtml(sec.proy1||'')}" placeholder="Proyecto o tarea 1..." onchange="MeetUI.autoSave('${s.id}')"></div>
+                  <div class="field" style="margin-bottom:6px"><label>Tarea 2</label><input id="f-${s.id}-proy2" value="${escHtml(sec.proy2||'')}" placeholder="Proyecto o tarea 2..." onchange="MeetUI.autoSave('${s.id}')"></div>
+                  <div class="field" style="margin-bottom:0"><label>Tarea 3</label><input id="f-${s.id}-proy3" value="${escHtml(sec.proy3||'')}" placeholder="Proyecto o tarea 3..." onchange="MeetUI.autoSave('${s.id}')"></div>`
+                :`${sec.proy1?`<div style="font-size:13px;margin-bottom:4px">1. ${escHtml(sec.proy1)}</div>`:''}
+                  ${sec.proy2?`<div style="font-size:13px;margin-bottom:4px">2. ${escHtml(sec.proy2)}</div>`:''}
+                  ${sec.proy3?`<div style="font-size:13px">3. ${escHtml(sec.proy3)}</div>`:''}
+                  ${!sec.proy1&&!sec.proy2&&!sec.proy3?'<span class="text-muted text-sm">—</span>':''}`
               }
             </div>
           </div>
@@ -1986,6 +2013,7 @@ const MeetUI = {
       kpi1Label:rf('kpi1Label'),kpi1Value:rf('kpi1Value'),kpi1Plan:rf('kpi1Plan'),kpi1Impact:rf('kpi1Impact'),
       kpi2Label:rf('kpi2Label'),kpi2Value:rf('kpi2Value'),kpi2Plan:rf('kpi2Plan'),kpi2Impact:rf('kpi2Impact'),
       kpi3Label:rf('kpi3Label'),kpi3Value:rf('kpi3Value'),kpi3Plan:rf('kpi3Plan'),kpi3Impact:rf('kpi3Impact'),
+      proy1:rf('proy1'),proy2:rf('proy2'),proy3:rf('proy3'),
       hcNotas:rf('hcNotas'),vacNotas:rf('vacNotas'),
       riesgo1:rg1,riesgo2:rg2,riesgo3:rg3,
       riesgo:rg1, // legacy backward compat

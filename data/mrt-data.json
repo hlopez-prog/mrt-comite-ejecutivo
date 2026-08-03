@@ -1958,7 +1958,7 @@
           "apoyo": "Para definir el plan de capacitación de ingresos de Namiqupa",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-03T01:36:15.424Z",
+          "updatedAt": "2026-08-03T01:36:42.745Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -1997,18 +1997,18 @@
             },
             {
               "site": "GEOLOGÍA",
-              "real": 10,
-              "plan": 12
+              "real": 11,
+              "plan": 11
             },
             {
               "site": "BARRENACIÓN",
               "real": 17,
-              "plan": 20
+              "plan": 17
             },
             {
               "site": "SAN PEDRO",
-              "real": 6,
-              "plan": 8
+              "real": 7,
+              "plan": 7
             }
           ],
           "vacantes": [
@@ -2829,5 +2829,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-03T01:36:17.430Z"
+  "_savedAt": "2026-08-03T01:36:44.756Z"
 }

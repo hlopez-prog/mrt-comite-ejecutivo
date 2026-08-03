@@ -1920,13 +1920,13 @@
           "kpi1Impact": "-93 OzAuEq (-4.2%)",
           "kpi2Label": "",
           "kpi2Value": "",
-          "kpi2Plan": "",
+          "kpi2Plan": "2021",
           "kpi2Impact": "",
           "riesgo": "",
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-08-03T17:49:01.796Z",
+          "updatedAt": "2026-08-03T17:49:19.888Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2769,5 +2769,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-03T17:49:03.801Z"
+  "_savedAt": "2026-08-03T17:49:21.903Z"
 }

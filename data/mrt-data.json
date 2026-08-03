@@ -1945,7 +1945,7 @@
           "updatedAt": ""
         },
         "rrhh": {
-          "alertStatus": "VERDE",
+          "alertStatus": "AMBAR",
           "kpi1Label": "",
           "kpi1Value": "",
           "kpi1Plan": "",
@@ -1958,7 +1958,7 @@
           "apoyo": "Para definir el plan de capacitación de ingresos de Namiqupa",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-03T01:36:42.745Z",
+          "updatedAt": "2026-08-03T01:39:48.557Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2829,5 +2829,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-03T01:36:44.756Z"
+  "_savedAt": "2026-08-03T01:39:50.573Z"
 }

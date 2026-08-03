@@ -1926,12 +1926,12 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-08-03T17:49:28.437Z",
+          "updatedAt": "2026-08-03T17:50:32.221Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
           "kpi3Impact": "",
-          "proy1": "",
+          "proy1": "Proyección de cierre julio y plan agosto CIE",
           "proy2": "",
           "proy3": "",
           "hcNotas": "",
@@ -2769,5 +2769,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-03T17:49:30.453Z"
+  "_savedAt": "2026-08-03T17:50:34.237Z"
 }

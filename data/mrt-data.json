@@ -1958,7 +1958,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-03T01:29:28.133Z",
+          "updatedAt": "2026-08-03T01:29:33.356Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2060,7 +2060,7 @@
           "desafio1Pct": 40,
           "desafio1Bloqueo": "",
           "desafio2Titulo": "Presupuesto Headcount 2026-2027 MRT",
-          "desafio2Pct": 82,
+          "desafio2Pct": 94,
           "desafio2Bloqueo": "Definición de los presupuestos de los proyectos de Olivos rehabilitación y Olivos Cobre"
         },
         "finanzas": {
@@ -2795,5 +2795,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-03T01:29:30.148Z"
+  "_savedAt": "2026-08-03T01:29:35.367Z"
 }

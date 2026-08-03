@@ -1804,30 +1804,34 @@ const MeetUI = {
               </div>
             </div>
             <div class="chart-wrap">
-              <div class="chart-title" style="margin-bottom:10px">VACANTES ABIERTAS</div>
-              <div style="display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start">
-                <div>${Charts.vacantes(vac, hc)}</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
                 <div>
-                  <div style="font-size:10px;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Estado de Procesos</div>
-                  ${canEdit
-                    ?`<textarea id="f-rrhh-vacNotas" rows="9" placeholder="Estado de procesos de reclutamiento, candidatos en pipeline, fechas estimadas de cierre..." onchange="MeetUI.autoSave('rrhh')" style="width:100%;background:var(--surface);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:var(--text);padding:8px;font-size:12px;resize:vertical">${escHtml(sec.vacNotas||'')}</textarea>`
-                    :`<div style="background:var(--surface);border-radius:6px;padding:10px;font-size:12px;min-height:80px;color:var(--text)">${escHtml(sec.vacNotas||'')||'<span class="text-muted">Sin notas</span>'}</div>`
-                  }
+                  <div class="chart-title" style="margin-bottom:10px">VACANTES ABIERTAS</div>
+                  <div style="display:grid;grid-template-columns:1fr 200px;gap:12px;align-items:start">
+                    <div>${Charts.vacantes(vac, hc)}</div>
+                    <div>
+                      <div style="font-size:10px;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Estado de Procesos</div>
+                      ${canEdit
+                        ?`<textarea id="f-rrhh-vacNotas" rows="8" placeholder="Estado de procesos de reclutamiento, candidatos en pipeline, fechas estimadas de cierre..." onchange="MeetUI.autoSave('rrhh')" style="width:100%;background:var(--surface);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:var(--text);padding:8px;font-size:12px;resize:vertical">${escHtml(sec.vacNotas||'')}</textarea>`
+                        :`<div style="background:var(--surface);border-radius:6px;padding:10px;font-size:12px;min-height:80px;color:var(--text)">${escHtml(sec.vacNotas||'')||'<span class="text-muted">Sin notas</span>'}</div>`
+                      }
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="chart-wrap">
-              <div class="chart-title" style="margin-bottom:10px">PROYECTOS SEMANALES</div>
-              <div class="kpi-box" style="border-top:2px solid rgba(251,146,60,.6);background:var(--card);border-radius:var(--r);padding:14px">
-                ${canEdit
-                  ?`<div class="field" style="margin-bottom:6px"><label>Tarea 1</label><input id="f-rrhh-proy1" value="${escHtml(sec.proy1||'')}" placeholder="Proyecto o tarea 1..." onchange="MeetUI.autoSave('rrhh')"></div>
-                    <div class="field" style="margin-bottom:6px"><label>Tarea 2</label><input id="f-rrhh-proy2" value="${escHtml(sec.proy2||'')}" placeholder="Proyecto o tarea 2..." onchange="MeetUI.autoSave('rrhh')"></div>
-                    <div class="field" style="margin-bottom:0"><label>Tarea 3</label><input id="f-rrhh-proy3" value="${escHtml(sec.proy3||'')}" placeholder="Proyecto o tarea 3..." onchange="MeetUI.autoSave('rrhh')"></div>`
-                  :`${sec.proy1?`<div style="font-size:13px;margin-bottom:4px">1. ${escHtml(sec.proy1)}</div>`:''}
-                    ${sec.proy2?`<div style="font-size:13px;margin-bottom:4px">2. ${escHtml(sec.proy2)}</div>`:''}
-                    ${sec.proy3?`<div style="font-size:13px">3. ${escHtml(sec.proy3)}</div>`:''}
-                    ${!sec.proy1&&!sec.proy2&&!sec.proy3?'<span class="text-muted text-sm">—</span>':''}`
-                }
+                <div>
+                  <div class="chart-title" style="margin-bottom:10px;color:rgba(251,146,60,.9)">PROYECTOS SEMANALES</div>
+                  <div style="border-top:2px solid rgba(251,146,60,.6);background:var(--card);border-radius:var(--r);padding:14px">
+                    ${canEdit
+                      ?`<div class="field" style="margin-bottom:6px"><label>Tarea 1</label><input id="f-rrhh-proy1" value="${escHtml(sec.proy1||'')}" placeholder="Proyecto o tarea 1..." onchange="MeetUI.autoSave('rrhh')"></div>
+                        <div class="field" style="margin-bottom:6px"><label>Tarea 2</label><input id="f-rrhh-proy2" value="${escHtml(sec.proy2||'')}" placeholder="Proyecto o tarea 2..." onchange="MeetUI.autoSave('rrhh')"></div>
+                        <div class="field" style="margin-bottom:0"><label>Tarea 3</label><input id="f-rrhh-proy3" value="${escHtml(sec.proy3||'')}" placeholder="Proyecto o tarea 3..." onchange="MeetUI.autoSave('rrhh')"></div>`
+                      :`${sec.proy1?`<div style="font-size:13px;margin-bottom:4px">1. ${escHtml(sec.proy1)}</div>`:''}
+                        ${sec.proy2?`<div style="font-size:13px;margin-bottom:4px">2. ${escHtml(sec.proy2)}</div>`:''}
+                        ${sec.proy3?`<div style="font-size:13px">3. ${escHtml(sec.proy3)}</div>`:''}
+                        ${!sec.proy1&&!sec.proy2&&!sec.proy3?'<span class="text-muted text-sm">—</span>':''}`
+                    }
+                  </div>
+                </div>
               </div>
             </div>
             ${desafioMensualHTML('rrhh', sec, canEdit)}

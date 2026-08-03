@@ -1958,7 +1958,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-03T01:28:18.365Z",
+          "updatedAt": "2026-08-03T01:28:36.519Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2057,7 +2057,7 @@
           "apoyo3": "",
           "apoyoTipo": "",
           "desafio1Titulo": "",
-          "desafio1Pct": 0,
+          "desafio1Pct": 40,
           "desafio1Bloqueo": "",
           "desafio2Titulo": "",
           "desafio2Pct": 0,
@@ -2795,5 +2795,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-03T01:28:20.373Z"
+  "_savedAt": "2026-08-03T01:28:38.524Z"
 }

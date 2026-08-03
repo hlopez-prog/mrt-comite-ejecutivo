@@ -1958,7 +1958,7 @@
           "apoyo": "Para definir el plan de capacitación de ingresos de Namiqupa",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-03T01:35:41.156Z",
+          "updatedAt": "2026-08-03T01:36:00.282Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -1983,11 +1983,11 @@
             {
               "site": "CHOIX",
               "real": 7,
-              "plan": 8
+              "plan": 7
             },
             {
               "site": "CORPORATIVO",
-              "real": 47,
+              "real": 50,
               "plan": 50
             },
             {
@@ -2829,5 +2829,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-03T01:35:43.161Z"
+  "_savedAt": "2026-08-03T01:36:02.297Z"
 }

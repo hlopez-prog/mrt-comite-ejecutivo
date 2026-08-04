@@ -2095,14 +2095,14 @@
           "kpi1Plan": "2,021",
           "kpi1Impact": "US$",
           "kpi2Label": "CASH FLOW",
-          "kpi2Value": "",
+          "kpi2Value": "MX$691.9M",
           "kpi2Plan": "",
           "kpi2Impact": "",
           "riesgo": "",
           "apoyo": "",
           "accion": "",
           "updatedBy": "Alvaro Urquidez",
-          "updatedAt": "2026-08-04T01:48:10.997Z",
+          "updatedAt": "2026-08-04T01:57:05.683Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3343,5 +3343,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-04T01:48:13.011Z"
+  "_savedAt": "2026-08-04T01:57:07.693Z"
 }

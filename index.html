@@ -1597,20 +1597,14 @@ function riesgoSlotHTML(sId, sec, n, canEdit) {
         style="flex:1" onchange="MeetUI.autoSave('${sId}')">
     </div>`;
   }
-  if (!val) return '';
-  return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-    <span style="font-size:10px;color:var(--muted);min-width:22px">R${n}:</span>
-    <span style="font-size:13px">${escHtml(val)}</span>
+  return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+    <span style="font-size:10px;font-weight:700;color:var(--muted);min-width:22px;text-align:right">R${n}</span>
+    <div class="readonly-val" style="flex:1">${escHtml(val)||'<span class="text-muted">—</span>'}</div>
   </div>`;
 }
 function riesgoBloquesHTML(sId, sec, canEdit) {
-  const slots = [1,2,3].map(n => riesgoSlotHTML(sId, sec, n, canEdit)).filter(Boolean).join('');
-  if (canEdit) {
-    return `<div class="field"><label>Riesgo Principal</label>${slots}</div>`;
-  }
-  return slots
-    ? `<div class="field"><label>Riesgo Principal</label><div class="readonly-val">${slots}</div></div>`
-    : '';
+  const slots = [1,2,3].map(n => riesgoSlotHTML(sId, sec, n, canEdit)).join('');
+  return `<div class="field"><label>Riesgo Principal</label>${slots}</div>`;
 }
 
 // ─── TEMA SLOT HELPERS ───────────────────────────────────────
@@ -1641,26 +1635,26 @@ function temaSlotHTML(sId, sec, n, canEdit) {
         style="flex:7 1 0;min-width:80px" onchange="MeetUI.autoSave('${sId}')">
     </div>`;
   }
-  if (!tipo && !texto) return '';
   const f = DG_FLAGS[tipo];
-  return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-    <span style="font-size:10px;color:var(--muted);min-width:44px">Tema ${n}:</span>
-    ${f?`<span class="badge ${f.cls}" style="font-size:11px">${f.label}</span>`:''}
-    ${texto?`<span style="font-size:13px">${escHtml(texto)}</span>`:''}
+  return `<div class="tema-slot" style="opacity:${tipo||texto?1:.3}">
+    <span class="tema-num">Tema ${n}</span>
+    <div class="readonly-val" style="flex:3 1 0;min-width:90px">${f?`<span class="badge ${f.cls}" style="font-size:11px">${f.label}</span>`:'<span class="text-muted">—</span>'}</div>
+    <div class="readonly-val" style="flex:7 1 0;min-width:80px">${escHtml(texto)||'<span class="text-muted">—</span>'}</div>
   </div>`;
 }
 // Returns full 3-slot block
 function temaBloquesHTML(sId, sec, canEdit) {
-  const slots = [1,2,3].map(n => temaSlotHTML(sId, sec, n, canEdit)).filter(Boolean).join('');
+  const slots = [1,2,3].map(n => temaSlotHTML(sId, sec, n, canEdit)).join('');
   if (canEdit) {
     return `<div class="field">
       <label>Temas / Atención Requerida <span style="font-size:10px;color:var(--muted)">(hasta 3 por semana — auto → seguimiento)</span></label>
-      ${slots||''}
+      ${slots}
     </div>`;
   }
-  return slots
-    ? `<div class="field"><label>Temas</label><div class="readonly-val">${slots}</div></div>`
-    : '';
+  return `<div class="field">
+    <label>Temas / Atención Requerida</label>
+    ${slots}
+  </div>`;
 }
 
 // ─── DESAFÍO DEL MES HELPERS ─────────────────────────────────
@@ -1822,13 +1816,15 @@ const MeetUI = {
                   <div class="chart-title" style="margin-bottom:10px;color:rgba(251,146,60,.9)">PROYECTOS SEMANALES</div>
                   <div style="border-top:2px solid rgba(251,146,60,.6);background:var(--card);border-radius:var(--r);padding:14px">
                     ${canEdit
-                      ?`<div class="field" style="margin-bottom:6px"><label>Tarea 1</label><input id="f-rrhh-proy1" value="${escHtml(sec.proy1||'')}" placeholder="Proyecto o tarea 1..." onchange="MeetUI.autoSave('rrhh')"></div>
-                        <div class="field" style="margin-bottom:6px"><label>Tarea 2</label><input id="f-rrhh-proy2" value="${escHtml(sec.proy2||'')}" placeholder="Proyecto o tarea 2..." onchange="MeetUI.autoSave('rrhh')"></div>
-                        <div class="field" style="margin-bottom:0"><label>Tarea 3</label><input id="f-rrhh-proy3" value="${escHtml(sec.proy3||'')}" placeholder="Proyecto o tarea 3..." onchange="MeetUI.autoSave('rrhh')"></div>`
-                      :`${sec.proy1?`<div style="font-size:13px;margin-bottom:4px">1. ${escHtml(sec.proy1)}</div>`:''}
-                        ${sec.proy2?`<div style="font-size:13px;margin-bottom:4px">2. ${escHtml(sec.proy2)}</div>`:''}
-                        ${sec.proy3?`<div style="font-size:13px">3. ${escHtml(sec.proy3)}</div>`:''}
-                        ${!sec.proy1&&!sec.proy2&&!sec.proy3?'<span class="text-muted text-sm">—</span>':''}`
+                      ?`<div class="field" style="margin-bottom:8px"><label>Tarea 1</label><textarea id="f-rrhh-proy1" rows="2" placeholder="Proyecto o tarea 1..." onchange="MeetUI.autoSave('rrhh')" style="resize:vertical">${escHtml(sec.proy1||'')}</textarea></div>
+                        <div class="field" style="margin-bottom:8px"><label>Tarea 2</label><textarea id="f-rrhh-proy2" rows="2" placeholder="Proyecto o tarea 2..." onchange="MeetUI.autoSave('rrhh')" style="resize:vertical">${escHtml(sec.proy2||'')}</textarea></div>
+                        <div class="field" style="margin-bottom:0"><label>Tarea 3</label><textarea id="f-rrhh-proy3" rows="2" placeholder="Proyecto o tarea 3..." onchange="MeetUI.autoSave('rrhh')" style="resize:vertical">${escHtml(sec.proy3||'')}</textarea></div>`
+                      :`<div style="display:flex;flex-direction:column;gap:8px">
+                        ${sec.proy1?`<div style="background:var(--surface);border-radius:6px;padding:8px 10px;font-size:13px;line-height:1.5"><span style="font-size:10px;font-weight:700;color:var(--muted);display:block;margin-bottom:3px">TAREA 1</span>${escHtml(sec.proy1)}</div>`:''}
+                        ${sec.proy2?`<div style="background:var(--surface);border-radius:6px;padding:8px 10px;font-size:13px;line-height:1.5"><span style="font-size:10px;font-weight:700;color:var(--muted);display:block;margin-bottom:3px">TAREA 2</span>${escHtml(sec.proy2)}</div>`:''}
+                        ${sec.proy3?`<div style="background:var(--surface);border-radius:6px;padding:8px 10px;font-size:13px;line-height:1.5"><span style="font-size:10px;font-weight:700;color:var(--muted);display:block;margin-bottom:3px">TAREA 3</span>${escHtml(sec.proy3)}</div>`:''}
+                        ${!sec.proy1&&!sec.proy2&&!sec.proy3?'<span class="text-muted text-sm">—</span>':''}
+                      </div>`
                     }
                   </div>
                 </div>
@@ -1869,9 +1865,10 @@ const MeetUI = {
                 <div class="field" style="margin-bottom:6px"><input id="f-exploracion-${k.key}Value" value="${escHtml(vV)}" placeholder="Valor actual" onchange="MeetUI.autoSave('exploracion')"></div>
                 <div class="field" style="margin-bottom:6px"><input id="f-exploracion-${k.key}Plan" value="${escHtml(pV)}" placeholder="Plan/objetivo" onchange="MeetUI.autoSave('exploracion')"></div>
                 <div class="field"><input id="f-exploracion-${k.key}Impact" value="${escHtml(iV)}" placeholder="Observación / impacto" onchange="MeetUI.autoSave('exploracion')"></div>`
-              :`<div class="kpi-val" style="color:${k.color}">${escHtml(vV)||'—'}</div>
-                <div class="kpi-plan">${escHtml(lV)||''} ${pV?'· Plan: '+pV:''}</div>
-                ${iV?`<div class="kpi-plan" style="margin-top:4px;color:var(--muted)">${escHtml(iV)}</div>`:''}`
+              :`<div class="field" style="margin-bottom:6px"><label>Indicador</label><div class="readonly-val">${escHtml(lV)||'<span class="text-muted">—</span>'}</div></div>
+                <div class="field" style="margin-bottom:6px"><label>Valor actual</label><div class="readonly-val" style="color:${k.color};font-weight:600">${escHtml(vV)||'<span class="text-muted">—</span>'}</div></div>
+                <div class="field" style="margin-bottom:6px"><label>Plan/objetivo</label><div class="readonly-val">${escHtml(pV)||'<span class="text-muted">—</span>'}</div></div>
+                <div class="field"><label>Observación</label><div class="readonly-val">${escHtml(iV)||'<span class="text-muted">—</span>'}</div></div>`
             }
           </div>`;
         }).join('');
@@ -1942,8 +1939,10 @@ const MeetUI = {
                   <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi1Value" value="${escHtml(sec.kpi1Value)}" placeholder="Valor actual" onchange="MeetUI.autoSave('${s.id}')"></div>
                   <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi1Plan" value="${escHtml(sec.kpi1Plan)}" placeholder="Plan/objetivo" onchange="MeetUI.autoSave('${s.id}')"></div>
                   <div class="field"><input id="f-${s.id}-kpi1Impact" value="${escHtml(sec.kpi1Impact)}" placeholder="Impacto" onchange="MeetUI.autoSave('${s.id}')"></div>`
-                :`<div class="kpi-val" style="color:${s.color}">${escHtml(sec.kpi1Value)||'—'}</div>
-                  <div class="kpi-plan">${escHtml(sec.kpi1Label)} ${sec.kpi1Plan?'· Plan: '+sec.kpi1Plan:''}</div>`
+                :`<div class="field" style="margin-bottom:6px"><label>Nombre KPI</label><div class="readonly-val">${escHtml(sec.kpi1Label)||'<span class="text-muted">—</span>'}</div></div>
+                  <div class="field" style="margin-bottom:6px"><label>Valor actual</label><div class="readonly-val" style="color:${s.color};font-weight:600">${escHtml(sec.kpi1Value)||'<span class="text-muted">—</span>'}</div></div>
+                  <div class="field" style="margin-bottom:6px"><label>Plan/objetivo</label><div class="readonly-val">${escHtml(sec.kpi1Plan)||'<span class="text-muted">—</span>'}</div></div>
+                  <div class="field"><label>Impacto</label><div class="readonly-val">${escHtml(sec.kpi1Impact)||'<span class="text-muted">—</span>'}</div></div>`
               }
             </div>
             <div class="kpi-box" style="border-top:2px solid ${s.color}40">
@@ -1953,20 +1952,24 @@ const MeetUI = {
                   <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi2Value" value="${escHtml(sec.kpi2Value)}" placeholder="Valor actual" onchange="MeetUI.autoSave('${s.id}')"></div>
                   <div class="field" style="margin-bottom:6px"><input id="f-${s.id}-kpi2Plan" value="${escHtml(sec.kpi2Plan)}" placeholder="Plan/objetivo" onchange="MeetUI.autoSave('${s.id}')"></div>
                   <div class="field"><input id="f-${s.id}-kpi2Impact" value="${escHtml(sec.kpi2Impact)}" placeholder="Impacto" onchange="MeetUI.autoSave('${s.id}')"></div>`
-                :`<div class="kpi-val">${escHtml(sec.kpi2Value)||'—'}</div>
-                  <div class="kpi-plan">${escHtml(sec.kpi2Label)} ${sec.kpi2Plan?'· Plan: '+sec.kpi2Plan:''}</div>`
+                :`<div class="field" style="margin-bottom:6px"><label>Nombre KPI</label><div class="readonly-val">${escHtml(sec.kpi2Label)||'<span class="text-muted">—</span>'}</div></div>
+                  <div class="field" style="margin-bottom:6px"><label>Valor actual</label><div class="readonly-val">${escHtml(sec.kpi2Value)||'<span class="text-muted">—</span>'}</div></div>
+                  <div class="field" style="margin-bottom:6px"><label>Plan/objetivo</label><div class="readonly-val">${escHtml(sec.kpi2Plan)||'<span class="text-muted">—</span>'}</div></div>
+                  <div class="field"><label>Impacto</label><div class="readonly-val">${escHtml(sec.kpi2Impact)||'<span class="text-muted">—</span>'}</div></div>`
               }
             </div>
             <div class="kpi-box" style="border-top:2px solid rgba(251,146,60,.6)">
               <div class="kpi-hd" style="color:rgba(251,146,60,.9)">Proyectos Semanales</div>
               ${canEdit
-                ?`<div class="field" style="margin-bottom:6px"><label>Tarea 1</label><input id="f-${s.id}-proy1" value="${escHtml(sec.proy1||'')}" placeholder="Proyecto o tarea 1..." onchange="MeetUI.autoSave('${s.id}')"></div>
-                  <div class="field" style="margin-bottom:6px"><label>Tarea 2</label><input id="f-${s.id}-proy2" value="${escHtml(sec.proy2||'')}" placeholder="Proyecto o tarea 2..." onchange="MeetUI.autoSave('${s.id}')"></div>
-                  <div class="field" style="margin-bottom:0"><label>Tarea 3</label><input id="f-${s.id}-proy3" value="${escHtml(sec.proy3||'')}" placeholder="Proyecto o tarea 3..." onchange="MeetUI.autoSave('${s.id}')"></div>`
-                :`${sec.proy1?`<div style="font-size:13px;margin-bottom:4px">1. ${escHtml(sec.proy1)}</div>`:''}
-                  ${sec.proy2?`<div style="font-size:13px;margin-bottom:4px">2. ${escHtml(sec.proy2)}</div>`:''}
-                  ${sec.proy3?`<div style="font-size:13px">3. ${escHtml(sec.proy3)}</div>`:''}
-                  ${!sec.proy1&&!sec.proy2&&!sec.proy3?'<span class="text-muted text-sm">—</span>':''}`
+                ?`<div class="field" style="margin-bottom:8px"><label>Tarea 1</label><textarea id="f-${s.id}-proy1" rows="2" placeholder="Proyecto o tarea 1..." onchange="MeetUI.autoSave('${s.id}')" style="resize:vertical">${escHtml(sec.proy1||'')}</textarea></div>
+                  <div class="field" style="margin-bottom:8px"><label>Tarea 2</label><textarea id="f-${s.id}-proy2" rows="2" placeholder="Proyecto o tarea 2..." onchange="MeetUI.autoSave('${s.id}')" style="resize:vertical">${escHtml(sec.proy2||'')}</textarea></div>
+                  <div class="field" style="margin-bottom:0"><label>Tarea 3</label><textarea id="f-${s.id}-proy3" rows="2" placeholder="Proyecto o tarea 3..." onchange="MeetUI.autoSave('${s.id}')" style="resize:vertical">${escHtml(sec.proy3||'')}</textarea></div>`
+                :`<div style="display:flex;flex-direction:column;gap:8px">
+                  ${sec.proy1?`<div style="background:var(--surface);border-radius:6px;padding:8px 10px;font-size:13px;line-height:1.5"><span style="font-size:10px;font-weight:700;color:var(--muted);display:block;margin-bottom:3px">TAREA 1</span>${escHtml(sec.proy1)}</div>`:''}
+                  ${sec.proy2?`<div style="background:var(--surface);border-radius:6px;padding:8px 10px;font-size:13px;line-height:1.5"><span style="font-size:10px;font-weight:700;color:var(--muted);display:block;margin-bottom:3px">TAREA 2</span>${escHtml(sec.proy2)}</div>`:''}
+                  ${sec.proy3?`<div style="background:var(--surface);border-radius:6px;padding:8px 10px;font-size:13px;line-height:1.5"><span style="font-size:10px;font-weight:700;color:var(--muted);display:block;margin-bottom:3px">TAREA 3</span>${escHtml(sec.proy3)}</div>`:''}
+                  ${!sec.proy1&&!sec.proy2&&!sec.proy3?'<span class="text-muted text-sm">—</span>':''}
+                </div>`
               }
             </div>
           </div>

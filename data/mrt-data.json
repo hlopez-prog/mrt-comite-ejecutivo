@@ -2102,7 +2102,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Alvaro Urquidez",
-          "updatedAt": "2026-08-04T02:08:29.959Z",
+          "updatedAt": "2026-08-04T02:08:56.640Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2115,13 +2115,13 @@
           "riesgo1": "",
           "riesgo2": "",
           "riesgo3": "",
-          "apoyoTipo1": "",
+          "apoyoTipo1": "apoyo_operaciones",
           "apoyo1": "",
           "apoyoTipo2": "",
           "apoyo2": "",
           "apoyoTipo3": "",
           "apoyo3": "",
-          "apoyoTipo": "",
+          "apoyoTipo": "apoyo_operaciones",
           "desafio1Titulo": "",
           "desafio1Pct": 0,
           "desafio1Bloqueo": "",
@@ -3343,5 +3343,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-04T02:08:31.970Z"
+  "_savedAt": "2026-08-04T02:08:58.648Z"
 }

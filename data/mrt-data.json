@@ -2093,7 +2093,7 @@
           "kpi1Label": "AISC/Oz Eq",
           "kpi1Value": "2,021",
           "kpi1Plan": "2,021",
-          "kpi1Impact": "US$",
+          "kpi1Impact": "US$0/Oz Eq",
           "kpi2Label": "CASH FLOW",
           "kpi2Value": "MX$627.8M",
           "kpi2Plan": "MX$530M",
@@ -2102,7 +2102,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Alvaro Urquidez",
-          "updatedAt": "2026-08-04T02:01:57.420Z",
+          "updatedAt": "2026-08-04T02:02:09.639Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3343,5 +3343,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-04T02:01:59.436Z"
+  "_savedAt": "2026-08-04T02:02:11.646Z"
 }

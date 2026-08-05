@@ -2995,13 +2995,12 @@ const AdminUI = {
   });
   const users=DB.get('users')||[];
   if (users.length===0){
-    if (DB._lget('_ghcfg')) {
-      // Device already has GitHub config — skip setup, show login + sync will auto-pull users
+    // Always require GitHub sync first — setup screen only via ?setup param
+    if (new URLSearchParams(location.search).get('setup')==='1') {
+      document.getElementById('screen-setup').classList.add('active');
+    } else {
       document.getElementById('screen-login').classList.add('active');
       document.getElementById('login-sync-panel').style.display='';
-    } else {
-      // True first time — show setup (admin only)
-      document.getElementById('screen-setup').classList.add('active');
     }
   } else if (!Auth.restore()){
     document.getElementById('screen-login').classList.add('active');

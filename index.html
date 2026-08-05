@@ -2986,6 +2986,11 @@ const AdminUI = {
     Object.keys(localStorage).filter(k=>k.startsWith('mrt_')).forEach(k=>localStorage.removeItem(k));
     history.replaceState(null,'',location.pathname);
   }
+  // ?fixuser=1 — limpia SOLO sesión y usuarios (no borra datos de reuniones)
+  if (params.get('fixuser')==='1'){
+    ['mrt_users','mrt_session','mrt__ghcfg'].forEach(k=>localStorage.removeItem(k));
+    history.replaceState(null,'',location.pathname);
+  }
   DB.init();
   document.getElementById('login-pass').addEventListener('keydown',e=>{if(e.key==='Enter')Auth.login();});
   document.getElementById('login-email').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('login-pass').focus();});

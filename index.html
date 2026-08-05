@@ -1160,10 +1160,17 @@ const DB = {
       const localAt = this._lget('_savedAt') || '';
       // Only update if cloud is newer
       if (savedAt > localAt) {
-        this._cloudKeys.forEach(k => { if (raw[k] != null) this._lset(k, raw[k]); });
+        this._cloudKeys.forEach(k => {
+          // Never overwrite local users with empty array from cloud
+          if (k === 'users' && (!raw[k] || raw[k].length === 0)) return;
+          if (raw[k] != null) this._lset(k, raw[k]);
+        });
         this._lset('_savedAt', savedAt);
         this._onRemoteUpdate();
         if (!silent) toast('↓ Datos actualizados desde GitHub', 'var(--blue)');
+      } else if (localAt > savedAt && (this._lget('users')||[]).length > 0) {
+        // Local is newer and has users — push to cloud automatically
+        await this._doPush();
       }
       this._lset('_ghcfg', this._gh);
       SyncUI.setStatus('connected');
@@ -1265,6 +1272,17 @@ const DB = {
     if (!this._lget('meetings')) this._lset('meetings', []);
     if (!this._lget('topics'))   this._lset('topics',   []);
     if (!this._lget('seeded'))  { this._seed(); this._lset('seeded',true); }
+    // Pre-seed default viewer user if no users exist (allows login without GitHub sync)
+    if (!this._lget('users') || this._lget('users').length === 0) {
+      this._lset('users', [{
+        id:'default-viewer-anna',
+        name:'Anna Portillo',
+        email:'aportillo@mrtcorporativo.mx',
+        passHash:'fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83',
+        role:'viewer',
+        section:''
+      }]);
+    }
     // Deduplicate on boot (cleans up any legacy duplicates)
     this.deduplicateTopics();
     // Auto-connect if GitHub config was saved
@@ -2969,12 +2987,12 @@ const AdminUI = {
       if (users.find(u=>u.email===email)){alert('Email ya existe');return;}
       users.push({id:uid(),name,email,passHash:await sha256(pass),role,section});
     }
-    DB.set('users',users); this.closeModal(); this.render(); toast('Usuario guardado');
+    DB.set('users',users); DB.pushAll(); this.closeModal(); this.render(); toast('Usuario guardado');
   },
   deleteUser() {
     if (!confirm('Eliminar usuario?')) return;
     DB.set('users',(DB.get('users')||[]).filter(u=>u.id!==this.editingId));
-    this.closeModal(); this.render(); toast('Usuario eliminado','var(--red)');
+    DB.pushAll(); this.closeModal(); this.render(); toast('Usuario eliminado','var(--red)');
   },
   closeModal() { document.getElementById('modal-user').classList.remove('open'); }
 };
@@ -2988,7 +3006,7 @@ const AdminUI = {
   }
   // ?fixuser=1 — limpia SOLO sesión y usuarios (no borra datos de reuniones)
   if (params.get('fixuser')==='1'){
-    ['mrt_users','mrt_session','mrt__ghcfg'].forEach(k=>localStorage.removeItem(k));
+    ['mrt_users','mrt_session','mrt__ghcfg','mrt_seeded'].forEach(k=>localStorage.removeItem(k));
     history.replaceState(null,'',location.pathname);
   }
   DB.init();

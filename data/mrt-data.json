@@ -2195,7 +2195,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-08-10T18:39:00.331Z",
+          "updatedAt": "2026-08-10T18:39:29.980Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2208,13 +2208,13 @@
           "riesgo1": "",
           "riesgo2": "",
           "riesgo3": "",
-          "apoyoTipo1": "apoyo_finanzas",
+          "apoyoTipo1": "apoyo_metalurgia",
           "apoyo1": "",
           "apoyoTipo2": "",
           "apoyo2": "",
           "apoyoTipo3": "",
           "apoyo3": "",
-          "apoyoTipo": "apoyo_finanzas",
+          "apoyoTipo": "apoyo_metalurgia",
           "desafio1Titulo": "Incremento  capacidad Cieneguita 2000TPD",
           "desafio1Pct": 50,
           "desafio1Bloqueo": "",
@@ -3452,5 +3452,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-10T18:39:02.345Z"
+  "_savedAt": "2026-08-10T18:39:31.998Z"
 }

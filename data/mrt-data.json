@@ -2376,7 +2376,7 @@
         "exploracion": {
           "alertStatus": "VERDE",
           "kpi1Label": "",
-          "kpi1Value": "Real 315",
+          "kpi1Value": "Real 349",
           "kpi1Plan": "330 plan",
           "kpi1Impact": "",
           "kpi2Label": "",
@@ -2387,7 +2387,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Juan Luis Frias",
-          "updatedAt": "2026-08-10T23:24:39.475Z",
+          "updatedAt": "2026-08-10T23:24:47.912Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3460,5 +3460,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-10T23:24:41.493Z"
+  "_savedAt": "2026-08-10T23:24:49.925Z"
 }

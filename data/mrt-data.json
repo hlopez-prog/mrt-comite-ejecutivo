@@ -2382,12 +2382,12 @@
           "kpi2Label": "",
           "kpi2Value": "Real 182.45",
           "kpi2Plan": "Plan 170",
-          "kpi2Impact": "",
+          "kpi2Impact": "Recuperación 82%",
           "riesgo": "",
           "apoyo": "",
           "accion": "",
           "updatedBy": "Juan Luis Frias",
-          "updatedAt": "2026-08-10T23:29:44.278Z",
+          "updatedAt": "2026-08-10T23:29:59.716Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3460,5 +3460,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-10T23:29:46.302Z"
+  "_savedAt": "2026-08-10T23:30:01.723Z"
 }

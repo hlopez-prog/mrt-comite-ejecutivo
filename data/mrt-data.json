@@ -2387,8 +2387,8 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Juan Luis Frias",
-          "updatedAt": "2026-08-10T23:33:41.782Z",
-          "kpi3Label": "Recursos Inferidos JH, EPE JLA",
+          "updatedAt": "2026-08-10T23:34:41.957Z",
+          "kpi3Label": "Recursos Inferidos JH, PEA, JLA",
           "kpi3Value": "",
           "kpi3Plan": "",
           "kpi3Impact": "",
@@ -3460,5 +3460,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-10T23:33:43.799Z"
+  "_savedAt": "2026-08-10T23:34:43.968Z"
 }

@@ -1272,16 +1272,16 @@ const DB = {
     if (!this._lget('meetings')) this._lset('meetings', []);
     if (!this._lget('topics'))   this._lset('topics',   []);
     if (!this._lget('seeded'))  { this._seed(); this._lset('seeded',true); }
-    // Pre-seed default viewer user if no users exist (allows login without GitHub sync)
+    // Pre-seed users if none exist (allows login without GitHub sync)
     if (!this._lget('users') || this._lget('users').length === 0) {
-      this._lset('users', [{
-        id:'default-viewer-anna',
-        name:'Anna Portillo',
-        email:'aportillo@mrtcorporativo.mx',
-        passHash:'fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83',
-        role:'viewer',
-        section:''
-      }]);
+      this._lset('users', [
+        {id:'seed-admin-hl',name:'Hector Lopez',email:'hlopez@mrtcorporativo.mx',
+         passHash:'f0d69d50df9d46dbb367d8ab8265d051e4e15cd15277230b5c8cd0b0aba18fca',
+         role:'admin',section:''},
+        {id:'seed-viewer-anna',name:'Anna Portillo',email:'aportillo@mrtcorporativo.mx',
+         passHash:'fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83',
+         role:'viewer',section:''}
+      ]);
     }
     // Deduplicate on boot (cleans up any legacy duplicates)
     this.deduplicateTopics();

@@ -507,7 +507,7 @@
       "id": "msot2eeybl18g",
       "name": "Noel Menera",
       "email": "nmenera@mrtcorporativo.mx",
-      "passHash": "fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83",
+      "passHash": "b439e145521975b140d44f121210a2c3b68b5610b91f2b8035f3fd4910c5f782",
       "role": "director",
       "section": "operaciones"
     },
@@ -536,5 +536,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-11T17:28:59.046Z"
+  "_savedAt": "2026-08-11T17:29:01.913Z"
 }

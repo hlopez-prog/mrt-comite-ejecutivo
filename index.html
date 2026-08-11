@@ -266,13 +266,13 @@ tr:hover td{background:rgba(255,255,255,.02)}
     </div>
     <button class="btn btn-primary btn-full mt12" onclick="Auth.login()">Ingresar</button>
     <!-- Sync config — shown when no local users (new device, needs to pull from GitHub first) -->
-    <div id="login-sync-panel" style="display:none;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
+    <div id="login-sync-panel" style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
       <div style="font-size:12px;color:var(--amber);margin-bottom:12px;text-align:center">
         ☁ Primer acceso en este dispositivo — conecta con GitHub para cargar tus credenciales
       </div>
-      <div class="fg"><label>Usuario GitHub (Owner)</label><input type="text" id="ls-owner" placeholder="hlopez-prog"></div>
-      <div class="fg"><label>Repositorio</label><input type="text" id="ls-repo" placeholder="mrt-comite-ejecutivo"></div>
-      <div class="fg"><label>Token de acceso</label><input type="password" id="ls-token" placeholder="github_pat_..."></div>
+      <div class="fg"><label>Usuario GitHub (Owner)</label><input type="text" id="ls-owner" value="hlopez-prog" placeholder="hlopez-prog"></div>
+      <div class="fg"><label>Repositorio</label><input type="text" id="ls-repo" value="mrt-comite-ejecutivo" placeholder="mrt-comite-ejecutivo"></div>
+      <div class="fg"><label>Token de acceso</label><input type="password" id="ls-token" placeholder="github_pat_... (solicítalo al administrador)"></div>
       <div id="ls-err" class="err-box"></div>
       <button class="btn btn-ghost btn-full" onclick="FirstRun.connectAndLogin()" style="border-color:var(--amber);color:var(--amber)">Conectar y cargar usuarios →</button>
     </div>
@@ -602,6 +602,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
       <div class="pg-head flex items-center justify-between">
         <div><div class="pg-title">Administración de Usuarios</div><div class="pg-sub">Gestión de accesos y roles</div></div>
         <button class="btn btn-primary btn-sm" onclick="AdminUI.openNew()">+ Nuevo Usuario</button>
+        <span style="font-size:11px;color:var(--amber);margin-left:12px">💡 Si un usuario no puede entrar, usa <strong>Resetear</strong> → comunícale la contraseña <strong>Director2025</strong> → sincroniza.</span>
       </div>
       <div class="card">
         <table>
@@ -1161,9 +1162,20 @@ const DB = {
       // Only update if cloud is newer
       if (savedAt > localAt) {
         this._cloudKeys.forEach(k => {
-          // Never overwrite local users with empty array from cloud
-          if (k === 'users' && (!raw[k] || raw[k].length === 0)) return;
-          if (raw[k] != null) this._lset(k, raw[k]);
+          if (k === 'users') {
+            const cloudUsers = raw[k] || [];
+            const localUsers = this._lget('users') || [];
+            if (cloudUsers.length === 0) return; // never overwrite with empty
+            // Merge: cloud users + any local users not yet in cloud (by email)
+            const merged = [...cloudUsers];
+            localUsers.forEach(lu => {
+              if (!merged.find(u => u.email && u.email.toLowerCase() === lu.email.toLowerCase()))
+                merged.push(lu);
+            });
+            this._lset('users', merged);
+          } else {
+            if (raw[k] != null) this._lset(k, raw[k]);
+          }
         });
         this._lset('_savedAt', savedAt);
         this._onRemoteUpdate();
@@ -1444,7 +1456,6 @@ const FirstRun = {
     // Show sync panel since they need to pull users first
     const users = DB.get('users')||[];
     if (users.length === 0) {
-      document.getElementById('login-sync-panel').style.display = '';
     }
   },
 
@@ -1465,7 +1476,6 @@ const FirstRun = {
         return;
       }
       // Hide sync panel — users loaded, ready to log in
-      document.getElementById('login-sync-panel').style.display = 'none';
       toast('✓ Usuarios cargados. Ingresa tus credenciales.', 'var(--green)', 4000);
     } catch(e) {
       errEl.textContent = 'Error al conectar: ' + e.message;
@@ -2933,21 +2943,25 @@ const AdminUI = {
     if (!Auth.isAdmin()){Nav.go('dashboard');return;}
     const users=DB.get('users')||[];
     const rb={admin:'<span class="badge br">Admin</span>',director:'<span class="badge ba">Director</span>',viewer:'<span class="badge bv">Solo lectura</span>'};
+    const resetBtn = u => u.role==='admin' ? '' :
+      `<button class="btn btn-sm" style="background:var(--amber);color:#fff;margin-left:6px" onclick="AdminUI.resetPass('${u.id}','${escHtml(u.name)}')">Resetear</button>`;
     document.getElementById('admin-users-body').innerHTML=users.map(u=>`<tr>
       <td class="font-bold">${escHtml(u.name)}</td>
       <td class="text-sm text-muted">${escHtml(u.email)}</td>
       <td>${rb[u.role]||u.role}</td>
       <td>${u.section?`<span class="pill" style="border-color:${SECTIONS.find(s=>s.id===u.section)?.color||'var(--border)'}">${SECTION_MAP[u.section]||u.section}</span>`:'<span class="text-muted">--</span>'}</td>
-      <td><button class="btn btn-ghost btn-sm" onclick="AdminUI.openEdit('${u.id}')">Editar</button></td>
+      <td>${resetBtn(u)}<button class="btn btn-ghost btn-sm" onclick="AdminUI.openEdit('${u.id}')">Editar</button></td>
     </tr>`).join('')||'<tr><td colspan="5" class="empty-state">Sin usuarios</td></tr>';
   },
   openNew() {
     this.editingId=null;
     document.getElementById('user-modal-title').textContent='Nuevo Usuario';
-    ['um-name','um-email','um-pass'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('um-name').value='';
+    document.getElementById('um-email').value='';
+    document.getElementById('um-pass').value='Director2025';
     document.getElementById('um-role').value='viewer';
     document.getElementById('um-section').value='operaciones';
-    document.getElementById('um-pass-hint').textContent='';
+    document.getElementById('um-pass-hint').textContent='Contraseña temporal por defecto. Cámbiala si quieres.';
     document.getElementById('um-delete-btn').style.display='none';
     this.toggleSection();
     document.getElementById('modal-user').classList.add('open');
@@ -2989,6 +3003,13 @@ const AdminUI = {
     }
     DB.set('users',users); DB.pushAll(); this.closeModal(); this.render(); toast('Usuario guardado');
   },
+  resetPass(id, name) {
+    if (!confirm('Resetear contraseña de ' + name + ' a la contraseña temporal\nDirector2025\n\n¿Confirmar? Luego presiona "Sincronizar" para enviar a GitHub.')) return;
+    const users=DB.get('users')||[];
+    const u=users.find(u=>u.id===id);
+    if(u){ u.passHash='b439e145521975b140d44f121210a2c3b68b5610b91f2b8035f3fd4910c5f782'; DB.set('users',users); DB.pushAll(); this.render();
+      toast('✓ Contraseña reseteada → Director2025. Avisa al director.','var(--amber)',5000); }
+  },
   deleteUser() {
     if (!confirm('Eliminar usuario?')) return;
     DB.set('users',(DB.get('users')||[]).filter(u=>u.id!==this.editingId));
@@ -3006,7 +3027,7 @@ const AdminUI = {
   }
   // ?fixuser=1 — limpia SOLO sesión y usuarios (no borra datos de reuniones)
   if (params.get('fixuser')==='1'){
-    ['mrt_users','mrt_session','mrt__ghcfg','mrt_seeded'].forEach(k=>localStorage.removeItem(k));
+    ['mrt_users','mrt_session','mrt_seeded'].forEach(k=>localStorage.removeItem(k)); // _ghcfg preserved for auto-reconnect
     history.replaceState(null,'',location.pathname);
   }
   DB.init();
@@ -3017,14 +3038,8 @@ const AdminUI = {
     document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
   });
   const users=DB.get('users')||[];
-  if (users.length===0){
-    // Always require GitHub sync first — setup screen only via ?setup param
-    if (new URLSearchParams(location.search).get('setup')==='1') {
-      document.getElementById('screen-setup').classList.add('active');
-    } else {
-      document.getElementById('screen-login').classList.add('active');
-      document.getElementById('login-sync-panel').style.display='';
-    }
+  if (users.length===0 && new URLSearchParams(location.search).get('setup')==='1') {
+    document.getElementById('screen-setup').classList.add('active');
   } else if (!Auth.restore()){
     document.getElementById('screen-login').classList.add('active');
   }

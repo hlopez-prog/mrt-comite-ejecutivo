@@ -2277,7 +2277,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-11T19:18:59.685Z",
+          "updatedAt": "2026-08-11T19:19:03.287Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2368,7 +2368,7 @@
           "desafio1Bloqueo": "",
           "desafio2Titulo": "Presupuesto Headcount 2026-2027 MRT",
           "desafio2Pct": 0,
-          "desafio2Bloqueo": ""
+          "desafio2Bloqueo": "Definición de los presupuestos de los proyectos de Olivos y Namiquip"
         },
         "finanzas": {
           "alertStatus": "VERDE",
@@ -3418,5 +3418,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-11T19:19:01.702Z"
+  "_savedAt": "2026-08-11T19:19:05.295Z"
 }

@@ -518,7 +518,15 @@
       "passHash": "fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83",
       "role": "director",
       "section": "finanzas"
+    },
+    {
+      "id": "msot538kedeyp",
+      "name": "Ernesto Carrillo",
+      "email": "etorres@mrtcorporativo.mx",
+      "passHash": "fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83",
+      "role": "director",
+      "section": "metalurgia"
     }
   ],
-  "_savedAt": "2026-08-11T15:19:18.338Z"
+  "_savedAt": "2026-08-11T15:20:50.085Z"
 }

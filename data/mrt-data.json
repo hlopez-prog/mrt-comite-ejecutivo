@@ -481,9 +481,9 @@
   "users": [
     {
       "id": "seed-admin-hl",
-      "name": "Hector Lopez",
+      "name": "Daniel Lopez",
       "email": "hlopez@mrtcorporativo.mx",
-      "passHash": "f0d69d50df9d46dbb367d8ab8265d051e4e15cd15277230b5c8cd0b0aba18fca",
+      "passHash": "fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83",
       "role": "admin",
       "section": ""
     },
@@ -504,5 +504,5 @@
       "section": "exploracion"
     }
   ],
-  "_savedAt": "2026-08-11T15:17:19.507Z"
+  "_savedAt": "2026-08-11T15:18:18.043Z"
 }

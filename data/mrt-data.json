@@ -3091,6 +3091,175 @@
       },
       "decisions": [],
       "agreements": []
+    },
+    {
+      "id": "2026-W35",
+      "weekNum": 35,
+      "year": 2026,
+      "date": "lunes, 24 de agosto de 2026",
+      "status": "borrador",
+      "sections": {
+        "operaciones": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "metalurgia": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "rrhh": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": "",
+          "headcount": [
+            {
+              "site": "CIENEGUITA",
+              "real": 147,
+              "plan": 150
+            },
+            {
+              "site": "REALITO",
+              "real": 16,
+              "plan": 16
+            },
+            {
+              "site": "MATAMOROS",
+              "real": 6,
+              "plan": 8
+            },
+            {
+              "site": "OLIVOS",
+              "real": 32,
+              "plan": 35
+            },
+            {
+              "site": "CHOIX",
+              "real": 7,
+              "plan": 8
+            },
+            {
+              "site": "CORPORATIVO",
+              "real": 50,
+              "plan": 50
+            },
+            {
+              "site": "NAMIQUIPA",
+              "real": 14,
+              "plan": 15
+            },
+            {
+              "site": "GEOLOGÍA",
+              "real": 11,
+              "plan": 12
+            },
+            {
+              "site": "BARRENACIÓN DIAMANTE",
+              "real": 17,
+              "plan": 20
+            },
+            {
+              "site": "SAN PEDRO CORRALITOS",
+              "real": 7,
+              "plan": 8
+            }
+          ],
+          "vacantes": [
+            {
+              "cargo": "Operador de Equipo",
+              "area": "Operaciones",
+              "abiertas": 12,
+              "dias": 45
+            },
+            {
+              "cargo": "Mecánico Industrial",
+              "area": "Mantenimiento",
+              "abiertas": 5,
+              "dias": 30
+            },
+            {
+              "cargo": "Técnico Metalurgista",
+              "area": "Metalurgia",
+              "abiertas": 3,
+              "dias": 20
+            },
+            {
+              "cargo": "Analista Contable",
+              "area": "Finanzas",
+              "abiertas": 2,
+              "dias": 15
+            }
+          ]
+        },
+        "finanzas": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        },
+        "exploracion": {
+          "alertStatus": "VERDE",
+          "kpi1Label": "",
+          "kpi1Value": "",
+          "kpi1Plan": "",
+          "kpi1Impact": "",
+          "kpi2Label": "",
+          "kpi2Value": "",
+          "kpi2Plan": "",
+          "kpi2Impact": "",
+          "riesgo": "",
+          "apoyo": "",
+          "accion": "",
+          "updatedBy": "",
+          "updatedAt": ""
+        }
+      },
+      "decisions": [],
+      "agreements": []
     }
   ],
   "topics": [
@@ -3441,5 +3610,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-11T18:00:33.345Z"
+  "_savedAt": "2026-08-11T18:00:54.008Z"
 }

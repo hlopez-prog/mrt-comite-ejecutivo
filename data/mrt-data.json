@@ -2277,7 +2277,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-11T19:19:08.567Z",
+          "updatedAt": "2026-08-11T19:19:13.260Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2367,7 +2367,7 @@
           "desafio1Pct": 50,
           "desafio1Bloqueo": "",
           "desafio2Titulo": "Presupuesto Headcount 2026-2027 MRT",
-          "desafio2Pct": 0,
+          "desafio2Pct": 90,
           "desafio2Bloqueo": "Definición de los presupuestos de los proyectos de Olivos"
         },
         "finanzas": {
@@ -3418,5 +3418,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-11T19:19:10.568Z"
+  "_savedAt": "2026-08-11T19:19:15.273Z"
 }

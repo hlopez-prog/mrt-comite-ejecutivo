@@ -499,7 +499,7 @@
       "id": "msot0kr616bg9",
       "name": "Juan Luis Frias",
       "email": "jfrias@mrtcorporativo.mx",
-      "passHash": "fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83",
+      "passHash": "b439e145521975b140d44f121210a2c3b68b5610b91f2b8035f3fd4910c5f782",
       "role": "director",
       "section": "exploracion"
     },
@@ -536,5 +536,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-11T15:27:50.673Z"
+  "_savedAt": "2026-08-11T17:28:59.046Z"
 }

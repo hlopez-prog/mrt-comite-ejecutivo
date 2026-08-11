@@ -510,7 +510,15 @@
       "passHash": "fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83",
       "role": "director",
       "section": "operaciones"
+    },
+    {
+      "id": "msot34g2y1ruy",
+      "name": "Alvaro Urquidez",
+      "email": "aurquidez@mrtcorporativo.mx",
+      "passHash": "fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83",
+      "role": "director",
+      "section": "finanzas"
     }
   ],
-  "_savedAt": "2026-08-11T15:18:44.602Z"
+  "_savedAt": "2026-08-11T15:19:18.338Z"
 }

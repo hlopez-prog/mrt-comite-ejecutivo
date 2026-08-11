@@ -2277,7 +2277,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-11T19:20:23.823Z",
+          "updatedAt": "2026-08-11T19:20:33.540Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2356,13 +2356,13 @@
           "riesgo1": "",
           "riesgo2": "",
           "riesgo3": "",
-          "apoyoTipo1": "apoyo_metalurgia",
+          "apoyoTipo1": "seguimiento",
           "apoyo1": "",
           "apoyoTipo2": "",
           "apoyo2": "Definición de HeadCount Olivos A rehabilitación",
           "apoyoTipo3": "",
           "apoyo3": "",
-          "apoyoTipo": "apoyo_metalurgia",
+          "apoyoTipo": "seguimiento",
           "desafio1Titulo": "inicio de proceso de Plan Anual de capacitación",
           "desafio1Pct": 50,
           "desafio1Bloqueo": "",
@@ -3418,5 +3418,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-11T19:20:25.831Z"
+  "_savedAt": "2026-08-11T19:20:35.551Z"
 }

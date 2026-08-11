@@ -2277,27 +2277,27 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-11T19:12:04.245Z",
+          "updatedAt": "2026-08-11T19:15:26.109Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
-              "real": 160,
-              "plan": 150
+              "real": 154,
+              "plan": 166
             },
             {
               "site": "REALITO",
-              "real": 15,
-              "plan": 16
+              "real": 22,
+              "plan": 23
             },
             {
               "site": "MATAMOROS",
-              "real": 82,
-              "plan": 85
+              "real": 5,
+              "plan": 0
             },
             {
               "site": "OLIVOS",
-              "real": 27,
-              "plan": 30
+              "real": 32,
+              "plan": 32
             },
             {
               "site": "CHOIX",
@@ -2306,54 +2306,42 @@
             },
             {
               "site": "CORPORATIVO",
-              "real": 47,
-              "plan": 50
+              "real": 61,
+              "plan": 61
             },
             {
               "site": "NAMIQUIPA",
+              "real": 16,
+              "plan": 67
+            },
+            {
+              "site": "GEOLOGÍA",
               "real": 9,
               "plan": 10
             },
             {
-              "site": "GEOLOGÍA",
-              "real": 10,
-              "plan": 12
-            },
-            {
               "site": "BARRENACIÓN",
-              "real": 17,
-              "plan": 20
+              "real": 16,
+              "plan": 16
             },
             {
               "site": "SAN PEDRO",
-              "real": 6,
-              "plan": 8
+              "real": 7,
+              "plan": 7
             }
           ],
           "vacantes": [
             {
-              "cargo": "Operador de Equipo",
+              "cargo": "Cieneguita",
               "area": "Operaciones",
               "abiertas": 12,
-              "dias": 45
+              "dias": 14
             },
             {
-              "cargo": "Mecánico Industrial",
-              "area": "Mantenimiento",
+              "cargo": "Namiquipa",
+              "area": "Operación",
               "abiertas": 5,
-              "dias": 30
-            },
-            {
-              "cargo": "Técnico Metalurgista",
-              "area": "Metalurgia",
-              "abiertas": 3,
-              "dias": 20
-            },
-            {
-              "cargo": "Analista Contable",
-              "area": "Finanzas",
-              "abiertas": 2,
-              "dias": 15
+              "dias": 51
             }
           ]
         },
@@ -3439,5 +3427,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-11T19:12:06.247Z"
+  "_savedAt": "2026-08-11T19:15:28.114Z"
 }

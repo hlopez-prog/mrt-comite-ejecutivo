@@ -2371,7 +2371,7 @@
           "desafio2Bloqueo": "Definición de los presupuestos de los proyectos de Olivos"
         },
         "finanzas": {
-          "alertStatus": "VERDE",
+          "alertStatus": "AMBAR",
           "kpi1Label": "AISC/Oz Eq",
           "kpi1Value": "2,245",
           "kpi1Plan": "2,021",
@@ -2384,7 +2384,7 @@
           "apoyo": "Plan y Presupuesto para Expansion Cieneguita.",
           "accion": "",
           "updatedBy": "Alvaro Urquidez",
-          "updatedAt": "2026-08-12T02:43:25.147Z",
+          "updatedAt": "2026-08-12T02:43:40.938Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3558,5 +3558,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-12T02:43:27.159Z"
+  "_savedAt": "2026-08-12T02:43:42.943Z"
 }

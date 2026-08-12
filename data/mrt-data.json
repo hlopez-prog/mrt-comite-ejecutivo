@@ -2384,7 +2384,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Alvaro Urquidez",
-          "updatedAt": "2026-08-12T02:31:01.989Z",
+          "updatedAt": "2026-08-12T02:31:06.330Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2399,7 +2399,7 @@
           "riesgo3": "",
           "apoyoTipo1": "apoyo_operaciones",
           "apoyo1": "",
-          "apoyoTipo2": "",
+          "apoyoTipo2": "apoyo_metalurgia",
           "apoyo2": "",
           "apoyoTipo3": "",
           "apoyo3": "",
@@ -3524,5 +3524,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-12T02:31:03.994Z"
+  "_savedAt": "2026-08-12T02:31:08.346Z"
 }

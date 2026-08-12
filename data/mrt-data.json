@@ -2376,7 +2376,7 @@
           "kpi1Value": "",
           "kpi1Plan": "",
           "kpi1Impact": "",
-          "kpi2Label": "",
+          "kpi2Label": "CASH FLOW",
           "kpi2Value": "",
           "kpi2Plan": "",
           "kpi2Impact": "",
@@ -2384,7 +2384,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Alvaro Urquidez",
-          "updatedAt": "2026-08-12T02:30:10.244Z",
+          "updatedAt": "2026-08-12T02:30:14.161Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3524,5 +3524,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-12T02:30:12.260Z"
+  "_savedAt": "2026-08-12T02:30:16.174Z"
 }

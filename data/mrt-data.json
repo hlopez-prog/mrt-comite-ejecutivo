@@ -2484,7 +2484,7 @@
           "kpi1Label": "Reestructuración Olivos",
           "kpi1Value": "Alto",
           "kpi1Plan": "250 tmes primera parte y 500 tmes 2 etapa",
-          "kpi1Impact": "",
+          "kpi1Impact": "Plan y seguimiento de todas las actividades ",
           "kpi2Label": "",
           "kpi2Value": "",
           "kpi2Plan": "",
@@ -2493,7 +2493,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Carrillo",
-          "updatedAt": "2026-08-15T22:03:38.983Z",
+          "updatedAt": "2026-08-15T22:03:49.377Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3557,5 +3557,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-15T22:03:40.995Z"
+  "_savedAt": "2026-08-15T22:03:51.391Z"
 }

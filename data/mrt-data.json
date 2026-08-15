@@ -2487,13 +2487,13 @@
           "kpi1Impact": "Plan y seguimiento de todas las actividades ",
           "kpi2Label": "Arranque Namiquipa y desarrollo Olivos B",
           "kpi2Value": "",
-          "kpi2Plan": "",
+          "kpi2Plan": "Programa de arranque Namiquipa y apoyo en el desarollo Olovos B",
           "kpi2Impact": "",
           "riesgo": "",
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Carrillo",
-          "updatedAt": "2026-08-15T22:05:37.298Z",
+          "updatedAt": "2026-08-15T22:06:48.268Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3557,5 +3557,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-15T22:05:39.303Z"
+  "_savedAt": "2026-08-15T22:06:50.278Z"
 }

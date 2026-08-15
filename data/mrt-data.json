@@ -2493,7 +2493,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Carrillo",
-          "updatedAt": "2026-08-15T22:03:54.633Z",
+          "updatedAt": "2026-08-15T22:04:42.779Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2513,7 +2513,7 @@
           "apoyoTipo3": "",
           "apoyo3": "",
           "apoyoTipo": "",
-          "desafio1Titulo": "",
+          "desafio1Titulo": "Completar proyecto de Olivos B  diseño técnico, plan de ejecución Gantt con presupuesto de costos del proyecto",
           "desafio1Pct": 0,
           "desafio1Bloqueo": "",
           "desafio2Titulo": "",
@@ -3557,5 +3557,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-15T22:03:56.646Z"
+  "_savedAt": "2026-08-15T22:04:44.782Z"
 }

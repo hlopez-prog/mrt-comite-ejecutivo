@@ -2558,58 +2558,58 @@
           "riesgo": "",
           "apoyo": "",
           "accion": "",
-          "updatedBy": "",
-          "updatedAt": "",
+          "updatedBy": "Daniel Lopez",
+          "updatedAt": "2026-08-17T22:03:06.206Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
-              "real": 144,
-              "plan": 150
+              "real": 150,
+              "plan": 166
             },
             {
               "site": "REALITO",
-              "real": 15,
-              "plan": 16
+              "real": 22,
+              "plan": 23
             },
             {
               "site": "MATAMOROS",
-              "real": 82,
-              "plan": 85
+              "real": 5,
+              "plan": 0
             },
             {
               "site": "OLIVOS",
-              "real": 27,
-              "plan": 30
+              "real": 32,
+              "plan": 32
             },
             {
               "site": "CHOIX",
               "real": 7,
-              "plan": 8
+              "plan": 7
             },
             {
               "site": "CORPORATIVO",
-              "real": 47,
-              "plan": 50
+              "real": 61,
+              "plan": 61
             },
             {
               "site": "NAMIQUIPA",
+              "real": 16,
+              "plan": 67
+            },
+            {
+              "site": "GEOLOGÍA",
               "real": 9,
               "plan": 10
             },
             {
-              "site": "GEOLOGÍA",
-              "real": 10,
-              "plan": 12
-            },
-            {
               "site": "BARRENACIÓN",
-              "real": 17,
-              "plan": 20
+              "real": 16,
+              "plan": 16
             },
             {
               "site": "SAN PEDRO",
-              "real": 6,
-              "plan": 8
+              "real": 7,
+              "plan": 7
             }
           ],
           "vacantes": [
@@ -3667,5 +3667,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-17T21:52:38.305Z"
+  "_savedAt": "2026-08-17T22:03:08.215Z"
 }

@@ -2559,7 +2559,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-17T22:10:39.029Z",
+          "updatedAt": "2026-08-17T22:10:41.832Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2649,7 +2649,7 @@
           "desafio1Pct": 48,
           "desafio1Bloqueo": "Definición de talleres específicos con las areas relevadas en el diagnostico",
           "desafio2Titulo": "Presupuesto HeadCount 2026-2027 MRT",
-          "desafio2Pct": 0,
+          "desafio2Pct": 95,
           "desafio2Bloqueo": ""
         },
         "finanzas": {
@@ -3612,5 +3612,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-17T22:10:41.042Z"
+  "_savedAt": "2026-08-17T22:10:43.839Z"
 }

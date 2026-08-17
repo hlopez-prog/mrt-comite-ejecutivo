@@ -2559,7 +2559,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-17T22:10:13.765Z",
+          "updatedAt": "2026-08-17T22:10:35.998Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2647,7 +2647,7 @@
           "apoyoTipo": "",
           "desafio1Titulo": "inicio de proceso de Plan Anual de capacitación",
           "desafio1Pct": 48,
-          "desafio1Bloqueo": "Definición de talleres específicos c",
+          "desafio1Bloqueo": "Definición de talleres específicos con las areas relevadas en el diagnostico",
           "desafio2Titulo": "",
           "desafio2Pct": 0,
           "desafio2Bloqueo": ""
@@ -3612,5 +3612,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-17T22:10:15.777Z"
+  "_savedAt": "2026-08-17T22:10:38.016Z"
 }

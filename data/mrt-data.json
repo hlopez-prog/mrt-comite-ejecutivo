@@ -2559,7 +2559,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-17T22:03:06.206Z",
+          "updatedAt": "2026-08-17T22:05:13.449Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2568,7 +2568,7 @@
             },
             {
               "site": "REALITO",
-              "real": 22,
+              "real": 21,
               "plan": 23
             },
             {
@@ -2578,7 +2578,7 @@
             },
             {
               "site": "OLIVOS",
-              "real": 32,
+              "real": 33,
               "plan": 32
             },
             {
@@ -2593,18 +2593,18 @@
             },
             {
               "site": "NAMIQUIPA",
-              "real": 16,
+              "real": 19,
               "plan": 67
             },
             {
               "site": "GEOLOGÍA",
-              "real": 9,
-              "plan": 10
+              "real": 12,
+              "plan": 12
             },
             {
               "site": "BARRENACIÓN",
-              "real": 16,
-              "plan": 16
+              "real": 17,
+              "plan": 17
             },
             {
               "site": "SAN PEDRO",
@@ -2614,28 +2614,16 @@
           ],
           "vacantes": [
             {
-              "cargo": "Operador de Equipo",
+              "cargo": "Cieneguita",
               "area": "Operaciones",
-              "abiertas": 12,
-              "dias": 45
+              "abiertas": 16,
+              "dias": 14
             },
             {
-              "cargo": "Mecánico Industrial",
-              "area": "Mantenimiento",
-              "abiertas": 5,
-              "dias": 30
-            },
-            {
-              "cargo": "Técnico Metalurgista",
-              "area": "Metalurgia",
-              "abiertas": 3,
-              "dias": 20
-            },
-            {
-              "cargo": "Analista Contable",
-              "area": "Finanzas",
-              "abiertas": 2,
-              "dias": 15
+              "cargo": "Namiquipa",
+              "area": "Operaciones",
+              "abiertas": 41,
+              "dias": 17
             }
           ]
         },
@@ -3667,5 +3655,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-17T22:03:08.215Z"
+  "_savedAt": "2026-08-17T22:05:15.455Z"
 }

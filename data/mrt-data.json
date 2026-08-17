@@ -2556,10 +2556,10 @@
           "kpi2Plan": "",
           "kpi2Impact": "",
           "riesgo": "",
-          "apoyo": "Headcount y Diseño Organizacional de Metalurgi",
+          "apoyo": "HeadCount  ",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-17T22:11:30.648Z",
+          "updatedAt": "2026-08-17T22:11:39.126Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2639,7 +2639,7 @@
           "riesgo2": "",
           "riesgo3": "",
           "apoyoTipo1": "",
-          "apoyo1": "Headcount y Diseño Organizacional de Metalurgi",
+          "apoyo1": "HeadCount  ",
           "apoyoTipo2": "",
           "apoyo2": "",
           "apoyoTipo3": "",
@@ -3612,5 +3612,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-17T22:11:32.650Z"
+  "_savedAt": "2026-08-17T22:11:41.129Z"
 }

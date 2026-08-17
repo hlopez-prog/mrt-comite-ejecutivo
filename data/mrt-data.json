@@ -2559,7 +2559,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-17T22:05:44.147Z",
+          "updatedAt": "2026-08-17T22:06:05.073Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2630,7 +2630,7 @@
           "kpi3Value": "",
           "kpi3Plan": "",
           "kpi3Impact": "",
-          "proy1": "Martes 18: Viaje a Namiquipa para seguimiento d ",
+          "proy1": "Martes 18: Viaje a Namiquipa para seguimiento de los ingresos para entrenamiento en Cieneguita",
           "proy2": "",
           "proy3": "",
           "hcNotas": "",
@@ -3612,5 +3612,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-17T22:05:46.151Z"
+  "_savedAt": "2026-08-17T22:06:07.077Z"
 }

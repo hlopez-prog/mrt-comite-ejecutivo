@@ -1286,14 +1286,18 @@ const DB = {
     if (!this._lget('seeded'))  { this._seed(); this._lset('seeded',true); }
     // Pre-seed users if none exist (allows login without GitHub sync)
     if (!this._lget('users') || this._lget('users').length === 0) {
-      this._lset('users', [
-        {id:'seed-admin-hl',name:'Hector Lopez',email:'hlopez@mrtcorporativo.mx',
-         passHash:'f0d69d50df9d46dbb367d8ab8265d051e4e15cd15277230b5c8cd0b0aba18fca',
-         role:'admin',section:''},
-        {id:'seed-viewer-anna',name:'Anna Portillo',email:'aportillo@mrtcorporativo.mx',
-         passHash:'fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83',
-         role:'viewer',section:''}
-      ]);
+      this._lset('users', [{"id":"mqjowswzbbk0l","name":"Daniel Lopez","email":"hlopez@mrtcorporativo.mx","passHash":"b439e145521975b140d44f121210a2c3b68b5610b91f2b8035f3fd4910c5f782","role":"admin","section":""},{"id":"mqjpd3kyuu21w","name":"Noel Menera","email":"nmenera@mrtcorporativo.mx","passHash":"1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1","role":"director","section":"operaciones"},{"id":"mqjpdmb0t2udx","name":"Juan Luis Frias","email":"jfrias@mrtcorporativo.mx","passHash":"1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1","role":"director","section":"exploracion"},{"id":"mqjpe38urac2i","name":"Ernesto Torres","email":"etorres@mrtcorporativo.mx","passHash":"1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1","role":"director","section":"metalurgia"},{"id":"mqjpeok1g5157","name":"Alvaro Urquidez","email":"aurquidez@mrtcorporativo.mx","passHash":"aecaf7b75d3472f1adac766c12932a3131e8f77b96c0ef1254c76015c455ea6d","role":"director","section":"finanzas"},{"id":"mqjpcliqn9dxs","name":"Omar Ayub","email":"omar.ayub@mrtcorporativo.mx","passHash":"1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1","role":"viewer","section":""},{"id":"mqjynewvs1v6o","name":"Joel Estrada","email":"jestrada@empresasefectivas.com","passHash":"1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1","role":"viewer","section":""},{"id":"mrnn28x1c7xqy","name":"Gabriel Trevizo","email":"gabriel@scias.mx","passHash":"1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1","role":"viewer","section":""},{"id":"msg8imq4998x1","name":"Anna Portillo","email":"aportillo@mrtcorporativo.mx","passHash":"fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83","role":"viewer","section":""}]);
+    }
+    // Emergency data recovery: if meetings missing, fetch from backup
+    if (!this._lget('meetings') || (this._lget('meetings')||[]).length === 0) {
+      const BACKUP='https://raw.githubusercontent.com/hlopez-prog/mrt-comite-ejecutivo/e3d2e286a1acf02615f4afa815612c0a7cee4c0b/data/mrt-data.json';
+      fetch(BACKUP).then(r=>r.json()).then(d=>{
+        this._lset('meetings', d.meetings);
+        this._lset('topics',   d.topics);
+        this._lset('_savedAt', new Date().toISOString());
+        console.log('✅ Recovery: '+d.meetings.length+' semanas restauradas');
+        setTimeout(()=>location.reload(), 800);
+      }).catch(e=>console.warn('Recovery fetch failed:', e));
     }
     // Deduplicate on boot (cleans up any legacy duplicates)
     this.deduplicateTopics();

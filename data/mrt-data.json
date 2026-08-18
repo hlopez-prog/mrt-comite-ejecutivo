@@ -2505,7 +2505,7 @@
           "desafio2Bloqueo": "Instalaciones eléctricas, se mantiene la fecha de arranque (24 ago)"
         },
         "metalurgia": {
-          "alertStatus": "AMBAR",
+          "alertStatus": "VERDE",
           "kpi1Label": "Reestructuración Olivos ( continúa como P 1)",
           "kpi1Value": "Alto",
           "kpi1Plan": "250 tmes primera parte y 500 tmes 2 etapa",
@@ -2518,7 +2518,7 @@
           "apoyo": "para apoyo de reestructuración Olivos",
           "accion": "Trabajar fuerte en el programa de reestructuración Olivos para tener tiempos reales y areas de oportunidad para ejecutar en el menor tiempo posible",
           "updatedBy": "Ernesto Carrillo",
-          "updatedAt": "2026-08-18T13:54:00.566Z",
+          "updatedAt": "2026-08-18T13:54:05.052Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3739,5 +3739,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-18T13:54:02.574Z"
+  "_savedAt": "2026-08-18T13:54:07.067Z"
 }

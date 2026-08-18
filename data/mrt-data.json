@@ -2655,8 +2655,8 @@
         "finanzas": {
           "alertStatus": "VERDE",
           "kpi1Label": "AISC/Oz Eq",
-          "kpi1Value": "2,021",
-          "kpi1Plan": "2,021",
+          "kpi1Value": "2,0",
+          "kpi1Plan": "2,191",
           "kpi1Impact": "US$0/Oz Eq",
           "kpi2Label": "CASH FLOW",
           "kpi2Value": "MX$627.8M",
@@ -2666,7 +2666,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Alvaro Urquidez",
-          "updatedAt": "2026-08-18T14:17:57.246Z",
+          "updatedAt": "2026-08-18T14:19:41.847Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3645,5 +3645,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-18T14:17:59.254Z"
+  "_savedAt": "2026-08-18T14:19:43.862Z"
 }

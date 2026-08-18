@@ -2660,13 +2660,13 @@
           "kpi1Impact": "US$191/Oz Eq",
           "kpi2Label": "CASH FLOW",
           "kpi2Value": "MX$809M",
-          "kpi2Plan": "MX$592.8M",
-          "kpi2Impact": "+MX$34.9M (6%)",
+          "kpi2Plan": "MX$809M",
+          "kpi2Impact": "+MX$34.9M (6",
           "riesgo": "",
           "apoyo": "",
           "accion": "",
           "updatedBy": "Alvaro Urquidez",
-          "updatedAt": "2026-08-18T14:22:30.671Z",
+          "updatedAt": "2026-08-18T14:22:37.397Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3645,5 +3645,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-18T14:22:32.684Z"
+  "_savedAt": "2026-08-18T14:22:39.407Z"
 }

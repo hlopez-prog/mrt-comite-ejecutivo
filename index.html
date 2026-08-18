@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- MRT-VERSION:2026-08-18T19:12:07Z -->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -1289,10 +1290,38 @@ const DB = {
   },
 
   init() {
-    // ── STEP 1: Restore users (always — login depends on this) ──
-    if (!this._lget('users') || (this._lget('users')||[]).length === 0) {
-      this._lset('users', [{"id":"emer-admin","name":"Daniel Lopez","email":"hlopez@mrtcorporativo.mx","passHash":"b439e145521975b140d44f121210a2c3b68b5610b91f2b8035f3fd4910c5f782","role":"admin","section":""},{"id":"seed-viewer-anna","name":"Anna Portillo","email":"aportillo@mrtcorporativo.mx","passHash":"fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83","role":"viewer","section":""},{"id":"msot0kr616bg9","name":"Juan Luis Frias","email":"jfrias@mrtcorporativo.mx","passHash":"b439e145521975b140d44f121210a2c3b68b5610b91f2b8035f3fd4910c5f782","role":"director","section":"exploracion"},{"id":"msot2eeybl18g","name":"Noel Menera","email":"nmenera@mrtcorporativo.mx","passHash":"fc01f28351360fffe8679694a5621d910799795866fe64d57d35c0c3c39640df","role":"director","section":"operaciones"},{"id":"msot34g2y1ruy","name":"Alvaro Urquidez","email":"aurquidez@mrtcorporativo.mx","passHash":"b439e145521975b140d44f121210a2c3b68b5610b91f2b8035f3fd4910c5f782","role":"director","section":"finanzas"},{"id":"msot538kedeyp","name":"Ernesto Carrillo","email":"etorres@mrtcorporativo.mx","passHash":"b439e145521975b140d44f121210a2c3b68b5610b91f2b8035f3fd4910c5f782","role":"director","section":"metalurgia"},{"id":"msot5puugmd54","name":"Omar Ayub","email":"omar.ayub@mrtcorporativo.mx","passHash":"fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83","role":"viewer","section":""},{"id":"mqjynewvs1v6o","name":"Joel Estrada","email":"jestrada@empresasefectivas.com","passHash":"1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1","role":"viewer","section":""},{"id":"mrnn28x1c7xqy","name":"Gabriel Trevizo","email":"gabriel@scias.mx","passHash":"1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1","role":"viewer","section":""}]);
-      console.log('✅ Recovery: usuarios restaurados desde GitHub');
+    // ── STEP 1: Restore users + ensure correct hashes (login depends on this) ──
+    const _SEED_USERS = [
+      {"id":"emer-admin","name":"Daniel Lopez","email":"hlopez@mrtcorporativo.mx","passHash":"b439e145521975b140d44f121210a2c3b68b5610b91f2b8035f3fd4910c5f782","role":"admin","section":""},
+      {"id":"seed-viewer-anna","name":"Anna Portillo","email":"aportillo@mrtcorporativo.mx","passHash":"fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83","role":"viewer","section":""},
+      {"id":"msot0kr616bg9","name":"Juan Luis Frias","email":"jfrias@mrtcorporativo.mx","passHash":"b439e145521975b140d44f121210a2c3b68b5610b91f2b8035f3fd4910c5f782","role":"director","section":"exploracion"},
+      {"id":"msot2eeybl18g","name":"Noel Menera","email":"nmenera@mrtcorporativo.mx","passHash":"fc01f28351360fffe8679694a5621d910799795866fe64d57d35c0c3c39640df","role":"director","section":"operaciones"},
+      {"id":"msot34g2y1ruy","name":"Alvaro Urquidez","email":"aurquidez@mrtcorporativo.mx","passHash":"b439e145521975b140d44f121210a2c3b68b5610b91f2b8035f3fd4910c5f782","role":"director","section":"finanzas"},
+      {"id":"msot538kedeyp","name":"Ernesto Carrillo","email":"etorres@mrtcorporativo.mx","passHash":"b439e145521975b140d44f121210a2c3b68b5610b91f2b8035f3fd4910c5f782","role":"director","section":"metalurgia"},
+      {"id":"msot5puugmd54","name":"Omar Ayub","email":"omar.ayub@mrtcorporativo.mx","passHash":"fcd44549641013f8b0a91a556485ae5ad96958acc611c376204d112ab5029f83","role":"viewer","section":""},
+      {"id":"mqjynewvs1v6o","name":"Joel Estrada","email":"jestrada@empresasefectivas.com","passHash":"1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1","role":"viewer","section":""},
+      {"id":"mrnn28x1c7xqy","name":"Gabriel Trevizo","email":"gabriel@scias.mx","passHash":"1a54c72c422df2b4fd18712b449c6a629f90c57d30856e6d87963984492089f1","role":"viewer","section":""}
+    ];
+    let _storedUsers = this._lget('users') || [];
+    if (_storedUsers.length === 0) {
+      // No users at all — full restore
+      this._lset('users', _SEED_USERS);
+      console.log('✅ Recovery STEP1: usuarios restaurados desde seed');
+    } else {
+      // Users exist — verify each known user has the correct passHash
+      let _usersDirty = false;
+      for (const su of _SEED_USERS) {
+        const u = _storedUsers.find(x => x.email.toLowerCase() === su.email.toLowerCase());
+        if (!u) {
+          _storedUsers.push(su);
+          _usersDirty = true;
+        } else if (u.passHash !== su.passHash) {
+          u.passHash = su.passHash;
+          _usersDirty = true;
+          console.log('✅ Recovery STEP1: hash corregido para ' + su.email);
+        }
+      }
+      if (_usersDirty) this._lset('users', _storedUsers);
     }
 
     // ── STEP 2: Restore meetings + topics from GitHub backup if W34 topics are missing ──
@@ -1307,8 +1336,7 @@ const DB = {
       this._lset('_savedAt', new Date().toISOString());
       this._lset('seeded',   true);
       console.log('✅ Recovery: ' + RM.length + ' reuniones y ' + RT.length + ' temas restaurados desde GitHub (W34)');
-      setTimeout(() => location.reload(), 800);
-      return;
+      // No reload needed - data is in localStorage, boot shows login screen immediately
     }
 
     // ── STEP 3: Normal init ──

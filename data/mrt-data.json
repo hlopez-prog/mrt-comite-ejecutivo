@@ -366,7 +366,7 @@
           "kpi1Label": "Recup, Cieneguita Ag ",
           "kpi1Value": "74%",
           "kpi1Plan": "80%",
-          "kpi1Impact": "",
+          "kpi1Impact": "42.9 kg de Ag/mes =",
           "kpi2Label": "",
           "kpi2Value": "",
           "kpi2Plan": "",
@@ -375,7 +375,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Carrillo",
-          "updatedAt": "2026-08-19T18:53:26.072Z",
+          "updatedAt": "2026-08-19T18:54:40.262Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1574,5 +1574,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-19T18:53:28.077Z"
+  "_savedAt": "2026-08-19T18:54:42.265Z"
 }

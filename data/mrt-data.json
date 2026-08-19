@@ -363,7 +363,7 @@
         },
         "metalurgia": {
           "alertStatus": "VERDE",
-          "kpi1Label": "Recup, Cieneguita Ag de 74 a 80%",
+          "kpi1Label": "Recup, Cieneguita Ag ",
           "kpi1Value": "",
           "kpi1Plan": "",
           "kpi1Impact": "",
@@ -375,7 +375,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Carrillo",
-          "updatedAt": "2026-08-19T18:51:50.746Z",
+          "updatedAt": "2026-08-19T18:52:11.788Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1574,5 +1574,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-19T18:51:52.748Z"
+  "_savedAt": "2026-08-19T18:52:13.792Z"
 }

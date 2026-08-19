@@ -365,7 +365,7 @@
           "alertStatus": "VERDE",
           "kpi1Label": "Recup, Cieneguita Ag ",
           "kpi1Value": "",
-          "kpi1Plan": "",
+          "kpi1Plan": "74/80%",
           "kpi1Impact": "",
           "kpi2Label": "",
           "kpi2Value": "",
@@ -375,7 +375,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Ernesto Carrillo",
-          "updatedAt": "2026-08-19T18:52:18.577Z",
+          "updatedAt": "2026-08-19T18:52:38.755Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -1574,5 +1574,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-19T18:52:20.581Z"
+  "_savedAt": "2026-08-19T18:52:40.759Z"
 }

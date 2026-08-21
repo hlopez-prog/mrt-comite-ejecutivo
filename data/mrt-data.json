@@ -2261,11 +2261,11 @@
           "apoyo": "HeadCount de proyecto Olivos Rec.",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-19T23:41:31.200Z",
+          "updatedAt": "2026-08-21T18:49:18.998Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
-              "real": 150,
+              "real": 142,
               "plan": 166
             },
             {
@@ -3434,5 +3434,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-19T23:41:33.207Z"
+  "_savedAt": "2026-08-21T18:49:21.011Z"
 }

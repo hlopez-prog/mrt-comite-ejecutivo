@@ -2420,7 +2420,7 @@
           "kpi1Label": "Proyección Producción OzAuEq",
           "kpi1Value": "2178",
           "kpi1Plan": "2085",
-          "kpi1Impact": "-+93 OzAuEq (-4.2%)",
+          "kpi1Impact": "-+93 OzAuEq (4.4%)",
           "kpi2Label": "",
           "kpi2Value": "",
           "kpi2Plan": "",
@@ -2429,7 +2429,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-08-24T15:09:26.285Z",
+          "updatedAt": "2026-08-24T15:09:48.549Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3382,5 +3382,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-24T15:09:28.301Z"
+  "_savedAt": "2026-08-24T15:09:50.552Z"
 }

@@ -1280,6 +1280,14 @@ const DB = {
     // Deduplicate after pull
     this.deduplicateTopics();
     const active = document.querySelector('.page.active')?.id;
+    // FIX: No re-renderizar si el usuario está escribiendo en un campo
+    const _focusEl = document.activeElement;
+    const _usuarioEditando = _focusEl && (_focusEl.tagName==='INPUT' || _focusEl.tagName==='TEXTAREA' || _focusEl.tagName==='SELECT' || _focusEl.isContentEditable);
+    if (active==='page-meeting' && _usuarioEditando) {
+      console.log('[DB] Pull recibido — usuario editando, re-render diferido 8s');
+      setTimeout(() => this._onRemoteUpdate(), 8000);
+      return;
+    }
     if (active==='page-meeting')   MeetUI.render();
     if (active==='page-dashboard') DashUI.render();
     if (active==='page-history')   HistoryUI.render();

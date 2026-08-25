@@ -2511,7 +2511,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-25T01:24:09.896Z",
+          "updatedAt": "2026-08-25T01:24:39.461Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2614,7 +2614,7 @@
           "desafio1Bloqueo": "Se ajusto Plan de capacitación con Juan Carlos Graciano ",
           "desafio2Titulo": "Presupuesto HeadCount 2026-2027 MRT",
           "desafio2Pct": 96,
-          "desafio2Bloqueo": ""
+          "desafio2Bloqueo": "Vo.Bo de Operación del Headcount de Olivos Rec."
         },
         "finanzas": {
           "alertStatus": "VERDE",
@@ -3441,5 +3441,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-25T01:24:11.906Z"
+  "_savedAt": "2026-08-25T01:24:41.479Z"
 }

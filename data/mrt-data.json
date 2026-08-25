@@ -2511,7 +2511,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-25T01:22:38.690Z",
+          "updatedAt": "2026-08-25T01:23:03.271Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2595,7 +2595,7 @@
           "kpi3Plan": "",
           "kpi3Impact": "",
           "proy1": "Onboarding 1° semana de Carla Rubio (RRHH)",
-          "proy2": "Re",
+          "proy2": "Reunión con Said (Namiquipa) para ajustar vacantes de Namiquipa",
           "proy3": "",
           "hcNotas": "",
           "vacNotas": "",
@@ -3441,5 +3441,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-25T01:22:40.696Z"
+  "_savedAt": "2026-08-25T01:23:05.287Z"
 }

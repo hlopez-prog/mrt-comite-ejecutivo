@@ -2659,10 +2659,10 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-25T14:48:59.487Z",
+          "updatedAt": "2026-08-25T14:49:25.030Z",
           "kpi3Label": "Secciones area JH",
           "kpi3Value": "P.M Mineral 4gr JH Y S.N",
-          "kpi3Plan": "",
+          "kpi3Plan": "Visita Mina 3H Batopilas",
           "kpi3Impact": "",
           "proy1": "",
           "proy2": "",
@@ -3428,5 +3428,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-25T14:49:01.502Z"
+  "_savedAt": "2026-08-25T14:49:27.047Z"
 }

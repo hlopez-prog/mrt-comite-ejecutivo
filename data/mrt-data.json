@@ -2511,57 +2511,57 @@
           "apoyo": "HeadCount de proyecto Olivos Rec. Vo.Bo.",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-25T14:24:48.953Z",
+          "updatedAt": "2026-08-25T15:00:54.551Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
-              "real": 147,
-              "plan": 150
+              "real": 142,
+              "plan": 152
             },
             {
               "site": "REALITO",
-              "real": 16,
-              "plan": 16
+              "real": 21,
+              "plan": 21
             },
             {
               "site": "MATAMOROS",
-              "real": 6,
-              "plan": 8
+              "real": 5,
+              "plan": 0
             },
             {
               "site": "OLIVOS",
               "real": 32,
-              "plan": 35
+              "plan": 32
             },
             {
               "site": "CHOIX",
               "real": 7,
-              "plan": 8
+              "plan": 7
             },
             {
               "site": "CORPORATIVO",
-              "real": 50,
-              "plan": 50
+              "real": 52,
+              "plan": 52
             },
             {
               "site": "NAMIQUIPA",
-              "real": 14,
-              "plan": 15
+              "real": 22,
+              "plan": 67
             },
             {
               "site": "GEOLOGÍA",
-              "real": 11,
+              "real": 12,
               "plan": 12
             },
             {
               "site": "BARRENACIÓN DIAMANTE",
-              "real": 17,
-              "plan": 20
+              "real": 19,
+              "plan": 19
             },
             {
               "site": "SAN PEDRO CORRALITOS",
               "real": 7,
-              "plan": 8
+              "plan": 7
             }
           ],
           "vacantes": [
@@ -3445,5 +3445,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-25T14:58:40.386Z"
+  "_savedAt": "2026-08-25T15:00:56.568Z"
 }

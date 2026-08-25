@@ -2511,7 +2511,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-25T01:23:03.271Z",
+          "updatedAt": "2026-08-25T01:23:26.134Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2609,7 +2609,7 @@
           "apoyoTipo3": "",
           "apoyo3": "",
           "apoyoTipo": "",
-          "desafio1Titulo": "",
+          "desafio1Titulo": "inicio de proceso de Plan Anual de capacitación",
           "desafio1Pct": 0,
           "desafio1Bloqueo": "",
           "desafio2Titulo": "",
@@ -3441,5 +3441,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-25T01:23:23.850Z"
+  "_savedAt": "2026-08-25T01:23:28.136Z"
 }

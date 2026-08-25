@@ -2647,7 +2647,7 @@
         },
         "exploracion": {
           "alertStatus": "VERDE",
-          "kpi1Label": "Real 253",
+          "kpi1Label": "Real 235",
           "kpi1Value": "Plan 210",
           "kpi1Plan": "",
           "kpi1Impact": "",
@@ -2659,7 +2659,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-25T14:46:11.707Z",
+          "updatedAt": "2026-08-25T14:46:15.339Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3428,5 +3428,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-25T14:46:13.719Z"
+  "_savedAt": "2026-08-25T14:46:17.342Z"
 }

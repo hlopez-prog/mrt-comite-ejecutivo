@@ -2650,7 +2650,7 @@
           "kpi1Label": "Real 235",
           "kpi1Value": "Plan 210",
           "kpi1Plan": "Recuperacion 90%",
-          "kpi1Impact": "Recuperación 91%",
+          "kpi1Impact": "Recuperación 90%",
           "kpi2Label": "",
           "kpi2Value": "",
           "kpi2Plan": "",
@@ -2659,7 +2659,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-25T14:46:49.776Z",
+          "updatedAt": "2026-08-25T14:46:54.356Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3428,5 +3428,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-25T14:46:51.778Z"
+  "_savedAt": "2026-08-25T14:46:56.372Z"
 }

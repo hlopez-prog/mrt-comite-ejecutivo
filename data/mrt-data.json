@@ -2511,7 +2511,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-25T01:23:57.157Z",
+          "updatedAt": "2026-08-25T01:24:01.974Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2613,7 +2613,7 @@
           "desafio1Pct": 71,
           "desafio1Bloqueo": "Se ajusto Plan de capacitación con Juan Carlos Graciano ",
           "desafio2Titulo": "Presupuesto HeadCount 2026-2027 MRT",
-          "desafio2Pct": 0,
+          "desafio2Pct": 96,
           "desafio2Bloqueo": ""
         },
         "finanzas": {
@@ -3441,5 +3441,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-25T01:23:59.162Z"
+  "_savedAt": "2026-08-25T01:24:03.981Z"
 }

@@ -2659,7 +2659,7 @@
           "apoyo": "Reporte visita mina 3H",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-25T14:50:26.396Z",
+          "updatedAt": "2026-08-25T14:50:45.106Z",
           "kpi3Label": "Secciones area JH",
           "kpi3Value": "P.M Mineral 4gr JH Y S.N",
           "kpi3Plan": "Visita Mina 3H Batopilas",
@@ -2677,7 +2677,7 @@
           "apoyoTipo2": "",
           "apoyo2": "Secciones JH",
           "apoyoTipo3": "",
-          "apoyo3": "",
+          "apoyo3": "Visita Parral y Olivos",
           "apoyoTipo": "",
           "desafio1Titulo": "",
           "desafio1Pct": 0,
@@ -3428,5 +3428,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-25T14:50:28.411Z"
+  "_savedAt": "2026-08-25T14:50:47.108Z"
 }

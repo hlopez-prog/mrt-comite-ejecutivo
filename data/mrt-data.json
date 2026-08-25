@@ -2511,7 +2511,7 @@
           "apoyo": "HeadCount de proyecto Olivos Rec. Vo.Bo.",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-25T01:26:01.058Z",
+          "updatedAt": "2026-08-25T01:27:25.124Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2566,28 +2566,16 @@
           ],
           "vacantes": [
             {
-              "cargo": "Operador de Equipo",
+              "cargo": "Cieneguita",
               "area": "Operaciones",
-              "abiertas": 12,
-              "dias": 45
+              "abiertas": 13,
+              "dias": 21
             },
             {
-              "cargo": "Mecánico Industrial",
-              "area": "Mantenimiento",
-              "abiertas": 5,
-              "dias": 30
-            },
-            {
-              "cargo": "Técnico Metalurgista",
-              "area": "Metalurgia",
-              "abiertas": 3,
-              "dias": 20
-            },
-            {
-              "cargo": "Analista Contable",
-              "area": "Finanzas",
-              "abiertas": 2,
-              "dias": 15
+              "cargo": "Namiquipa",
+              "area": "Operaciones",
+              "abiertas": 38,
+              "dias": 21
             }
           ],
           "kpi3Label": "",
@@ -3509,5 +3497,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-25T01:26:03.075Z"
+  "_savedAt": "2026-08-25T01:27:27.131Z"
 }

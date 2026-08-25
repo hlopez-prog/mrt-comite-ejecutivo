@@ -2508,10 +2508,10 @@
           "kpi2Plan": "",
           "kpi2Impact": "",
           "riesgo": "",
-          "apoyo": "",
+          "apoyo": "HeadCount de proyecto Olivos Rec.",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-25T01:24:44.942Z",
+          "updatedAt": "2026-08-25T01:24:47.069Z",
           "headcount": [
             {
               "site": "CIENEGUITA",
@@ -2603,7 +2603,7 @@
           "riesgo2": "",
           "riesgo3": "",
           "apoyoTipo1": "",
-          "apoyo1": "",
+          "apoyo1": "HeadCount de proyecto Olivos Rec.",
           "apoyoTipo2": "",
           "apoyo2": "",
           "apoyoTipo3": "",
@@ -3441,5 +3441,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-25T01:24:46.955Z"
+  "_savedAt": "2026-08-25T01:24:49.082Z"
 }

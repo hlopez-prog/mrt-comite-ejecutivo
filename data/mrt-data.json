@@ -2649,7 +2649,7 @@
           "alertStatus": "VERDE",
           "kpi1Label": "Real 235",
           "kpi1Value": "Plan 210",
-          "kpi1Plan": "",
+          "kpi1Plan": "Recuperacion 90%",
           "kpi1Impact": "",
           "kpi2Label": "",
           "kpi2Value": "",
@@ -2659,7 +2659,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Daniel Lopez",
-          "updatedAt": "2026-08-25T14:46:33.912Z",
+          "updatedAt": "2026-08-25T14:46:47.661Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3428,5 +3428,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-25T14:46:35.914Z"
+  "_savedAt": "2026-08-25T14:46:49.664Z"
 }

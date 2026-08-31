@@ -2711,12 +2711,12 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-08-31T16:18:49.686Z",
+          "updatedAt": "2026-08-31T16:20:05.872Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
           "kpi3Impact": "",
-          "proy1": "",
+          "proy1": "CIE:\n Plan de producción septiembre",
           "proy2": "",
           "proy3": "",
           "hcNotas": "",
@@ -3427,5 +3427,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-31T16:18:51.698Z"
+  "_savedAt": "2026-08-31T16:20:07.889Z"
 }

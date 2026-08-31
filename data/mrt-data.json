@@ -2711,7 +2711,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-08-31T16:30:30.170Z",
+          "updatedAt": "2026-08-31T16:30:32.489Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -2731,7 +2731,7 @@
           "apoyoTipo3": "",
           "apoyo3": "",
           "apoyoTipo": "",
-          "desafio1Titulo": "",
+          "desafio1Titulo": "Incremento  capacidad Cieneguita 2000TPD",
           "desafio1Pct": 0,
           "desafio1Bloqueo": "",
           "desafio2Titulo": "Arranque y estabilización del depósito de jal y riego en Namiquipa",
@@ -3427,5 +3427,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-31T16:30:32.174Z"
+  "_savedAt": "2026-08-31T16:30:34.494Z"
 }

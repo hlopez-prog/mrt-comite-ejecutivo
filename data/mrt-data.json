@@ -2711,13 +2711,13 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-08-31T16:24:42.560Z",
+          "updatedAt": "2026-08-31T16:24:53.039Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
           "kpi3Impact": "",
           "proy1": "CIE:Plan de producción septiembre (2107 OzAuEq) y revisión de plan Q4",
-          "proy2": "NAM: Prueba de arranque de equipos en vacio para verofocar alineación y tensión de bandas",
+          "proy2": "NAM: Prueba de arranque de equipos en vacio para verificar alineación y tensión de bandas",
           "proy3": "",
           "hcNotas": "",
           "vacNotas": "",
@@ -3427,5 +3427,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-31T16:24:44.573Z"
+  "_savedAt": "2026-08-31T16:24:55.055Z"
 }

@@ -2703,7 +2703,7 @@
           "kpi1Value": "2140",
           "kpi1Plan": "2085",
           "kpi1Impact": "+55OzAuEq ( +2.7%)",
-          "kpi2Label": "",
+          "kpi2Label": "Costo  usd/OzAuEq (Proyección)",
           "kpi2Value": "",
           "kpi2Plan": "",
           "kpi2Impact": "",
@@ -2711,7 +2711,7 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-08-31T16:18:31.653Z",
+          "updatedAt": "2026-08-31T16:18:39.076Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
@@ -3427,5 +3427,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-31T16:18:33.660Z"
+  "_savedAt": "2026-08-31T16:18:41.086Z"
 }

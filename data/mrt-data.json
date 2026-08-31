@@ -2711,14 +2711,14 @@
           "apoyo": "",
           "accion": "",
           "updatedBy": "Noel Menera",
-          "updatedAt": "2026-08-31T16:26:26.313Z",
+          "updatedAt": "2026-08-31T16:26:49.713Z",
           "kpi3Label": "",
           "kpi3Value": "",
           "kpi3Plan": "",
           "kpi3Impact": "",
           "proy1": "CIE:Plan de producción septiembre (2107 OzAuEq) y revisión de plan Q4",
           "proy2": "NAM: Prueba de arranque de equipos en vacio para verificar alineación,  tensión de bandas y giro de motores. Se realiza primer prueba con jal",
-          "proy3": "OLIVOS:",
+          "proy3": "OLIVOS: Avances de construcción del tren de trituración,",
           "hcNotas": "",
           "vacNotas": "",
           "riesgo1": "",
@@ -3427,5 +3427,5 @@
       "section": ""
     }
   ],
-  "_savedAt": "2026-08-31T16:26:28.325Z"
+  "_savedAt": "2026-08-31T16:26:51.718Z"
 }
